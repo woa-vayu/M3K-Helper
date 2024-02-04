@@ -1,26 +1,21 @@
 <resources>
 
-    <string name="app_name">M3K WOA Helper</string>
-    <string name="error_title">An unexpected error occurred.\nSorry for the inconvenience.</string>
-    <string name="app_title">Windows on ARM Helper</string>
-    <string name="app_subtitle">v1.5"</string>
-
-    <string name="mounted">Mounted :%s</string>
-
-    <string name="mnt_switch">Location</string>
+    <string name="app_name" translatable="false">M3K WOA Helper</string>
 
     <string name="mnt_title">Mount Windows</string>
     <string name="umnt_title">Unmount Windows</string>
     <string name="dump_modem_title">Dump Modem</string>
     <string name="quickboot_title">QuickBoot to Windows</string>
     <string name="backup_boot_title">Backup Boot</string>
+    <string name="flash_uefi_title">Flash UEFI</string>
+    <string name="uefi_not_found_title">UEFI not found</string>
 
     <string name="mnt_question">Mount Windows?</string>
     <string name="umnt_question">Unmount Windows?</string>
     <string name="dump_modem_question">Provision modem1st and modem2st to Windows partition?</string>
     <string name="quickboot_question">Quick Boot to Windows?</string>
-    <string name="quickboot_question1">60Hz?</string>
-    <string name="quickboot_question2">120Hz?</string>
+    <string name="quickboot_question1" translatable="false">60Hz?</string>
+    <string name="quickboot_question2" translatable="false">120Hz?</string>
     <string name="backup_boot_question">Backup current android boot?</string>
     <string name="flash_uefi_question">Flash UEFI?</string>
 
@@ -30,31 +25,18 @@
     <string name="quickboot_subtitle">Dump Modem, Flash UEFI, and Reboot to Windows in one click</string>
     <string name="quickboot_subtitle_nomodem">Flash UEFI, and Reboot to Windows in one click</string>
     <string name="flash_uefi_subtitle">Flash UEFI for the %s display panel?</string>
+    <string name="uefi_not_found_subtitle">Download UEFI for your device and place your UEFI to the UEFI FOLDER in INTERNAL STORAGE</string>
 
     <string name="ramvalue">RAM: %s</string>
     <string name="paneltype">"Panel: %s"</string>
     <string name="slot">"Slot: %s"</string>
 
-    <string name="uefi_version">UEFI Version:</string>
-
     <string name="guide">Guide</string>
     <string name="group">Group</string>
-    <string name="not_found">Not Found</string>
 
     <string name="yes">Yes</string>
     <string name="dismiss">Dismiss</string>
     <string name="no">No</string>
     <string name="please_wait">Please Wait…</string>
 
-    <string name="flash_uefi_title">Flash UEFI</string>
-
-    <string name="uefi_not_found">UEFI not found</string>
-    <string name="uefi_not_found_subtitle">Please Download UEFI for the POCO X3 Pro and place your UEFI to the UEFI FOLDER in INTERNAL STORAGE</string>
-
-    <string name="uefiChk" translatable="false">su -c find /mnt/sdcard/UEFI/ -type f  | grep ".img" </string>
-    <string name="uefiChk1" translatable="false">su -c find /mnt/sdcard/UEFI/ -type f  | grep ".img" | grep "60" </string>
-    <string name="uefiChk2" translatable="false">su -c find /mnt/sdcard/UEFI/ -type f  | grep ".img" | grep "120"</string>
-
-    <string name="backup" translatable="false">su -c dd if=/dev/block/by-name/boot of=/sdcard/Windows/boot.img</string>
-    <string name="backup1" translatable="false">su -c dd if=/dev/block/by-name/boot of=/sdcard/Windows/boot.img bs=4m</string>
 </resources>

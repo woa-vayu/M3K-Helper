@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">NM3K WOA Helper</string>
-
     <string name="mnt_title">Монтировать Windows</string>
     <string name="umnt_title">Размонтировать Windows</string>
     <string name="dump_modem_title">Настроить модем</string>
     <string name="quickboot_title">Перезагрузиться в  Windows</string>
-    <string name="backup_boot_title">Backup Boot</string>
+    <string name="backup_boot_title">Резервная копия загрузочного образа</string>
     <string name="flash_uefi_title">Прошить UEFI</string>
+    <string name="uefi_not_found_title">UEFI не найден</string>
+
 
     <string name="mnt_question">Монтировать Windows?</string>
     <string name="umnt_question">Размонтировать Windows?</string>
@@ -19,12 +19,21 @@
     <string name="backup_boot_subtitle">Резервное копирование текущего загрузочного образа в Android/Windows</string>
     <string name="mnt_subtitle">Нужно для редактирования содержимого раздела Windows</string>
     <string name="dump_modem_subtitle">Provision modem1st and modem2st to Windows to fix LTE on SIM1 on Windows everytime you want to boot to Windows</string>
-    <string name="quickboot_subtitle">Dump Modem, Flash UEFI, and Reboot to Windows in one click</string>
+    <string name="quickboot_subtitle">Dump Modem, прошить UEFI и перезагрузиться в Windows в одно нажатие</string>
+    <string name="quickboot_subtitle_nomodem">Прошейте UEFI и перезагрузитесь в Windows в одно нажатие</string>
     <string name="flash_uefi_subtitle">Прошить UEFI для дисплея %s?</string>
+    <string name="uefi_not_found_subtitle">Скачайте UEFI для вашего устройства и поместите его в папку UEFI в памяти устройства</string>
 
     <string name="ramvalue">ОЗУ: %s</string>
     <string name="paneltype">"Дисплей: %s"</string>
+    <string name="slot">Слот: %s</string>
+
+
+    <string name="guide">Гайд</string>
+    <string name="group">Группа</string>
 
     <string name="yes">Да</string>
+    <string name="dismiss">Отклонить</string>
     <string name="no">Нет</string>
+    <string name="please_wait">Пожалуйста подождите…</string>
 </resources>

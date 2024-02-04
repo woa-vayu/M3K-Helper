@@ -86,22 +86,24 @@ class MainActivity : ComponentActivity() {
             WOAHelperTheme {
                 // main variables
                 val ram = RAM().getMemory(applicationContext)
-                val devicename = Commands.devicename()
-                val slot = String.format("%S", ShellUtils.fastCmd("getprop ro.boot.slot_suffix")).drop(1)
+                val name = Commands.devicename()
+                val codename = Build.DEVICE
+                val slot =
+                    String.format("%S", ShellUtils.fastCmd("getprop ro.boot.slot_suffix")).drop(1)
                 // unsupported device warning
                 val unsupported = remember { mutableStateOf(false) }
-                if ((devicename == "Unknown")) {
+                if ((name == "Unknown")) {
                     unsupported.value = true
                 }
 
                 var textSize = 10.sp
                 var paddingValue = 10.dp
 
-                if (Build.DEVICE == "nabu") {
+                if (codename == "nabu") {
                     textSize = 20.sp
                     paddingValue = 20.dp
                 }
-                WOAHelper(ram, slot, textSize, paddingValue, devicename, unsupported)
+                WOAHelper(ram, slot, textSize, paddingValue, name, codename, unsupported)
             }
         }
     }
@@ -113,7 +115,8 @@ class MainActivity : ComponentActivity() {
         slot: String,
         textSize: TextUnit,
         paddingValue: Dp,
-        devicename: String,
+        name: String,
+        codename: String,
         unsupported: MutableState<Boolean>
     ) {
         val navController = rememberNavController()
@@ -205,7 +208,7 @@ class MainActivity : ComponentActivity() {
                     enterTransition = { slideInVertically { height -> -height } + fadeIn() },
                     exitTransition = { slideOutVertically { height -> -height } + fadeOut() }
                 ) {
-                    MainScreen(ram, slot, textSize, paddingValue, devicename, unsupported)
+                    MainScreen(ram, slot, textSize, paddingValue, name, unsupported, codename)
                 }
             }
         }
@@ -240,7 +243,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(bottom = 5.dp),
-                        text = "Version: 1.0",
+                        text = "Version: 1.2",
                         textAlign = TextAlign.Center
                     )
                 }
@@ -432,8 +435,9 @@ class MainActivity : ComponentActivity() {
         slot: String,
         textSize: TextUnit,
         paddingValue: Dp,
-        devicename: String,
-        unsupported: MutableState<Boolean>
+        name: String,
+        unsupported: MutableState<Boolean>,
+        codename: String
     ) {
         Scaffold {
             Column(
@@ -486,20 +490,19 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 }
-                if (Build.DEVICE != "nabu") {
+                if (codename != "nabu") {
                     Row {
                         DeviceImage()
-                        InfoCard(devicename, ram)
+                        InfoCard(name, ram)
                     }
                     Buttons.BackupButton(textSize, paddingValue)
                     Buttons.MountButton(textSize, paddingValue)
-                    if (!nomodem.contains(Build.DEVICE)) {
+                    if (!nomodem.contains(codename)) {
                         Buttons.ModemButton(textSize, paddingValue)
                     }
                     Buttons.UEFIButton(textSize, paddingValue)
                     Buttons.QuickbootButton(textSize, paddingValue)
-                }
-                    else {
+                } else {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(16.dp),
                         modifier = Modifier
@@ -512,7 +515,7 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier
                                 .padding(vertical = 10.dp)
                         ) {
-                            LandScapeInfoCard(devicename, ram, slot, textSize)
+                            LandScapeInfoCard(name, ram, slot, textSize)
                             LandScapeDeviceImage()
                         }
                         Column(

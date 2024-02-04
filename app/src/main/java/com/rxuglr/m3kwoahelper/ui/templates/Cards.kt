@@ -42,7 +42,7 @@ object Cards {
         return px / (woahApp.resources.displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
     }
     @Composable
-    fun InfoCard(devicename: String, ram: String) {
+    fun InfoCard(name: String, ram: String) {
         Card(
             Modifier
                 .height(200.dp),
@@ -65,7 +65,7 @@ object Cards {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 10.dp),
-                    text = devicename
+                    text = name
                 )
 
                 Text(
@@ -160,7 +160,7 @@ object Cards {
     }
 
     @Composable
-    fun LandScapeInfoCard(devicename: String, ram: String, slot: String, textSize: TextUnit) {
+    fun LandScapeInfoCard(name: String, ram: String, slot: String, textSize: TextUnit) {
         Card(
             Modifier
                 .height(200.dp)
@@ -185,7 +185,7 @@ object Cards {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 10.dp),
-                    text = devicename,
+                    text = name,
                     fontSize = textSize
                 )
 

@@ -47,98 +47,102 @@ object Buttons  {
                containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(10.dp)
            )
        ) {
-           if (showBackupSpinner.value) {
-               PopupDialogs().SpinnerDialog(
-                   icon = painterResource(id = R.drawable.ic_disk),
-                   title = "Please wait..",
-                   showDialog = showBackupSpinner.value
-               )
+           when {
+               showBackupSpinner.value -> {
+                   PopupDialogs.SpinnerDialog(
+                       icon = painterResource(id = R.drawable.ic_disk),
+                       title = "Please wait..",
+                       showDialog = showBackupSpinner.value
+                   )
+               }
            }
-           if (showBackupDialog.value) {
-               AlertDialog(
-                   icon = {
-                       Icon(
-                           painter = painterResource(id = R.drawable.ic_disk),
-                           contentDescription = null,
-                           tint = MaterialTheme.colorScheme.primary
-                       )
-                   },
-                   title = {
-                   },
-                   text = {
-                       Text(
-                           modifier = Modifier.fillMaxWidth(),
-                           text = LocalContext.current.getString(R.string.backup_boot_question),
-                           textAlign = TextAlign.Center
-                       )
-                   },
-                   onDismissRequest = ({ showBackupDialog.value = false; }),
-                   dismissButton = {
-                       Row(
-                           Modifier.align(Alignment.CenterHorizontally),
-                           horizontalArrangement = Arrangement.spacedBy(15.dp)
-                       ) {
-                           AssistChip(
-                               onClick = {
-                                   Thread {
-                                       showBackupDialog.value = false
-                                       showBackupSpinner.value = true
-                                       Commands.backup(2)
-                                       showBackupSpinner.value = false
-                                   }.start()
-                               },
-                               label = {
-                                   Text(
-                                       modifier = Modifier.padding(
-                                           top = 2.dp,
-                                           bottom = 2.dp
-                                       ),
-                                       text = "Android",
-                                       color = MaterialTheme.colorScheme.inverseSurface
-                                   )
-                               }
+           when {
+               showBackupDialog.value -> {
+                   AlertDialog(
+                       icon = {
+                           Icon(
+                               painter = painterResource(id = R.drawable.ic_disk),
+                               contentDescription = null,
+                               tint = MaterialTheme.colorScheme.primary
                            )
-                           AssistChip(
-                               onClick = {
-                                   Thread {
-                                       showBackupDialog.value = false
-                                       showBackupSpinner.value = true
-                                       Commands.mountwin()
-                                       Commands.backup(1)
-                                       Commands.umountwin()
-                                       showBackupSpinner.value = false
-                                   }.start()
-                               },
-                               label = {
-                                   Text(
-                                       modifier = Modifier.padding(
-                                           top = 2.dp,
-                                           bottom = 2.dp
-                                       ),
-                                       text = "Windows",
-                                       color = MaterialTheme.colorScheme.inverseSurface
-                                   )
-                               }
+                       },
+                       title = {
+                       },
+                       text = {
+                           Text(
+                               modifier = Modifier.fillMaxWidth(),
+                               text = LocalContext.current.getString(R.string.backup_boot_question),
+                               textAlign = TextAlign.Center
                            )
-                           AssistChip(
-                               onClick = ({ showBackupDialog.value = false; }),
-                               label = {
-                                   Text(
-                                       modifier = Modifier.padding(
-                                           top = 2.dp,
-                                           bottom = 2.dp
-                                       ),
-                                       text = LocalContext.current.getString(R.string.no),
-                                       color = MaterialTheme.colorScheme.inverseSurface,
-                                       fontSize = fontSize
-                                   )
-                               }
-                           )
+                       },
+                       onDismissRequest = ({ showBackupDialog.value = false; }),
+                       dismissButton = {
+                           Row(
+                               Modifier.align(Alignment.CenterHorizontally),
+                               horizontalArrangement = Arrangement.spacedBy(15.dp)
+                           ) {
+                               AssistChip(
+                                   onClick = {
+                                       Thread {
+                                           showBackupDialog.value = false
+                                           showBackupSpinner.value = true
+                                           Commands.backup(2)
+                                           showBackupSpinner.value = false
+                                       }.start()
+                                   },
+                                   label = {
+                                       Text(
+                                           modifier = Modifier.padding(
+                                               top = 2.dp,
+                                               bottom = 2.dp
+                                           ),
+                                           text = "Android",
+                                           color = MaterialTheme.colorScheme.inverseSurface
+                                       )
+                                   }
+                               )
+                               AssistChip(
+                                   onClick = {
+                                       Thread {
+                                           showBackupDialog.value = false
+                                           showBackupSpinner.value = true
+                                           Commands.mountwin()
+                                           Commands.backup(1)
+                                           Commands.umountwin()
+                                           showBackupSpinner.value = false
+                                       }.start()
+                                   },
+                                   label = {
+                                       Text(
+                                           modifier = Modifier.padding(
+                                               top = 2.dp,
+                                               bottom = 2.dp
+                                           ),
+                                           text = "Windows",
+                                           color = MaterialTheme.colorScheme.inverseSurface
+                                       )
+                                   }
+                               )
+                               AssistChip(
+                                   onClick = ({ showBackupDialog.value = false; }),
+                                   label = {
+                                       Text(
+                                           modifier = Modifier.padding(
+                                               top = 2.dp,
+                                               bottom = 2.dp
+                                           ),
+                                           text = LocalContext.current.getString(R.string.no),
+                                           color = MaterialTheme.colorScheme.inverseSurface,
+                                           fontSize = fontSize
+                                       )
+                                   }
+                               )
+                           }
+                       },
+                       confirmButton = {
                        }
-                   },
-                   confirmButton = {
-                   }
-               )
+                   )
+               }
            }
            Row(
                modifier = Modifier
@@ -183,31 +187,33 @@ object Buttons  {
                containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(10.dp)
            )
        ) {
-           if (showMountDialog.value) {
-               if (Commands.mountstatus()) {
-                   PopupDialogs().Dialog(
-                       icon = painterResource(id = R.drawable.ic_windows),
-                       title = null,
-                       description = LocalContext.current.getString(R.string.mnt_question),
-                       showDialog = showMountDialog.value,
-                       onDismiss = { showMountDialog.value = false },
-                       onConfirm = ({
-                           Commands.mountwin()
-                           showMountDialog.value = false
-                       })
-                   )
-               } else {
-                   PopupDialogs().Dialog(
-                       painterResource(id = R.drawable.ic_windows),
-                       null,
-                       LocalContext.current.getString(R.string.umnt_question),
-                       showMountDialog.value,
-                       onDismiss = ({ showMountDialog.value = false; }),
-                       onConfirm = ({
-                           Commands.umountwin()
-                           showMountDialog.value = false
-                       })
-                   )
+           when {
+               showMountDialog.value -> {
+                   if (Commands.mountstatus()) {
+                       PopupDialogs.Dialog(
+                           icon = painterResource(id = R.drawable.ic_windows),
+                           title = null,
+                           description = LocalContext.current.getString(R.string.mnt_question),
+                           showDialog = showMountDialog.value,
+                           onDismiss = { showMountDialog.value = false },
+                           onConfirm = ({
+                               Commands.mountwin()
+                               showMountDialog.value = false
+                           })
+                       )
+                   } else {
+                       PopupDialogs.Dialog(
+                           painterResource(id = R.drawable.ic_windows),
+                           null,
+                           LocalContext.current.getString(R.string.umnt_question),
+                           showMountDialog.value,
+                           onDismiss = ({ showMountDialog.value = false; }),
+                           onConfirm = ({
+                               Commands.umountwin()
+                               showMountDialog.value = false
+                           })
+                       )
+                   }
                }
            }
            Row(
@@ -258,29 +264,33 @@ object Buttons  {
                containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(10.dp)
            )
        ) {
-           if (showModemSpinner.value) {
-               PopupDialogs().SpinnerDialog(
-                   icon = painterResource(id = R.drawable.ic_modem),
-                   title = "Please wait..",
-                   showDialog = showModemSpinner.value
-               )
+           when {
+               showModemSpinner.value -> {
+                   PopupDialogs.SpinnerDialog(
+                       icon = painterResource(id = R.drawable.ic_modem),
+                       title = "Please wait..",
+                       showDialog = showModemSpinner.value
+                   )
+               }
            }
-           if (showModemDialog.value) {
-               PopupDialogs().Dialog(
-                   painterResource(id = R.drawable.ic_modem),
-                   null,
-                   LocalContext.current.getString(R.string.dump_modem_question),
-                   showModemDialog.value,
-                   onDismiss = ({ showModemDialog.value = false; }),
-                   onConfirm = ({
-                       Thread {
-                           showModemDialog.value = false
-                           showModemSpinner.value = true
-                           Commands.dumpmodem()
-                           showModemSpinner.value = false
-                       }.start()
-                   })
-               )
+           when {
+               showModemDialog.value -> {
+                   PopupDialogs.Dialog(
+                       painterResource(id = R.drawable.ic_modem),
+                       null,
+                       LocalContext.current.getString(R.string.dump_modem_question),
+                       showModemDialog.value,
+                       onDismiss = ({ showModemDialog.value = false; }),
+                       onConfirm = ({
+                           Thread {
+                               showModemDialog.value = false
+                               showModemSpinner.value = true
+                               Commands.dumpmodem()
+                               showModemSpinner.value = false
+                           }.start()
+                       })
+                   )
+               }
            }
            Row(
                modifier = Modifier
@@ -325,123 +335,127 @@ object Buttons  {
                containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(10.dp)
            )
        ) {
-           if (showUEFISpinner.value) {
-               PopupDialogs().SpinnerDialog(
-                   icon = painterResource(id = R.drawable.ic_uefi),
-                   title = "Please wait..",
-                   showDialog = showUEFISpinner.value
-               )
+           when {
+               showUEFISpinner.value -> {
+                   PopupDialogs.SpinnerDialog(
+                       icon = painterResource(id = R.drawable.ic_uefi),
+                       title = "Please wait..",
+                       showDialog = showUEFISpinner.value
+                   )
+               }
            }
-           if (showUEFIDialog.value) {
-               AlertDialog(
-                   icon = {
-                       Icon(
-                           painter = painterResource(id = R.drawable.ic_uefi),
-                           contentDescription = null,
-                           tint = MaterialTheme.colorScheme.primary
-                       )
-                   },
-                   title = {
-                   },
-                   text = {
-                       Text(
-                           modifier = Modifier.fillMaxWidth(),
-                           text = LocalContext.current.getString(R.string.flash_uefi_question),
-                           textAlign = TextAlign.Center
-                       )
-                   },
-                   onDismissRequest = ({ showUEFIDialog.value = false; }),
-                   dismissButton = {
-                       Row(
-                           Modifier.align(Alignment.CenterHorizontally),
-                           horizontalArrangement = Arrangement.spacedBy(10.dp)
-                       ) {
-                           if (Commands.uefi.contains(120)) {
-                               AssistChip(
-                                   onClick = {
-                                       Thread {
-                                           showUEFIDialog.value = false
-                                           showUEFISpinner.value = true
-                                           Commands.flashuefi(0)
-                                           showUEFISpinner.value = false
-                                       }.start()
-                                   },
-                                   label = {
-                                       Text(
-                                           modifier = Modifier.padding(
-                                               top = 2.dp,
-                                               bottom = 2.dp
-                                           ),
-                                           text = "120Hz",
-                                           color = MaterialTheme.colorScheme.inverseSurface
-                                       )
-                                   }
-                               )
-                           }
-                           if (Commands.uefi.contains(60)) {
-                               AssistChip(
-                                   onClick = {
-                                       Thread {
-                                           showUEFIDialog.value = false
-                                           showUEFISpinner.value = true
-                                           Commands.flashuefi(1)
-                                           showUEFISpinner.value = false
-                                       }.start()
-                                   },
-                                   label = {
-                                       Text(
-                                           modifier = Modifier.padding(
-                                               top = 2.dp,
-                                               bottom = 2.dp
-                                           ),
-                                           text = "60Hz",
-                                           color = MaterialTheme.colorScheme.inverseSurface
-                                       )
-                                   }
-                               )
-                           }
-                           if (Commands.uefi
-                                   .contains(1) and (!Commands.uefi.contains(60) or !Commands.uefi.contains(120))
+           when {
+               showUEFIDialog.value -> {
+                   AlertDialog(
+                       icon = {
+                           Icon(
+                               painter = painterResource(id = R.drawable.ic_uefi),
+                               contentDescription = null,
+                               tint = MaterialTheme.colorScheme.primary
+                           )
+                       },
+                       title = {
+                       },
+                       text = {
+                           Text(
+                               modifier = Modifier.fillMaxWidth(),
+                               text = LocalContext.current.getString(R.string.flash_uefi_question),
+                               textAlign = TextAlign.Center
+                           )
+                       },
+                       onDismissRequest = ({ showUEFIDialog.value = false; }),
+                       dismissButton = {
+                           Row(
+                               Modifier.align(Alignment.CenterHorizontally),
+                               horizontalArrangement = Arrangement.spacedBy(10.dp)
                            ) {
-                               AssistChip(
-                                   onClick = {
-                                       Thread {
-                                           showUEFIDialog.value = false
-                                           showUEFISpinner.value = true
-                                           Commands.flashuefi(2)
-                                           showUEFISpinner.value = false
-                                       }.start()
-                                   },
-                                   label = {
-                                       Text(
-                                           modifier = Modifier.padding(
-                                               top = 2.dp,
-                                               bottom = 2.dp
-                                           ),
-                                           text = LocalContext.current.getString(R.string.yes),
-                                           color = MaterialTheme.colorScheme.inverseSurface
-                                       )
-                                   }
-                               )
-                           }
-                           AssistChip(
-                               onClick = ({ showUEFIDialog.value = false; }),
-                               label = {
-                                   Text(
-                                       modifier = Modifier.padding(
-                                           top = 2.dp,
-                                           bottom = 2.dp
-                                       ),
-                                       text = LocalContext.current.getString(R.string.no),
-                                       color = MaterialTheme.colorScheme.inverseSurface
+                               if (Commands.uefi.contains(120)) {
+                                   AssistChip(
+                                       onClick = {
+                                           Thread {
+                                               showUEFIDialog.value = false
+                                               showUEFISpinner.value = true
+                                               Commands.flashuefi(0)
+                                               showUEFISpinner.value = false
+                                           }.start()
+                                       },
+                                       label = {
+                                           Text(
+                                               modifier = Modifier.padding(
+                                                   top = 2.dp,
+                                                   bottom = 2.dp
+                                               ),
+                                               text = "120Hz",
+                                               color = MaterialTheme.colorScheme.inverseSurface
+                                           )
+                                       }
                                    )
                                }
-                           )
+                               if (Commands.uefi.contains(60)) {
+                                   AssistChip(
+                                       onClick = {
+                                           Thread {
+                                               showUEFIDialog.value = false
+                                               showUEFISpinner.value = true
+                                               Commands.flashuefi(1)
+                                               showUEFISpinner.value = false
+                                           }.start()
+                                       },
+                                       label = {
+                                           Text(
+                                               modifier = Modifier.padding(
+                                                   top = 2.dp,
+                                                   bottom = 2.dp
+                                               ),
+                                               text = "60Hz",
+                                               color = MaterialTheme.colorScheme.inverseSurface
+                                           )
+                                       }
+                                   )
+                               }
+                               if (Commands.uefi
+                                       .contains(1) and (!Commands.uefi.contains(60) or !Commands.uefi.contains(120))
+                               ) {
+                                   AssistChip(
+                                       onClick = {
+                                           Thread {
+                                               showUEFIDialog.value = false
+                                               showUEFISpinner.value = true
+                                               Commands.flashuefi(2)
+                                               showUEFISpinner.value = false
+                                           }.start()
+                                       },
+                                       label = {
+                                           Text(
+                                               modifier = Modifier.padding(
+                                                   top = 2.dp,
+                                                   bottom = 2.dp
+                                               ),
+                                               text = LocalContext.current.getString(R.string.yes),
+                                               color = MaterialTheme.colorScheme.inverseSurface
+                                           )
+                                       }
+                                   )
+                               }
+                               AssistChip(
+                                   onClick = ({ showUEFIDialog.value = false; }),
+                                   label = {
+                                       Text(
+                                           modifier = Modifier.padding(
+                                               top = 2.dp,
+                                               bottom = 2.dp
+                                           ),
+                                           text = LocalContext.current.getString(R.string.no),
+                                           color = MaterialTheme.colorScheme.inverseSurface
+                                       )
+                                   }
+                               )
+                           }
+                       },
+                       confirmButton = {
                        }
-                   },
-                   confirmButton = {
-                   }
-               )
+                   )
+               }
            }
            Row(
                modifier = Modifier
@@ -486,121 +500,125 @@ object Buttons  {
                containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(10.dp)
            )
        ) {
-           if (showQuickBootSpinner.value) {
-               PopupDialogs().SpinnerDialog(
-                   icon = painterResource(id = R.drawable.ic_windows),
-                   title = "Please wait..",
-                   showDialog = showQuickBootSpinner.value
-               )
+           when {
+               showQuickBootSpinner.value -> {
+                   PopupDialogs.SpinnerDialog(
+                       icon = painterResource(id = R.drawable.ic_windows),
+                       title = "Please wait..",
+                       showDialog = showQuickBootSpinner.value
+                   )
+               }
            }
-           if (showQuickBootDialog.value) {
-               AlertDialog(
-                   icon = {
-                       Icon(
-                           painter = painterResource(id = R.drawable.ic_windows),
-                           contentDescription = null,
-                           tint = MaterialTheme.colorScheme.primary
-                       )
-                   },
-                   title = {
-                   },
-                   text = {
-                       Text(
-                           modifier = Modifier.fillMaxWidth(),
-                           text = LocalContext.current.getString(R.string.quickboot_question),
-                           textAlign = TextAlign.Center
-                       )
-                   },
-                   onDismissRequest = ({ showQuickBootDialog.value = false; }),
-                   dismissButton = {
-                       Row(
-                           Modifier.align(Alignment.CenterHorizontally),
-                           horizontalArrangement = Arrangement.spacedBy(10.dp)
-                       ) {
-                           if (Commands.uefi.contains(120)) {
-                               AssistChip(
-                                   modifier = Modifier.width(95.dp),
-                                   onClick = {
-                                       Thread {
-                                           showQuickBootDialog.value = false
-                                           showQuickBootSpinner.value = true
-                                           Commands.quickboot(0)
-                                           showQuickBootSpinner.value = false
-                                       }.start()
-                                   },
-                                   label = {
-                                       Text(
-                                           modifier = Modifier.padding(
-                                               top = 2.dp,
-                                               bottom = 2.dp
-                                           ),
-                                           text = LocalContext.current.getString(R.string.quickboot_question2),
-                                           color = MaterialTheme.colorScheme.inverseSurface
-                                       )
-                                   }
-                               )
-                           }
-                           if (Commands.uefi.contains(60)) {
-                               AssistChip(
-                                   modifier = Modifier.width(95.dp),
-                                   onClick = {
-                                       Thread {
-                                           showQuickBootDialog.value = false
-                                           showQuickBootSpinner.value = true
-                                           Commands.quickboot(1)
-                                           showQuickBootSpinner.value = false
-                                       }.start()
-                                   },
-                                   label = {
-                                       Text(
-                                           modifier = Modifier.padding(
-                                               top = 2.dp,
-                                               bottom = 2.dp
-                                           ),
-                                           text = LocalContext.current.getString(R.string.quickboot_question1),
-                                           color = MaterialTheme.colorScheme.inverseSurface
-                                       )
-                                   }
-                               )
-                           }
-                           if (Commands.uefi
-                                   .contains(1) and (!Commands.uefi.contains(60) or !Commands.uefi.contains(120))
+           when {
+               showQuickBootDialog.value -> {
+                   AlertDialog(
+                       icon = {
+                           Icon(
+                               painter = painterResource(id = R.drawable.ic_windows),
+                               contentDescription = null,
+                               tint = MaterialTheme.colorScheme.primary
+                           )
+                       },
+                       title = {
+                       },
+                       text = {
+                           Text(
+                               modifier = Modifier.fillMaxWidth(),
+                               text = LocalContext.current.getString(R.string.quickboot_question),
+                               textAlign = TextAlign.Center
+                           )
+                       },
+                       onDismissRequest = ({ showQuickBootDialog.value = false; }),
+                       dismissButton = {
+                           Row(
+                               Modifier.align(Alignment.CenterHorizontally),
+                               horizontalArrangement = Arrangement.spacedBy(10.dp)
                            ) {
-                               AssistChip(
-                                   onClick = {
-                                       Thread {
-                                           showQuickBootDialog.value = false
-                                           showQuickBootSpinner.value = true
-                                           Commands.quickboot(2)
-                                           showQuickBootSpinner.value = false
-                                       }.start()
-                                   },
-                                   label = {
-                                       Text(
-                                           text = LocalContext.current.getString(R.string.yes),
-                                           color = MaterialTheme.colorScheme.inverseSurface
-                                       )
-                                   }
-                               )
-                           }
-                           AssistChip(
-                               onClick = ({ showQuickBootDialog.value = false; }),
-                               label = {
-                                   Text(
-                                       modifier = Modifier.padding(
-                                           top = 2.dp,
-                                           bottom = 2.dp
-                                       ),
-                                       text = LocalContext.current.getString(R.string.no),
-                                       color = MaterialTheme.colorScheme.inverseSurface
+                               if (Commands.uefi.contains(120)) {
+                                   AssistChip(
+                                       modifier = Modifier.width(95.dp),
+                                       onClick = {
+                                           Thread {
+                                               showQuickBootDialog.value = false
+                                               showQuickBootSpinner.value = true
+                                               Commands.quickboot(0)
+                                               showQuickBootSpinner.value = false
+                                           }.start()
+                                       },
+                                       label = {
+                                           Text(
+                                               modifier = Modifier.padding(
+                                                   top = 2.dp,
+                                                   bottom = 2.dp
+                                               ),
+                                               text = LocalContext.current.getString(R.string.quickboot_question2),
+                                               color = MaterialTheme.colorScheme.inverseSurface
+                                           )
+                                       }
                                    )
                                }
-                           )
+                               if (Commands.uefi.contains(60)) {
+                                   AssistChip(
+                                       modifier = Modifier.width(95.dp),
+                                       onClick = {
+                                           Thread {
+                                               showQuickBootDialog.value = false
+                                               showQuickBootSpinner.value = true
+                                               Commands.quickboot(1)
+                                               showQuickBootSpinner.value = false
+                                           }.start()
+                                       },
+                                       label = {
+                                           Text(
+                                               modifier = Modifier.padding(
+                                                   top = 2.dp,
+                                                   bottom = 2.dp
+                                               ),
+                                               text = LocalContext.current.getString(R.string.quickboot_question1),
+                                               color = MaterialTheme.colorScheme.inverseSurface
+                                           )
+                                       }
+                                   )
+                               }
+                               if (Commands.uefi
+                                       .contains(1) and (!Commands.uefi.contains(60) or !Commands.uefi.contains(120))
+                               ) {
+                                   AssistChip(
+                                       onClick = {
+                                           Thread {
+                                               showQuickBootDialog.value = false
+                                               showQuickBootSpinner.value = true
+                                               Commands.quickboot(2)
+                                               showQuickBootSpinner.value = false
+                                           }.start()
+                                       },
+                                       label = {
+                                           Text(
+                                               text = LocalContext.current.getString(R.string.yes),
+                                               color = MaterialTheme.colorScheme.inverseSurface
+                                           )
+                                       }
+                                   )
+                               }
+                               AssistChip(
+                                   onClick = ({ showQuickBootDialog.value = false; }),
+                                   label = {
+                                       Text(
+                                           modifier = Modifier.padding(
+                                               top = 2.dp,
+                                               bottom = 2.dp
+                                           ),
+                                           text = LocalContext.current.getString(R.string.no),
+                                           color = MaterialTheme.colorScheme.inverseSurface
+                                       )
+                                   }
+                               )
+                           }
+                       },
+                       confirmButton = {
                        }
-                   },
-                   confirmButton = {
-                   }
-               )
+                   )
+               }
            }
            Row(
                modifier = Modifier
