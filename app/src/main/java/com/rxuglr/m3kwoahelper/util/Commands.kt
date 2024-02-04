@@ -25,7 +25,7 @@ object Commands {
     fun backup(where: Int) {
         val slot = ShellUtils.fastCmd("getprop ro.boot.slot_suffix")
         if (where == 1) {
-            ShellUtils.fastCmd("dd if=/dev/block/bootdevice/by-name/boot$slot of=/sdcard/windows/boot.img")
+            ShellUtils.fastCmd("dd if=/dev/block/bootdevice/by-name/boot$slot of=/sdcard/windows/boot.img bs=32MB")
         } else if (where == 2) {
             ShellUtils.fastCmd("mkdir /sdcard/m3khelper || true ")
             ShellUtils.fastCmd("dd if=/dev/block/bootdevice/by-name/boot$slot of=/sdcard/m3khelper/boot.img")
