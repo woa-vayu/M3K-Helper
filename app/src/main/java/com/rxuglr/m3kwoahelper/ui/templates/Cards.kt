@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Message
 import androidx.compose.material.icons.filled.Book
@@ -42,129 +41,22 @@ object Cards {
         return px / (woahApp.resources.displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
     }
     @Composable
-    fun InfoCard(name: String, ram: String) {
-        Card(
-            Modifier
-                .height(200.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(
-                    12.dp
-                )
-            )
+    fun InfoCard(
+        name: String,
+        ram: String,
+        fontSize: TextUnit,
+        lineHeight: TextUnit,
+        slot: String,
+        modifier: Modifier
         ) {
-            Column(verticalArrangement = Arrangement.spacedBy(3.dp)) {
-                Text(
-                    modifier = Modifier
-                        .padding(top = 5.dp)
-                        .fillMaxWidth(),
-                    text = "Windows on ARM",
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center
-                )
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 10.dp),
-                    text = name
-                )
-
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 10.dp),
-                    text = LocalContext.current.getString(R.string.ramvalue, ram)
-                )
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 10.dp),
-                    text = LocalContext.current.getString(R.string.paneltype, Commands.displaytype())
-                )
-                Spacer(modifier = Modifier.weight(1f))
-                Row(
-                    Modifier.align(Alignment.CenterHorizontally),
-                    horizontalArrangement = Arrangement.spacedBy(5.dp)
-                ) {
-                    if (Build.DEVICE != "cepheus") {
-                        AssistChip(
-                            leadingIcon = {
-                                Icon(
-                                    Icons.Filled.Book,
-                                    contentDescription = null,
-                                    Modifier.size(AssistChipDefaults.IconSize),
-                                    tint = MaterialTheme.colorScheme.primary
-                                )
-                            },
-                            onClick = {
-                                woahApp.startActivity(
-                                    Intent(
-                                        Intent.ACTION_VIEW,
-                                        Uri.parse(
-                                            when (Build.DEVICE) {
-                                                Commands.codenames[0] -> "https://github.com/woa-vayu/Port-Windows-11-Poco-X3-pro"
-                                                Commands.codenames[1] -> "https://github.com/woa-vayu/Port-Windows-11-Poco-X3-pro"
-                                                Commands.codenames[2] -> "https://github.com/erdilS/Port-Windows-11-Xiaomi-Pad-5"
-                                                Commands.codenames[3] -> "https://github.com/graphiks/woa-raphael"
-                                                Commands.codenames[4] -> "https://github.com/graphiks/woa-raphael"
-                                                else -> "Unknown"
-                                            }
-                                        )
-                                    )
-                                )
-                            },
-                            label = {
-                                Text(
-                                    "Guide",
-                                    fontWeight = FontWeight.Bold,
-                                )
-                            }
-                        )
-                    }
-                    AssistChip(
-                        leadingIcon = {
-                            Icon(
-                                Icons.AutoMirrored.Filled.Message,
-                                contentDescription = null,
-                                Modifier.size(AssistChipDefaults.IconSize),
-                                tint = MaterialTheme.colorScheme.primary
-                            )
-                        },
-                        onClick = {
-                            woahApp.startActivity(
-                                Intent(
-                                    Intent.ACTION_VIEW,
-                                    Uri.parse(
-                                        when (Build.DEVICE) {
-                                            Commands.codenames[0] -> "https://t.me/winonvayualt"
-                                            Commands.codenames[1] -> "https://t.me/winonvayualt"
-                                            Commands.codenames[2] -> "https://t.me/nabuwoa"
-                                            Commands.codenames[3] -> "https://t.me/woaraphael"
-                                            Commands.codenames[4] -> "https://t.me/woaraphael"
-                                            Commands.codenames[5] -> "https://t.me/WinOnMi9/"
-                                            else -> "Unknown"
-                                        }
-                                    )
-                                )
-                            )
-                        },
-                        label = {
-                            Text(
-                                "Group",
-                                fontWeight = FontWeight.Bold,
-                            )
-                        }
-                    )
-                }
-            }
+        Card(modifier =
+        if (Build.DEVICE == "nabu") {
+            modifier
         }
-    }
-
-    @Composable
-    fun LandScapeInfoCard(name: String, ram: String, slot: String, textSize: TextUnit) {
-        Card(
+        else {
             Modifier
                 .height(200.dp)
-                .width((pxtodp(625f)).dp),
+             },
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(
                     12.dp
@@ -179,14 +71,16 @@ object Cards {
                     text = "Windows on ARM",
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
-                    fontSize = textSize
+                    fontSize = fontSize,
+                    lineHeight = lineHeight
                 )
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 10.dp),
                     text = name,
-                    fontSize = textSize
+                    fontSize = fontSize,
+                    lineHeight = lineHeight
                 )
 
                 Text(
@@ -194,14 +88,16 @@ object Cards {
                         .fillMaxWidth()
                         .padding(start = 10.dp),
                     text = LocalContext.current.getString(R.string.ramvalue, ram),
-                    fontSize = textSize
+                    fontSize = fontSize,
+                    lineHeight = lineHeight
                 )
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 10.dp),
                     text = LocalContext.current.getString(R.string.paneltype, Commands.displaytype()),
-                    fontSize = textSize
+                    fontSize = fontSize,
+                    lineHeight = lineHeight
                 )
                 if (slot.isNotEmpty()) {
                     Text(
@@ -209,7 +105,8 @@ object Cards {
                             .fillMaxWidth()
                             .padding(start = 10.dp),
                         text = LocalContext.current.getString(R.string.slot, slot),
-                        fontSize = textSize
+                        fontSize = fontSize,
+                        lineHeight = lineHeight
                     )
                 }
                 Spacer(modifier = Modifier.weight(1f))

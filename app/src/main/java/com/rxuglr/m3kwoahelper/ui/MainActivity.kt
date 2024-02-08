@@ -1,8 +1,8 @@
 package com.rxuglr.m3kwoahelper.ui
 
 import android.annotation.SuppressLint
-import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_USER_LANDSCAPE
-import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -18,8 +18,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -60,13 +62,13 @@ import androidx.navigation.compose.rememberNavController
 import com.rxuglr.m3kwoahelper.R
 import com.rxuglr.m3kwoahelper.ui.templates.*
 import com.rxuglr.m3kwoahelper.ui.templates.Cards.InfoCard
-import com.rxuglr.m3kwoahelper.ui.templates.Cards.LandScapeInfoCard
+import com.rxuglr.m3kwoahelper.ui.templates.Cards.pxtodp
 import com.rxuglr.m3kwoahelper.ui.templates.Images.DeviceImage
-import com.rxuglr.m3kwoahelper.ui.templates.Images.LandScapeDeviceImage
 import com.rxuglr.m3kwoahelper.ui.theme.WOAHelperTheme
 import com.rxuglr.m3kwoahelper.util.Commands
 import com.rxuglr.m3kwoahelper.util.Commands.nomodem
 import com.rxuglr.m3kwoahelper.util.RAM
+import com.rxuglr.m3kwoahelper.woahApp
 import com.topjohnwu.superuser.ShellUtils
 
 
@@ -78,10 +80,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            requestedOrientation = if (Build.DEVICE == "nabu") {
-                SCREEN_ORIENTATION_USER_LANDSCAPE
-            } else {
-                SCREEN_ORIENTATION_UNSPECIFIED
+            if (Build.DEVICE != "nabu") {
+                requestedOrientation = SCREEN_ORIENTATION_USER_PORTRAIT
             }
             WOAHelperTheme {
                 // main variables
@@ -96,14 +96,16 @@ class MainActivity : ComponentActivity() {
                     unsupported.value = true
                 }
 
-                var textSize = 10.sp
+                var fontSize = 10.sp
                 var paddingValue = 10.dp
+                var lineHeight = 15.sp
 
                 if (codename == "nabu") {
-                    textSize = 20.sp
+                    fontSize = 20.sp
                     paddingValue = 20.dp
+                    lineHeight = 20.sp
                 }
-                WOAHelper(ram, slot, textSize, paddingValue, name, codename, unsupported)
+                WOAHelper(ram, slot, fontSize, paddingValue, name, codename, unsupported, lineHeight)
             }
         }
     }
@@ -113,13 +115,15 @@ class MainActivity : ComponentActivity() {
     fun WOAHelper(
         ram: String,
         slot: String,
-        textSize: TextUnit,
+        fontSize: TextUnit,
         paddingValue: Dp,
         name: String,
         codename: String,
-        unsupported: MutableState<Boolean>
+        unsupported: MutableState<Boolean>,
+        lineHeight: TextUnit
     ) {
         val navController = rememberNavController()
+        val home = remember { mutableStateOf(true) }
         Scaffold(
             topBar = {
                 TopAppBar(
@@ -127,9 +131,7 @@ class MainActivity : ComponentActivity() {
                         Icon(
                             tint = MaterialTheme.colorScheme.primary,
                             imageVector = ImageVector.vectorResource(R.drawable.ic_windows),
-                            contentDescription = null,
-                            modifier = Modifier.size(40.dp)
-                        )
+                            contentDescription = null)
                     },
                     title = {
                         Text(
@@ -146,7 +148,6 @@ class MainActivity : ComponentActivity() {
                         //    )
                     },
                     actions = {
-                        val home = remember { mutableStateOf(true) }
                         if (home.value) {
                             IconButton(onClick = {
                                 navController.navigate("settings") {
@@ -158,7 +159,6 @@ class MainActivity : ComponentActivity() {
                                     launchSingleTop = true
                                     restoreState = true
                                 }
-                                home.value = false
                             }) {
                                 Icon(
                                     imageVector = Icons.Filled.Settings,
@@ -178,7 +178,6 @@ class MainActivity : ComponentActivity() {
                                     launchSingleTop = true
                                     restoreState = true
                                 }
-                                home.value = true
                             }) {
                                 Icon(
                                     imageVector = Icons.Filled.Home,
@@ -201,6 +200,7 @@ class MainActivity : ComponentActivity() {
                     enterTransition = { slideInVertically { height -> height } + fadeIn() },
                     exitTransition = { slideOutVertically { height -> height } + fadeOut() }
                 ) {
+                    home.value = false
                     SettingsScreen()
                 }
                 composable(
@@ -208,7 +208,8 @@ class MainActivity : ComponentActivity() {
                     enterTransition = { slideInVertically { height -> -height } + fadeIn() },
                     exitTransition = { slideOutVertically { height -> -height } + fadeOut() }
                 ) {
-                    MainScreen(ram, slot, textSize, paddingValue, name, unsupported, codename)
+                    home.value = true
+                    MainScreen(ram, slot, fontSize, paddingValue, name, unsupported, codename, lineHeight)
                 }
             }
         }
@@ -433,11 +434,12 @@ class MainActivity : ComponentActivity() {
     fun MainScreen(
         ram: String,
         slot: String,
-        textSize: TextUnit,
+        fontSize: TextUnit,
         paddingValue: Dp,
         name: String,
         unsupported: MutableState<Boolean>,
-        codename: String
+        codename: String,
+        lineHeight: TextUnit
     ) {
         Scaffold {
             Column(
@@ -465,7 +467,8 @@ class MainActivity : ComponentActivity() {
                                     text = "YOUR DEVICE ISN'T SUPPORTED!\n USING THIS APP CAN RESULT IN A BRICK",
                                     textAlign = TextAlign.Center,
                                     fontWeight = FontWeight.Bold,
-                                    fontSize = 20.sp
+                                    lineHeight = 35.sp,
+                                    fontSize = 25.sp
                                 )
                             },
                             onDismissRequest = { unsupported.value = false },
@@ -490,19 +493,7 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 }
-                if (codename != "nabu") {
-                    Row {
-                        DeviceImage()
-                        InfoCard(name, ram)
-                    }
-                    Buttons.BackupButton(textSize, paddingValue)
-                    Buttons.MountButton(textSize, paddingValue)
-                    if (!nomodem.contains(codename)) {
-                        Buttons.ModemButton(textSize, paddingValue)
-                    }
-                    Buttons.UEFIButton(textSize, paddingValue)
-                    Buttons.QuickbootButton(textSize, paddingValue)
-                } else {
+                if (woahApp.resources.configuration.orientation != Configuration.ORIENTATION_PORTRAIT) {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(16.dp),
                         modifier = Modifier
@@ -515,20 +506,36 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier
                                 .padding(vertical = 10.dp)
                         ) {
-                            LandScapeInfoCard(name, ram, slot, textSize)
-                            LandScapeDeviceImage()
+                            InfoCard(name, ram, lineHeight, fontSize, slot, Modifier
+                                .height(200.dp)
+                                .width((pxtodp(625f)).dp))
+                            DeviceImage(Modifier.width((pxtodp(625f)).dp))
                         }
                         Column(
                             verticalArrangement = Arrangement.spacedBy(16.dp),
                             modifier = Modifier
                                 .padding(vertical = 10.dp)
                         ) {
-                            Buttons.BackupButton(textSize, paddingValue)
-                            Buttons.MountButton(textSize, paddingValue)
-                            Buttons.UEFIButton(textSize, paddingValue)
-                            Buttons.QuickbootButton(textSize, paddingValue)
+                            Buttons.BackupButton(fontSize, paddingValue, lineHeight)
+                            Buttons.MountButton(fontSize, paddingValue, lineHeight)
+                            Buttons.UEFIButton(fontSize, paddingValue, lineHeight)
+                            Buttons.QuickbootButton(fontSize, paddingValue, lineHeight)
                         }
                     }
+                }
+                else {
+                    Row(horizontalArrangement = Arrangement.spacedBy(if (Build.DEVICE == "nabu") { 10.dp } else 0.dp)) {
+                        DeviceImage(Modifier.width((pxtodp(625f)).dp))
+                        InfoCard(name, ram, lineHeight, fontSize, slot, modifier = Modifier
+                            .height((pxtodp(743f)).dp))
+                    }
+                    Buttons.BackupButton(fontSize, paddingValue, lineHeight)
+                    Buttons.MountButton(fontSize, paddingValue, lineHeight)
+                    if (!nomodem.contains(codename)) {
+                        Buttons.ModemButton(fontSize, paddingValue, lineHeight)
+                    }
+                    Buttons.UEFIButton(fontSize, paddingValue, lineHeight)
+                    Buttons.QuickbootButton(fontSize, paddingValue, lineHeight)
                 }
             }
         }

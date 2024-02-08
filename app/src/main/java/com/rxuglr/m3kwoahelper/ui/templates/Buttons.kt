@@ -36,7 +36,7 @@ import com.rxuglr.m3kwoahelper.util.Commands
 object Buttons  {
 
    @Composable
-   fun BackupButton(fontSize: TextUnit, paddingValue: Dp) {
+   fun BackupButton(fontSize: TextUnit, paddingValue: Dp, lineHeight: TextUnit) {
        val showBackupDialog = remember { mutableStateOf(false) }
        val showBackupSpinner = remember { mutableStateOf(false) }
        Card(
@@ -52,7 +52,9 @@ object Buttons  {
                    PopupDialogs.SpinnerDialog(
                        icon = painterResource(id = R.drawable.ic_disk),
                        title = "Please wait..",
-                       showDialog = showBackupSpinner.value
+                       showDialog = showBackupSpinner.value,
+                       fontSize = fontSize,
+                       lineHeight = lineHeight
                    )
                }
            }
@@ -72,7 +74,9 @@ object Buttons  {
                            Text(
                                modifier = Modifier.fillMaxWidth(),
                                text = LocalContext.current.getString(R.string.backup_boot_question),
-                               textAlign = TextAlign.Center
+                               textAlign = TextAlign.Center,
+                               fontSize = fontSize,
+                               lineHeight = lineHeight
                            )
                        },
                        onDismissRequest = ({ showBackupDialog.value = false; }),
@@ -97,7 +101,8 @@ object Buttons  {
                                                bottom = 2.dp
                                            ),
                                            text = "Android",
-                                           color = MaterialTheme.colorScheme.inverseSurface
+                                           color = MaterialTheme.colorScheme.inverseSurface,
+                                           fontSize = fontSize
                                        )
                                    }
                                )
@@ -119,7 +124,8 @@ object Buttons  {
                                                bottom = 2.dp
                                            ),
                                            text = "Windows",
-                                           color = MaterialTheme.colorScheme.inverseSurface
+                                           color = MaterialTheme.colorScheme.inverseSurface,
+                                           fontSize = fontSize
                                        )
                                    }
                                )
@@ -162,12 +168,14 @@ object Buttons  {
                    Text(
                        LocalContext.current.getString(R.string.backup_boot_title),
                        color = MaterialTheme.colorScheme.inverseSurface,
-                       fontWeight = FontWeight.Bold
+                       fontWeight = FontWeight.Bold,
+                       fontSize = fontSize,
+                       lineHeight = lineHeight,
                    )
                    Text(
                        LocalContext.current.getString(R.string.backup_boot_subtitle),
                        color = MaterialTheme.colorScheme.inverseSurface,
-                       lineHeight = 15.sp,
+                       lineHeight = lineHeight,
                        fontSize = fontSize
                    )
                }
@@ -177,7 +185,7 @@ object Buttons  {
 
 
    @Composable
-   fun MountButton(fontSize: TextUnit, paddingValue: Dp) {
+   fun MountButton(fontSize: TextUnit, paddingValue: Dp, lineHeight: TextUnit) {
        val showMountDialog = remember { mutableStateOf(false) }
        Card(
            onClick = { showMountDialog.value = true },
@@ -199,7 +207,9 @@ object Buttons  {
                            onConfirm = ({
                                Commands.mountwin()
                                showMountDialog.value = false
-                           })
+                           }),
+                           lineHeight,
+                           fontSize
                        )
                    } else {
                        PopupDialogs.Dialog(
@@ -211,7 +221,9 @@ object Buttons  {
                            onConfirm = ({
                                Commands.umountwin()
                                showMountDialog.value = false
-                           })
+                           }),
+                           lineHeight,
+                           fontSize
                        )
                    }
                }
@@ -239,12 +251,13 @@ object Buttons  {
                    Text(
                        LocalContext.current.getString(mounted),
                        color = MaterialTheme.colorScheme.inverseSurface,
-                       fontWeight = FontWeight.Bold
+                       fontWeight = FontWeight.Bold,
+                       fontSize = fontSize
                    )
                    Text(
                        LocalContext.current.getString(R.string.mnt_subtitle),
                        color = MaterialTheme.colorScheme.inverseSurface,
-                       lineHeight = 15.sp,
+                       lineHeight = lineHeight,
                        fontSize = fontSize
                    )
                }
@@ -253,7 +266,7 @@ object Buttons  {
    }
 
    @Composable
-   fun ModemButton(fontSize: TextUnit, paddingValue: Dp) {
+   fun ModemButton(fontSize: TextUnit, paddingValue: Dp, lineHeight: TextUnit) {
        val showModemDialog = remember { mutableStateOf(false) }
        val showModemSpinner = remember { mutableStateOf(false) }
        Card(
@@ -269,7 +282,9 @@ object Buttons  {
                    PopupDialogs.SpinnerDialog(
                        icon = painterResource(id = R.drawable.ic_modem),
                        title = "Please wait..",
-                       showDialog = showModemSpinner.value
+                       showDialog = showModemSpinner.value,
+                       lineHeight = lineHeight,
+                       fontSize = fontSize
                    )
                }
            }
@@ -288,7 +303,9 @@ object Buttons  {
                                Commands.dumpmodem()
                                showModemSpinner.value = false
                            }.start()
-                       })
+                       }),
+                       lineHeight,
+                       fontSize
                    )
                }
            }
@@ -310,12 +327,13 @@ object Buttons  {
                    Text(
                        LocalContext.current.getString(R.string.dump_modem_title),
                        color = MaterialTheme.colorScheme.inverseSurface,
-                       fontWeight = FontWeight.Bold
+                       fontWeight = FontWeight.Bold,
+                       fontSize = fontSize
                    )
                    Text(
                        LocalContext.current.getString(R.string.dump_modem_subtitle),
                        color = MaterialTheme.colorScheme.inverseSurface,
-                       lineHeight = 15.sp,
+                       lineHeight = lineHeight,
                        fontSize = fontSize
                    )
                }
@@ -324,7 +342,7 @@ object Buttons  {
    }
 
    @Composable
-   fun UEFIButton(fontSize: TextUnit, paddingValue: Dp) {
+   fun UEFIButton(fontSize: TextUnit, paddingValue: Dp, lineHeight: TextUnit) {
        val showUEFIDialog = remember { mutableStateOf(false) }
        val showUEFISpinner = remember { mutableStateOf(false) }
        Card(
@@ -340,7 +358,9 @@ object Buttons  {
                    PopupDialogs.SpinnerDialog(
                        icon = painterResource(id = R.drawable.ic_uefi),
                        title = "Please wait..",
-                       showDialog = showUEFISpinner.value
+                       showDialog = showUEFISpinner.value,
+                       lineHeight = lineHeight,
+                       fontSize = fontSize
                    )
                }
            }
@@ -360,7 +380,8 @@ object Buttons  {
                            Text(
                                modifier = Modifier.fillMaxWidth(),
                                text = LocalContext.current.getString(R.string.flash_uefi_question),
-                               textAlign = TextAlign.Center
+                               textAlign = TextAlign.Center,
+                               fontSize = fontSize
                            )
                        },
                        onDismissRequest = ({ showUEFIDialog.value = false; }),
@@ -386,7 +407,8 @@ object Buttons  {
                                                    bottom = 2.dp
                                                ),
                                                text = "120Hz",
-                                               color = MaterialTheme.colorScheme.inverseSurface
+                                               color = MaterialTheme.colorScheme.inverseSurface,
+                                               fontSize = fontSize
                                            )
                                        }
                                    )
@@ -408,7 +430,8 @@ object Buttons  {
                                                    bottom = 2.dp
                                                ),
                                                text = "60Hz",
-                                               color = MaterialTheme.colorScheme.inverseSurface
+                                               color = MaterialTheme.colorScheme.inverseSurface,
+                                               fontSize = fontSize
                                            )
                                        }
                                    )
@@ -432,7 +455,8 @@ object Buttons  {
                                                    bottom = 2.dp
                                                ),
                                                text = LocalContext.current.getString(R.string.yes),
-                                               color = MaterialTheme.colorScheme.inverseSurface
+                                               color = MaterialTheme.colorScheme.inverseSurface,
+                                               fontSize = fontSize
                                            )
                                        }
                                    )
@@ -446,7 +470,8 @@ object Buttons  {
                                                bottom = 2.dp
                                            ),
                                            text = LocalContext.current.getString(R.string.no),
-                                           color = MaterialTheme.colorScheme.inverseSurface
+                                           color = MaterialTheme.colorScheme.inverseSurface,
+                                           fontSize = fontSize
                                        )
                                    }
                                )
@@ -475,12 +500,14 @@ object Buttons  {
                    Text(
                        LocalContext.current.getString(R.string.flash_uefi_title),
                        color = MaterialTheme.colorScheme.inverseSurface,
-                       fontWeight = FontWeight.Bold
+                       fontWeight = FontWeight.Bold,
+                       lineHeight = lineHeight,
+                       fontSize = fontSize
                    )
                    Text(
                        LocalContext.current.getString(R.string.flash_uefi_subtitle, Commands.displaytype()),
                        color = MaterialTheme.colorScheme.inverseSurface,
-                       lineHeight = 15.sp,
+                       lineHeight = lineHeight,
                        fontSize = fontSize
                    )
                }
@@ -489,7 +516,7 @@ object Buttons  {
    }
 
    @Composable
-   fun QuickbootButton(fontSize: TextUnit, paddingValue: Dp) {
+   fun QuickbootButton(fontSize: TextUnit, paddingValue: Dp, lineHeight: TextUnit) {
        val showQuickBootDialog = remember { mutableStateOf(false) }
        val showQuickBootSpinner = remember { mutableStateOf(false) }
        Card(
@@ -505,7 +532,9 @@ object Buttons  {
                    PopupDialogs.SpinnerDialog(
                        icon = painterResource(id = R.drawable.ic_windows),
                        title = "Please wait..",
-                       showDialog = showQuickBootSpinner.value
+                       showDialog = showQuickBootSpinner.value,
+                       lineHeight = lineHeight,
+                       fontSize = fontSize
                    )
                }
            }
@@ -525,7 +554,8 @@ object Buttons  {
                            Text(
                                modifier = Modifier.fillMaxWidth(),
                                text = LocalContext.current.getString(R.string.quickboot_question),
-                               textAlign = TextAlign.Center
+                               textAlign = TextAlign.Center,
+                               fontSize = fontSize
                            )
                        },
                        onDismissRequest = ({ showQuickBootDialog.value = false; }),
@@ -552,7 +582,8 @@ object Buttons  {
                                                    bottom = 2.dp
                                                ),
                                                text = LocalContext.current.getString(R.string.quickboot_question2),
-                                               color = MaterialTheme.colorScheme.inverseSurface
+                                               color = MaterialTheme.colorScheme.inverseSurface,
+                                               fontSize = fontSize
                                            )
                                        }
                                    )
@@ -575,7 +606,8 @@ object Buttons  {
                                                    bottom = 2.dp
                                                ),
                                                text = LocalContext.current.getString(R.string.quickboot_question1),
-                                               color = MaterialTheme.colorScheme.inverseSurface
+                                               color = MaterialTheme.colorScheme.inverseSurface,
+                                               fontSize = fontSize
                                            )
                                        }
                                    )
@@ -595,7 +627,8 @@ object Buttons  {
                                        label = {
                                            Text(
                                                text = LocalContext.current.getString(R.string.yes),
-                                               color = MaterialTheme.colorScheme.inverseSurface
+                                               color = MaterialTheme.colorScheme.inverseSurface,
+                                               fontSize = fontSize
                                            )
                                        }
                                    )
@@ -609,7 +642,8 @@ object Buttons  {
                                                bottom = 2.dp
                                            ),
                                            text = LocalContext.current.getString(R.string.no),
-                                           color = MaterialTheme.colorScheme.inverseSurface
+                                           color = MaterialTheme.colorScheme.inverseSurface,
+                                           fontSize = fontSize
                                        )
                                    }
                                )
@@ -638,7 +672,9 @@ object Buttons  {
                    Text(
                        LocalContext.current.getString(R.string.quickboot_title),
                        color = MaterialTheme.colorScheme.inverseSurface,
-                       fontWeight = FontWeight.Bold
+                       fontWeight = FontWeight.Bold,
+                       lineHeight = lineHeight,
+                       fontSize = fontSize
                    )
                    val modem = when (Build.DEVICE) {
                        "nabu" -> R.string.quickboot_subtitle_nomodem
@@ -647,7 +683,7 @@ object Buttons  {
                    Text(
                        LocalContext.current.getString(modem),
                        color = MaterialTheme.colorScheme.inverseSurface,
-                       lineHeight = 15.sp,
+                       lineHeight = lineHeight,
                        fontSize = fontSize
                    )
                }

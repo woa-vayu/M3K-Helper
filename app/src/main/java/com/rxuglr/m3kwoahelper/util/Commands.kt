@@ -54,7 +54,7 @@ object Commands {
     }
 
     fun umountwin() {
-        ShellUtils.fastCmd("su -mm -c umount /dev/block/by-name/win")
+        ShellUtils.fastCmd("su -mm -c umount /mnt/sdcard/windows")
         ShellUtils.fastCmd("rmdir /mnt/sdcard/windows")
     }
 

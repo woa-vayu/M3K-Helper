@@ -16,7 +16,7 @@
     <string name="backup_boot_question">Хотите сделать резервную копию текущего загрузочного образа?</string>
     <string name="flash_uefi_question">Прошить UEFI?</string>
 
-    <string name="backup_boot_subtitle">Резервное копирование текущего загрузочного образа в Android/Windows</string>
+    <string name="backup_boot_subtitle">Резервное копирование текущего загрузочного образа</string>
     <string name="mnt_subtitle">Нужно для редактирования содержимого раздела Windows</string>
     <string name="dump_modem_subtitle">Provision modem1st and modem2st to Windows to fix LTE on SIM1 on Windows everytime you want to boot to Windows</string>
     <string name="quickboot_subtitle">Dump Modem, прошить UEFI и перезагрузиться в Windows в одно нажатие</string>

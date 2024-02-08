@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.rxuglr.m3kwoahelper.R
 
@@ -29,6 +30,8 @@ object PopupDialogs {
         showDialog: Boolean,
         onDismiss: () -> Unit,
         onConfirm: () -> Unit,
+        fontSize: TextUnit,
+        lineHeight: TextUnit
     ) {
         if (showDialog) {
             AlertDialog(
@@ -37,7 +40,11 @@ object PopupDialogs {
                 },
                 title = {
                     if (title != null) {
-                        Text(text = title, textAlign = TextAlign.Center)
+                        Text(
+                            text = title,
+                            textAlign = TextAlign.Center,
+                            fontSize = fontSize,
+                            lineHeight = lineHeight,)
                     }
                 },
                 text = {
@@ -45,7 +52,9 @@ object PopupDialogs {
                         Text(
                             modifier = Modifier.fillMaxWidth(),
                             text = description,
-                            textAlign = TextAlign.Center
+                            textAlign = TextAlign.Center,
+                            lineHeight = lineHeight,
+                            fontSize = fontSize
                         )
                     }
                 },
@@ -57,7 +66,8 @@ object PopupDialogs {
                             Text(
                                 modifier = Modifier.padding(top = 2.dp, bottom = 2.dp),
                                 text = LocalContext.current.getString(R.string.yes),
-                                color = MaterialTheme.colorScheme.inverseSurface
+                                color = MaterialTheme.colorScheme.inverseSurface,
+                                fontSize = fontSize
                             )
                         }
                     )
@@ -69,7 +79,8 @@ object PopupDialogs {
                             Text(
                                 modifier = Modifier.padding(top = 2.dp, bottom = 2.dp),
                                 text = LocalContext.current.getString(R.string.no),
-                                color = MaterialTheme.colorScheme.inverseSurface
+                                color = MaterialTheme.colorScheme.inverseSurface,
+                                fontSize = fontSize
                             )
                         }
                     )
@@ -82,7 +93,9 @@ object PopupDialogs {
     fun SpinnerDialog(
         icon: Painter,
         title: String?,
-        showDialog: Boolean
+        showDialog: Boolean,
+        fontSize: TextUnit,
+        lineHeight: TextUnit
     ) {
         if (showDialog) {
             AlertDialog(
@@ -91,7 +104,7 @@ object PopupDialogs {
                 },
                 title = {
                     if (title != null) {
-                        Text(text = title, textAlign = TextAlign.Center)
+                        Text(text = title, textAlign = TextAlign.Center, fontSize = fontSize, lineHeight = lineHeight)
                     }
                 },
                 text = {

@@ -11,7 +11,7 @@ class QuickBootTile : TileService() {
         val uefi = Commands.getuefilist()
         if (!uefi.contains(120) and !uefi.contains(60) and !uefi.contains(1)) {
            qsTile.state = STATE_UNAVAILABLE
-            qsTile.updateTile()
+           qsTile.updateTile()
         }
     }
     override fun onStartListening() {
