@@ -3,6 +3,7 @@ package com.rxuglr.m3kwoahelper.ui.templates
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.AlertDialog
@@ -19,6 +20,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.rxuglr.m3kwoahelper.R
+import com.rxuglr.m3kwoahelper.fontSize
+import com.rxuglr.m3kwoahelper.lineHeight
 
 object PopupDialogs {
 
@@ -30,13 +33,11 @@ object PopupDialogs {
         showDialog: Boolean,
         onDismiss: () -> Unit,
         onConfirm: () -> Unit,
-        fontSize: TextUnit,
-        lineHeight: TextUnit
     ) {
         if (showDialog) {
             AlertDialog(
                 icon = {
-                    Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                    Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(40.dp))
                 },
                 title = {
                     if (title != null) {
@@ -92,7 +93,7 @@ object PopupDialogs {
     @Composable
     fun SpinnerDialog(
         icon: Painter,
-        title: String?,
+        title: Int,
         showDialog: Boolean,
         fontSize: TextUnit,
         lineHeight: TextUnit
@@ -100,12 +101,10 @@ object PopupDialogs {
         if (showDialog) {
             AlertDialog(
                 icon = {
-                    Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                    Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(40.dp))
                 },
                 title = {
-                    if (title != null) {
-                        Text(text = title, textAlign = TextAlign.Center, fontSize = fontSize, lineHeight = lineHeight)
-                    }
+                    Text(text = LocalContext.current.getString(title), textAlign = TextAlign.Center, fontSize = fontSize, lineHeight = lineHeight)
                 },
                 text = {
                     Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {

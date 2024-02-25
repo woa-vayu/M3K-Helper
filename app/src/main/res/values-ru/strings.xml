@@ -2,26 +2,29 @@
 <resources>
     <string name="mnt_title">Монтировать Windows</string>
     <string name="umnt_title">Размонтировать Windows</string>
-    <string name="dump_modem_title">Настроить модем</string>
+    <string name="dump_modem_title">Исправить модем</string>
+    <string name="dump_modemAsensors_title">Исправить модем и сенсоры</string>
     <string name="quickboot_title">Перезагрузиться в  Windows</string>
-    <string name="backup_boot_title">Резервная копия загрузочного образа</string>
+    <string name="backup_boot_title">Резервная копия boot образа</string>
     <string name="flash_uefi_title">Прошить UEFI</string>
     <string name="uefi_not_found_title">UEFI не найден</string>
 
 
     <string name="mnt_question">Монтировать Windows?</string>
     <string name="umnt_question">Размонтировать Windows?</string>
-    <string name="dump_modem_question">Provision modem1st and modem2st to Windows partition?</string>
+    <string name="dump_modem_question">Скопировать модем в раздел Windows?</string>
+    <string name="dump_modemAsensors_question">Скопировать модем и сенсоры в раздел Windows?</string>
     <string name="quickboot_question">Перезагрузиться в Windows?</string>
-    <string name="backup_boot_question">Хотите сделать резервную копию текущего загрузочного образа?</string>
+    <string name="backup_boot_question">Хотите сделать резервную копию текущего boot образа?</string>
     <string name="flash_uefi_question">Прошить UEFI?</string>
 
-    <string name="backup_boot_subtitle">Резервное копирование текущего загрузочного образа</string>
+    <string name="backup_boot_subtitle">Резервное копирование текущего boot образа</string>
     <string name="mnt_subtitle">Нужно для редактирования содержимого раздела Windows</string>
-    <string name="dump_modem_subtitle">Provision modem1st and modem2st to Windows to fix LTE on SIM1 on Windows everytime you want to boot to Windows</string>
-    <string name="quickboot_subtitle">Dump Modem, прошить UEFI и перезагрузиться в Windows в одно нажатие</string>
+    <string name="dump_modem_subtitle">Нужно перед каждым запуском Windows если вам нужен LTE</string>
+    <string name="dump_modemAsensors_subtitle">Нужно перед каждым запуском Windows если вам нужен LTE (Сенсоры исправляются только 1 раз)</string>
+    <string name="quickboot_subtitle">Исправить модем, прошить UEFI и перезагрузиться в Windows в одно нажатие</string>
     <string name="quickboot_subtitle_nomodem">Прошейте UEFI и перезагрузитесь в Windows в одно нажатие</string>
-    <string name="flash_uefi_subtitle">Прошить UEFI для дисплея %s?</string>
+    <string name="flash_uefi_subtitle">Прошить UEFI для %s?</string>
     <string name="uefi_not_found_subtitle">Скачайте UEFI для вашего устройства и поместите его в папку UEFI в памяти устройства</string>
 
     <string name="ramvalue">ОЗУ: %s</string>

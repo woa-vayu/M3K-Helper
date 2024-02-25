@@ -36,7 +36,7 @@ class MemoryUtils {
         if (size in gb..<tb) return floatForm(size.toDouble() / gb)
         if (size in tb..<pb) return floatForm(size.toDouble() / tb)
         if (size in pb..<eb) return floatForm(size.toDouble() / pb)
-        return if (size >= eb) floatForm(size.toDouble() / eb) else "0"
+        return floatForm(size.toDouble() / eb)
     }
 
     fun extractNumberFromString(source: String): String {

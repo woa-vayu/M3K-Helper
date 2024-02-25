@@ -1,7 +1,7 @@
 # M3K WoA Helper
 
 > [!WARNING]
-> We're not responsible for bricked devices, missing recovery partitions, dead microSD cards, dead cats or dogs, nuclear wars or you getting fired because you flash UEFI, provision modems and / or dump sensors from this apps. 
+> We're not responsible for bricked devices, missing recovery partitions, dead microSD cards, dead cats or dogs, nuclear wars or you getting fired because you flash UEFI, provision modems or dump sensors from this app. 
 
 ## Project status
 
@@ -12,7 +12,7 @@ Read requirements carefully.
 - [x] Mount/Unmount Windows partition ```to view/modify Windows files from android```
 - [x] Flash UEFI ```to use the UEFI flashing feature, you need to place the UEFI image to /sdcard/UEFI```
 - [x] Provisioning Modem
-- [ ] Provisioning Sensors
+- [x] Provisioning Sensors
 - [x] Quick Boot to Windows ```to use the Quick Boot feature, you need to place the UEFI image to /sdcard/UEFI```
 
 ## Supported devices
@@ -20,9 +20,9 @@ Read requirements carefully.
 
 • [Xiaomi Pad 5](https://github.com/erdilS/Port-Windows-11-Xiaomi-Pad-5)
 
-• [Xiaomi Mi 9T Pro](https://github.com/graphiks/woa-raphael) ```temporarily requires manual sensors provisioning```
+• [Xiaomi Mi 9T Pro/Redmi K20 Pro](https://github.com/graphiks/woa-raphael)
 
-• Xiaomi Mi 9 ```temporarily requires manual sensors provisioning```
+• Xiaomi Mi 9
 
 
 ## Requirements
