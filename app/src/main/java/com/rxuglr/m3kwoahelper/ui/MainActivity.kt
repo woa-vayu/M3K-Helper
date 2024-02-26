@@ -56,16 +56,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.rxuglr.m3kwoahelper.R
-import com.rxuglr.m3kwoahelper.codename
-import com.rxuglr.m3kwoahelper.name
+import com.rxuglr.m3kwoahelper.util.Variables.codename
+import com.rxuglr.m3kwoahelper.util.Variables.name
 import com.rxuglr.m3kwoahelper.ui.templates.*
 import com.rxuglr.m3kwoahelper.ui.templates.Cards.InfoCard
 import com.rxuglr.m3kwoahelper.ui.templates.Cards.pxtodp
 import com.rxuglr.m3kwoahelper.ui.templates.Images.DeviceImage
 import com.rxuglr.m3kwoahelper.ui.theme.WOAHelperTheme
-import com.rxuglr.m3kwoahelper.util.Commands
 import com.rxuglr.m3kwoahelper.util.Commands.checksensors
-import com.rxuglr.m3kwoahelper.util.Commands.nomodem
+import com.rxuglr.m3kwoahelper.util.Commands.dumpmodem
+import com.rxuglr.m3kwoahelper.util.Commands.dumpsensors
+import com.rxuglr.m3kwoahelper.util.Variables.nomodem
 import com.rxuglr.m3kwoahelper.woahApp
 
 
@@ -78,7 +79,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            if (Build.DEVICE != "nabu") {
+            if (codename != "nabu") {
                 requestedOrientation = SCREEN_ORIENTATION_USER_PORTRAIT
             }
             WOAHelperTheme {
@@ -217,7 +218,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(bottom = 5.dp),
-                        text = "Version: 1.3.2",
+                        text = "Version: 1.3.3",
                         textAlign = TextAlign.Center
                     )
                 }
@@ -490,7 +491,7 @@ class MainActivity : ComponentActivity() {
                                         R.string.dump_modemAsensors_title,
                                         R.string.dump_modemAsensors_subtitle,
                                         R.string.dump_modemAsensors_question,
-                                        { Commands.dumpmodem(); Commands.dumpsensors() },
+                                        { dumpmodem(); dumpsensors() },
                                         R.drawable.ic_modem)
                                 }
                                 else {
@@ -498,7 +499,7 @@ class MainActivity : ComponentActivity() {
                                         R.string.dump_modem_title,
                                         R.string.dump_modem_subtitle,
                                         R.string.dump_modem_question,
-                                        { Commands.dumpmodem() },
+                                        { dumpmodem() },
                                         R.drawable.ic_modem
                                     )
                                 }
@@ -521,7 +522,7 @@ class MainActivity : ComponentActivity() {
                             R.string.dump_modemAsensors_title,
                             R.string.dump_modemAsensors_subtitle,
                             R.string.dump_modemAsensors_question,
-                            { Commands.dumpmodem(); Commands.dumpsensors() },
+                            { dumpmodem(); dumpsensors() },
                             R.drawable.ic_modem)
                         }
                         else {
@@ -529,7 +530,7 @@ class MainActivity : ComponentActivity() {
                                 R.string.dump_modem_title,
                                 R.string.dump_modem_subtitle,
                                 R.string.dump_modem_question,
-                                { Commands.dumpmodem() },
+                                { dumpmodem() },
                                 R.drawable.ic_modem
                             )
                         }

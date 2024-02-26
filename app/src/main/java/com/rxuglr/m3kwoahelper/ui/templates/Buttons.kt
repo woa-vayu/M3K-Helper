@@ -28,12 +28,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.rxuglr.m3kwoahelper.R
-import com.rxuglr.m3kwoahelper.codename
-import com.rxuglr.m3kwoahelper.fontSize
-import com.rxuglr.m3kwoahelper.lineHeight
-import com.rxuglr.m3kwoahelper.paddingValue
-import com.rxuglr.m3kwoahelper.util.Commands
-import com.rxuglr.m3kwoahelper.util.Commands.getuefilist
+import com.rxuglr.m3kwoahelper.util.Commands.backup
+import com.rxuglr.m3kwoahelper.util.Commands.flashuefi
+import com.rxuglr.m3kwoahelper.util.Commands.mountstatus
+import com.rxuglr.m3kwoahelper.util.Commands.mountwin
+import com.rxuglr.m3kwoahelper.util.Commands.quickboot
+import com.rxuglr.m3kwoahelper.util.Commands.umountwin
+import com.rxuglr.m3kwoahelper.util.Variables.codename
+import com.rxuglr.m3kwoahelper.util.Variables.fontSize
+import com.rxuglr.m3kwoahelper.util.Variables.lineHeight
+import com.rxuglr.m3kwoahelper.util.Variables.name
+import com.rxuglr.m3kwoahelper.util.Variables.paddingValue
+import com.rxuglr.m3kwoahelper.util.Variables.uefi
 
 object Buttons {
 
@@ -174,7 +180,7 @@ object Buttons {
                                         Thread {
                                             showBackupDialog.value = false
                                             showBackupSpinner.value = true
-                                            Commands.backup(2)
+                                            backup(2)
                                             showBackupSpinner.value = false
                                         }.start()
                                     },
@@ -195,7 +201,7 @@ object Buttons {
                                         Thread {
                                             showBackupDialog.value = false
                                             showBackupSpinner.value = true
-                                            Commands.backup(1)
+                                            backup(1)
                                             showBackupSpinner.value = false
                                         }.start()
                                     },
@@ -278,7 +284,7 @@ object Buttons {
         ) {
             when {
                 showMountDialog.value -> {
-                    if (Commands.mountstatus()) {
+                    if (mountstatus()) {
                         PopupDialogs.Dialog(
                             icon = painterResource(id = R.drawable.ic_windows),
                             title = null,
@@ -286,7 +292,7 @@ object Buttons {
                             showDialog = showMountDialog.value,
                             onDismiss = { showMountDialog.value = false },
                             onConfirm = ({
-                                Commands.mountwin()
+                                mountwin()
                                 showMountDialog.value = false
                             })
                         )
@@ -298,7 +304,7 @@ object Buttons {
                             showMountDialog.value,
                             onDismiss = ({ showMountDialog.value = false; }),
                             onConfirm = ({
-                                Commands.umountwin()
+                                umountwin()
                                 showMountDialog.value = false
                             })
                         )
@@ -320,7 +326,7 @@ object Buttons {
                 )
                 Column {
                     val mounted: Int =
-                        if (Commands.mountstatus()) {
+                        if (mountstatus()) {
                             R.string.mnt_title
                         } else {
                             R.string.umnt_title
@@ -349,7 +355,7 @@ object Buttons {
         val showUEFISpinner = remember { mutableStateOf(false) }
         Card(
             onClick = {
-                if (!getuefilist().contains(99)) {
+                if (!uefi.contains(99)) {
                     showUEFIDialog.value = true
                 }
             },
@@ -397,13 +403,13 @@ object Buttons {
                                 Modifier.align(Alignment.CenterHorizontally),
                                 horizontalArrangement = Arrangement.spacedBy(10.dp)
                             ) {
-                                if (Commands.uefi.contains(120)) {
+                                if (uefi.contains(120)) {
                                     AssistChip(
                                         onClick = {
                                             Thread {
                                                 showUEFIDialog.value = false
                                                 showUEFISpinner.value = true
-                                                Commands.flashuefi(0)
+                                                flashuefi(0)
                                                 showUEFISpinner.value = false
                                             }.start()
                                         },
@@ -420,13 +426,13 @@ object Buttons {
                                         }
                                     )
                                 }
-                                if (Commands.uefi.contains(60)) {
+                                if (uefi.contains(60)) {
                                     AssistChip(
                                         onClick = {
                                             Thread {
                                                 showUEFIDialog.value = false
                                                 showUEFISpinner.value = true
-                                                Commands.flashuefi(1)
+                                                flashuefi(1)
                                                 showUEFISpinner.value = false
                                             }.start()
                                         },
@@ -443,8 +449,8 @@ object Buttons {
                                         }
                                     )
                                 }
-                                if (Commands.uefi
-                                        .contains(1) and (!Commands.uefi.contains(60) or !Commands.uefi.contains(
+                                if (uefi
+                                        .contains(1) and (!uefi.contains(60) or !uefi.contains(
                                         120
                                     ))
                                 ) {
@@ -453,7 +459,7 @@ object Buttons {
                                             Thread {
                                                 showUEFIDialog.value = false
                                                 showUEFISpinner.value = true
-                                                Commands.flashuefi(2)
+                                                flashuefi(2)
                                                 showUEFISpinner.value = false
                                             }.start()
                                         },
@@ -507,7 +513,7 @@ object Buttons {
                 )
                 val title: Int
                 val subtitle: Int
-                if (!getuefilist().contains(99)) {
+                if (!uefi.contains(99)) {
                     title = R.string.flash_uefi_title
                     subtitle = R.string.flash_uefi_subtitle
                 } else {
@@ -523,7 +529,7 @@ object Buttons {
                         fontSize = fontSize
                     )
                     Text(
-                        LocalContext.current.getString(subtitle, Commands.devicename()),
+                        LocalContext.current.getString(subtitle, name),
                         color = MaterialTheme.colorScheme.inverseSurface,
                         lineHeight = lineHeight,
                         fontSize = fontSize
@@ -535,7 +541,7 @@ object Buttons {
 
     @Composable
     fun QuickbootButton() {
-        if (!getuefilist().contains(99)) {
+        if (!uefi.contains(99)) {
             val showQuickBootDialog = remember { mutableStateOf(false) }
             val showQuickBootSpinner = remember { mutableStateOf(false) }
             Card(
@@ -584,14 +590,14 @@ object Buttons {
                                     Modifier.align(Alignment.CenterHorizontally),
                                     horizontalArrangement = Arrangement.spacedBy(10.dp)
                                 ) {
-                                    if (Commands.uefi.contains(120)) {
+                                    if (uefi.contains(120)) {
                                         AssistChip(
                                             modifier = Modifier.width(95.dp),
                                             onClick = {
                                                 Thread {
                                                     showQuickBootDialog.value = false
                                                     showQuickBootSpinner.value = true
-                                                    Commands.quickboot(0)
+                                                    quickboot(0)
                                                     showQuickBootSpinner.value = false
                                                 }.start()
                                             },
@@ -608,14 +614,14 @@ object Buttons {
                                             }
                                         )
                                     }
-                                    if (Commands.uefi.contains(60)) {
+                                    if (uefi.contains(60)) {
                                         AssistChip(
                                             modifier = Modifier.width(95.dp),
                                             onClick = {
                                                 Thread {
                                                     showQuickBootDialog.value = false
                                                     showQuickBootSpinner.value = true
-                                                    Commands.quickboot(1)
+                                                    quickboot(1)
                                                     showQuickBootSpinner.value = false
                                                 }.start()
                                             },
@@ -632,8 +638,8 @@ object Buttons {
                                             }
                                         )
                                     }
-                                    if (Commands.uefi
-                                            .contains(1) and (!Commands.uefi.contains(60) or !Commands.uefi.contains(
+                                    if (uefi
+                                            .contains(1) and (!uefi.contains(60) or !uefi.contains(
                                             120
                                         ))
                                     ) {
@@ -642,7 +648,7 @@ object Buttons {
                                                 Thread {
                                                     showQuickBootDialog.value = false
                                                     showQuickBootSpinner.value = true
-                                                    Commands.quickboot(2)
+                                                    quickboot(2)
                                                     showQuickBootSpinner.value = false
                                                 }.start()
                                             },

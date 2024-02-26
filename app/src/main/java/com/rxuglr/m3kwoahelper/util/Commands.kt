@@ -1,15 +1,12 @@
 package com.rxuglr.m3kwoahelper.util
 
-import com.rxuglr.m3kwoahelper.codename
+import com.rxuglr.m3kwoahelper.util.Variables.codename
+import com.rxuglr.m3kwoahelper.util.Variables.codenames
+import com.rxuglr.m3kwoahelper.util.Variables.nomodem
+import com.rxuglr.m3kwoahelper.util.Variables.sensors
 import com.topjohnwu.superuser.ShellUtils
 
 object Commands {
-
-    val codenames = arrayOf("vayu", "bhima", "nabu", "raphael", "raphaelin", "cepheus", "raphaels")
-    val nomodem = arrayOf("nabu")
-    val sensors = arrayOf(codenames[3], codenames[4], codenames[5], codenames[6])
-    val uefi = getuefilist()
-
     fun devicename(): String {
         return when (codename) {
             codenames[0],codenames[1] -> "POCO X3 Pro"

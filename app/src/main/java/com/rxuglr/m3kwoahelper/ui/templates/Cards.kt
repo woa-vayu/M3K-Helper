@@ -31,14 +31,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.rxuglr.m3kwoahelper.R
-import com.rxuglr.m3kwoahelper.codename
-import com.rxuglr.m3kwoahelper.fontSize
-import com.rxuglr.m3kwoahelper.lineHeight
-import com.rxuglr.m3kwoahelper.name
-import com.rxuglr.m3kwoahelper.ram
-import com.rxuglr.m3kwoahelper.slot
-import com.rxuglr.m3kwoahelper.util.Commands
-import com.rxuglr.m3kwoahelper.util.Commands.codenames
+import com.rxuglr.m3kwoahelper.util.Variables.codename
+import com.rxuglr.m3kwoahelper.util.Variables.fontSize
+import com.rxuglr.m3kwoahelper.util.Variables.lineHeight
+import com.rxuglr.m3kwoahelper.util.Variables.name
+import com.rxuglr.m3kwoahelper.util.Variables.ram
+import com.rxuglr.m3kwoahelper.util.Variables.slot
+import com.rxuglr.m3kwoahelper.util.Commands.displaytype
+import com.rxuglr.m3kwoahelper.util.Variables.codenames
 import com.rxuglr.m3kwoahelper.woahApp
 
 object Cards {
@@ -49,7 +49,7 @@ object Cards {
     @Composable
     fun InfoCard(modifier: Modifier) {
         Card(modifier =
-        if (Build.DEVICE == "nabu") {
+        if (codename == "nabu") {
             modifier
         }
         else {
@@ -94,7 +94,7 @@ object Cards {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 10.dp),
-                    text = LocalContext.current.getString(R.string.paneltype, Commands.displaytype()),
+                    text = LocalContext.current.getString(R.string.paneltype, displaytype()),
                     fontSize = fontSize,
                     lineHeight = lineHeight
                 )
@@ -128,10 +128,10 @@ object Cards {
                                     Intent(
                                         Intent.ACTION_VIEW,
                                         Uri.parse(
-                                            when (Build.DEVICE) {
+                                            when (codename) {
                                                 codenames[0],codenames[1] -> "https://github.com/woa-vayu/Port-Windows-11-Poco-X3-pro"
                                                 codenames[2] -> "https://github.com/erdilS/Port-Windows-11-Xiaomi-Pad-5"
-                                                codenames[3], codenames[4] -> "https://github.com/graphiks/woa-raphael"
+                                                codenames[3], codenames[4], codenames[6] -> "https://github.com/graphiks/woa-raphael"
                                                 else -> "Unknown"
                                             }
                                         )
@@ -160,10 +160,10 @@ object Cards {
                                 Intent(
                                     Intent.ACTION_VIEW,
                                     Uri.parse(
-                                        when (Build.DEVICE) {
+                                        when (codename) {
                                             codenames[0], codenames[1] -> "https://t.me/winonvayualt"
                                             codenames[2] -> "https://t.me/nabuwoa"
-                                            codenames[3], codenames[4] -> "https://t.me/woaraphael"
+                                            codenames[3], codenames[4], codenames[6] -> "https://t.me/woaraphael"
                                             codenames[5] -> "https://t.me/WinOnMi9/"
                                             else -> "Unknown"
                                         }

@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.rxuglr.m3kwoahelper.R
-import com.rxuglr.m3kwoahelper.codename
-import com.rxuglr.m3kwoahelper.util.Commands.codenames
+import com.rxuglr.m3kwoahelper.util.Variables.codename
+import com.rxuglr.m3kwoahelper.util.Variables.codenames
 
 object Images {
 

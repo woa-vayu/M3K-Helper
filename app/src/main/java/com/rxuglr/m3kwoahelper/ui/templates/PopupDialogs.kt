@@ -20,8 +20,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.rxuglr.m3kwoahelper.R
-import com.rxuglr.m3kwoahelper.fontSize
-import com.rxuglr.m3kwoahelper.lineHeight
+import com.rxuglr.m3kwoahelper.util.Variables.fontSize
+import com.rxuglr.m3kwoahelper.util.Variables.lineHeight
 
 object PopupDialogs {
 
