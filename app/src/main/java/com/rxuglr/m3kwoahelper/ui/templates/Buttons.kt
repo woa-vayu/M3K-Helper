@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -39,7 +38,7 @@ import com.rxuglr.m3kwoahelper.util.Variables.fontSize
 import com.rxuglr.m3kwoahelper.util.Variables.lineHeight
 import com.rxuglr.m3kwoahelper.util.Variables.name
 import com.rxuglr.m3kwoahelper.util.Variables.paddingValue
-import com.rxuglr.m3kwoahelper.util.Variables.uefi
+import com.rxuglr.m3kwoahelper.util.Variables.uefilist
 
 object Buttons {
 
@@ -84,7 +83,7 @@ object Buttons {
                             Thread {
                                 showDialog.value = false
                                 showSpinner.value = true
-                                command()
+                                run { command }
                                 showSpinner.value = false
                             }.start()
                         })
@@ -99,8 +98,7 @@ object Buttons {
             ) {
                 Icon(
                     modifier = Modifier
-                        .height(40.dp)
-                        .width(40.dp),
+                        .size(40.dp),
                     painter = painterResource(id = icon),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary
@@ -246,8 +244,7 @@ object Buttons {
             ) {
                 Icon(
                     modifier = Modifier
-                        .height(40.dp)
-                        .width(40.dp),
+                        .size(40.dp),
                     painter = painterResource(id = R.drawable.ic_disk),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary
@@ -355,7 +352,7 @@ object Buttons {
         val showUEFISpinner = remember { mutableStateOf(false) }
         Card(
             onClick = {
-                if (!uefi.contains(99)) {
+                if (!uefilist.contains(99)) {
                     showUEFIDialog.value = true
                 }
             },
@@ -403,7 +400,7 @@ object Buttons {
                                 Modifier.align(Alignment.CenterHorizontally),
                                 horizontalArrangement = Arrangement.spacedBy(10.dp)
                             ) {
-                                if (uefi.contains(120)) {
+                                if (uefilist.contains(120)) {
                                     AssistChip(
                                         onClick = {
                                             Thread {
@@ -426,7 +423,7 @@ object Buttons {
                                         }
                                     )
                                 }
-                                if (uefi.contains(60)) {
+                                if (uefilist.contains(60)) {
                                     AssistChip(
                                         onClick = {
                                             Thread {
@@ -449,8 +446,8 @@ object Buttons {
                                         }
                                     )
                                 }
-                                if (uefi
-                                        .contains(1) and (!uefi.contains(60) or !uefi.contains(
+                                if (uefilist
+                                        .contains(1) and (!uefilist.contains(60) or !uefilist.contains(
                                         120
                                     ))
                                 ) {
@@ -505,15 +502,14 @@ object Buttons {
             ) {
                 Icon(
                     modifier = Modifier
-                        .height(40.dp)
-                        .width(40.dp),
+                        .size(40.dp),
                     painter = painterResource(id = R.drawable.ic_uefi),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary
                 )
                 val title: Int
                 val subtitle: Int
-                if (!uefi.contains(99)) {
+                if (!uefilist.contains(99)) {
                     title = R.string.flash_uefi_title
                     subtitle = R.string.flash_uefi_subtitle
                 } else {
@@ -541,7 +537,7 @@ object Buttons {
 
     @Composable
     fun QuickbootButton() {
-        if (!uefi.contains(99)) {
+        if (!uefilist.contains(99)) {
             val showQuickBootDialog = remember { mutableStateOf(false) }
             val showQuickBootSpinner = remember { mutableStateOf(false) }
             Card(
@@ -590,7 +586,7 @@ object Buttons {
                                     Modifier.align(Alignment.CenterHorizontally),
                                     horizontalArrangement = Arrangement.spacedBy(10.dp)
                                 ) {
-                                    if (uefi.contains(120)) {
+                                    if (uefilist.contains(120)) {
                                         AssistChip(
                                             modifier = Modifier.width(95.dp),
                                             onClick = {
@@ -614,7 +610,7 @@ object Buttons {
                                             }
                                         )
                                     }
-                                    if (uefi.contains(60)) {
+                                    if (uefilist.contains(60)) {
                                         AssistChip(
                                             modifier = Modifier.width(95.dp),
                                             onClick = {
@@ -638,8 +634,8 @@ object Buttons {
                                             }
                                         )
                                     }
-                                    if (uefi
-                                            .contains(1) and (!uefi.contains(60) or !uefi.contains(
+                                    if (uefilist
+                                            .contains(1) and (!uefilist.contains(60) or !uefilist.contains(
                                             120
                                         ))
                                     ) {
@@ -690,8 +686,7 @@ object Buttons {
                 ) {
                     Icon(
                         modifier = Modifier
-                            .height(40.dp)
-                            .width(40.dp),
+                            .size(40.dp),
                         painter = painterResource(id = R.drawable.ic_windows),
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.primary

@@ -36,22 +36,10 @@ fun WOAHelperTheme(
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
+
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
-
-  //  SideEffect {
-  //      systemUiController.setStatusBarColor(
-  //          color = colorScheme.surfaceColorAtElevation(12.dp),
-   //         darkIcons = !darkTheme
-  //      )
-
-        // To match the App Navbar color
-   //     systemUiController.setNavigationBarColor(
-   //         color = colorScheme.surface,
-   //         darkIcons = !darkTheme,
-   //     )
-   // }
 
     MaterialTheme(
         colorScheme = colorScheme,

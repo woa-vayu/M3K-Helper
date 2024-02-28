@@ -4,7 +4,7 @@
     <string name="umnt_title">Размонтировать Windows</string>
     <string name="dump_modem_title">Исправить модем</string>
     <string name="dump_modemAsensors_title">Исправить модем и сенсоры</string>
-    <string name="quickboot_title">Перезагрузиться в  Windows</string>
+    <string name="quickboot_title">Перезагрузиться в Windows</string>
     <string name="backup_boot_title">Резервная копия boot образа</string>
     <string name="flash_uefi_title">Прошить UEFI</string>
     <string name="uefi_not_found_title">UEFI не найден</string>
@@ -26,6 +26,10 @@
     <string name="quickboot_subtitle_nomodem">Прошейте UEFI и перезагрузитесь в Windows в одно нажатие</string>
     <string name="flash_uefi_subtitle">Прошить UEFI для %s?</string>
     <string name="uefi_not_found_subtitle">Скачайте UEFI для вашего устройства и поместите его в папку UEFI в памяти устройства</string>
+
+    <string name="uefi_not_found_qs">UEFI не найден</string>
+
+    <string name="no_root">M3K WoA Helper нужны Root-права для работы!</string>
 
     <string name="ramvalue">ОЗУ: %s</string>
     <string name="paneltype">"Дисплей: %s"</string>

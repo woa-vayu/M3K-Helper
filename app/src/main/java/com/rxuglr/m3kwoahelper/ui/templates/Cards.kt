@@ -2,7 +2,6 @@ package com.rxuglr.m3kwoahelper.ui.templates
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.util.DisplayMetrics
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,14 +30,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.rxuglr.m3kwoahelper.R
+import com.rxuglr.m3kwoahelper.util.Commands.displaytype
 import com.rxuglr.m3kwoahelper.util.Variables.codename
+import com.rxuglr.m3kwoahelper.util.Variables.codenames
 import com.rxuglr.m3kwoahelper.util.Variables.fontSize
 import com.rxuglr.m3kwoahelper.util.Variables.lineHeight
 import com.rxuglr.m3kwoahelper.util.Variables.name
 import com.rxuglr.m3kwoahelper.util.Variables.ram
 import com.rxuglr.m3kwoahelper.util.Variables.slot
-import com.rxuglr.m3kwoahelper.util.Commands.displaytype
-import com.rxuglr.m3kwoahelper.util.Variables.codenames
 import com.rxuglr.m3kwoahelper.woahApp
 
 object Cards {
@@ -46,16 +45,17 @@ object Cards {
     fun pxtodp(px: Float): Float {
         return px / (woahApp.resources.displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
     }
+
     @Composable
     fun InfoCard(modifier: Modifier) {
-        Card(modifier =
-        if (codename == "nabu") {
-            modifier
-        }
-        else {
-            Modifier
-                .height(200.dp)
-             },
+        Card(
+            modifier =
+            if (codename == "nabu") {
+                modifier
+            } else {
+                Modifier
+                    .height(200.dp)
+            },
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(
                     12.dp
@@ -129,7 +129,7 @@ object Cards {
                                         Intent.ACTION_VIEW,
                                         Uri.parse(
                                             when (codename) {
-                                                codenames[0],codenames[1] -> "https://github.com/woa-vayu/Port-Windows-11-Poco-X3-pro"
+                                                codenames[0], codenames[1] -> "https://github.com/woa-vayu/Port-Windows-11-Poco-X3-pro"
                                                 codenames[2] -> "https://github.com/erdilS/Port-Windows-11-Xiaomi-Pad-5"
                                                 codenames[3], codenames[4], codenames[6] -> "https://github.com/graphiks/woa-raphael"
                                                 else -> "Unknown"
@@ -140,7 +140,7 @@ object Cards {
                             },
                             label = {
                                 Text(
-                                    "Guide",
+                                    LocalContext.current.getString(R.string.guide),
                                     fontWeight = FontWeight.Bold,
                                 )
                             }
@@ -173,7 +173,7 @@ object Cards {
                         },
                         label = {
                             Text(
-                                "Group",
+                                LocalContext.current.getString(R.string.group),
                                 fontWeight = FontWeight.Bold,
                             )
                         }

@@ -4,21 +4,10 @@ import com.rxuglr.m3kwoahelper.util.Variables.codename
 import com.rxuglr.m3kwoahelper.util.Variables.codenames
 import com.rxuglr.m3kwoahelper.util.Variables.nomodem
 import com.rxuglr.m3kwoahelper.util.Variables.sensors
+import com.rxuglr.m3kwoahelper.util.Variables.uefilist
 import com.topjohnwu.superuser.ShellUtils
 
 object Commands {
-    fun devicename(): String {
-        return when (codename) {
-            codenames[0],codenames[1] -> "POCO X3 Pro"
-            codenames[2] -> "Xiaomi Pad 5"
-            codenames[3] -> "Xiaomi Mi 9T Pro"
-            codenames[4] -> "Redmi K20 Pro"
-            codenames[5] -> "Xiaomi Mi 9"
-            codenames[6] -> "Redmi K20 Pro Premium"
-            else -> "Unknown"
-        }
-    }
-
     fun backup(where: Int) {
         val slot = ShellUtils.fastCmd("getprop ro.boot.slot_suffix")
         if (where == 1) {
@@ -34,9 +23,31 @@ object Commands {
     fun displaytype(): Any {
         val panel = ShellUtils.fastCmd("cat /proc/cmdline")
         return when (codename) {
-            codenames[0],codenames[1] -> if (panel.contains("j20s_42")) {"Huaxing"} else if (panel.contains("j20s_36")) {"Tianma"} else {"Unknown"}
-            codenames[2] -> if (panel.contains("k82_42")) {"Huaxing"} else if (panel.contains("k82_36")) {"Tianma"} else {"Unknown"}
-            codenames[3], codenames[4], codenames[5], codenames[6] -> if (panel.contains("ea8076_f1mp") or panel.contains("ea8076_f1p2") or panel.contains("ea8076_global")) {"Samsung"} else {"Samsung (Unsupported)"}
+            codenames[0], codenames[1] -> if (panel.contains("j20s_42")) {
+                "Huaxing"
+            } else if (panel.contains("j20s_36")) {
+                "Tianma"
+            } else {
+                "Unknown"
+            }
+
+            codenames[2] -> if (panel.contains("k82_42")) {
+                "Huaxing"
+            } else if (panel.contains("k82_36")) {
+                "Tianma"
+            } else {
+                "Unknown"
+            }
+
+            codenames[3], codenames[4], codenames[5], codenames[6] -> if (panel.contains("ea8076_f1mp") or panel.contains(
+                    "ea8076_f1p2"
+                ) or panel.contains("ea8076_global")
+            ) {
+                "Samsung"
+            } else {
+                "Samsung (Unsupported)"
+            }
+
             else -> "Unknown"
         }
     }
@@ -63,32 +74,7 @@ object Commands {
         umountwin()
     }
 
-    fun getuefilist(): Array<Int> {
-        var uefilist = arrayOf(0)
-        if ((ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img").isEmpty())) {
-            uefilist +=99
-        } else {
-            if (ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 120")
-                    .isNotEmpty()
-            ) {
-                uefilist += 120
-            }
-            if (ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 60")
-                    .isNotEmpty()
-            ) {
-                uefilist += 60
-            }
-            if ((ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img")
-                    .isNotEmpty()) and (!uefilist.contains(60)) and !uefilist.contains(120)
-            ) {
-                uefilist += 1
-            }
-        }
-        return uefilist
-    }
-
     private fun getuefipath(type: Int): String {
-        val uefilist = getuefilist()
         val uefipath = arrayOf("", "", "")
         if (uefilist.contains(120)) {
             uefipath[0] =
@@ -116,9 +102,10 @@ object Commands {
                 ShellUtils.fastCmd("find /sdcard/windows/Windows/System32/Drivers/DriverData/QUALCOMM/fastRPC/persist/sensors/*")
                     .isNotEmpty()
             umountwin()
-           check
+            check
         }
     }
+
     fun dumpsensors() {
         mountwin()
         ShellUtils.fastCmd("cp -r /vendor/persist/sensors/* /sdcard/windows/Windows/System32/Drivers/DriverData/QUALCOMM/fastRPC/persist/sensors")
@@ -126,7 +113,9 @@ object Commands {
     }
 
     fun quickboot(type: Int) {
-        if (!nomodem.contains(codename))  { dumpmodem() }
+        if (!nomodem.contains(codename)) {
+            dumpmodem()
+        }
         flashuefi(type)
         ShellUtils.fastCmd("svc power reboot")
     }

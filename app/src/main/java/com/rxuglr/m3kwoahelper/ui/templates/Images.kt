@@ -21,8 +21,7 @@ object Images {
             alignment = Alignment.TopStart,
             modifier = if (codename == "nabu") {
                 modifier
-            }
-            else {
+            } else {
                 Modifier
                     .padding(top = 20.dp)
                     .height(160.dp)

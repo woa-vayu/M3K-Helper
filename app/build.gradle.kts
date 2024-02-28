@@ -18,7 +18,7 @@ android {
         minSdk = 29
         targetSdk = 34
         versionCode = 8
-        versionName = "1.3.3"
+        versionName = "1.3.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -54,7 +54,6 @@ dependencies {
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui)
-    implementation("androidx.compose.material3:material3-window-size-class")
     debugImplementation(libs.androidx.compose.ui.tooling)
 
     implementation(libs.androidx.lifecycle.runtime.compose)

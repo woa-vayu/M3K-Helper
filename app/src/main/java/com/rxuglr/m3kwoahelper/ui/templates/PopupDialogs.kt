@@ -37,7 +37,12 @@ object PopupDialogs {
         if (showDialog) {
             AlertDialog(
                 icon = {
-                    Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(40.dp))
+                    Icon(
+                        icon,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(40.dp)
+                    )
                 },
                 title = {
                     if (title != null) {
@@ -45,7 +50,8 @@ object PopupDialogs {
                             text = title,
                             textAlign = TextAlign.Center,
                             fontSize = fontSize,
-                            lineHeight = lineHeight,)
+                            lineHeight = lineHeight,
+                        )
                     }
                 },
                 text = {
@@ -101,13 +107,26 @@ object PopupDialogs {
         if (showDialog) {
             AlertDialog(
                 icon = {
-                    Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(40.dp))
+                    Icon(
+                        icon,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(40.dp)
+                    )
                 },
                 title = {
-                    Text(text = LocalContext.current.getString(title), textAlign = TextAlign.Center, fontSize = fontSize, lineHeight = lineHeight)
+                    Text(
+                        text = LocalContext.current.getString(title),
+                        textAlign = TextAlign.Center,
+                        fontSize = fontSize,
+                        lineHeight = lineHeight
+                    )
                 },
                 text = {
-                    Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
                         CircularProgressIndicator(
                             modifier = Modifier.width(32.dp),
                             color = MaterialTheme.colorScheme.secondary,

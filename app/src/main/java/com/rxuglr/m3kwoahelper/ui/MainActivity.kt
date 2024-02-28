@@ -3,7 +3,6 @@ package com.rxuglr.m3kwoahelper.ui
 import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -40,7 +39,6 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -56,8 +54,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.rxuglr.m3kwoahelper.R
-import com.rxuglr.m3kwoahelper.util.Variables.codename
-import com.rxuglr.m3kwoahelper.util.Variables.name
 import com.rxuglr.m3kwoahelper.ui.templates.*
 import com.rxuglr.m3kwoahelper.ui.templates.Cards.InfoCard
 import com.rxuglr.m3kwoahelper.ui.templates.Cards.pxtodp
@@ -66,9 +62,11 @@ import com.rxuglr.m3kwoahelper.ui.theme.WOAHelperTheme
 import com.rxuglr.m3kwoahelper.util.Commands.checksensors
 import com.rxuglr.m3kwoahelper.util.Commands.dumpmodem
 import com.rxuglr.m3kwoahelper.util.Commands.dumpsensors
+import com.rxuglr.m3kwoahelper.util.Variables.codename
 import com.rxuglr.m3kwoahelper.util.Variables.nomodem
+import com.rxuglr.m3kwoahelper.util.Variables.unsupported
 import com.rxuglr.m3kwoahelper.woahApp
-
+import com.topjohnwu.superuser.Shell
 
 class MainActivity : ComponentActivity() {
 
@@ -83,19 +81,40 @@ class MainActivity : ComponentActivity() {
                 requestedOrientation = SCREEN_ORIENTATION_USER_PORTRAIT
             }
             WOAHelperTheme {
-                // unsupported device warning
-                val unsupported = remember { mutableStateOf(false) }
-                if ((name == "Unknown")) {
-                    unsupported.value = true
+                if (Shell.isAppGrantedRoot() == true) {
+                    WOAHelper()
+                } else {
+                    AlertDialog(
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Filled.Warning,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.primary
+                            )
+                        },
+                        title = {},
+                        text = {
+                            Text(
+                                modifier = Modifier.fillMaxWidth(),
+                                text = getString(R.string.no_root),
+                                textAlign = TextAlign.Center,
+                                fontWeight = FontWeight.Bold,
+                                lineHeight = 35.sp,
+                                fontSize = 25.sp
+                            )
+                        },
+                        onDismissRequest = {},
+                        dismissButton = {},
+                        confirmButton = {}
+                    )
                 }
-                WOAHelper(unsupported)
             }
         }
     }
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun WOAHelper(unsupported: MutableState<Boolean>) {
+    fun WOAHelper() {
         val navController = rememberNavController()
         val home = remember { mutableStateOf(true) }
         Scaffold(
@@ -183,7 +202,7 @@ class MainActivity : ComponentActivity() {
                     exitTransition = { fadeOut() }
                 ) {
                     home.value = true
-                    MainScreen(unsupported)
+                    MainScreen()
                 }
             }
         }
@@ -218,7 +237,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(bottom = 5.dp),
-                        text = "Version: 1.3.3",
+                        text = "Version: 1.3.4",
                         textAlign = TextAlign.Center
                     )
                 }
@@ -405,9 +424,7 @@ class MainActivity : ComponentActivity() {
 
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @Composable
-    fun MainScreen(
-        unsupported: MutableState<Boolean>,
-    ) {
+    fun MainScreen() {
         Scaffold {
             Column(
                 verticalArrangement = Arrangement.spacedBy(10.dp),
