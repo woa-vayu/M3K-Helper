@@ -44,6 +44,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
@@ -237,7 +238,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(bottom = 5.dp),
-                        text = "Version: 1.3.4",
+                        text = "Version: 1.3.5",
                         textAlign = TextAlign.Center
                     )
                 }
@@ -492,7 +493,7 @@ class MainActivity : ComponentActivity() {
                         ) {
                             InfoCard(Modifier
                                 .height(200.dp)
-                                .width((pxtodp(625f)).dp))
+                                .width((pxtodp(625f)).dp), LocalUriHandler.current)
                             DeviceImage(Modifier.width((pxtodp(625f)).dp))
                         }
                         Column(
@@ -529,7 +530,7 @@ class MainActivity : ComponentActivity() {
                 else {
                     Row(horizontalArrangement = Arrangement.spacedBy(if (codename == "nabu") { 10.dp } else 0.dp)) {
                         DeviceImage(Modifier.width((pxtodp(625f)).dp))
-                        InfoCard(Modifier.height((pxtodp(743f)).dp))
+                        InfoCard(Modifier.height((pxtodp(743f)).dp), LocalUriHandler.current)
                     }
                     Buttons.BackupButton()
                     Buttons.MountButton()

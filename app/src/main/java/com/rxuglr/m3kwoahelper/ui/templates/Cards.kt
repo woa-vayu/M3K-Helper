@@ -11,13 +11,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Message
 import androidx.compose.material.icons.filled.Book
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.AssistChipDefaults
-import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -26,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -47,8 +49,8 @@ object Cards {
     }
 
     @Composable
-    fun InfoCard(modifier: Modifier) {
-        Card(
+    fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
+        ElevatedCard(
             modifier =
             if (codename == "nabu") {
                 modifier
@@ -56,6 +58,7 @@ object Cards {
                 Modifier
                     .height(200.dp)
             },
+            shape = RoundedCornerShape(8.dp),
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(
                     12.dp
@@ -113,7 +116,7 @@ object Cards {
                     Modifier.align(Alignment.CenterHorizontally),
                     horizontalArrangement = Arrangement.spacedBy(5.dp)
                 ) {
-                    if (codename != "cepheus") {
+                    if ((codename != "cepheus") && (name != "Unknown")) {
                         AssistChip(
                             leadingIcon = {
                                 Icon(
@@ -124,18 +127,13 @@ object Cards {
                                 )
                             },
                             onClick = {
-                                woahApp.startActivity(
-                                    Intent(
-                                        Intent.ACTION_VIEW,
-                                        Uri.parse(
-                                            when (codename) {
-                                                codenames[0], codenames[1] -> "https://github.com/woa-vayu/Port-Windows-11-Poco-X3-pro"
-                                                codenames[2] -> "https://github.com/erdilS/Port-Windows-11-Xiaomi-Pad-5"
-                                                codenames[3], codenames[4], codenames[6] -> "https://github.com/graphiks/woa-raphael"
-                                                else -> "Unknown"
-                                            }
-                                        )
-                                    )
+                                localUriHandler.openUri(
+                                    when (codename) {
+                                        codenames[0], codenames[1] -> "https://github.com/woa-vayu/Port-Windows-11-Poco-X3-pro"
+                                        codenames[2] -> "https://github.com/erdilS/Port-Windows-11-Xiaomi-Pad-5"
+                                        codenames[3], codenames[4], codenames[6] -> "https://github.com/graphiks/woa-raphael"
+                                        else -> ""
+                                    }
                                 )
                             },
                             label = {
@@ -146,38 +144,35 @@ object Cards {
                             }
                         )
                     }
-                    AssistChip(
-                        leadingIcon = {
-                            Icon(
-                                Icons.AutoMirrored.Filled.Message,
-                                contentDescription = null,
-                                Modifier.size(AssistChipDefaults.IconSize),
-                                tint = MaterialTheme.colorScheme.primary
-                            )
-                        },
-                        onClick = {
-                            woahApp.startActivity(
-                                Intent(
-                                    Intent.ACTION_VIEW,
-                                    Uri.parse(
-                                        when (codename) {
-                                            codenames[0], codenames[1] -> "https://t.me/winonvayualt"
-                                            codenames[2] -> "https://t.me/nabuwoa"
-                                            codenames[3], codenames[4], codenames[6] -> "https://t.me/woaraphael"
-                                            codenames[5] -> "https://t.me/WinOnMi9/"
-                                            else -> "Unknown"
-                                        }
-                                    )
+                    if (name != "Unknown") {
+                        AssistChip(
+                            leadingIcon = {
+                                Icon(
+                                    Icons.AutoMirrored.Filled.Message,
+                                    contentDescription = null,
+                                    Modifier.size(AssistChipDefaults.IconSize),
+                                    tint = MaterialTheme.colorScheme.primary
                                 )
-                            )
-                        },
-                        label = {
-                            Text(
-                                LocalContext.current.getString(R.string.group),
-                                fontWeight = FontWeight.Bold,
-                            )
-                        }
-                    )
+                            },
+                            onClick = {
+                                localUriHandler.openUri(
+                                    when (codename) {
+                                        codenames[0], codenames[1] -> "https://t.me/winonvayualt"
+                                        codenames[2] -> "https://t.me/nabuwoa"
+                                        codenames[3], codenames[4], codenames[6] -> "https://t.me/woaraphael"
+                                        codenames[5] -> "https://t.me/WinOnMi9/"
+                                        else -> ""
+                                    }
+                                )
+                            },
+                            label = {
+                                Text(
+                                    LocalContext.current.getString(R.string.group),
+                                    fontWeight = FontWeight.Bold,
+                                )
+                            }
+                        )
+                    }
                 }
             }
         }

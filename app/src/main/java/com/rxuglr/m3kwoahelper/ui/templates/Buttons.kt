@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.AssistChip
-import androidx.compose.material3.Card
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -52,7 +52,7 @@ object Buttons {
     ) {
         val showDialog = remember { mutableStateOf(false) }
         val showSpinner = remember { mutableStateOf(false) }
-        Card(
+        ElevatedCard(
             onClick = { showDialog.value = true },
             Modifier
                 .fillMaxWidth(),
@@ -83,7 +83,7 @@ object Buttons {
                             Thread {
                                 showDialog.value = false
                                 showSpinner.value = true
-                                run { command }
+                                command()
                                 showSpinner.value = false
                             }.start()
                         })
@@ -126,7 +126,7 @@ object Buttons {
     fun BackupButton() {
         val showBackupDialog = remember { mutableStateOf(false) }
         val showBackupSpinner = remember { mutableStateOf(false) }
-        Card(
+        ElevatedCard(
             onClick = { showBackupDialog.value = true },
             Modifier
                 .fillMaxWidth(),
@@ -271,7 +271,7 @@ object Buttons {
     @Composable
     fun MountButton() {
         val showMountDialog = remember { mutableStateOf(false) }
-        Card(
+        ElevatedCard(
             onClick = { showMountDialog.value = true },
             Modifier
                 .fillMaxWidth(),
@@ -350,7 +350,7 @@ object Buttons {
     fun UEFIButton() {
         val showUEFIDialog = remember { mutableStateOf(false) }
         val showUEFISpinner = remember { mutableStateOf(false) }
-        Card(
+        ElevatedCard(
             onClick = {
                 if (!uefilist.contains(99)) {
                     showUEFIDialog.value = true
@@ -540,7 +540,7 @@ object Buttons {
         if (!uefilist.contains(99)) {
             val showQuickBootDialog = remember { mutableStateOf(false) }
             val showQuickBootSpinner = remember { mutableStateOf(false) }
-            Card(
+            ElevatedCard(
                 onClick = { showQuickBootDialog.value = true },
                 Modifier
                     .fillMaxWidth(),
