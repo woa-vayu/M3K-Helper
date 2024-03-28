@@ -11,7 +11,7 @@ android {
     compileSdk = 34
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
+        kotlinCompilerExtensionVersion = "1.5.11"
     }
     defaultConfig {
         applicationId = "com.rxuglr.m3kwoahelper"
