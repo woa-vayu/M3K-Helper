@@ -40,7 +40,6 @@
     <string name="group">Группа</string>
 
     <string name="yes">Да</string>
-    <string name="dismiss">Отклонить</string>
     <string name="no">Нет</string>
     <string name="please_wait">Пожалуйста подождите…</string>
 </resources>

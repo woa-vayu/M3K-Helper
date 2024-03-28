@@ -1,7 +1,5 @@
 package com.rxuglr.m3kwoahelper.ui.templates
 
-import android.content.Intent
-import android.net.Uri
 import android.util.DisplayMetrics
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

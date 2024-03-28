@@ -1,12 +1,12 @@
 [versions]
 agp = "8.3.1"
-kotlin = "1.9.22"
+kotlin = "1.9.23"
 ksp = "1.9.22-1.0.17"
-compose-bom = "2024.02.01"
+compose-bom = "2024.03.00"
 lifecycle = "2.7.0"
 material = "1.11.0"
 navigation = "2.7.7"
-compose-destination = "1.10.1"
+compose-destination = "1.10.2"
 libsu = "5.2.2"
 
 [plugins]
@@ -14,8 +14,8 @@ agp-app = { id = "com.android.application", version.ref = "agp" }
 agp-lib = { id = "com.android.library", version.ref = "agp" }
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-lsplugin-apksign = { id = "org.lsposed.lsplugin.apksign", version = "1.1" }
-lsplugin-cmaker = { id = "org.lsposed.lsplugin.cmaker", version = "1.1" }
+lsplugin-apksign = { id = "org.lsposed.lsplugin.apksign", version = "1.4" }
+lsplugin-cmaker = { id = "org.lsposed.lsplugin.cmaker", version = "1.2" }
 
 [libraries]
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version = "1.8.2" }
@@ -23,8 +23,8 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
-androidx-compose-material = { group = "androidx.compose.material", name = "material", version = "1.6.2" }
-androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version = "1.2.0" }
+androidx-compose-material = { group = "androidx.compose.material", name = "material", version = "1.6.4" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version = "1.2.1" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 

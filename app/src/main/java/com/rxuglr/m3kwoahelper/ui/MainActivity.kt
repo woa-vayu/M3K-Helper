@@ -238,7 +238,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(bottom = 5.dp),
-                        text = "Version: 1.3.5",
+                        text = "Version: 1.3.5.1",
                         textAlign = TextAlign.Center
                     )
                 }
@@ -491,9 +491,10 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier
                                 .padding(vertical = 10.dp)
                         ) {
-                            InfoCard(Modifier
-                                .height(200.dp)
-                                .width((pxtodp(625f)).dp), LocalUriHandler.current)
+                            InfoCard(
+                                Modifier
+                                    .height(200.dp)
+                                    .width((pxtodp(625f)).dp), LocalUriHandler.current)
                             DeviceImage(Modifier.width((pxtodp(625f)).dp))
                         }
                         Column(
@@ -511,8 +512,7 @@ class MainActivity : ComponentActivity() {
                                         R.string.dump_modemAsensors_question,
                                         { dumpmodem(); dumpsensors() },
                                         R.drawable.ic_modem)
-                                }
-                                else {
+                                } else {
                                     Buttons.Button(
                                         R.string.dump_modem_title,
                                         R.string.dump_modem_subtitle,
@@ -526,9 +526,14 @@ class MainActivity : ComponentActivity() {
                             Buttons.QuickbootButton()
                         }
                     }
-                }
-                else {
-                    Row(horizontalArrangement = Arrangement.spacedBy(if (codename == "nabu") { 10.dp } else 0.dp)) {
+                } else {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(
+                            if (codename == "nabu") {
+                                10.dp
+                            } else 0.dp
+                        )
+                    ) {
                         DeviceImage(Modifier.width((pxtodp(625f)).dp))
                         InfoCard(Modifier.height((pxtodp(743f)).dp), LocalUriHandler.current)
                     }
@@ -537,13 +542,12 @@ class MainActivity : ComponentActivity() {
                     if (!nomodem.contains(codename)) {
                         if (!checksensors()) {
                             Buttons.Button(
-                            R.string.dump_modemAsensors_title,
-                            R.string.dump_modemAsensors_subtitle,
-                            R.string.dump_modemAsensors_question,
-                            { dumpmodem(); dumpsensors() },
-                            R.drawable.ic_modem)
-                        }
-                        else {
+                                R.string.dump_modemAsensors_title,
+                                R.string.dump_modemAsensors_subtitle,
+                                R.string.dump_modemAsensors_question,
+                                { dumpmodem(); dumpsensors() },
+                                R.drawable.ic_modem)
+                        } else {
                             Buttons.Button(
                                 R.string.dump_modem_title,
                                 R.string.dump_modem_subtitle,

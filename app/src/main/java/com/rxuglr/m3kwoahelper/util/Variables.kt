@@ -20,7 +20,8 @@ object Variables {
 
     val ram: String = RAM().getMemory(woahApp)
     var name: String = ""
-    val slot: String = String.format("%S", ShellUtils.fastCmd("getprop ro.boot.slot_suffix")).drop(1)
+    val slot: String =
+        String.format("%S", ShellUtils.fastCmd("getprop ro.boot.slot_suffix")).drop(1)
     val codename: String = Build.DEVICE
     var fontSize: TextUnit = 15.sp
     var paddingValue: Dp = 10.dp
