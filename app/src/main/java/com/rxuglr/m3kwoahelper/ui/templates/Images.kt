@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.rxuglr.m3kwoahelper.R
-import com.rxuglr.m3kwoahelper.util.Variables.codename
-import com.rxuglr.m3kwoahelper.util.Variables.codenames
+import com.rxuglr.m3kwoahelper.util.Variables.Codename
+import com.rxuglr.m3kwoahelper.util.Variables.Codenames
 
 object Images {
 
@@ -19,7 +19,7 @@ object Images {
     fun DeviceImage(modifier: Modifier) {
         Image(
             alignment = Alignment.TopStart,
-            modifier = if (codename == "nabu") {
+            modifier = if (Codename == "nabu") {
                 modifier
             } else {
                 Modifier
@@ -28,10 +28,10 @@ object Images {
                     .width(140.dp)
             },
             painter = painterResource(
-                id = when (codename) {
-                    codenames[0], codenames[1] -> R.drawable.vayu
-                    codenames[2] -> R.drawable.nabu
-                    codenames[3], codenames[4] -> R.drawable.raphael
+                id = when (Codename) {
+                    Codenames[0], Codenames[1] -> R.drawable.vayu
+                    Codenames[2] -> R.drawable.nabu
+                    Codenames[3], Codenames[4] -> R.drawable.raphael
                     else -> R.drawable.nabu
                 }
             ),

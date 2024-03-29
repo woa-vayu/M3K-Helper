@@ -33,12 +33,12 @@ import com.rxuglr.m3kwoahelper.util.Commands.mountstatus
 import com.rxuglr.m3kwoahelper.util.Commands.mountwin
 import com.rxuglr.m3kwoahelper.util.Commands.quickboot
 import com.rxuglr.m3kwoahelper.util.Commands.umountwin
-import com.rxuglr.m3kwoahelper.util.Variables.codename
-import com.rxuglr.m3kwoahelper.util.Variables.fontSize
-import com.rxuglr.m3kwoahelper.util.Variables.lineHeight
-import com.rxuglr.m3kwoahelper.util.Variables.name
-import com.rxuglr.m3kwoahelper.util.Variables.paddingValue
-import com.rxuglr.m3kwoahelper.util.Variables.uefilist
+import com.rxuglr.m3kwoahelper.util.Variables.Codename
+import com.rxuglr.m3kwoahelper.util.Variables.FontSize
+import com.rxuglr.m3kwoahelper.util.Variables.LineHeight
+import com.rxuglr.m3kwoahelper.util.Variables.Name
+import com.rxuglr.m3kwoahelper.util.Variables.PaddingValue
+import com.rxuglr.m3kwoahelper.util.Variables.UEFIList
 
 object Buttons {
 
@@ -66,8 +66,8 @@ object Buttons {
                         icon = painterResource(id = icon),
                         title = R.string.please_wait,
                         showDialog = showSpinner.value,
-                        fontSize = fontSize,
-                        lineHeight = lineHeight
+                        fontSize = FontSize,
+                        lineHeight = LineHeight
                     )
                 }
             }
@@ -92,7 +92,7 @@ object Buttons {
             }
             Row(
                 modifier = Modifier
-                    .padding(paddingValue),
+                    .padding(PaddingValue),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(5.dp)
             ) {
@@ -108,14 +108,14 @@ object Buttons {
                         LocalContext.current.getString(title),
                         color = MaterialTheme.colorScheme.inverseSurface,
                         fontWeight = FontWeight.Bold,
-                        fontSize = fontSize,
-                        lineHeight = lineHeight,
+                        fontSize = FontSize,
+                        lineHeight = LineHeight,
                     )
                     Text(
                         LocalContext.current.getString(subtitle),
                         color = MaterialTheme.colorScheme.inverseSurface,
-                        lineHeight = lineHeight,
-                        fontSize = fontSize
+                        lineHeight = LineHeight,
+                        fontSize = FontSize
                     )
                 }
             }
@@ -140,8 +140,8 @@ object Buttons {
                         icon = painterResource(id = R.drawable.ic_disk),
                         title = R.string.please_wait,
                         showDialog = showBackupSpinner.value,
-                        fontSize = fontSize,
-                        lineHeight = lineHeight
+                        fontSize = FontSize,
+                        lineHeight = LineHeight
                     )
                 }
             }
@@ -163,8 +163,8 @@ object Buttons {
                                 modifier = Modifier.fillMaxWidth(),
                                 text = LocalContext.current.getString(R.string.backup_boot_question),
                                 textAlign = TextAlign.Center,
-                                fontSize = fontSize,
-                                lineHeight = lineHeight
+                                fontSize = FontSize,
+                                lineHeight = LineHeight
                             )
                         },
                         onDismissRequest = ({ showBackupDialog.value = false; }),
@@ -190,7 +190,7 @@ object Buttons {
                                             ),
                                             text = "Android",
                                             color = MaterialTheme.colorScheme.inverseSurface,
-                                            fontSize = fontSize
+                                            fontSize = FontSize
                                         )
                                     }
                                 )
@@ -211,7 +211,7 @@ object Buttons {
                                             ),
                                             text = "Windows",
                                             color = MaterialTheme.colorScheme.inverseSurface,
-                                            fontSize = fontSize
+                                            fontSize = FontSize
                                         )
                                     }
                                 )
@@ -225,7 +225,7 @@ object Buttons {
                                             ),
                                             text = LocalContext.current.getString(R.string.no),
                                             color = MaterialTheme.colorScheme.inverseSurface,
-                                            fontSize = fontSize
+                                            fontSize = FontSize
                                         )
                                     }
                                 )
@@ -238,7 +238,7 @@ object Buttons {
             }
             Row(
                 modifier = Modifier
-                    .padding(paddingValue),
+                    .padding(PaddingValue),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(5.dp)
             ) {
@@ -254,14 +254,14 @@ object Buttons {
                         LocalContext.current.getString(R.string.backup_boot_title),
                         color = MaterialTheme.colorScheme.inverseSurface,
                         fontWeight = FontWeight.Bold,
-                        fontSize = fontSize,
-                        lineHeight = lineHeight,
+                        fontSize = FontSize,
+                        lineHeight = LineHeight,
                     )
                     Text(
                         LocalContext.current.getString(R.string.backup_boot_subtitle),
                         color = MaterialTheme.colorScheme.inverseSurface,
-                        lineHeight = lineHeight,
-                        fontSize = fontSize
+                        lineHeight = LineHeight,
+                        fontSize = FontSize
                     )
                 }
             }
@@ -310,7 +310,7 @@ object Buttons {
             }
             Row(
                 modifier = Modifier
-                    .padding(paddingValue),
+                    .padding(PaddingValue),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(5.dp)
             ) {
@@ -332,13 +332,13 @@ object Buttons {
                         LocalContext.current.getString(mounted),
                         color = MaterialTheme.colorScheme.inverseSurface,
                         fontWeight = FontWeight.Bold,
-                        fontSize = fontSize
+                        fontSize = FontSize
                     )
                     Text(
                         LocalContext.current.getString(R.string.mnt_subtitle),
                         color = MaterialTheme.colorScheme.inverseSurface,
-                        lineHeight = lineHeight,
-                        fontSize = fontSize
+                        lineHeight = LineHeight,
+                        fontSize = FontSize
                     )
                 }
             }
@@ -352,15 +352,14 @@ object Buttons {
         val showUEFISpinner = remember { mutableStateOf(false) }
         ElevatedCard(
             onClick = {
-                if (!uefilist.contains(99)) {
-                    showUEFIDialog.value = true
-                }
+                showUEFIDialog.value = true
             },
             Modifier
                 .fillMaxWidth(),
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(10.dp)
-            )
+            ),
+            enabled = !UEFIList.contains(99)
         ) {
             when {
                 showUEFISpinner.value -> {
@@ -368,8 +367,8 @@ object Buttons {
                         icon = painterResource(id = R.drawable.ic_uefi),
                         title = R.string.please_wait,
                         showDialog = showUEFISpinner.value,
-                        lineHeight = lineHeight,
-                        fontSize = fontSize
+                        lineHeight = LineHeight,
+                        fontSize = FontSize
                     )
                 }
             }
@@ -391,7 +390,7 @@ object Buttons {
                                 modifier = Modifier.fillMaxWidth(),
                                 text = LocalContext.current.getString(R.string.flash_uefi_question),
                                 textAlign = TextAlign.Center,
-                                fontSize = fontSize
+                                fontSize = FontSize
                             )
                         },
                         onDismissRequest = ({ showUEFIDialog.value = false; }),
@@ -400,7 +399,7 @@ object Buttons {
                                 Modifier.align(Alignment.CenterHorizontally),
                                 horizontalArrangement = Arrangement.spacedBy(10.dp)
                             ) {
-                                if (uefilist.contains(120)) {
+                                if (UEFIList.contains(120)) {
                                     AssistChip(
                                         onClick = {
                                             Thread {
@@ -418,12 +417,12 @@ object Buttons {
                                                 ),
                                                 text = "120Hz",
                                                 color = MaterialTheme.colorScheme.inverseSurface,
-                                                fontSize = fontSize
+                                                fontSize = FontSize
                                             )
                                         }
                                     )
                                 }
-                                if (uefilist.contains(60)) {
+                                if (UEFIList.contains(60)) {
                                     AssistChip(
                                         onClick = {
                                             Thread {
@@ -441,13 +440,13 @@ object Buttons {
                                                 ),
                                                 text = "60Hz",
                                                 color = MaterialTheme.colorScheme.inverseSurface,
-                                                fontSize = fontSize
+                                                fontSize = FontSize
                                             )
                                         }
                                     )
                                 }
-                                if (uefilist
-                                        .contains(1) and (!uefilist.contains(60) or !uefilist.contains(
+                                if (UEFIList
+                                        .contains(1) and (!UEFIList.contains(60) or !UEFIList.contains(
                                         120
                                     ))
                                 ) {
@@ -468,7 +467,7 @@ object Buttons {
                                                 ),
                                                 text = LocalContext.current.getString(R.string.yes),
                                                 color = MaterialTheme.colorScheme.inverseSurface,
-                                                fontSize = fontSize
+                                                fontSize = FontSize
                                             )
                                         }
                                     )
@@ -483,7 +482,7 @@ object Buttons {
                                             ),
                                             text = LocalContext.current.getString(R.string.no),
                                             color = MaterialTheme.colorScheme.inverseSurface,
-                                            fontSize = fontSize
+                                            fontSize = FontSize
                                         )
                                     }
                                 )
@@ -496,7 +495,7 @@ object Buttons {
             }
             Row(
                 modifier = Modifier
-                    .padding(paddingValue),
+                    .padding(PaddingValue),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(5.dp)
             ) {
@@ -509,7 +508,7 @@ object Buttons {
                 )
                 val title: Int
                 val subtitle: Int
-                if (!uefilist.contains(99)) {
+                if (!UEFIList.contains(99)) {
                     title = R.string.flash_uefi_title
                     subtitle = R.string.flash_uefi_subtitle
                 } else {
@@ -521,14 +520,14 @@ object Buttons {
                         LocalContext.current.getString(title),
                         color = MaterialTheme.colorScheme.inverseSurface,
                         fontWeight = FontWeight.Bold,
-                        lineHeight = lineHeight,
-                        fontSize = fontSize
+                        lineHeight = LineHeight,
+                        fontSize = FontSize
                     )
                     Text(
-                        LocalContext.current.getString(subtitle, name),
+                        LocalContext.current.getString(subtitle, Name),
                         color = MaterialTheme.colorScheme.inverseSurface,
-                        lineHeight = lineHeight,
-                        fontSize = fontSize
+                        lineHeight = LineHeight,
+                        fontSize = FontSize
                     )
                 }
             }
@@ -537,7 +536,7 @@ object Buttons {
 
     @Composable
     fun QuickbootButton() {
-        if (!uefilist.contains(99)) {
+        if (!UEFIList.contains(99)) {
             val showQuickBootDialog = remember { mutableStateOf(false) }
             val showQuickBootSpinner = remember { mutableStateOf(false) }
             ElevatedCard(
@@ -554,8 +553,8 @@ object Buttons {
                             icon = painterResource(id = R.drawable.ic_windows),
                             title = R.string.please_wait,
                             showDialog = showQuickBootSpinner.value,
-                            lineHeight = lineHeight,
-                            fontSize = fontSize
+                            lineHeight = LineHeight,
+                            fontSize = FontSize
                         )
                     }
                 }
@@ -577,7 +576,7 @@ object Buttons {
                                     modifier = Modifier.fillMaxWidth(),
                                     text = LocalContext.current.getString(R.string.quickboot_question),
                                     textAlign = TextAlign.Center,
-                                    fontSize = fontSize
+                                    fontSize = FontSize
                                 )
                             },
                             onDismissRequest = ({ showQuickBootDialog.value = false; }),
@@ -586,7 +585,7 @@ object Buttons {
                                     Modifier.align(Alignment.CenterHorizontally),
                                     horizontalArrangement = Arrangement.spacedBy(10.dp)
                                 ) {
-                                    if (uefilist.contains(120)) {
+                                    if (UEFIList.contains(120)) {
                                         AssistChip(
                                             modifier = Modifier.width(95.dp),
                                             onClick = {
@@ -605,12 +604,12 @@ object Buttons {
                                                     ),
                                                     text = LocalContext.current.getString(R.string.quickboot_question2),
                                                     color = MaterialTheme.colorScheme.inverseSurface,
-                                                    fontSize = fontSize
+                                                    fontSize = FontSize
                                                 )
                                             }
                                         )
                                     }
-                                    if (uefilist.contains(60)) {
+                                    if (UEFIList.contains(60)) {
                                         AssistChip(
                                             modifier = Modifier.width(95.dp),
                                             onClick = {
@@ -629,13 +628,13 @@ object Buttons {
                                                     ),
                                                     text = LocalContext.current.getString(R.string.quickboot_question1),
                                                     color = MaterialTheme.colorScheme.inverseSurface,
-                                                    fontSize = fontSize
+                                                    fontSize = FontSize
                                                 )
                                             }
                                         )
                                     }
-                                    if (uefilist
-                                            .contains(1) and (!uefilist.contains(60) or !uefilist.contains(
+                                    if (UEFIList
+                                            .contains(1) and (!UEFIList.contains(60) or !UEFIList.contains(
                                             120
                                         ))
                                     ) {
@@ -652,7 +651,7 @@ object Buttons {
                                                 Text(
                                                     text = LocalContext.current.getString(R.string.yes),
                                                     color = MaterialTheme.colorScheme.inverseSurface,
-                                                    fontSize = fontSize
+                                                    fontSize = FontSize
                                                 )
                                             }
                                         )
@@ -667,7 +666,7 @@ object Buttons {
                                                 ),
                                                 text = LocalContext.current.getString(R.string.no),
                                                 color = MaterialTheme.colorScheme.inverseSurface,
-                                                fontSize = fontSize
+                                                fontSize = FontSize
                                             )
                                         }
                                     )
@@ -680,7 +679,7 @@ object Buttons {
                 }
                 Row(
                     modifier = Modifier
-                        .padding(paddingValue),
+                        .padding(PaddingValue),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(5.dp)
                 ) {
@@ -696,18 +695,18 @@ object Buttons {
                             LocalContext.current.getString(R.string.quickboot_title),
                             color = MaterialTheme.colorScheme.inverseSurface,
                             fontWeight = FontWeight.Bold,
-                            lineHeight = lineHeight,
-                            fontSize = fontSize
+                            lineHeight = LineHeight,
+                            fontSize = FontSize
                         )
-                        val modem = when (codename) {
+                        val modem = when (Codename) {
                             "nabu" -> R.string.quickboot_subtitle_nomodem
                             else -> R.string.quickboot_subtitle
                         }
                         Text(
                             LocalContext.current.getString(modem),
                             color = MaterialTheme.colorScheme.inverseSurface,
-                            lineHeight = lineHeight,
-                            fontSize = fontSize
+                            lineHeight = LineHeight,
+                            fontSize = FontSize
                         )
                     }
                 }

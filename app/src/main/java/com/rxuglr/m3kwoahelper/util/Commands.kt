@@ -1,10 +1,10 @@
 package com.rxuglr.m3kwoahelper.util
 
-import com.rxuglr.m3kwoahelper.util.Variables.codename
-import com.rxuglr.m3kwoahelper.util.Variables.codenames
-import com.rxuglr.m3kwoahelper.util.Variables.nomodem
-import com.rxuglr.m3kwoahelper.util.Variables.sensors
-import com.rxuglr.m3kwoahelper.util.Variables.uefilist
+import com.rxuglr.m3kwoahelper.util.Variables.UEFIList
+import com.rxuglr.m3kwoahelper.util.Variables.Codename
+import com.rxuglr.m3kwoahelper.util.Variables.Codenames
+import com.rxuglr.m3kwoahelper.util.Variables.NoModem
+import com.rxuglr.m3kwoahelper.util.Variables.Sensors
 import com.topjohnwu.superuser.ShellUtils
 
 object Commands {
@@ -22,8 +22,8 @@ object Commands {
 
     fun displaytype(): Any {
         val panel = ShellUtils.fastCmd("cat /proc/cmdline")
-        return when (codename) {
-            codenames[0], codenames[1] -> if (panel.contains("j20s_42")) {
+        return when (Codename) {
+            Codenames[0], Codenames[1] -> if (panel.contains("j20s_42")) {
                 "Huaxing"
             } else if (panel.contains("j20s_36")) {
                 "Tianma"
@@ -31,7 +31,7 @@ object Commands {
                 "Unknown"
             }
 
-            codenames[2] -> if (panel.contains("k82_42")) {
+            Codenames[2] -> if (panel.contains("k82_42")) {
                 "Huaxing"
             } else if (panel.contains("k82_36")) {
                 "Tianma"
@@ -39,7 +39,7 @@ object Commands {
                 "Unknown"
             }
 
-            codenames[3], codenames[4], codenames[5], codenames[6] -> if (panel.contains("ea8076_f1mp") or panel.contains(
+            Codenames[3], Codenames[4], Codenames[5], Codenames[6] -> if (panel.contains("ea8076_f1mp") or panel.contains(
                     "ea8076_f1p2"
                 ) or panel.contains("ea8076_global")
             ) {
@@ -75,18 +75,18 @@ object Commands {
     }
 
     private fun getuefipath(type: Int): String {
-        val uefipath = arrayOf("", "", "")
-        if (uefilist.contains(120)) {
-            uefipath[0] =
+        val uefiPath = arrayOf("", "", "")
+        if (UEFIList.contains(120)) {
+            uefiPath[0] =
                 ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 120")
         }
-        if (uefilist.contains(60)) {
-            uefipath[1] += ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 60")
+        if (UEFIList.contains(60)) {
+            uefiPath[1] += ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 60")
         }
-        if (uefilist.contains(1)) {
-            uefipath[2] += ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img")
+        if (UEFIList.contains(1)) {
+            uefiPath[2] += ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img")
         }
-        return uefipath[type]
+        return uefiPath[type]
     }
 
     fun flashuefi(type: Int) {
@@ -95,7 +95,7 @@ object Commands {
     }
 
     fun checksensors(): Boolean {
-        return if (!sensors.contains(codename)) true
+        return if (!Sensors.contains(Codename)) true
         else {
             mountwin()
             val check =
@@ -113,7 +113,7 @@ object Commands {
     }
 
     fun quickboot(type: Int) {
-        if (!nomodem.contains(codename)) {
+        if (!NoModem.contains(Codename)) {
             dumpmodem()
         }
         flashuefi(type)

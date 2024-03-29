@@ -63,9 +63,9 @@ import com.rxuglr.m3kwoahelper.ui.theme.WOAHelperTheme
 import com.rxuglr.m3kwoahelper.util.Commands.checksensors
 import com.rxuglr.m3kwoahelper.util.Commands.dumpmodem
 import com.rxuglr.m3kwoahelper.util.Commands.dumpsensors
-import com.rxuglr.m3kwoahelper.util.Variables.codename
-import com.rxuglr.m3kwoahelper.util.Variables.nomodem
-import com.rxuglr.m3kwoahelper.util.Variables.unsupported
+import com.rxuglr.m3kwoahelper.util.Variables.Codename
+import com.rxuglr.m3kwoahelper.util.Variables.NoModem
+import com.rxuglr.m3kwoahelper.util.Variables.Unsupported
 import com.rxuglr.m3kwoahelper.woahApp
 import com.topjohnwu.superuser.Shell
 
@@ -78,7 +78,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            if (codename != "nabu") {
+            if (Codename != "nabu") {
                 requestedOrientation = SCREEN_ORIENTATION_USER_PORTRAIT
             }
             WOAHelperTheme {
@@ -125,7 +125,8 @@ class MainActivity : ComponentActivity() {
                         Icon(
                             tint = MaterialTheme.colorScheme.primary,
                             imageVector = ImageVector.vectorResource(R.drawable.ic_windows),
-                            contentDescription = null)
+                            contentDescription = null
+                        )
                     },
                     title = {
                         Text(
@@ -238,7 +239,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(bottom = 5.dp),
-                        text = "Version: 1.3.5.1",
+                        text = "Version: 1.3.5.2",
                         textAlign = TextAlign.Center
                     )
                 }
@@ -436,7 +437,7 @@ class MainActivity : ComponentActivity() {
                     .fillMaxWidth(),
             ) {
                 when {
-                    unsupported.value -> {
+                    Unsupported.value -> {
                         AlertDialog(
                             icon = {
                                 Icon(
@@ -456,12 +457,12 @@ class MainActivity : ComponentActivity() {
                                     fontSize = 25.sp
                                 )
                             },
-                            onDismissRequest = { unsupported.value = false },
+                            onDismissRequest = { Unsupported.value = false },
                             dismissButton = {},
                             confirmButton = {
                                 AssistChip(
                                     onClick = {
-                                        unsupported.value = false
+                                        Unsupported.value = false
                                     },
                                     label = {
                                         Text(
@@ -494,7 +495,8 @@ class MainActivity : ComponentActivity() {
                             InfoCard(
                                 Modifier
                                     .height(200.dp)
-                                    .width((pxtodp(625f)).dp), LocalUriHandler.current)
+                                    .width((pxtodp(625f)).dp), LocalUriHandler.current
+                            )
                             DeviceImage(Modifier.width((pxtodp(625f)).dp))
                         }
                         Column(
@@ -504,14 +506,15 @@ class MainActivity : ComponentActivity() {
                         ) {
                             Buttons.BackupButton()
                             Buttons.MountButton()
-                            if (!nomodem.contains(codename)) {
+                            if (!NoModem.contains(Codename)) {
                                 if (!checksensors()) {
                                     Buttons.Button(
                                         R.string.dump_modemAsensors_title,
                                         R.string.dump_modemAsensors_subtitle,
                                         R.string.dump_modemAsensors_question,
                                         { dumpmodem(); dumpsensors() },
-                                        R.drawable.ic_modem)
+                                        R.drawable.ic_modem
+                                    )
                                 } else {
                                     Buttons.Button(
                                         R.string.dump_modem_title,
@@ -529,7 +532,7 @@ class MainActivity : ComponentActivity() {
                 } else {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(
-                            if (codename == "nabu") {
+                            if (Codename == "nabu") {
                                 10.dp
                             } else 0.dp
                         )
@@ -539,14 +542,15 @@ class MainActivity : ComponentActivity() {
                     }
                     Buttons.BackupButton()
                     Buttons.MountButton()
-                    if (!nomodem.contains(codename)) {
+                    if (!NoModem.contains(Codename)) {
                         if (!checksensors()) {
                             Buttons.Button(
                                 R.string.dump_modemAsensors_title,
                                 R.string.dump_modemAsensors_subtitle,
                                 R.string.dump_modemAsensors_question,
                                 { dumpmodem(); dumpsensors() },
-                                R.drawable.ic_modem)
+                                R.drawable.ic_modem
+                            )
                         } else {
                             Buttons.Button(
                                 R.string.dump_modem_title,
@@ -558,7 +562,8 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                     Buttons.UEFIButton()
-                    Buttons.QuickbootButton() }
+                    Buttons.QuickbootButton()
+                }
             }
         }
     }

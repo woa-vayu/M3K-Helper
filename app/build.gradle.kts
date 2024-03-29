@@ -11,14 +11,14 @@ android {
     compileSdk = 34
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.11"
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
     defaultConfig {
         applicationId = "com.rxuglr.m3kwoahelper"
         minSdk = 29
         targetSdk = 34
         versionCode = 8
-        versionName = "1.3.5.1"
+        versionName = "1.3.5.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

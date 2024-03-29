@@ -5,17 +5,17 @@ import android.service.quicksettings.Tile.STATE_UNAVAILABLE
 import android.service.quicksettings.TileService
 import com.rxuglr.m3kwoahelper.R
 import com.rxuglr.m3kwoahelper.util.Commands.quickboot
-import com.rxuglr.m3kwoahelper.util.Variables.uefilist
+import com.rxuglr.m3kwoahelper.util.Variables.UEFIList
 import com.rxuglr.m3kwoahelper.woahApp
 
 class QuickBootTile : TileService() {
 
     override fun onTileAdded() {
         super.onTileAdded()
-        if (uefilist.contains(99)) {
+        if (UEFIList.contains(99)) {
             qsTile.state = STATE_UNAVAILABLE
             qsTile.subtitle = woahApp.getString(
-                R.string.uefi_not_found_qs
+                R.string.uefi_not_found_title
             )
             qsTile.updateTile()
         } else {
@@ -25,10 +25,10 @@ class QuickBootTile : TileService() {
 
     override fun onStartListening() {
         super.onStartListening()
-        if (uefilist.contains(99)) {
+        if (UEFIList.contains(99)) {
             qsTile.state = STATE_UNAVAILABLE
             qsTile.subtitle = woahApp.getString(
-                R.string.uefi_not_found_qs
+                R.string.uefi_not_found_title
             )
             qsTile.updateTile()
         } else {
@@ -38,10 +38,10 @@ class QuickBootTile : TileService() {
 
     override fun onStopListening() {
         super.onStopListening()
-        if (uefilist.contains(99)) {
+        if (UEFIList.contains(99)) {
             qsTile.state = STATE_UNAVAILABLE
             qsTile.subtitle = woahApp.getString(
-                R.string.uefi_not_found_qs
+                R.string.uefi_not_found_title
             )
             qsTile.updateTile()
         } else {
@@ -51,18 +51,18 @@ class QuickBootTile : TileService() {
 
     override fun onClick() {
         super.onClick()
-        if (!uefilist.contains(99)) {
-            if (uefilist.contains(120)) {
+        if (!UEFIList.contains(99)) {
+            if (UEFIList.contains(120)) {
                 quickboot(0)
-            } else if (uefilist.contains(60)) {
+            } else if (UEFIList.contains(60)) {
                 quickboot(1)
-            } else if (uefilist.contains(1)) {
+            } else if (UEFIList.contains(1)) {
                 quickboot(2)
             }
         } else {
             qsTile.state = STATE_UNAVAILABLE
             qsTile.subtitle = woahApp.getString(
-                R.string.uefi_not_found_qs
+                R.string.uefi_not_found_title
             )
             qsTile.updateTile()
         }

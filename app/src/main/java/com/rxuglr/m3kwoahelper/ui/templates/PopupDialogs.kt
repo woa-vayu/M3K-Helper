@@ -20,8 +20,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.rxuglr.m3kwoahelper.R
-import com.rxuglr.m3kwoahelper.util.Variables.fontSize
-import com.rxuglr.m3kwoahelper.util.Variables.lineHeight
+import com.rxuglr.m3kwoahelper.util.Variables.FontSize
+import com.rxuglr.m3kwoahelper.util.Variables.LineHeight
 
 object PopupDialogs {
 
@@ -49,8 +49,8 @@ object PopupDialogs {
                         Text(
                             text = title,
                             textAlign = TextAlign.Center,
-                            fontSize = fontSize,
-                            lineHeight = lineHeight,
+                            fontSize = FontSize,
+                            lineHeight = LineHeight,
                         )
                     }
                 },
@@ -60,8 +60,8 @@ object PopupDialogs {
                             modifier = Modifier.fillMaxWidth(),
                             text = description,
                             textAlign = TextAlign.Center,
-                            lineHeight = lineHeight,
-                            fontSize = fontSize
+                            lineHeight = LineHeight,
+                            fontSize = FontSize
                         )
                     }
                 },
@@ -74,7 +74,7 @@ object PopupDialogs {
                                 modifier = Modifier.padding(top = 2.dp, bottom = 2.dp),
                                 text = LocalContext.current.getString(R.string.yes),
                                 color = MaterialTheme.colorScheme.inverseSurface,
-                                fontSize = fontSize
+                                fontSize = FontSize
                             )
                         }
                     )
@@ -87,7 +87,7 @@ object PopupDialogs {
                                 modifier = Modifier.padding(top = 2.dp, bottom = 2.dp),
                                 text = LocalContext.current.getString(R.string.no),
                                 color = MaterialTheme.colorScheme.inverseSurface,
-                                fontSize = fontSize
+                                fontSize = FontSize
                             )
                         }
                     )

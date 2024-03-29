@@ -31,13 +31,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.rxuglr.m3kwoahelper.R
 import com.rxuglr.m3kwoahelper.util.Commands.displaytype
-import com.rxuglr.m3kwoahelper.util.Variables.codename
-import com.rxuglr.m3kwoahelper.util.Variables.codenames
-import com.rxuglr.m3kwoahelper.util.Variables.fontSize
-import com.rxuglr.m3kwoahelper.util.Variables.lineHeight
-import com.rxuglr.m3kwoahelper.util.Variables.name
-import com.rxuglr.m3kwoahelper.util.Variables.ram
-import com.rxuglr.m3kwoahelper.util.Variables.slot
+import com.rxuglr.m3kwoahelper.util.Variables.Codename
+import com.rxuglr.m3kwoahelper.util.Variables.Codenames
+import com.rxuglr.m3kwoahelper.util.Variables.FontSize
+import com.rxuglr.m3kwoahelper.util.Variables.LineHeight
+import com.rxuglr.m3kwoahelper.util.Variables.Name
+import com.rxuglr.m3kwoahelper.util.Variables.Ram
+import com.rxuglr.m3kwoahelper.util.Variables.Slot
 import com.rxuglr.m3kwoahelper.woahApp
 
 object Cards {
@@ -50,7 +50,7 @@ object Cards {
     fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
         ElevatedCard(
             modifier =
-            if (codename == "nabu") {
+            if (Codename == "nabu") {
                 modifier
             } else {
                 Modifier
@@ -71,42 +71,42 @@ object Cards {
                     text = "Windows on ARM",
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
-                    fontSize = fontSize,
-                    lineHeight = lineHeight
+                    fontSize = FontSize,
+                    lineHeight = LineHeight
                 )
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 10.dp),
-                    text = name,
-                    fontSize = fontSize,
-                    lineHeight = lineHeight
+                    text = Name,
+                    fontSize = FontSize,
+                    lineHeight = LineHeight
                 )
 
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 10.dp),
-                    text = LocalContext.current.getString(R.string.ramvalue, ram),
-                    fontSize = fontSize,
-                    lineHeight = lineHeight
+                    text = LocalContext.current.getString(R.string.ramvalue, Ram),
+                    fontSize = FontSize,
+                    lineHeight = LineHeight
                 )
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 10.dp),
                     text = LocalContext.current.getString(R.string.paneltype, displaytype()),
-                    fontSize = fontSize,
-                    lineHeight = lineHeight
+                    fontSize = FontSize,
+                    lineHeight = LineHeight
                 )
-                if (slot.isNotEmpty()) {
+                if (Slot.isNotEmpty()) {
                     Text(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(start = 10.dp),
-                        text = LocalContext.current.getString(R.string.slot, slot),
-                        fontSize = fontSize,
-                        lineHeight = lineHeight
+                        text = LocalContext.current.getString(R.string.slot, Slot),
+                        fontSize = FontSize,
+                        lineHeight = LineHeight
                     )
                 }
                 Spacer(modifier = Modifier.weight(1f))
@@ -114,7 +114,7 @@ object Cards {
                     Modifier.align(Alignment.CenterHorizontally),
                     horizontalArrangement = Arrangement.spacedBy(5.dp)
                 ) {
-                    if ((codename != "cepheus") && (name != "Unknown")) {
+                    if ((Codename != "cepheus") && (Name != "Unknown")) {
                         AssistChip(
                             leadingIcon = {
                                 Icon(
@@ -126,10 +126,10 @@ object Cards {
                             },
                             onClick = {
                                 localUriHandler.openUri(
-                                    when (codename) {
-                                        codenames[0], codenames[1] -> "https://github.com/woa-vayu/Port-Windows-11-Poco-X3-pro"
-                                        codenames[2] -> "https://github.com/erdilS/Port-Windows-11-Xiaomi-Pad-5"
-                                        codenames[3], codenames[4], codenames[6] -> "https://github.com/graphiks/woa-raphael"
+                                    when (Codename) {
+                                        Codenames[0], Codenames[1] -> "https://github.com/woa-vayu/Port-Windows-11-Poco-X3-pro"
+                                        Codenames[2] -> "https://github.com/erdilS/Port-Windows-11-Xiaomi-Pad-5"
+                                        Codenames[3], Codenames[4], Codenames[6] -> "https://github.com/graphiks/woa-raphael"
                                         else -> ""
                                     }
                                 )
@@ -142,7 +142,7 @@ object Cards {
                             }
                         )
                     }
-                    if (name != "Unknown") {
+                    if (Name != "Unknown") {
                         AssistChip(
                             leadingIcon = {
                                 Icon(
@@ -154,11 +154,11 @@ object Cards {
                             },
                             onClick = {
                                 localUriHandler.openUri(
-                                    when (codename) {
-                                        codenames[0], codenames[1] -> "https://t.me/winonvayualt"
-                                        codenames[2] -> "https://t.me/nabuwoa"
-                                        codenames[3], codenames[4], codenames[6] -> "https://t.me/woaraphael"
-                                        codenames[5] -> "https://t.me/WinOnMi9/"
+                                    when (Codename) {
+                                        Codenames[0], Codenames[1] -> "https://t.me/winonvayualt"
+                                        Codenames[2] -> "https://t.me/nabuwoa"
+                                        Codenames[3], Codenames[4], Codenames[6] -> "https://t.me/woaraphael"
+                                        Codenames[5] -> "https://t.me/WinOnMi9/"
                                         else -> ""
                                     }
                                 )

@@ -12,56 +12,63 @@ import com.topjohnwu.superuser.ShellUtils
 
 object Variables {
 
-    val codenames: Array<String> =
+    // static vars
+    val Codenames: Array<String> =
         arrayOf("vayu", "bhima", "nabu", "raphael", "raphaelin", "cepheus", "raphaels")
-    val nomodem: Array<String> = arrayOf("nabu")
-    val sensors: Array<String> = arrayOf(codenames[3], codenames[4], codenames[5], codenames[6])
-    var uefilist: Array<Int> = arrayOf(0)
+    val NoModem: Array<String> = arrayOf("nabu")
+    val Sensors: Array<String> = arrayOf(Codenames[3], Codenames[4], Codenames[5], Codenames[6])
 
-    val ram: String = RAM().getMemory(woahApp)
-    var name: String = ""
-    val slot: String =
+    // device info
+    val Ram: String = RAM().getMemory(woahApp)
+    var Name: String = ""
+    val Slot: String =
         String.format("%S", ShellUtils.fastCmd("getprop ro.boot.slot_suffix")).drop(1)
-    val codename: String = Build.DEVICE
-    var fontSize: TextUnit = 15.sp
-    var paddingValue: Dp = 10.dp
-    var lineHeight: TextUnit = 15.sp
-    val unsupported: MutableState<Boolean> = mutableStateOf(false)
+    val Codename: String = Build.DEVICE
+    val Unsupported: MutableState<Boolean> = mutableStateOf(false)
+
+    // dynamic vars
+    var BootIsPresent: Boolean = false
+    var WindowsIsPresent : Boolean = false
+    var UEFIList: Array<Int> = arrayOf(0)
+    var FontSize: TextUnit = 15.sp
+    var PaddingValue: Dp = 10.dp
+    var LineHeight: TextUnit = 15.sp
+
     fun vars() {
-        name = when (codename) {
-            codenames[0], codenames[1] -> "POCO X3 Pro"
-            codenames[2] -> "Xiaomi Pad 5"
-            codenames[3] -> "Xiaomi Mi 9T Pro"
-            codenames[4] -> "Redmi K20 Pro"
-            codenames[5] -> "Xiaomi Mi 9"
-            codenames[6] -> "Redmi K20 Pro Premium"
+        Name = when (Codename) {
+            Codenames[0], Codenames[1] -> "POCO X3 Pro"
+            Codenames[2] -> "Xiaomi Pad 5"
+            Codenames[3] -> "Xiaomi Mi 9T Pro"
+            Codenames[4] -> "Redmi K20 Pro"
+            Codenames[5] -> "Xiaomi Mi 9"
+            Codenames[6] -> "Redmi K20 Pro Premium"
             else -> "Unknown"
         }.toString()
-        if ((name == "Unknown")) {
-            unsupported.value = true
+        if ((Name == "Unknown")) {
+            Unsupported.value = true
         }
-        if (codename == "nabu") {
-            fontSize = 20.sp
-            paddingValue = 20.dp
-            lineHeight = 20.sp
+        if (Codename == "nabu") {
+            FontSize = 20.sp
+            PaddingValue = 20.dp
+            LineHeight = 20.sp
         }
         if ((ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img").isEmpty())) {
-            uefilist += 99
+            UEFIList += 99
         } else {
             if (ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 120")
                     .isNotEmpty()
             ) {
-                uefilist += 120
+                UEFIList += 120
             }
             if (ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 60")
                     .isNotEmpty()
             ) {
-                uefilist += 60
+                UEFIList += 60
             }
             if ((ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img")
-                    .isNotEmpty()) and (!uefilist.contains(60)) and !uefilist.contains(120)
+                    .isNotEmpty()) and (!UEFIList.contains(60)) and !UEFIList.contains(120)
             ) {
-                uefilist += 1
+                UEFIList += 1
             }
         }
     }

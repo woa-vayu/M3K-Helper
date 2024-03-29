@@ -28,9 +28,7 @@
     <string name="quickboot_subtitle">Dump Modem, Flash UEFI, and Reboot to Windows in one click</string>
     <string name="quickboot_subtitle_nomodem">Flash UEFI, and Reboot to Windows in one click</string>
     <string name="flash_uefi_subtitle">Flash UEFI for the %s?</string>
-    <string name="uefi_not_found_subtitle">Download UEFI for your device and place your UEFI to the UEFI FOLDER in INTERNAL STORAGE</string>
-
-    <string name="uefi_not_found_qs">No UEFI Found</string>
+    <string name="uefi_not_found_subtitle">Download UEFI for your device and place it under /sdcard/UEFI folder</string>
 
     <string name="no_root">Please grant M3K WoA Helper Root-access to use it!</string>
 

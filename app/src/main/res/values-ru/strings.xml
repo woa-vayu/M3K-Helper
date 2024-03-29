@@ -25,9 +25,7 @@
     <string name="quickboot_subtitle">Исправить модем, прошить UEFI и перезагрузиться в Windows в одно нажатие</string>
     <string name="quickboot_subtitle_nomodem">Прошейте UEFI и перезагрузитесь в Windows в одно нажатие</string>
     <string name="flash_uefi_subtitle">Прошить UEFI для %s?</string>
-    <string name="uefi_not_found_subtitle">Скачайте UEFI для вашего устройства и поместите его в папку UEFI в памяти устройства</string>
-
-    <string name="uefi_not_found_qs">UEFI не найден</string>
+    <string name="uefi_not_found_subtitle">Скачайте UEFI для вашего устройства и поместите его в папку /sdcard/UEFI</string>
 
     <string name="no_root">M3K WoA Helper нужны Root-права для работы!</string>
 
