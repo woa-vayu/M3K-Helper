@@ -12,7 +12,7 @@ object Commands {
         val slot = ShellUtils.fastCmd("getprop ro.boot.slot_suffix")
         if (where == 1) {
             mountwin()
-            ShellUtils.fastCmd("dd if=/dev/block/bootdevice/by-name/boot$slot of=/sdcard/windows/boot.img bs=32MB")
+            ShellUtils.fastCmd("dd if=/dev/block/bootdevice/by-name/boot$slot of=/sdcard/Windows/boot.img bs=32MB")
             umountwin()
         } else if (where == 2) {
             ShellUtils.fastCmd("mkdir /sdcard/m3khelper || true ")
@@ -58,19 +58,19 @@ object Commands {
     }
 
     fun mountwin() {
-        ShellUtils.fastCmd("mkdir /mnt/sdcard/windows || true")
-        ShellUtils.fastCmd("su -mm -c mount.ntfs /dev/block/by-name/win /sdcard/windows")
+        ShellUtils.fastCmd("mkdir /mnt/sdcard/Windows || true")
+        ShellUtils.fastCmd("su -mm -c mount.ntfs /dev/block/by-name/win /sdcard/Windows")
     }
 
     fun umountwin() {
-        ShellUtils.fastCmd("su -mm -c umount /mnt/sdcard/windows")
-        ShellUtils.fastCmd("rmdir /mnt/sdcard/windows")
+        ShellUtils.fastCmd("su -mm -c umount /mnt/sdcard/Windows")
+        ShellUtils.fastCmd("rmdir /mnt/sdcard/Windows")
     }
 
     fun dumpmodem() {
         mountwin()
-        ShellUtils.fastCmd("dd if=/dev/block/bootdevice/by-name/modemst1 of=$(find /sdcard/windows/Windows/System32/DriverStore/FileRepository/qcremotefs8150.inf_arm64_* -type f | grep fs1)")
-        ShellUtils.fastCmd("dd if=/dev/block/bootdevice/by-name/modemst2 of=$(find /sdcard/windows/Windows/System32/DriverStore/FileRepository/qcremotefs8150.inf_arm64_* -type f | grep fs2)")
+        ShellUtils.fastCmd("dd if=/dev/block/bootdevice/by-name/modemst1 of=$(find /sdcard/Windows/Windows/System32/DriverStore/FileRepository/qcremotefs8150.inf_arm64_* -type f | grep fs1)")
+        ShellUtils.fastCmd("dd if=/dev/block/bootdevice/by-name/modemst2 of=$(find /sdcard/Windows/Windows/System32/DriverStore/FileRepository/qcremotefs8150.inf_arm64_* -type f | grep fs2)")
         umountwin()
     }
 
@@ -99,7 +99,7 @@ object Commands {
         else {
             mountwin()
             val check =
-                ShellUtils.fastCmd("find /sdcard/windows/Windows/System32/Drivers/DriverData/QUALCOMM/fastRPC/persist/sensors/*")
+                ShellUtils.fastCmd("find /sdcard/Windows/Windows/System32/Drivers/DriverData/QUALCOMM/fastRPC/persist/sensors/*")
                     .isNotEmpty()
             umountwin()
             check
@@ -108,11 +108,21 @@ object Commands {
 
     fun dumpsensors() {
         mountwin()
-        ShellUtils.fastCmd("cp -r /vendor/persist/sensors/* /sdcard/windows/Windows/System32/Drivers/DriverData/QUALCOMM/fastRPC/persist/sensors")
+        ShellUtils.fastCmd("cp -r /vendor/persist/sensors/* /sdcard/Windows/Windows/System32/Drivers/DriverData/QUALCOMM/fastRPC/persist/sensors")
         umountwin()
     }
 
     fun quickboot(type: Int) {
+        if (ShellUtils.fastCmd("find /sdcard/Windows/boot.img")
+                .isEmpty()
+        ) {
+            backup(1);
+        }
+        if (ShellUtils.fastCmd("find /sdcard/m3khelper/boot.img")
+                .isEmpty()
+        ) {
+            backup(2);
+        }
         if (!NoModem.value) {
             dumpmodem()
         }

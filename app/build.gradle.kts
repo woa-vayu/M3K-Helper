@@ -17,8 +17,8 @@ android {
         applicationId = "com.rxuglr.m3kwoahelper"
         minSdk = 29
         targetSdk = 34
-        versionCode = 8
-        versionName = "1.3.6"
+        versionCode = 9
+        versionName = "1.3.6.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
