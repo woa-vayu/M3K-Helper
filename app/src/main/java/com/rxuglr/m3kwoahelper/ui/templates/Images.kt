@@ -32,10 +32,10 @@ object Images {
                     Codenames[0], Codenames[1] -> R.drawable.vayu
                     Codenames[2] -> R.drawable.nabu
                     Codenames[3], Codenames[4] -> R.drawable.raphael
-                    else -> R.drawable.nabu
+                    else -> R.drawable.ic_device_unknown
                 }
             ),
-            contentDescription = null
+            contentDescription = null,
         )
     }
 }

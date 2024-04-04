@@ -22,22 +22,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Warning
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.AssistChip
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.surfaceColorAtElevation
+import androidx.compose.material.icons.outlined.Warning
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -88,7 +76,7 @@ class MainActivity : ComponentActivity() {
                     AlertDialog(
                         icon = {
                             Icon(
-                                imageVector = Icons.Filled.Warning,
+                                imageVector = Icons.Outlined.Warning,
                                 contentDescription = null,
                                 tint = MaterialTheme.colorScheme.primary
                             )
@@ -143,44 +131,44 @@ class MainActivity : ComponentActivity() {
                         //    )
                     },
                     actions = {
-                        if (home.value) {
-                            IconButton(onClick = {
-                                navController.navigate("settings") {
-                                    navController.graph.startDestinationRoute?.let { route ->
-                                        popUpTo(route) {
-                                            saveState = true
-                                        }
-                                    }
-                                    launchSingleTop = true
-                                    restoreState = true
-                                }
-                            }) {
-                                Icon(
-                                    imageVector = Icons.Filled.Settings,
-                                    contentDescription = null,
-                                    tint = MaterialTheme.colorScheme.primary
-                                )
-                            }
-                        }
-                        if (!home.value) {
-                            IconButton(onClick = {
-                                navController.navigate("main") {
-                                    navController.graph.startDestinationRoute?.let { route ->
-                                        popUpTo(route) {
-                                            saveState = true
-                                        }
-                                    }
-                                    launchSingleTop = true
-                                    restoreState = true
-                                }
-                            }) {
-                                Icon(
-                                    imageVector = Icons.Filled.Home,
-                                    contentDescription = null,
-                                    tint = MaterialTheme.colorScheme.primary
-                                )
-                            }
-                        }
+                        //    if (home.value) {
+                        //        IconButton(onClick = {
+                        //            navController.navigate("settings") {
+                        //                navController.graph.startDestinationRoute?.let { route ->
+                        //                    popUpTo(route) {
+                        //                        saveState = true
+                        //                    }
+                        //                }
+                        //                launchSingleTop = true
+                        //                restoreState = true
+                        //            }
+                        //        }) {
+                        //            Icon(
+                        //                imageVector = Icons.Outlined.Settings,
+                        //                contentDescription = null,
+                        //                tint = MaterialTheme.colorScheme.primary
+                        //            )
+                        //        }
+                        //    }
+                        //    if (!home.value) {
+                        //        IconButton(onClick = {
+                        //            navController.navigate("main") {
+                        //                navController.graph.startDestinationRoute?.let { route ->
+                        //                    popUpTo(route) {
+                        //                        saveState = true
+                        //                    }
+                        //                }
+                        //                launchSingleTop = true
+                        //                restoreState = true
+                        //            }
+                        //        }) {
+                        //            Icon(
+                        //                imageVector = Icons.Outlined.Home,
+                        //                contentDescription = null,
+                        //                tint = MaterialTheme.colorScheme.primary
+                        //            )
+                        //        }
+                        //    }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(
                         containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(12.dp),
@@ -215,212 +203,6 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun SettingsScreen() {
         Scaffold {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(10.dp),
-                modifier = Modifier
-                    .padding(vertical = 10.dp)
-                    .padding(horizontal = 10.dp)
-            ) {
-                Card(
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(12.dp)
-                    ),
-                ) {
-                    Text(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 5.dp),
-                        text = "M3K Windows on Android Helper",
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center,
-                    )
-                    Spacer(modifier = Modifier.size(3.dp))
-                    Text(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(bottom = 5.dp),
-                        text = "Version: 1.3.5.2",
-                        textAlign = TextAlign.Center
-                    )
-                }
-                Card(
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(12.dp)
-                    )
-                ) {
-                    Text(
-                        modifier = Modifier
-                            .padding(top = 5.dp)
-                            .fillMaxWidth(),
-                        text = "Original WOA Helper",
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center
-                    )
-                    Spacer(modifier = Modifier.size(3.dp))
-                    Card(
-                        modifier = Modifier
-                            .padding(bottom = 5.dp)
-                            .align(Alignment.CenterHorizontally),
-                        colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(
-                                12.dp
-                            )
-                        )
-                    ) {
-                        Column {
-                            Text(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(start = 10.dp),
-                                text = "Made by",
-                                textAlign = TextAlign.Center,
-                            )
-                            Row(
-                                Modifier
-                                    .align(Alignment.CenterHorizontally),
-                                horizontalArrangement = Arrangement.spacedBy(5.dp)
-                            ) {
-                                Text(
-                                    modifier = Modifier
-                                        .align(Alignment.CenterVertically),
-                                    text = "KuatoDEV"
-                                )
-                                Card {
-                                    Image(
-                                        modifier = Modifier.size(35.dp),
-                                        painter = painterResource(id = R.drawable.kuato),
-                                        contentDescription = null
-                                    )
-                                }
-                            }
-                            Spacer(modifier = Modifier.size(5.dp))
-                            Row(
-                                Modifier
-                                    .align(Alignment.CenterHorizontally),
-                                horizontalArrangement = Arrangement.spacedBy(5.dp)
-                            ) {
-                                Text(
-                                    modifier = Modifier.align(Alignment.CenterVertically),
-                                    text = "halal-beef"
-                                )
-                                Card {
-                                    Image(
-                                        modifier = Modifier.size(35.dp),
-                                        painter = painterResource(id = R.drawable.halal_beef),
-                                        contentDescription = null
-                                    )
-                                }
-                            }
-                            Spacer(modifier = Modifier.size(5.dp))
-                            Row(
-                                Modifier
-                                    .align(Alignment.CenterHorizontally),
-                                horizontalArrangement = Arrangement.spacedBy(5.dp)
-                            ) {
-                                Text(
-                                    modifier = Modifier.align(Alignment.CenterVertically),
-                                    text = "mobxprjkt"
-                                )
-                                Card {
-                                    Image(
-                                        modifier = Modifier.size(35.dp),
-                                        painter = painterResource(id = R.drawable.mobxprjkt),
-                                        contentDescription = null
-                                    )
-                                }
-                            }
-                            Spacer(modifier = Modifier.size(5.dp))
-                            Row(
-                                Modifier
-                                    .align(Alignment.CenterHorizontally),
-                                horizontalArrangement = Arrangement.spacedBy(5.dp)
-                            ) {
-                                Text(
-                                    modifier = Modifier.align(Alignment.CenterVertically),
-                                    text = "Nabil ABA"
-                                )
-                                Card {
-                                    Image(
-                                        modifier = Modifier.size(35.dp),
-                                        painter = painterResource(id = R.drawable.nabil_aba),
-                                        contentDescription = null
-                                    )
-                                }
-                            }
-                            Spacer(modifier = Modifier.size(5.dp))
-                            Row(
-                                Modifier
-                                    .align(Alignment.CenterHorizontally),
-                                horizontalArrangement = Arrangement.spacedBy(5.dp)
-                            ) {
-                                Text(
-                                    modifier = Modifier.align(Alignment.CenterVertically),
-                                    text = "Otang45  "
-                                )
-                                Card {
-                                    Image(
-                                        modifier = Modifier.size(35.dp),
-                                        painter = painterResource(id = R.drawable.otang45),
-                                        contentDescription = null
-                                    )
-                                }
-                            }
-                        }
-                    }
-                }
-                Card(
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(12.dp)
-                    )
-                ) {
-                    Text(
-                        modifier = Modifier
-                            .padding(top = 5.dp)
-                            .fillMaxWidth(),
-                        text = "M3K WOA Helper",
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center
-                    )
-                    Card(
-                        modifier = Modifier
-                            .padding(bottom = 5.dp)
-                            .align(Alignment.CenterHorizontally),
-                        colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(
-                                12.dp
-                            )
-                        )
-                    ) {
-                        Column {
-                            Text(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(start = 10.dp),
-                                text = "Made by",
-                                textAlign = TextAlign.Center,
-                            )
-                            Row(
-                                Modifier
-                                    .align(Alignment.CenterHorizontally),
-                                horizontalArrangement = Arrangement.spacedBy(5.dp)
-                            ) {
-                                Text(
-                                    modifier = Modifier
-                                        .align(Alignment.CenterVertically),
-                                    text = "rxuglr       "
-                                )
-                                Card {
-                                    Image(
-                                        modifier = Modifier.size(35.dp),
-                                        painter = painterResource(id = R.drawable.rxuglr),
-                                        contentDescription = null
-                                    )
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         }
     }
 
@@ -441,7 +223,9 @@ class MainActivity : ComponentActivity() {
                         AlertDialog(
                             icon = {
                                 Icon(
-                                    imageVector = Icons.Filled.Warning,
+                                    modifier = Modifier
+                                        .size(40.dp),
+                                    imageVector = Icons.Outlined.Warning,
                                     contentDescription = null,
                                     tint = MaterialTheme.colorScheme.primary
                                 )
@@ -506,23 +290,25 @@ class MainActivity : ComponentActivity() {
                         ) {
                             Buttons.BackupButton()
                             Buttons.MountButton()
-                            if (!NoModem.contains(Codename)) {
-                                if (!checksensors()) {
-                                    Buttons.Button(
-                                        R.string.dump_modemAsensors_title,
-                                        R.string.dump_modemAsensors_subtitle,
-                                        R.string.dump_modemAsensors_question,
-                                        { dumpmodem(); dumpsensors() },
-                                        R.drawable.ic_modem
-                                    )
-                                } else {
-                                    Buttons.Button(
-                                        R.string.dump_modem_title,
-                                        R.string.dump_modem_subtitle,
-                                        R.string.dump_modem_question,
-                                        { dumpmodem() },
-                                        R.drawable.ic_modem
-                                    )
+                            when {
+                                !NoModem.value -> {
+                                    if (!checksensors()) {
+                                        Buttons.Button(
+                                            R.string.dump_modemAsensors_title,
+                                            R.string.dump_modemAsensors_subtitle,
+                                            R.string.dump_modemAsensors_question,
+                                            { dumpmodem(); dumpsensors() },
+                                            R.drawable.ic_modem
+                                        )
+                                    } else {
+                                        Buttons.Button(
+                                            R.string.dump_modem_title,
+                                            R.string.dump_modem_subtitle,
+                                            R.string.dump_modem_question,
+                                            { dumpmodem() },
+                                            R.drawable.ic_modem
+                                        )
+                                    }
                                 }
                             }
                             Buttons.UEFIButton()
@@ -542,23 +328,25 @@ class MainActivity : ComponentActivity() {
                     }
                     Buttons.BackupButton()
                     Buttons.MountButton()
-                    if (!NoModem.contains(Codename)) {
-                        if (!checksensors()) {
-                            Buttons.Button(
-                                R.string.dump_modemAsensors_title,
-                                R.string.dump_modemAsensors_subtitle,
-                                R.string.dump_modemAsensors_question,
-                                { dumpmodem(); dumpsensors() },
-                                R.drawable.ic_modem
-                            )
-                        } else {
-                            Buttons.Button(
-                                R.string.dump_modem_title,
-                                R.string.dump_modem_subtitle,
-                                R.string.dump_modem_question,
-                                { dumpmodem() },
-                                R.drawable.ic_modem
-                            )
+                    when {
+                        !NoModem.value -> {
+                            if (!checksensors()) {
+                                Buttons.Button(
+                                    R.string.dump_modemAsensors_title,
+                                    R.string.dump_modemAsensors_subtitle,
+                                    R.string.dump_modemAsensors_question,
+                                    { dumpmodem(); dumpsensors() },
+                                    R.drawable.ic_modem
+                                )
+                            } else {
+                                Buttons.Button(
+                                    R.string.dump_modem_title,
+                                    R.string.dump_modem_subtitle,
+                                    R.string.dump_modem_question,
+                                    { dumpmodem() },
+                                    R.drawable.ic_modem
+                                )
+                            }
                         }
                     }
                     Buttons.UEFIButton()

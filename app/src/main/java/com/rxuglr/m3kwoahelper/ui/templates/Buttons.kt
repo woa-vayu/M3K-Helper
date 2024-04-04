@@ -8,14 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.AssistChip
-import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.surfaceColorAtElevation
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -137,7 +130,7 @@ object Buttons {
             when {
                 showBackupSpinner.value -> {
                     PopupDialogs.SpinnerDialog(
-                        icon = painterResource(id = R.drawable.ic_disk),
+                        icon = painterResource(id = R.drawable.ic_backup),
                         title = R.string.please_wait,
                         showDialog = showBackupSpinner.value,
                         fontSize = FontSize,
@@ -150,7 +143,7 @@ object Buttons {
                     AlertDialog(
                         icon = {
                             Icon(
-                                painter = painterResource(id = R.drawable.ic_disk),
+                                painter = painterResource(id = R.drawable.ic_backup),
                                 contentDescription = null,
                                 tint = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.size(40.dp)
@@ -245,7 +238,7 @@ object Buttons {
                 Icon(
                     modifier = Modifier
                         .size(40.dp),
-                    painter = painterResource(id = R.drawable.ic_disk),
+                    painter = painterResource(id = R.drawable.ic_backup),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary
                 )
@@ -283,7 +276,7 @@ object Buttons {
                 showMountDialog.value -> {
                     if (mountstatus()) {
                         PopupDialogs.Dialog(
-                            icon = painterResource(id = R.drawable.ic_windows),
+                            icon = painterResource(id = R.drawable.ic_folder_open),
                             title = null,
                             description = LocalContext.current.getString(R.string.mnt_question),
                             showDialog = showMountDialog.value,
@@ -295,7 +288,7 @@ object Buttons {
                         )
                     } else {
                         PopupDialogs.Dialog(
-                            painterResource(id = R.drawable.ic_windows),
+                            painterResource(id = R.drawable.ic_folder),
                             null,
                             LocalContext.current.getString(R.string.umnt_question),
                             showMountDialog.value,
@@ -317,7 +310,13 @@ object Buttons {
                 Icon(
                     modifier = Modifier
                         .size(40.dp),
-                    painter = painterResource(id = R.drawable.ic_windows),
+                    painter = painterResource(
+                        id = if (mountstatus()) {
+                            R.drawable.ic_folder_open
+                        } else {
+                            R.drawable.ic_folder
+                        }
+                    ),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary
                 )

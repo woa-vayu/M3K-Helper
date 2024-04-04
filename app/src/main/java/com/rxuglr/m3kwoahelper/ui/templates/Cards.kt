@@ -11,16 +11,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.Message
-import androidx.compose.material.icons.filled.Book
-import androidx.compose.material3.AssistChip
-import androidx.compose.material3.AssistChipDefaults
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.surfaceColorAtElevation
+import androidx.compose.material.icons.automirrored.outlined.Message
+import androidx.compose.material.icons.outlined.Book
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -114,39 +107,39 @@ object Cards {
                     Modifier.align(Alignment.CenterHorizontally),
                     horizontalArrangement = Arrangement.spacedBy(5.dp)
                 ) {
-                    if ((Codename != "cepheus") && (Name != "Unknown")) {
-                        AssistChip(
-                            leadingIcon = {
-                                Icon(
-                                    Icons.Filled.Book,
-                                    contentDescription = null,
-                                    Modifier.size(AssistChipDefaults.IconSize),
-                                    tint = MaterialTheme.colorScheme.primary
-                                )
-                            },
-                            onClick = {
-                                localUriHandler.openUri(
-                                    when (Codename) {
-                                        Codenames[0], Codenames[1] -> "https://github.com/woa-vayu/Port-Windows-11-Poco-X3-pro"
-                                        Codenames[2] -> "https://github.com/erdilS/Port-Windows-11-Xiaomi-Pad-5"
-                                        Codenames[3], Codenames[4], Codenames[6] -> "https://github.com/graphiks/woa-raphael"
-                                        else -> ""
-                                    }
-                                )
-                            },
-                            label = {
-                                Text(
-                                    LocalContext.current.getString(R.string.guide),
-                                    fontWeight = FontWeight.Bold,
-                                )
-                            }
-                        )
-                    }
                     if (Name != "Unknown") {
+                        if (Codename != "cepheus") {
+                            AssistChip(
+                                leadingIcon = {
+                                    Icon(
+                                        Icons.Outlined.Book,
+                                        contentDescription = null,
+                                        Modifier.size(AssistChipDefaults.IconSize),
+                                        tint = MaterialTheme.colorScheme.primary
+                                    )
+                                },
+                                onClick = {
+                                    localUriHandler.openUri(
+                                        when (Codename) {
+                                            Codenames[0], Codenames[1] -> "https://github.com/woa-vayu/Port-Windows-11-Poco-X3-pro"
+                                            Codenames[2] -> "https://github.com/erdilS/Port-Windows-11-Xiaomi-Pad-5"
+                                            Codenames[3], Codenames[4], Codenames[6] -> "https://github.com/graphiks/woa-raphael"
+                                            else -> ""
+                                        }
+                                    )
+                                },
+                                label = {
+                                    Text(
+                                        LocalContext.current.getString(R.string.guide),
+                                        fontWeight = FontWeight.Bold,
+                                    )
+                                }
+                            )
+                        }
                         AssistChip(
                             leadingIcon = {
                                 Icon(
-                                    Icons.AutoMirrored.Filled.Message,
+                                    Icons.AutoMirrored.Outlined.Message,
                                     contentDescription = null,
                                     Modifier.size(AssistChipDefaults.IconSize),
                                     tint = MaterialTheme.colorScheme.primary

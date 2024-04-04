@@ -15,7 +15,7 @@ object Variables {
     // static vars
     val Codenames: Array<String> =
         arrayOf("vayu", "bhima", "nabu", "raphael", "raphaelin", "cepheus", "raphaels")
-    val NoModem: Array<String> = arrayOf("nabu")
+    private val NoModemS: Array<String> = arrayOf("nabu")
     val Sensors: Array<String> = arrayOf(Codenames[3], Codenames[4], Codenames[5], Codenames[6])
 
     // device info
@@ -25,10 +25,11 @@ object Variables {
         String.format("%S", ShellUtils.fastCmd("getprop ro.boot.slot_suffix")).drop(1)
     val Codename: String = Build.DEVICE
     val Unsupported: MutableState<Boolean> = mutableStateOf(false)
+    val NoModem: MutableState<Boolean> = mutableStateOf(false)
 
     // dynamic vars
     var BootIsPresent: Boolean = false
-    var WindowsIsPresent : Boolean = false
+    var WindowsIsPresent: Boolean = false
     var UEFIList: Array<Int> = arrayOf(0)
     var FontSize: TextUnit = 15.sp
     var PaddingValue: Dp = 10.dp
@@ -44,6 +45,9 @@ object Variables {
             Codenames[6] -> "Redmi K20 Pro Premium"
             else -> "Unknown"
         }.toString()
+        if (NoModemS.contains(Codename)) {
+            NoModem.value = true
+        }
         if ((Name == "Unknown")) {
             Unsupported.value = true
         }

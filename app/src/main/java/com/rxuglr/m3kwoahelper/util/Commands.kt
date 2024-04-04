@@ -69,8 +69,8 @@ object Commands {
 
     fun dumpmodem() {
         mountwin()
-        ShellUtils.fastCmd("dd if=/dev/block/bootdevice/by-name/modemst1 of=/sdcard/windows/Windows/System32/DriverStore/FileRepository/qcremotefs8150.inf_arm64_04af705613ed2d36/bootmodem_fs1")
-        ShellUtils.fastCmd("dd if=/dev/block/bootdevice/by-name/modemst2 of=/sdcard/windows/Windows/System32/DriverStore/FileRepository/qcremotefs8150.inf_arm64_04af705613ed2d36/bootmodem_fs2")
+        ShellUtils.fastCmd("dd if=/dev/block/bootdevice/by-name/modemst1 of=$(find /sdcard/windows/Windows/System32/DriverStore/FileRepository/qcremotefs8150.inf_arm64_* -type f | grep fs1)")
+        ShellUtils.fastCmd("dd if=/dev/block/bootdevice/by-name/modemst2 of=$(find /sdcard/windows/Windows/System32/DriverStore/FileRepository/qcremotefs8150.inf_arm64_* -type f | grep fs2)")
         umountwin()
     }
 
@@ -113,7 +113,7 @@ object Commands {
     }
 
     fun quickboot(type: Int) {
-        if (!NoModem.contains(Codename)) {
+        if (!NoModem.value) {
             dumpmodem()
         }
         flashuefi(type)
