@@ -11,8 +11,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.Message
-import androidx.compose.material.icons.outlined.Book
+import androidx.compose.material.icons.automirrored.filled.Message
+import androidx.compose.material.icons.filled.Book
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -112,7 +112,7 @@ object Cards {
                             AssistChip(
                                 leadingIcon = {
                                     Icon(
-                                        Icons.Outlined.Book,
+                                        Icons.Filled.Book,
                                         contentDescription = null,
                                         Modifier.size(AssistChipDefaults.IconSize),
                                         tint = MaterialTheme.colorScheme.primary
@@ -139,7 +139,7 @@ object Cards {
                         AssistChip(
                             leadingIcon = {
                                 Icon(
-                                    Icons.AutoMirrored.Outlined.Message,
+                                    Icons.AutoMirrored.Filled.Message,
                                     contentDescription = null,
                                     Modifier.size(AssistChipDefaults.IconSize),
                                     tint = MaterialTheme.colorScheme.primary

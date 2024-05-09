@@ -22,9 +22,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Warning
-import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -76,7 +76,7 @@ class MainActivity : ComponentActivity() {
                     AlertDialog(
                         icon = {
                             Icon(
-                                imageVector = Icons.Outlined.Warning,
+                                imageVector = Icons.Filled.Warning,
                                 contentDescription = null,
                                 tint = MaterialTheme.colorScheme.primary
                             )
@@ -144,7 +144,7 @@ class MainActivity : ComponentActivity() {
                         //            }
                         //        }) {
                         //            Icon(
-                        //                imageVector = Icons.Outlined.Settings,
+                        //                imageVector = Icons.Filled.Settings,
                         //                contentDescription = null,
                         //                tint = MaterialTheme.colorScheme.primary
                         //            )
@@ -163,7 +163,7 @@ class MainActivity : ComponentActivity() {
                         //            }
                         //        }) {
                         //            Icon(
-                        //                imageVector = Icons.Outlined.Home,
+                        //                imageVector = Icons.Filled.Home,
                         //                contentDescription = null,
                         //                tint = MaterialTheme.colorScheme.primary
                         //            )
@@ -225,7 +225,7 @@ class MainActivity : ComponentActivity() {
                                 Icon(
                                     modifier = Modifier
                                         .size(40.dp),
-                                    imageVector = Icons.Outlined.Warning,
+                                    imageVector = Icons.Filled.Warning,
                                     contentDescription = null,
                                     tint = MaterialTheme.colorScheme.primary
                                 )

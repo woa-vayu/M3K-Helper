@@ -14,9 +14,9 @@ object Variables {
 
     // static vars
     val Codenames: Array<String> =
-        arrayOf("vayu", "bhima", "nabu", "raphael", "raphaelin", "cepheus", "raphaels")
-    private val NoModemS: Array<String> = arrayOf("nabu")
-    val Sensors: Array<String> = arrayOf(Codenames[3], Codenames[4], Codenames[5], Codenames[6])
+        arrayOf("vayu", "bhima", "nabu", "raphael", "raphaelin", "cepheus", "raphaels", "beryllium")
+    private val NoModemS: Array<String> = arrayOf("nabu", "beryllium")
+    val Sensors: Array<String> = arrayOf("raphael", "raphaelin", "cepheus", "raphaels")
 
     // device info
     val Ram: String = RAM().getMemory(woahApp)
@@ -33,7 +33,7 @@ object Variables {
     var UEFIList: Array<Int> = arrayOf(0)
     var FontSize: TextUnit = 15.sp
     var PaddingValue: Dp = 10.dp
-    var LineHeight: TextUnit = 15.sp
+    var LineHeight: TextUnit = 20.sp
 
     fun vars() {
         Name = when (Codename) {
@@ -43,6 +43,7 @@ object Variables {
             Codenames[4] -> "Redmi K20 Pro"
             Codenames[5] -> "Xiaomi Mi 9"
             Codenames[6] -> "Redmi K20 Pro Premium"
+            Codenames[7] -> "POCO F1"
             else -> "Unknown"
         }.toString()
         if (NoModemS.contains(Codename)) {
@@ -54,7 +55,6 @@ object Variables {
         if (Codename == "nabu") {
             FontSize = 20.sp
             PaddingValue = 20.dp
-            LineHeight = 20.sp
         }
         if ((ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img").isEmpty())) {
             UEFIList += 99

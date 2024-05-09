@@ -14,11 +14,12 @@ android {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
     defaultConfig {
-        applicationId = "com.rxuglr.m3kwoahelper"
+        applicationId = "com.remtrik.m3kwoahelper"
         minSdk = 29
         targetSdk = 34
-        versionCode = 9
-        versionName = "1.3.6.1"
+        versionCode = 11
+        versionName = "1.4"
+        resConfigs("en", "ru")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -36,10 +37,6 @@ android {
         compose = true
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
     kotlinOptions {
         jvmTarget = "1.8"
     }

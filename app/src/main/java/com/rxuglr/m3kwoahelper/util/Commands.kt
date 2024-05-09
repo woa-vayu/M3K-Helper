@@ -22,33 +22,16 @@ object Commands {
 
     fun displaytype(): Any {
         val panel = ShellUtils.fastCmd("cat /proc/cmdline")
-        return when (Codename) {
-            Codenames[0], Codenames[1] -> if (panel.contains("j20s_42")) {
-                "Huaxing"
-            } else if (panel.contains("j20s_36")) {
-                "Tianma"
-            } else {
-                "Unknown"
-            }
-
-            Codenames[2] -> if (panel.contains("k82_42")) {
-                "Huaxing"
-            } else if (panel.contains("k82_36")) {
-                "Tianma"
-            } else {
-                "Unknown"
-            }
-
-            Codenames[3], Codenames[4], Codenames[5], Codenames[6] -> if (panel.contains("ea8076_f1mp") or panel.contains(
-                    "ea8076_f1p2"
-                ) or panel.contains("ea8076_global")
-            ) {
-                "Samsung"
-            } else {
-                "Samsung (Unsupported)"
-            }
-
-            else -> "Unknown"
+        return if (panel.contains("j20s_42") || panel.contains("k82_42")) {
+            "Huaxing"
+        } else if (panel.contains("j20s_36") || panel.contains("tianma") || panel.contains("k82_36")) {
+            "Tianma"
+        } else if (panel.contains("ebbg")) {
+            "EBBG"
+        } else if (panel.contains("ea8076_f1mp") || panel.contains("ea8076_f1p2") || panel.contains("ea8076_global")) {
+            "Samsung"
+        } else {
+            "Unknown"
         }
     }
 

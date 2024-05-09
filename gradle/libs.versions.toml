@@ -1,11 +1,11 @@
 [versions]
-agp = "8.3.1"
+agp = "8.4.0"
 kotlin = "1.9.23"
 ksp = "1.9.23-1.0.19"
 compose-compiler = "1.5.11"
-compose-bom = "2024.04.00"
+compose-bom = "2024.05.00"
 lifecycle = "2.7.0"
-material = "1.11.0"
+material = "1.12.0"
 navigation = "2.7.7"
 compose-destination = "1.10.2"
 libsu = "5.2.2"
@@ -19,12 +19,12 @@ lsplugin-apksign = { id = "org.lsposed.lsplugin.apksign", version = "1.4" }
 lsplugin-cmaker = { id = "org.lsposed.lsplugin.cmaker", version = "1.2" }
 
 [libraries]
-androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version = "1.8.2" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version = "1.9.0" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
-androidx-compose-material = { group = "androidx.compose.material", name = "material", version = "1.6.5" }
+androidx-compose-material = { group = "androidx.compose.material", name = "material", version = "1.6.7" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version = "1.2.1" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
