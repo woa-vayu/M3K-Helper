@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="mnt_title">хрюхрю</string>
+    <string name="umnt_title">хрюхрю</string>
+    <string name="dump_modem_title">хрюхрю</string>
+    <string name="dump_modemAsensors_title">хрюхрю</string>
+    <string name="quickboot_title">хрюхрю</string>
+    <string name="backup_boot_title">хрюхрю</string>
+    <string name="flash_uefi_title">хрюхрю</string>
+    <string name="uefi_not_found_title">хрюхрю</string>
+
+
+    <string name="mnt_question">хрюхрю</string>
+    <string name="umnt_question">хрюхрю</string>
+    <string name="dump_modem_question">хрюхрю</string>
+    <string name="dump_modemAsensors_question">хрюхрю</string>
+    <string name="quickboot_question">хрюхрю</string>
+    <string name="backup_boot_question">хрюхрю</string>
+    <string name="flash_uefi_question">хрюхрю</string>
+
+    <string name="backup_boot_subtitle">хрюхрю</string>
+    <string name="mnt_subtitle">хрюхрю</string>
+    <string name="dump_modem_subtitle">хрюхрю</string>
+    <string name="dump_modemAsensors_subtitle">хрюхрю</string>
+    <string name="quickboot_subtitle">хрюхрю</string>
+    <string name="quickboot_subtitle_nomodem">хрюхрю</string>
+    <string name="flash_uefi_subtitle">хрюхрю</string>
+    <string name="uefi_not_found_subtitle">хрюхрю</string>
+
+    <string name="no_root">хрюхрю</string>
+
+    <string name="ramvalue">хрюхрю</string>
+    <string name="paneltype">хрюхрю</string>
+    <string name="slot">хрюхрю</string>
+
+
+    <string name="guide">хрюхрю</string>
+    <string name="group">хрюхрю</string>
+
+    <string name="yes">хрюхрю</string>
+    <string name="no">хрюхрю</string>
+    <string name="please_wait">хрюхрю</string>
+</resources>
