@@ -17,8 +17,8 @@ android {
         applicationId = "com.remtrik.m3kwoahelper"
         minSdk = 29
         targetSdk = 34
-        versionCode = 12
-        versionName = "1.5"
+        versionCode = 13
+        versionName = "1.5.1"
         resConfigs("en", "ru")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

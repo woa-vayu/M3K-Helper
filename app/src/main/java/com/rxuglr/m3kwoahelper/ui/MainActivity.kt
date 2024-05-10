@@ -68,33 +68,36 @@ class MainActivity : ComponentActivity() {
                 requestedOrientation = SCREEN_ORIENTATION_USER_PORTRAIT
             }
             WOAHelperTheme {
-                if (Shell.isAppGrantedRoot() == true) {
-                    WOAHelper()
-                } else {
-                    AlertDialog(
-                        icon = {
-                            Icon(
-                                imageVector = Icons.Filled.Warning,
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.primary
-                            )
-                        },
-                        title = {},
-                        text = {
-                            Text(
-                                modifier = Modifier.fillMaxWidth(),
-                                text = getString(R.string.no_root),
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold,
-                                lineHeight = 35.sp,
-                                fontSize = 25.sp
-                            )
-                        },
-                        onDismissRequest = {},
-                        dismissButton = {},
-                        confirmButton = {}
-                    )
+                val NoRoot = remember { mutableStateOf(true) }
+                when {
+                    NoRoot.value -> {
+                        AlertDialog(
+                            icon = {
+                                Icon(
+                                    imageVector = Icons.Filled.Warning,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.size(40.sdp())
+                                )
+                            },
+                            title = {},
+                            text = {
+                                Text(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    text = getString(R.string.no_root),
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    lineHeight = 35.ssp(),
+                                    fontSize = 25.ssp()
+                                )
+                            },
+                            onDismissRequest = {},
+                            dismissButton = {},
+                            confirmButton = {}
+                        )
+                    }
                 }
+                if (Shell.isAppGrantedRoot() == true) {NoRoot.value = false; WOAHelper()}
             }
         }
     }
