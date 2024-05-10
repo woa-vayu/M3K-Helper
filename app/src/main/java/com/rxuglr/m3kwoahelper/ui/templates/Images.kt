@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.rxuglr.m3kwoahelper.R
 import com.rxuglr.m3kwoahelper.util.Variables.Codename
 import com.rxuglr.m3kwoahelper.util.Variables.Codenames
+import com.rxuglr.m3kwoahelper.util.sdp
 
 object Images {
 
@@ -19,13 +20,13 @@ object Images {
     fun DeviceImage(modifier: Modifier) {
         Image(
             alignment = Alignment.TopStart,
-            modifier = if (Codename == "nabu") {
-                modifier
-            } else {
+            modifier = if (Codename != "nabu") {
                 Modifier
-                    .padding(top = 20.dp)
-                    .height(160.dp)
-                    .width(140.dp)
+                    .padding(top = 20.sdp())
+                    .height(160.sdp())
+                    .width(140.sdp())
+            } else {
+                modifier
             },
             painter = painterResource(
                 id = when (Codename) {
@@ -33,8 +34,9 @@ object Images {
                     Codenames[2] -> R.drawable.nabu
                     Codenames[3], Codenames[4] -> R.drawable.raphael
                     else -> R.drawable.ic_device_unknown
-                }
+                },
             ),
+
             contentDescription = null,
         )
     }

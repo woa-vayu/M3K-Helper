@@ -31,9 +31,9 @@ object Variables {
     var BootIsPresent: Boolean = false
     var WindowsIsPresent: Boolean = false
     var UEFIList: Array<Int> = arrayOf(0)
-    var FontSize: TextUnit = 15.sp
-    var PaddingValue: Dp = 10.dp
-    var LineHeight: TextUnit = 20.sp
+    var FontSize: TextUnit = 0.sp
+    var PaddingValue: Dp = 0.dp
+    var LineHeight: TextUnit = 0.sp
 
     fun vars() {
         Name = when (Codename) {
@@ -51,10 +51,6 @@ object Variables {
         }
         if ((Name == "Unknown")) {
             Unsupported.value = true
-        }
-        if (Codename == "nabu") {
-            FontSize = 20.sp
-            PaddingValue = 20.dp
         }
         if ((ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img").isEmpty())) {
             UEFIList += 99

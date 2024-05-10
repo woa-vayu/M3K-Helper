@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -32,6 +34,7 @@ import com.rxuglr.m3kwoahelper.util.Variables.LineHeight
 import com.rxuglr.m3kwoahelper.util.Variables.Name
 import com.rxuglr.m3kwoahelper.util.Variables.PaddingValue
 import com.rxuglr.m3kwoahelper.util.Variables.UEFIList
+import com.rxuglr.m3kwoahelper.util.sdp
 
 object Buttons {
 
@@ -48,6 +51,7 @@ object Buttons {
         ElevatedCard(
             onClick = { showDialog.value = true },
             Modifier
+                .height(105.sdp())
                 .fillMaxWidth(),
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(10.dp)
@@ -59,8 +63,6 @@ object Buttons {
                         icon = painterResource(id = icon),
                         title = R.string.please_wait,
                         showDialog = showSpinner.value,
-                        fontSize = FontSize,
-                        lineHeight = LineHeight
                     )
                 }
             }
@@ -85,13 +87,14 @@ object Buttons {
             }
             Row(
                 modifier = Modifier
+                    .fillMaxHeight()
                     .padding(PaddingValue),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(5.dp)
+                horizontalArrangement = Arrangement.spacedBy(5.sdp())
             ) {
                 Icon(
                     modifier = Modifier
-                        .size(40.dp),
+                        .size(40.sdp()),
                     painter = painterResource(id = icon),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary
@@ -122,6 +125,7 @@ object Buttons {
         ElevatedCard(
             onClick = { showBackupDialog.value = true },
             Modifier
+                .height(105.sdp())
                 .fillMaxWidth(),
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(10.dp)
@@ -133,8 +137,6 @@ object Buttons {
                         icon = painterResource(id = R.drawable.ic_backup),
                         title = R.string.please_wait,
                         showDialog = showBackupSpinner.value,
-                        fontSize = FontSize,
-                        lineHeight = LineHeight
                     )
                 }
             }
@@ -146,7 +148,7 @@ object Buttons {
                                 painter = painterResource(id = R.drawable.ic_backup),
                                 contentDescription = null,
                                 tint = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.size(40.dp)
+                                modifier = Modifier.size(40.sdp())
                             )
                         },
                         title = {
@@ -164,7 +166,7 @@ object Buttons {
                         dismissButton = {
                             Row(
                                 Modifier.align(Alignment.CenterHorizontally),
-                                horizontalArrangement = Arrangement.spacedBy(15.dp)
+                                horizontalArrangement = Arrangement.spacedBy(15.sdp())
                             ) {
                                 AssistChip(
                                     onClick = {
@@ -178,8 +180,8 @@ object Buttons {
                                     label = {
                                         Text(
                                             modifier = Modifier.padding(
-                                                top = 2.dp,
-                                                bottom = 2.dp
+                                                top = 2.sdp(),
+                                                bottom = 2.sdp()
                                             ),
                                             text = "Android",
                                             color = MaterialTheme.colorScheme.inverseSurface,
@@ -199,8 +201,8 @@ object Buttons {
                                     label = {
                                         Text(
                                             modifier = Modifier.padding(
-                                                top = 2.dp,
-                                                bottom = 2.dp
+                                                top = 2.sdp(),
+                                                bottom = 2.sdp()
                                             ),
                                             text = "Windows",
                                             color = MaterialTheme.colorScheme.inverseSurface,
@@ -213,8 +215,8 @@ object Buttons {
                                     label = {
                                         Text(
                                             modifier = Modifier.padding(
-                                                top = 2.dp,
-                                                bottom = 2.dp
+                                                top = 2.sdp(),
+                                                bottom = 2.sdp()
                                             ),
                                             text = LocalContext.current.getString(R.string.no),
                                             color = MaterialTheme.colorScheme.inverseSurface,
@@ -231,13 +233,14 @@ object Buttons {
             }
             Row(
                 modifier = Modifier
+                    .fillMaxHeight()
                     .padding(PaddingValue),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(5.dp)
+                horizontalArrangement = Arrangement.spacedBy(5.sdp())
             ) {
                 Icon(
                     modifier = Modifier
-                        .size(40.dp),
+                        .size(40.sdp()),
                     painter = painterResource(id = R.drawable.ic_backup),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary
@@ -267,6 +270,7 @@ object Buttons {
         ElevatedCard(
             onClick = { showMountDialog.value = true },
             Modifier
+                .height(105.sdp())
                 .fillMaxWidth(),
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(10.dp)
@@ -303,13 +307,14 @@ object Buttons {
             }
             Row(
                 modifier = Modifier
+                    .fillMaxHeight()
                     .padding(PaddingValue),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(5.dp)
+                horizontalArrangement = Arrangement.spacedBy(5.sdp())
             ) {
                 Icon(
                     modifier = Modifier
-                        .size(40.dp),
+                        .size(40.sdp()),
                     painter = painterResource(
                         id = if (mountstatus()) {
                             R.drawable.ic_folder_open
@@ -331,6 +336,7 @@ object Buttons {
                         LocalContext.current.getString(mounted),
                         color = MaterialTheme.colorScheme.inverseSurface,
                         fontWeight = FontWeight.Bold,
+                        lineHeight = LineHeight,
                         fontSize = FontSize
                     )
                     Text(
@@ -354,6 +360,7 @@ object Buttons {
                 showUEFIDialog.value = true
             },
             Modifier
+                .height(105.sdp())
                 .fillMaxWidth(),
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(10.dp)
@@ -366,8 +373,6 @@ object Buttons {
                         icon = painterResource(id = R.drawable.ic_uefi),
                         title = R.string.please_wait,
                         showDialog = showUEFISpinner.value,
-                        lineHeight = LineHeight,
-                        fontSize = FontSize
                     )
                 }
             }
@@ -379,7 +384,7 @@ object Buttons {
                                 painter = painterResource(id = R.drawable.ic_uefi),
                                 contentDescription = null,
                                 tint = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.size(40.dp)
+                                modifier = Modifier.size(40.sdp())
                             )
                         },
                         title = {
@@ -396,7 +401,7 @@ object Buttons {
                         dismissButton = {
                             Row(
                                 Modifier.align(Alignment.CenterHorizontally),
-                                horizontalArrangement = Arrangement.spacedBy(10.dp)
+                                horizontalArrangement = Arrangement.spacedBy(10.sdp())
                             ) {
                                 if (UEFIList.contains(120)) {
                                     AssistChip(
@@ -411,8 +416,8 @@ object Buttons {
                                         label = {
                                             Text(
                                                 modifier = Modifier.padding(
-                                                    top = 2.dp,
-                                                    bottom = 2.dp
+                                                    top = 2.sdp(),
+                                                    bottom = 2.sdp()
                                                 ),
                                                 text = "120Hz",
                                                 color = MaterialTheme.colorScheme.inverseSurface,
@@ -434,8 +439,8 @@ object Buttons {
                                         label = {
                                             Text(
                                                 modifier = Modifier.padding(
-                                                    top = 2.dp,
-                                                    bottom = 2.dp
+                                                    top = 2.sdp(),
+                                                    bottom = 2.sdp()
                                                 ),
                                                 text = "60Hz",
                                                 color = MaterialTheme.colorScheme.inverseSurface,
@@ -461,8 +466,8 @@ object Buttons {
                                         label = {
                                             Text(
                                                 modifier = Modifier.padding(
-                                                    top = 2.dp,
-                                                    bottom = 2.dp
+                                                    top = 2.sdp(),
+                                                    bottom = 2.sdp()
                                                 ),
                                                 text = LocalContext.current.getString(R.string.yes),
                                                 color = MaterialTheme.colorScheme.inverseSurface,
@@ -476,8 +481,8 @@ object Buttons {
                                     label = {
                                         Text(
                                             modifier = Modifier.padding(
-                                                top = 2.dp,
-                                                bottom = 2.dp
+                                                top = 2.sdp(),
+                                                bottom = 2.sdp()
                                             ),
                                             text = LocalContext.current.getString(R.string.no),
                                             color = MaterialTheme.colorScheme.inverseSurface,
@@ -494,13 +499,14 @@ object Buttons {
             }
             Row(
                 modifier = Modifier
+                    .fillMaxHeight()
                     .padding(PaddingValue),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(5.dp)
+                horizontalArrangement = Arrangement.spacedBy(5.sdp())
             ) {
                 Icon(
                     modifier = Modifier
-                        .size(40.dp),
+                        .size(40.sdp()),
                     painter = painterResource(id = R.drawable.ic_uefi),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary
@@ -541,6 +547,7 @@ object Buttons {
             ElevatedCard(
                 onClick = { showQuickBootDialog.value = true },
                 Modifier
+                    .height(105.sdp())
                     .fillMaxWidth(),
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(10.dp)
@@ -552,8 +559,6 @@ object Buttons {
                             icon = painterResource(id = R.drawable.ic_windows),
                             title = R.string.please_wait,
                             showDialog = showQuickBootSpinner.value,
-                            lineHeight = LineHeight,
-                            fontSize = FontSize
                         )
                     }
                 }
@@ -565,7 +570,7 @@ object Buttons {
                                     painter = painterResource(id = R.drawable.ic_windows),
                                     contentDescription = null,
                                     tint = MaterialTheme.colorScheme.primary,
-                                    modifier = Modifier.size(40.dp)
+                                    modifier = Modifier.size(40.sdp())
                                 )
                             },
                             title = {
@@ -582,11 +587,11 @@ object Buttons {
                             dismissButton = {
                                 Row(
                                     Modifier.align(Alignment.CenterHorizontally),
-                                    horizontalArrangement = Arrangement.spacedBy(10.dp)
+                                    horizontalArrangement = Arrangement.spacedBy(10.sdp())
                                 ) {
                                     if (UEFIList.contains(120)) {
                                         AssistChip(
-                                            modifier = Modifier.width(95.dp),
+                                            modifier = Modifier.width(105.sdp()),
                                             onClick = {
                                                 Thread {
                                                     showQuickBootDialog.value = false
@@ -598,8 +603,8 @@ object Buttons {
                                             label = {
                                                 Text(
                                                     modifier = Modifier.padding(
-                                                        top = 2.dp,
-                                                        bottom = 2.dp
+                                                        top = 2.sdp(),
+                                                        bottom = 2.sdp()
                                                     ),
                                                     text = LocalContext.current.getString(R.string.quickboot_question2),
                                                     color = MaterialTheme.colorScheme.inverseSurface,
@@ -610,7 +615,7 @@ object Buttons {
                                     }
                                     if (UEFIList.contains(60)) {
                                         AssistChip(
-                                            modifier = Modifier.width(95.dp),
+                                            modifier = Modifier.width(105.sdp()),
                                             onClick = {
                                                 Thread {
                                                     showQuickBootDialog.value = false
@@ -622,8 +627,8 @@ object Buttons {
                                             label = {
                                                 Text(
                                                     modifier = Modifier.padding(
-                                                        top = 2.dp,
-                                                        bottom = 2.dp
+                                                        top = 2.sdp(),
+                                                        bottom = 2.sdp()
                                                     ),
                                                     text = LocalContext.current.getString(R.string.quickboot_question1),
                                                     color = MaterialTheme.colorScheme.inverseSurface,
@@ -660,8 +665,8 @@ object Buttons {
                                         label = {
                                             Text(
                                                 modifier = Modifier.padding(
-                                                    top = 2.dp,
-                                                    bottom = 2.dp
+                                                    top = 2.sdp(),
+                                                    bottom = 2.sdp()
                                                 ),
                                                 text = LocalContext.current.getString(R.string.no),
                                                 color = MaterialTheme.colorScheme.inverseSurface,
@@ -678,13 +683,14 @@ object Buttons {
                 }
                 Row(
                     modifier = Modifier
+                        .fillMaxHeight()
                         .padding(PaddingValue),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(5.dp)
+                    horizontalArrangement = Arrangement.spacedBy(5.sdp())
                 ) {
                     Icon(
                         modifier = Modifier
-                            .size(40.dp),
+                            .size(40.sdp()),
                         painter = painterResource(id = R.drawable.ic_windows),
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.primary

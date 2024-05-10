@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.rxuglr.m3kwoahelper.R
 import com.rxuglr.m3kwoahelper.util.Variables.FontSize
 import com.rxuglr.m3kwoahelper.util.Variables.LineHeight
+import com.rxuglr.m3kwoahelper.util.sdp
 
 object PopupDialogs {
 
@@ -36,7 +37,7 @@ object PopupDialogs {
                         icon,
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.size(40.dp)
+                        modifier = Modifier.size(40.sdp())
                     )
                 },
                 title = {
@@ -66,7 +67,7 @@ object PopupDialogs {
                         onClick = onConfirm,
                         label = {
                             Text(
-                                modifier = Modifier.padding(top = 2.dp, bottom = 2.dp),
+                                modifier = Modifier.padding(top = 2.sdp(), bottom = 2.sdp()),
                                 text = LocalContext.current.getString(R.string.yes),
                                 color = MaterialTheme.colorScheme.inverseSurface,
                                 fontSize = FontSize
@@ -79,7 +80,7 @@ object PopupDialogs {
                         onClick = onDismiss,
                         label = {
                             Text(
-                                modifier = Modifier.padding(top = 2.dp, bottom = 2.dp),
+                                modifier = Modifier.padding(top = 2.sdp(), bottom = 2.sdp()),
                                 text = LocalContext.current.getString(R.string.no),
                                 color = MaterialTheme.colorScheme.inverseSurface,
                                 fontSize = FontSize
@@ -96,8 +97,6 @@ object PopupDialogs {
         icon: Painter,
         title: Int,
         showDialog: Boolean,
-        fontSize: TextUnit,
-        lineHeight: TextUnit
     ) {
         if (showDialog) {
             AlertDialog(
@@ -106,15 +105,15 @@ object PopupDialogs {
                         icon,
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.size(40.dp)
+                        modifier = Modifier.size(40.sdp())
                     )
                 },
                 title = {
                     Text(
                         text = LocalContext.current.getString(title),
                         textAlign = TextAlign.Center,
-                        fontSize = fontSize,
-                        lineHeight = lineHeight
+                        fontSize = FontSize,
+                        lineHeight = LineHeight
                     )
                 },
                 text = {
@@ -123,7 +122,7 @@ object PopupDialogs {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         CircularProgressIndicator(
-                            modifier = Modifier.width(32.dp),
+                            modifier = Modifier.width(32.sdp()),
                             color = MaterialTheme.colorScheme.secondary,
                             trackColor = MaterialTheme.colorScheme.surfaceVariant,
                         )

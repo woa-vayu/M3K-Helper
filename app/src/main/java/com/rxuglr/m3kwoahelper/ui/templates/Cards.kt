@@ -1,6 +1,5 @@
 package com.rxuglr.m3kwoahelper.ui.templates
 
-import android.util.DisplayMetrics
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Message
@@ -29,37 +29,34 @@ import com.rxuglr.m3kwoahelper.util.Variables.Codenames
 import com.rxuglr.m3kwoahelper.util.Variables.FontSize
 import com.rxuglr.m3kwoahelper.util.Variables.LineHeight
 import com.rxuglr.m3kwoahelper.util.Variables.Name
+import com.rxuglr.m3kwoahelper.util.Variables.PaddingValue
 import com.rxuglr.m3kwoahelper.util.Variables.Ram
 import com.rxuglr.m3kwoahelper.util.Variables.Slot
-import com.rxuglr.m3kwoahelper.woahApp
+import com.rxuglr.m3kwoahelper.util.sdp
 
 object Cards {
-
-    fun pxtodp(px: Float): Float {
-        return px / (woahApp.resources.displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
-    }
 
     @Composable
     fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
         ElevatedCard(
             modifier =
-            if (Codename == "nabu") {
-                modifier
-            } else {
+            if (Codename != "nabu") {
                 Modifier
-                    .height(200.dp)
+                    .height(200.sdp())
+            } else {
+                modifier
             },
-            shape = RoundedCornerShape(8.dp),
+            shape = RoundedCornerShape(8.sdp()),
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(
                     12.dp
                 )
             )
         ) {
-            Column(verticalArrangement = Arrangement.spacedBy(3.dp)) {
+            Column(verticalArrangement = Arrangement.spacedBy(3.sdp())) {
                 Text(
                     modifier = Modifier
-                        .padding(top = 5.dp)
+                        .padding(top = PaddingValue)
                         .fillMaxWidth(),
                     text = "Windows on ARM",
                     fontWeight = FontWeight.Bold,
@@ -70,7 +67,7 @@ object Cards {
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = 10.dp),
+                        .padding(start = 10.sdp()),
                     text = Name,
                     fontSize = FontSize,
                     lineHeight = LineHeight
@@ -79,7 +76,7 @@ object Cards {
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = 10.dp),
+                        .padding(start = 10.sdp()),
                     text = LocalContext.current.getString(R.string.ramvalue, Ram),
                     fontSize = FontSize,
                     lineHeight = LineHeight
@@ -87,7 +84,7 @@ object Cards {
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = 10.dp),
+                        .padding(start = 10.sdp()),
                     text = LocalContext.current.getString(R.string.paneltype, displaytype()),
                     fontSize = FontSize,
                     lineHeight = LineHeight
@@ -96,7 +93,7 @@ object Cards {
                     Text(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(start = 10.dp),
+                            .padding(start = 10.sdp()),
                         text = LocalContext.current.getString(R.string.slot, Slot),
                         fontSize = FontSize,
                         lineHeight = LineHeight
@@ -104,17 +101,20 @@ object Cards {
                 }
                 Spacer(modifier = Modifier.weight(1f))
                 Row(
-                    Modifier.align(Alignment.CenterHorizontally),
-                    horizontalArrangement = Arrangement.spacedBy(5.dp)
+                    Modifier.align(Alignment.CenterHorizontally).padding(bottom = PaddingValue),
+                    horizontalArrangement = Arrangement.spacedBy(5.sdp())
                 ) {
                     if (Name != "Unknown") {
                         if (Codename != "cepheus") {
                             AssistChip(
+                                modifier = Modifier
+                                    .width(110.sdp())
+                                    .height(35.sdp()),
                                 leadingIcon = {
                                     Icon(
                                         Icons.Filled.Book,
                                         contentDescription = null,
-                                        Modifier.size(AssistChipDefaults.IconSize),
+                                        Modifier.size(20.sdp()),
                                         tint = MaterialTheme.colorScheme.primary
                                     )
                                 },
@@ -132,16 +132,21 @@ object Cards {
                                     Text(
                                         LocalContext.current.getString(R.string.guide),
                                         fontWeight = FontWeight.Bold,
+                                        textAlign = TextAlign.Center,
+                                        fontSize = FontSize
                                     )
                                 }
                             )
                         }
                         AssistChip(
+                            modifier = Modifier
+                                .width(110.sdp())
+                                .height(35.sdp()),
                             leadingIcon = {
                                 Icon(
                                     Icons.AutoMirrored.Filled.Message,
                                     contentDescription = null,
-                                    Modifier.size(AssistChipDefaults.IconSize),
+                                    Modifier.size(20.sdp()),
                                     tint = MaterialTheme.colorScheme.primary
                                 )
                             },
@@ -160,6 +165,8 @@ object Cards {
                                 Text(
                                     LocalContext.current.getString(R.string.group),
                                     fontWeight = FontWeight.Bold,
+                                    textAlign = TextAlign.Center,
+                                    fontSize = FontSize
                                 )
                             }
                         )

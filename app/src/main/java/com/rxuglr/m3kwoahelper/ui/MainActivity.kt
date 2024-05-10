@@ -9,11 +9,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -23,17 +21,13 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -45,15 +39,19 @@ import androidx.navigation.compose.rememberNavController
 import com.rxuglr.m3kwoahelper.R
 import com.rxuglr.m3kwoahelper.ui.templates.*
 import com.rxuglr.m3kwoahelper.ui.templates.Cards.InfoCard
-import com.rxuglr.m3kwoahelper.ui.templates.Cards.pxtodp
 import com.rxuglr.m3kwoahelper.ui.templates.Images.DeviceImage
 import com.rxuglr.m3kwoahelper.ui.theme.WOAHelperTheme
 import com.rxuglr.m3kwoahelper.util.Commands.checksensors
 import com.rxuglr.m3kwoahelper.util.Commands.dumpmodem
 import com.rxuglr.m3kwoahelper.util.Commands.dumpsensors
 import com.rxuglr.m3kwoahelper.util.Variables.Codename
+import com.rxuglr.m3kwoahelper.util.Variables.FontSize
+import com.rxuglr.m3kwoahelper.util.Variables.LineHeight
 import com.rxuglr.m3kwoahelper.util.Variables.NoModem
+import com.rxuglr.m3kwoahelper.util.Variables.PaddingValue
 import com.rxuglr.m3kwoahelper.util.Variables.Unsupported
+import com.rxuglr.m3kwoahelper.util.sdp
+import com.rxuglr.m3kwoahelper.util.ssp
 import com.rxuglr.m3kwoahelper.woahApp
 import com.topjohnwu.superuser.Shell
 
@@ -104,6 +102,9 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun WOAHelper() {
+        LineHeight = 20.ssp()
+        FontSize = 15.ssp()
+        PaddingValue = 10.sdp()
         val navController = rememberNavController()
         val home = remember { mutableStateOf(true) }
         Scaffold(
@@ -111,6 +112,8 @@ class MainActivity : ComponentActivity() {
                 TopAppBar(
                     navigationIcon = {
                         Icon(
+                            modifier = Modifier
+                                .size(30.sdp()),
                             tint = MaterialTheme.colorScheme.primary,
                             imageVector = ImageVector.vectorResource(R.drawable.ic_windows),
                             contentDescription = null
@@ -119,7 +122,7 @@ class MainActivity : ComponentActivity() {
                     title = {
                         Text(
                             text = "M3K WOA Helper",
-                            fontSize = 15.sp,
+                            fontSize = FontSize,
                             fontWeight = FontWeight.Bold
                         )
                         //    Text(
@@ -211,11 +214,11 @@ class MainActivity : ComponentActivity() {
     fun MainScreen() {
         Scaffold {
             Column(
-                verticalArrangement = Arrangement.spacedBy(10.dp),
+                verticalArrangement = Arrangement.spacedBy(10.sdp()),
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
-                    .padding(vertical = 10.dp)
-                    .padding(horizontal = 10.dp)
+                    .padding(vertical = 10.sdp())
+                    .padding(horizontal = 10.sdp())
                     .fillMaxWidth(),
             ) {
                 when {
@@ -224,7 +227,7 @@ class MainActivity : ComponentActivity() {
                             icon = {
                                 Icon(
                                     modifier = Modifier
-                                        .size(40.dp),
+                                        .size(40.sdp()),
                                     imageVector = Icons.Filled.Warning,
                                     contentDescription = null,
                                     tint = MaterialTheme.colorScheme.primary
@@ -237,8 +240,8 @@ class MainActivity : ComponentActivity() {
                                     text = "YOUR DEVICE ISN'T SUPPORTED!\n USING THIS APP CAN RESULT IN A BRICK",
                                     textAlign = TextAlign.Center,
                                     fontWeight = FontWeight.Bold,
-                                    lineHeight = 35.sp,
-                                    fontSize = 25.sp
+                                    lineHeight = 35.ssp(),
+                                    fontSize = 25.ssp()
                                 )
                             },
                             onDismissRequest = { Unsupported.value = false },
@@ -251,8 +254,8 @@ class MainActivity : ComponentActivity() {
                                     label = {
                                         Text(
                                             modifier = Modifier.padding(
-                                                top = 2.dp,
-                                                bottom = 2.dp
+                                                top = 2.sdp(),
+                                                bottom = 2.sdp()
                                             ),
                                             text = "I'm fine with that",
                                             color = MaterialTheme.colorScheme.inverseSurface
@@ -265,28 +268,28 @@ class MainActivity : ComponentActivity() {
                 }
                 if (woahApp.resources.configuration.orientation != Configuration.ORIENTATION_PORTRAIT) {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(10.dp),
+                        horizontalArrangement = Arrangement.spacedBy(10.sdp()),
                         modifier = Modifier
-                            .padding(vertical = 10.dp)
-                            .padding(horizontal = 10.dp)
+                            .padding(vertical = 10.sdp())
+                            .padding(horizontal = 10.sdp())
                             .fillMaxWidth()
                     ) {
                         Column(
-                            verticalArrangement = Arrangement.spacedBy(10.dp),
+                            verticalArrangement = Arrangement.spacedBy(10.sdp()),
                             modifier = Modifier
-                                .padding(vertical = 10.dp)
+                                .padding(vertical = 10.sdp())
                         ) {
                             InfoCard(
                                 Modifier
-                                    .height(200.dp)
-                                    .width((pxtodp(625f)).dp), LocalUriHandler.current
+                                    .height(200.sdp())
+                                    .width(350.sdp()), LocalUriHandler.current
                             )
-                            DeviceImage(Modifier.width((pxtodp(625f)).dp))
+                            DeviceImage(Modifier.width(350.sdp()))
                         }
                         Column(
-                            verticalArrangement = Arrangement.spacedBy(10.dp),
+                            verticalArrangement = Arrangement.spacedBy(10.sdp()),
                             modifier = Modifier
-                                .padding(vertical = 10.dp)
+                                .padding(vertical = 10.sdp())
                         ) {
                             Buttons.BackupButton()
                             Buttons.MountButton()
@@ -318,13 +321,13 @@ class MainActivity : ComponentActivity() {
                 } else {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(
-                            if (Codename == "nabu") {
-                                10.dp
-                            } else 0.dp
+                            if (Codename != "nabu") {
+                                0.dp
+                            } else 10.sdp()
                         )
                     ) {
-                        DeviceImage(Modifier.width((pxtodp(625f)).dp))
-                        InfoCard(Modifier.height((pxtodp(743f)).dp), LocalUriHandler.current)
+                        DeviceImage(Modifier.width(350.sdp()))
+                        InfoCard(Modifier.height(416.sdp()), LocalUriHandler.current)
                     }
                     Buttons.BackupButton()
                     Buttons.MountButton()
