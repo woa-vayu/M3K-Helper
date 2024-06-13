@@ -1,10 +1,9 @@
 package com.rxuglr.m3kwoahelper.util
 
-import com.rxuglr.m3kwoahelper.util.Variables.UEFIList
 import com.rxuglr.m3kwoahelper.util.Variables.Codename
-import com.rxuglr.m3kwoahelper.util.Variables.Codenames
 import com.rxuglr.m3kwoahelper.util.Variables.NoModem
 import com.rxuglr.m3kwoahelper.util.Variables.Sensors
+import com.rxuglr.m3kwoahelper.util.Variables.UEFIList
 import com.topjohnwu.superuser.ShellUtils
 
 object Commands {
@@ -99,12 +98,12 @@ object Commands {
         if (ShellUtils.fastCmd("find /sdcard/Windows/boot.img")
                 .isEmpty()
         ) {
-            backup(1);
+            backup(1)
         }
         if (ShellUtils.fastCmd("find /sdcard/m3khelper/boot.img")
                 .isEmpty()
         ) {
-            backup(2);
+            backup(2)
         }
         if (!NoModem.value) {
             dumpmodem()

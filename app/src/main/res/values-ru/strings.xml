@@ -4,6 +4,7 @@
     <string name="umnt_title">Размонтировать Windows</string>
     <string name="dump_modem_title">Исправить модем</string>
     <string name="dump_modemAsensors_title">Исправить модем и сенсоры</string>
+    <string name="dump_sensors_title">Исправить сенсоры</string>
     <string name="quickboot_title">Перезагрузиться в Windows</string>
     <string name="backup_boot_title">Резервная копия boot образа</string>
     <string name="flash_uefi_title">Прошить UEFI</string>
@@ -14,6 +15,7 @@
     <string name="umnt_question">Размонтировать Windows?</string>
     <string name="dump_modem_question">Скопировать модем в раздел Windows?</string>
     <string name="dump_modemAsensors_question">Скопировать модем и сенсоры в раздел Windows?</string>
+    <string name="dump_sensors_question">Скопировать сенсоры в раздел Windows?</string>
     <string name="quickboot_question">Перезагрузиться в Windows?</string>
     <string name="backup_boot_question">Хотите сделать резервную копию текущего boot образа?</string>
     <string name="flash_uefi_question">Прошить UEFI?</string>
@@ -22,6 +24,7 @@
     <string name="mnt_subtitle">Нужно для редактирования содержимого раздела Windows</string>
     <string name="dump_modem_subtitle">Нужно перед каждым запуском Windows если вам нужен LTE</string>
     <string name="dump_modemAsensors_subtitle">Нужно перед каждым запуском Windows если вам нужен LTE (Сенсоры исправляются только 1 раз)</string>
+    <string name="dump_sensors_subtitle">Нужно сделать всего 1 раз если вам нужны сенсоры</string>
     <string name="quickboot_subtitle">Исправить модем, прошить UEFI и перезагрузиться в Windows в одно нажатие</string>
     <string name="quickboot_subtitle_nomodem">Прошейте UEFI и перезагрузитесь в Windows в одно нажатие</string>
     <string name="flash_uefi_subtitle">Прошить UEFI для %s?</string>

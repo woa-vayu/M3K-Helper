@@ -21,7 +21,16 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
-import androidx.compose.material3.*
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.AssistChip
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,12 +41,11 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.rxuglr.m3kwoahelper.R
-import com.rxuglr.m3kwoahelper.ui.templates.*
+import com.rxuglr.m3kwoahelper.ui.templates.Buttons
 import com.rxuglr.m3kwoahelper.ui.templates.Cards.InfoCard
 import com.rxuglr.m3kwoahelper.ui.templates.Images.DeviceImage
 import com.rxuglr.m3kwoahelper.ui.theme.WOAHelperTheme
@@ -68,9 +76,9 @@ class MainActivity : ComponentActivity() {
                 requestedOrientation = SCREEN_ORIENTATION_USER_PORTRAIT
             }
             WOAHelperTheme {
-                val NoRoot = remember { mutableStateOf(true) }
+                val noRoot = remember { mutableStateOf(true) }
                 when {
-                    NoRoot.value -> {
+                    noRoot.value -> {
                         AlertDialog(
                             icon = {
                                 Icon(
@@ -97,7 +105,9 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 }
-                if (Shell.isAppGrantedRoot() == true) {NoRoot.value = false; WOAHelper()}
+                if (Shell.isAppGrantedRoot() == true) {
+                    noRoot.value = false; WOAHelper()
+                }
             }
         }
     }
@@ -313,6 +323,18 @@ class MainActivity : ComponentActivity() {
                                             R.string.dump_modem_question,
                                             { dumpmodem() },
                                             R.drawable.ic_modem
+                                        )
+                                    }
+                                }
+
+                                else -> {
+                                    if (!checksensors()) {
+                                        Buttons.Button(
+                                            R.string.dump_sensors_title,
+                                            R.string.dump_sensors_subtitle,
+                                            R.string.dump_sensors_question,
+                                            { dumpsensors() },
+                                            R.drawable.ic_sensor
                                         )
                                     }
                                 }

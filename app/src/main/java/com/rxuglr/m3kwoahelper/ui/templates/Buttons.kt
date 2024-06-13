@@ -32,6 +32,7 @@ import com.rxuglr.m3kwoahelper.util.Variables.Codename
 import com.rxuglr.m3kwoahelper.util.Variables.FontSize
 import com.rxuglr.m3kwoahelper.util.Variables.LineHeight
 import com.rxuglr.m3kwoahelper.util.Variables.Name
+import com.rxuglr.m3kwoahelper.util.Variables.NoModem
 import com.rxuglr.m3kwoahelper.util.Variables.PaddingValue
 import com.rxuglr.m3kwoahelper.util.Variables.UEFIList
 import com.rxuglr.m3kwoahelper.util.sdp
@@ -703,8 +704,8 @@ object Buttons {
                             lineHeight = LineHeight,
                             fontSize = FontSize
                         )
-                        val modem = when (Codename) {
-                            "nabu" -> R.string.quickboot_subtitle_nomodem
+                        val modem = when (NoModem.value) {
+                            true -> R.string.quickboot_subtitle_nomodem
                             else -> R.string.quickboot_subtitle
                         }
                         Text(

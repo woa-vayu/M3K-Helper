@@ -7,6 +7,7 @@
     <string name="umnt_title">Unmount Windows</string>
     <string name="dump_modem_title">Dump Modem</string>
     <string name="dump_modemAsensors_title">Dump Modem and Sensors</string>
+    <string name="dump_sensors_title">Dump Sensors</string>
     <string name="quickboot_title">QuickBoot to Windows</string>
     <string name="backup_boot_title">Backup Boot</string>
     <string name="flash_uefi_title">Flash UEFI</string>
@@ -16,6 +17,7 @@
     <string name="umnt_question">Unmount Windows?</string>
     <string name="dump_modem_question">Dump modem to Windows partition?</string>
     <string name="dump_modemAsensors_question">Dump modem and sensors to Windows partition?</string>
+    <string name="dump_sensors_question">Dump sensors to Windows partition?</string>
     <string name="quickboot_question">Quick Boot to Windows?</string>
     <string name="quickboot_question1" translatable="false">60Hz?</string>
     <string name="quickboot_question2" translatable="false">120Hz?</string>
@@ -26,6 +28,7 @@
     <string name="mnt_subtitle">Toggle mounting Windows partition in order to edit content inside</string>
     <string name="dump_modem_subtitle">Dump modem to Windows to fix LTE on SIM1 on Windows every time you want to boot to Windows</string>
     <string name="dump_modemAsensors_subtitle">Dump modem to Windows to fix LTE on SIM1 on Windows every time you want to boot to Windows (Sensors need to be dumped only once)</string>
+    <string name="dump_sensors_subtitle">Dump sensors to Windows to fix them. This will be done only once</string>
     <string name="quickboot_subtitle">Dump Modem, Flash UEFI, and Reboot to Windows in one click</string>
     <string name="quickboot_subtitle_nomodem">Flash UEFI, and Reboot to Windows in one click</string>
     <string name="flash_uefi_subtitle">Flash UEFI for the %s?</string>
