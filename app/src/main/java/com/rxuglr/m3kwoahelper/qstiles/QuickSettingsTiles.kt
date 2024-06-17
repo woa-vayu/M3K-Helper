@@ -8,6 +8,9 @@ import com.rxuglr.m3kwoahelper.util.Commands.mountstatus
 import com.rxuglr.m3kwoahelper.util.Commands.mountwin
 import com.rxuglr.m3kwoahelper.util.Commands.quickboot
 import com.rxuglr.m3kwoahelper.util.Commands.umountwin
+import com.rxuglr.m3kwoahelper.util.Variables.Codename
+import com.rxuglr.m3kwoahelper.util.Variables.Name
+import com.rxuglr.m3kwoahelper.util.Variables.NoFlash
 import com.rxuglr.m3kwoahelper.util.Variables.UEFIList
 import com.rxuglr.m3kwoahelper.woahApp
 
@@ -15,16 +18,24 @@ class MountTile : TileService() { // PoC
 
     override fun onStartListening() {
         super.onStartListening()
-        if (mountstatus()) {
-            qsTile.state = STATE_ACTIVE
-            qsTile.label = woahApp.getString(
-                R.string.mnt_question
+        if (Name == "Unknown") {
+            qsTile.state = STATE_UNAVAILABLE
+            qsTile.subtitle = woahApp.getString(
+                R.string.qs_unsupported
             )
+            qsTile.updateTile()
         } else {
-            qsTile.state = STATE_ACTIVE
-            qsTile.label = woahApp.getString(
-                R.string.umnt_question
-            )
+            if (mountstatus()) {
+                qsTile.state = STATE_ACTIVE
+                qsTile.label = woahApp.getString(
+                    R.string.mnt_question
+                )
+            } else {
+                qsTile.state = STATE_ACTIVE
+                qsTile.label = woahApp.getString(
+                    R.string.umnt_question
+                )
+            }
         }
     }
 
@@ -43,14 +54,22 @@ class QuickBootTile : TileService() {
 
     override fun onStartListening() {
         super.onStartListening()
-        if (UEFIList.contains(99)) {
+        if (Name == "Unknown" || NoFlash.value) {
             qsTile.state = STATE_UNAVAILABLE
             qsTile.subtitle = woahApp.getString(
-                R.string.uefi_not_found_title
+                R.string.qs_unsupported
             )
             qsTile.updateTile()
         } else {
-            qsTile.state = STATE_ACTIVE; qsTile.subtitle = ""
+            if (UEFIList.contains(99)) {
+                qsTile.state = STATE_UNAVAILABLE
+                qsTile.subtitle = woahApp.getString(
+                    R.string.uefi_not_found_title
+                )
+                qsTile.updateTile()
+            } else {
+                qsTile.state = STATE_ACTIVE; qsTile.subtitle = ""
+            }
         }
     }
 

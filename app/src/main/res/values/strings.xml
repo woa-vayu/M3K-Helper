@@ -35,6 +35,7 @@
     <string name="uefi_not_found_subtitle">Download UEFI for your device and place it under /sdcard/UEFI folder</string>
 
     <string name="no_root">Please grant M3K WoA Helper Root-access to use it!</string>
+    <string name="qs_unsupported">Device isn\'t supported</string>
 
     <string name="ramvalue">RAM: %s</string>
     <string name="paneltype">"Panel: %s"</string>

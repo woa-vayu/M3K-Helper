@@ -23,15 +23,31 @@ object Variables {
             "cepheus",
             "raphaels",
             "beryllium",
-            "miatoll"
+            "miatoll",
+            "guacamole",
+            "hotdog",
+            "mh2lm",
+            "alphaplus",
+            "mh2lm5g",
+            "flashlmmd"
         )
-    private val NoModemS: Array<String> =
+    private val NoModemA: Array<String> =
         arrayOf(
             "nabu",
             "beryllium",
-            "miatoll"
+            "miatoll",
         )
-    val Sensors: Array<String> =
+    val NoFlashA: Array<String> =
+        arrayOf(
+            "hotdog",
+            "guacamole"
+        )
+    val NoBootA: Array<String> =
+        arrayOf(
+            "hotdog",
+            "guacamole"
+        )
+    val SensorsA: Array<String> =
         arrayOf(
             "raphael",
             "raphaelin",
@@ -47,6 +63,9 @@ object Variables {
     var Codename: String = Build.DEVICE
     val Unsupported: MutableState<Boolean> = mutableStateOf(false)
     val NoModem: MutableState<Boolean> = mutableStateOf(false)
+    val NoFlash: MutableState<Boolean> = mutableStateOf(false)
+    val NoBoot: MutableState<Boolean> = mutableStateOf(false)
+    val NoSensors: MutableState<Boolean> = mutableStateOf(true)
 
     // dynamic vars
     var BootIsPresent: Boolean = false
@@ -65,6 +84,8 @@ object Variables {
         ) {
             Codename = "miatoll"
         }
+        if (Codename.contains("OnePlus7TPro")) Codename = "hotdog"
+        if (Codename.contains("OnePlus7Pro")) Codename = "guacamole"
         Name = when (Codename) {
             Codenames[0], Codenames[1] -> "POCO X3 Pro"
             Codenames[2] -> "Xiaomi Pad 5"
@@ -74,10 +95,25 @@ object Variables {
             Codenames[6] -> "Redmi K20 Pro Premium"
             Codenames[7] -> "POCO F1"
             Codenames[8] -> "Xiaomi Redmi Note 9 Pro"
+            Codenames[9] -> "OnePlus 7 Pro"
+            Codenames[10] -> "OnePlus 7T Pro"
+            Codenames[11] -> "LG G8X"
+            Codenames[12] -> "LG G8"
+            Codenames[13] -> "LG V50S"
+            Codenames[14] -> "LG V50"
             else -> "Unknown"
         }.toString()
-        if (NoModemS.contains(Codename)) {
+        if (NoModemA.contains(Codename)) {
             NoModem.value = true
+        }
+        if (NoFlashA.contains(Codename)) {
+            NoFlash.value = true
+        }
+        if (NoBootA.contains(Codename)) {
+            NoBoot.value = true
+        }
+        if (SensorsA.contains(Codename)) {
+            NoSensors.value = false
         }
         if ((Name == "Unknown")) {
             Unsupported.value = true

@@ -31,6 +31,7 @@
     <string name="uefi_not_found_subtitle">Скачайте UEFI для вашего устройства и поместите его в папку /sdcard/UEFI</string>
 
     <string name="no_root">M3K WoA Helper нужны Root-права для работы!</string>
+    <string name="qs_unsupported">Устройство неподдерживается</string>
 
     <string name="ramvalue">ОЗУ: %s</string>
     <string name="paneltype">"Дисплей: %s"</string>

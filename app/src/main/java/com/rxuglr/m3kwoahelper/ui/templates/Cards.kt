@@ -126,6 +126,7 @@ object Cards {
                                         Codenames[5] -> "https://github.com/woacepheus/Port-Windows-11-Xiaomi-Mi-9"
                                         Codenames[7] -> "https://github.com/n00b69/woa-beryllium"
                                         Codenames[8] -> "https://github.com/Rubanoxd/Port-Windows-11-redmi-note-9_pro"
+                                        Codenames[11], Codenames[13], Codenames[14] -> "https://github.com/Icesito68/Port-Windows-11-Lge-devices"
                                         else -> ""
                                     }
                                 )
@@ -162,6 +163,8 @@ object Cards {
                                         Codenames[5] -> "https://t.me/woacepheus"
                                         Codenames[7] -> "https://t.me/WinOnF1"
                                         Codenames[8] -> "http://t.me/woamiatoll"
+                                        Codenames[9], Codenames[10] -> "https://t.me/onepluswoachat"
+                                        Codenames[11], Codenames[12], Codenames[13], Codenames[14] -> "https://t.me/winong8x"
                                         else -> ""
                                     }
                                 )

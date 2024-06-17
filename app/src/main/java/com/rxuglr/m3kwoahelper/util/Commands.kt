@@ -1,8 +1,7 @@
 package com.rxuglr.m3kwoahelper.util
 
-import com.rxuglr.m3kwoahelper.util.Variables.Codename
 import com.rxuglr.m3kwoahelper.util.Variables.NoModem
-import com.rxuglr.m3kwoahelper.util.Variables.Sensors
+import com.rxuglr.m3kwoahelper.util.Variables.NoSensors
 import com.rxuglr.m3kwoahelper.util.Variables.UEFIList
 import com.topjohnwu.superuser.ShellUtils
 
@@ -21,16 +20,13 @@ object Commands {
 
     fun displaytype(): Any {
         val panel = ShellUtils.fastCmd("cat /proc/cmdline")
-        return if (panel.contains("j20s_42") || panel.contains("k82_42")) {
-            "Huaxing"
-        } else if (panel.contains("j20s_36") || panel.contains("tianma") || panel.contains("k82_36")) {
-            "Tianma"
-        } else if (panel.contains("ebbg")) {
-            "EBBG"
-        } else if (panel.contains("ea8076_f1mp") || panel.contains("ea8076_f1p2") || panel.contains("ea8076_global")) {
-            "Samsung"
-        } else {
-            "Unknown"
+        return when {
+            panel.contains("j20s_42") || panel.contains("k82_42") -> "Huaxing"
+            panel.contains("j20s_36") || panel.contains("tianma") || panel.contains("k82_36") -> "Tianma"
+            panel.contains("ebbg") -> "EBBG"
+            panel.contains("samsung") || panel.contains("ea8076_f1mp") || panel.contains("ea8076_f1p2") || panel.contains("ea8076_global") -> "Samsung"
+
+            else -> "Unknown"
         }
     }
 
@@ -77,7 +73,7 @@ object Commands {
     }
 
     fun checksensors(): Boolean {
-        return if (!Sensors.contains(Codename)) true
+        return if (NoSensors.value) true
         else {
             mountwin()
             val check =

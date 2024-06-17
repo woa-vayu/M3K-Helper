@@ -55,6 +55,8 @@ import com.rxuglr.m3kwoahelper.util.Commands.dumpsensors
 import com.rxuglr.m3kwoahelper.util.Variables.Codename
 import com.rxuglr.m3kwoahelper.util.Variables.FontSize
 import com.rxuglr.m3kwoahelper.util.Variables.LineHeight
+import com.rxuglr.m3kwoahelper.util.Variables.NoBoot
+import com.rxuglr.m3kwoahelper.util.Variables.NoFlash
 import com.rxuglr.m3kwoahelper.util.Variables.NoModem
 import com.rxuglr.m3kwoahelper.util.Variables.PaddingValue
 import com.rxuglr.m3kwoahelper.util.Variables.Unsupported
@@ -304,7 +306,11 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier
                                 .padding(vertical = 10.sdp())
                         ) {
-                            Buttons.BackupButton()
+                            when {
+                                !NoBoot.value -> {
+                                    Buttons.BackupButton()
+                                }
+                            }
                             Buttons.MountButton()
                             when {
                                 !NoModem.value -> {
@@ -339,8 +345,11 @@ class MainActivity : ComponentActivity() {
                                     }
                                 }
                             }
-                            Buttons.UEFIButton()
-                            Buttons.QuickbootButton()
+                            when {
+                                !NoFlash.value -> {
+                                    Buttons.UEFIButton(); Buttons.QuickbootButton()
+                                }
+                            }
                         }
                     }
                 } else {
@@ -354,7 +363,11 @@ class MainActivity : ComponentActivity() {
                         DeviceImage(Modifier.width(350.sdp()))
                         InfoCard(Modifier.height(416.sdp()), LocalUriHandler.current)
                     }
-                    Buttons.BackupButton()
+                    when {
+                        !NoBoot.value -> {
+                            Buttons.BackupButton()
+                        }
+                    }
                     Buttons.MountButton()
                     when {
                         !NoModem.value -> {
@@ -376,9 +389,24 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
                         }
+
+                        else -> {
+                            if (!checksensors()) {
+                                Buttons.Button(
+                                    R.string.dump_sensors_title,
+                                    R.string.dump_sensors_subtitle,
+                                    R.string.dump_sensors_question,
+                                    { dumpsensors() },
+                                    R.drawable.ic_sensor
+                                )
+                            }
+                        }
                     }
-                    Buttons.UEFIButton()
-                    Buttons.QuickbootButton()
+                    when {
+                        !NoFlash.value -> {
+                            Buttons.UEFIButton(); Buttons.QuickbootButton()
+                        }
+                    }
                 }
             }
         }
