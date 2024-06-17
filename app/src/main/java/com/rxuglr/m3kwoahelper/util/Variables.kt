@@ -36,23 +36,34 @@ object Variables {
             "nabu",
             "beryllium",
             "miatoll",
+            "Unknown"
         )
-    val NoFlashA: Array<String> =
+    private val NoFlashA: Array<String> =
         arrayOf(
             "hotdog",
             "guacamole"
         )
-    val NoBootA: Array<String> =
+    private val NoBootA: Array<String> =
         arrayOf(
             "hotdog",
             "guacamole"
         )
-    val SensorsA: Array<String> =
+    private val SensorsA: Array<String> =
         arrayOf(
             "raphael",
             "raphaelin",
             "cepheus",
             "raphaels"
+        )
+    private val NoGuideA: Array<String> =
+        arrayOf(
+            "guacamole",
+            "hotdog",
+            "Unknown"
+        )
+    private val NoGroupA: Array<String> =
+        arrayOf(
+            "Unknown"
         )
 
     // device info
@@ -66,6 +77,8 @@ object Variables {
     val NoFlash: MutableState<Boolean> = mutableStateOf(false)
     val NoBoot: MutableState<Boolean> = mutableStateOf(false)
     val NoSensors: MutableState<Boolean> = mutableStateOf(true)
+    val NoGuide: MutableState<Boolean> = mutableStateOf(false)
+    val NoGroup: MutableState<Boolean> = mutableStateOf(false)
 
     // dynamic vars
     var BootIsPresent: Boolean = false
@@ -76,16 +89,17 @@ object Variables {
     var LineHeight: TextUnit = 0.sp
 
     fun vars() {
-        if (Codename.contains("curtana")
-            || Codename.contains("durandal")
-            || Codename.contains("excalibur")
-            || Codename.contains("gram")
-            || Codename.contains("joyeuse")
-        ) {
-            Codename = "miatoll"
+        Codename = when {
+            Codename.contains("curtana")
+                    || Codename.contains("durandal")
+                    || Codename.contains("excalibur")
+                    || Codename.contains("gram")
+                    || Codename.contains("joyeuse") -> "miatoll"
+
+            Codename.contains("OnePlus7TPro") -> "hotdog"
+            Codename.contains("OnePlus7Pro") -> "guacamole"
+            else -> "Unknown"
         }
-        if (Codename.contains("OnePlus7TPro")) Codename = "hotdog"
-        if (Codename.contains("OnePlus7Pro")) Codename = "guacamole"
         Name = when (Codename) {
             Codenames[0], Codenames[1] -> "POCO X3 Pro"
             Codenames[2] -> "Xiaomi Pad 5"
@@ -114,6 +128,12 @@ object Variables {
         }
         if (SensorsA.contains(Codename)) {
             NoSensors.value = false
+        }
+        if (NoGuideA.contains(Codename)) {
+            NoGuide.value = true
+        }
+        if (NoGroupA.contains(Codename)) {
+            NoGroup.value = true
         }
         if ((Name == "Unknown")) {
             Unsupported.value = true

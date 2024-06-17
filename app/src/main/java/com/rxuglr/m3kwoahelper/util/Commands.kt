@@ -22,9 +22,15 @@ object Commands {
         val panel = ShellUtils.fastCmd("cat /proc/cmdline")
         return when {
             panel.contains("j20s_42") || panel.contains("k82_42") -> "Huaxing"
-            panel.contains("j20s_36") || panel.contains("tianma") || panel.contains("k82_36") -> "Tianma"
+            panel.contains("j20s_36")
+                    || panel.contains("tianma")
+                    || panel.contains("k82_36") -> "Tianma"
+
             panel.contains("ebbg") -> "EBBG"
-            panel.contains("samsung") || panel.contains("ea8076_f1mp") || panel.contains("ea8076_f1p2") || panel.contains("ea8076_global") -> "Samsung"
+            panel.contains("samsung")
+                    || panel.contains("ea8076_f1mp")
+                    || panel.contains("ea8076_f1p2")
+                    || panel.contains("ea8076_global") -> "Samsung"
 
             else -> "Unknown"
         }
