@@ -29,6 +29,8 @@ Read requirements carefully.
 • [Xiaomi Mi 9T Pro/Redmi K20 Pro](https://github.com/graphiks/woa-raphael)
 
 • Xiaomi Mi 9
+ 
+• Xiaomi Poco F5
 
 ## Requirements
 
