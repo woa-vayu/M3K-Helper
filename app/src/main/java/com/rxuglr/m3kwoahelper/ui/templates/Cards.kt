@@ -131,6 +131,7 @@ object Cards {
                                             Codenames[8] -> "https://github.com/Rubanoxd/Port-Windows-11-redmi-note-9_pro"
                                             Codenames[11], Codenames[13], Codenames[14] -> "https://github.com/Icesito68/Port-Windows-11-Lge-devices"
                                             Codenames[15] -> "https://t.me/woa_marble"
+                                            Codenames[16] -> "https://github.com/Daniel224455/woa-venus"
                                             else -> ""
                                         }
                                     )
@@ -172,6 +173,7 @@ object Cards {
                                             Codenames[9], Codenames[10] -> "https://t.me/onepluswoachat"
                                             Codenames[11], Codenames[12], Codenames[13], Codenames[14] -> "https://t.me/winong8x"
                                             Codenames[15] -> "https://t.me/woa_marble"
+                                            Codenames[16] -> "https://t.me/woavenus"
                                             else -> ""
                                         }
                                     )
