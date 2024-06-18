@@ -39,6 +39,7 @@ object Images {
                     Codenames[10] -> R.drawable.hotdog
                     Codenames[11], Codenames[13], Codenames[14] -> R.drawable.mh2lm
                     Codenames[12] -> R.drawable.alphaplus
+                    Codenames[15] -> R.drawable.marble
                     else -> R.drawable.ic_device_unknown
                 },
             ),
