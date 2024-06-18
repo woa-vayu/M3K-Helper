@@ -30,7 +30,8 @@ object Variables {
             "alphaplus",
             "mh2lm5g",
             "flashlmmd",
-            "marble"
+            "marble",
+            "venus"
         )
     private val NoModemA: Array<String> =
         arrayOf(
@@ -38,7 +39,8 @@ object Variables {
             "beryllium",
             "miatoll",
             "Unknown",
-            "marble"
+            "marble",
+            "venus"
         )
     private val NoFlashA: Array<String> =
         arrayOf(
