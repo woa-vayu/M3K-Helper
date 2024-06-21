@@ -1,4 +1,4 @@
-package com.rxuglr.m3kwoahelper.ui.templates
+package com.rxuglr.m3khelper.ui.templates
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.height
@@ -8,10 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import com.rxuglr.m3kwoahelper.R
-import com.rxuglr.m3kwoahelper.util.Variables.Codename
-import com.rxuglr.m3kwoahelper.util.Variables.Codenames
-import com.rxuglr.m3kwoahelper.util.sdp
+import com.rxuglr.m3khelper.util.Variables.Codename
+import com.rxuglr.m3khelper.util.Variables.Codenames
+import com.rxuglr.m3khelper.util.sdp
+import com.rxuglr.m3khelper.R
 
 object Images {
 

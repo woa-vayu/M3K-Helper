@@ -1,38 +1,37 @@
-package com.rxuglr.m3kwoahelper.qstiles
+package com.rxuglr.m3khelper.qstiles
 
 import android.service.quicksettings.Tile.STATE_ACTIVE
 import android.service.quicksettings.Tile.STATE_UNAVAILABLE
 import android.service.quicksettings.TileService
-import com.rxuglr.m3kwoahelper.R
-import com.rxuglr.m3kwoahelper.util.Commands.mountstatus
-import com.rxuglr.m3kwoahelper.util.Commands.mountwin
-import com.rxuglr.m3kwoahelper.util.Commands.quickboot
-import com.rxuglr.m3kwoahelper.util.Commands.umountwin
-import com.rxuglr.m3kwoahelper.util.Variables.Codename
-import com.rxuglr.m3kwoahelper.util.Variables.Name
-import com.rxuglr.m3kwoahelper.util.Variables.NoFlash
-import com.rxuglr.m3kwoahelper.util.Variables.UEFIList
-import com.rxuglr.m3kwoahelper.woahApp
+import com.rxuglr.m3khelper.R
+import com.rxuglr.m3khelper.util.Commands.mountstatus
+import com.rxuglr.m3khelper.util.Commands.mountwin
+import com.rxuglr.m3khelper.util.Commands.quickboot
+import com.rxuglr.m3khelper.util.Commands.umountwin
+import com.rxuglr.m3khelper.util.Variables.NoFlash
+import com.rxuglr.m3khelper.util.Variables.UEFIList
+import com.rxuglr.m3khelper.util.Variables.Unsupported
+import com.rxuglr.m3khelper.M3KApp
 
 class MountTile : TileService() { // PoC
 
     override fun onStartListening() {
         super.onStartListening()
-        if (Name == "Unknown") {
+        if (Unsupported.value) {
             qsTile.state = STATE_UNAVAILABLE
-            qsTile.subtitle = woahApp.getString(
+            qsTile.subtitle = M3KApp.getString(
                 R.string.qs_unsupported
             )
             qsTile.updateTile()
         } else {
             if (mountstatus()) {
                 qsTile.state = STATE_ACTIVE
-                qsTile.label = woahApp.getString(
+                qsTile.label = M3KApp.getString(
                     R.string.mnt_question
                 )
             } else {
                 qsTile.state = STATE_ACTIVE
-                qsTile.label = woahApp.getString(
+                qsTile.label = M3KApp.getString(
                     R.string.umnt_question
                 )
             }
@@ -54,16 +53,16 @@ class QuickBootTile : TileService() {
 
     override fun onStartListening() {
         super.onStartListening()
-        if (Name == "Unknown" || NoFlash.value) {
+        if (Unsupported.value || NoFlash.value) {
             qsTile.state = STATE_UNAVAILABLE
-            qsTile.subtitle = woahApp.getString(
+            qsTile.subtitle = M3KApp.getString(
                 R.string.qs_unsupported
             )
             qsTile.updateTile()
         } else {
             if (UEFIList.contains(99)) {
                 qsTile.state = STATE_UNAVAILABLE
-                qsTile.subtitle = woahApp.getString(
+                qsTile.subtitle = M3KApp.getString(
                     R.string.uefi_not_found_title
                 )
                 qsTile.updateTile()
@@ -85,7 +84,7 @@ class QuickBootTile : TileService() {
             }
         } else {
             qsTile.state = STATE_UNAVAILABLE
-            qsTile.subtitle = woahApp.getString(
+            qsTile.subtitle = M3KApp.getString(
                 R.string.uefi_not_found_title
             )
             qsTile.updateTile()

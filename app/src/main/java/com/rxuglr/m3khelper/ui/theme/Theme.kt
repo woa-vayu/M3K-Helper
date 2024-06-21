@@ -1,4 +1,4 @@
-package com.rxuglr.m3kwoahelper.ui.theme
+package com.rxuglr.m3khelper.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -25,7 +25,7 @@ private val LightColorScheme = lightColorScheme(
 
 
 @Composable
-fun WOAHelperTheme(
+fun M3KHelperTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = DynamicColors.isDynamicColorAvailable(),

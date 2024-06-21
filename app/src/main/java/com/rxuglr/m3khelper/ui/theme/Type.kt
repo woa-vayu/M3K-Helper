@@ -1,4 +1,4 @@
-package com.rxuglr.m3kwoahelper.ui.theme
+package com.rxuglr.m3khelper.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

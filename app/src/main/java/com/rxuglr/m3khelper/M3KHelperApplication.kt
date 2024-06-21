@@ -1,16 +1,16 @@
-package com.rxuglr.m3kwoahelper
+package com.rxuglr.m3khelper
 
 import android.app.Application
-import com.rxuglr.m3kwoahelper.util.Variables.vars
+import com.rxuglr.m3khelper.util.Variables.vars
 import com.topjohnwu.superuser.Shell
 
-lateinit var woahApp: WOAHelperApplication
+lateinit var M3KApp: M3KHelperApplication
 
 
-class WOAHelperApplication : Application() {
+class M3KHelperApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        woahApp = this
+        M3KApp = this
         Shell.setDefaultBuilder(
             Shell.Builder.create().setFlags(Shell.FLAG_REDIRECT_STDERR).setTimeout(10)
         )

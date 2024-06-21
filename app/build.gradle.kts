@@ -7,18 +7,18 @@ plugins {
 }
 
 android {
-    namespace = "com.rxuglr.m3kwoahelper"
+    namespace = "com.rxuglr.m3khelper"
     compileSdk = 34
 
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
     defaultConfig {
-        applicationId = "com.remtrik.m3kwoahelper"
+        applicationId = "com.remtrik.m3khelper"
         minSdk = 29
         targetSdk = 34
         versionCode = 13
-        versionName = "1.5.4"
+        versionName = "1.5.5"
         resConfigs("en", "ru")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -28,7 +28,10 @@ android {
         release {
             isShrinkResources = true
             isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             isDebuggable = false
             isJniDebuggable = false
         }

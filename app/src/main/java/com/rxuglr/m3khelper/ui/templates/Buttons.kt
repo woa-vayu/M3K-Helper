@@ -1,4 +1,4 @@
-package com.rxuglr.m3kwoahelper.ui.templates
+package com.rxuglr.m3khelper.ui.templates
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
@@ -16,26 +16,24 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import com.rxuglr.m3kwoahelper.R
-import com.rxuglr.m3kwoahelper.util.Commands.backup
-import com.rxuglr.m3kwoahelper.util.Commands.flashuefi
-import com.rxuglr.m3kwoahelper.util.Commands.mountstatus
-import com.rxuglr.m3kwoahelper.util.Commands.mountwin
-import com.rxuglr.m3kwoahelper.util.Commands.quickboot
-import com.rxuglr.m3kwoahelper.util.Commands.umountwin
-import com.rxuglr.m3kwoahelper.util.Variables.Codename
-import com.rxuglr.m3kwoahelper.util.Variables.FontSize
-import com.rxuglr.m3kwoahelper.util.Variables.LineHeight
-import com.rxuglr.m3kwoahelper.util.Variables.Name
-import com.rxuglr.m3kwoahelper.util.Variables.NoModem
-import com.rxuglr.m3kwoahelper.util.Variables.PaddingValue
-import com.rxuglr.m3kwoahelper.util.Variables.UEFIList
-import com.rxuglr.m3kwoahelper.util.sdp
+import com.rxuglr.m3khelper.util.Commands.backup
+import com.rxuglr.m3khelper.util.Commands.flashuefi
+import com.rxuglr.m3khelper.util.Commands.mountstatus
+import com.rxuglr.m3khelper.util.Commands.mountwin
+import com.rxuglr.m3khelper.util.Commands.quickboot
+import com.rxuglr.m3khelper.util.Commands.umountwin
+import com.rxuglr.m3khelper.util.Variables.FontSize
+import com.rxuglr.m3khelper.util.Variables.LineHeight
+import com.rxuglr.m3khelper.util.Variables.Name
+import com.rxuglr.m3khelper.util.Variables.NoModem
+import com.rxuglr.m3khelper.util.Variables.PaddingValue
+import com.rxuglr.m3khelper.util.Variables.UEFIList
+import com.rxuglr.m3khelper.util.sdp
+import com.rxuglr.m3khelper.M3KApp
+import com.rxuglr.m3khelper.R
 
 object Buttons {
 
@@ -54,9 +52,6 @@ object Buttons {
             Modifier
                 .height(105.sdp())
                 .fillMaxWidth(),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(10.dp)
-            )
         ) {
             when {
                 showSpinner.value -> {
@@ -72,7 +67,7 @@ object Buttons {
                     PopupDialogs.Dialog(
                         icon = painterResource(id = icon),
                         title = null,
-                        description = LocalContext.current.getString(question),
+                        description = M3KApp.getString(question),
                         showDialog = showDialog.value,
                         onDismiss = { showDialog.value = false },
                         onConfirm = ({
@@ -102,14 +97,14 @@ object Buttons {
                 )
                 Column {
                     Text(
-                        LocalContext.current.getString(title),
+                        M3KApp.getString(title),
                         color = MaterialTheme.colorScheme.inverseSurface,
                         fontWeight = FontWeight.Bold,
                         fontSize = FontSize,
                         lineHeight = LineHeight,
                     )
                     Text(
-                        LocalContext.current.getString(subtitle),
+                        M3KApp.getString(subtitle),
                         color = MaterialTheme.colorScheme.inverseSurface,
                         lineHeight = LineHeight,
                         fontSize = FontSize
@@ -128,9 +123,6 @@ object Buttons {
             Modifier
                 .height(105.sdp())
                 .fillMaxWidth(),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(10.dp)
-            )
         ) {
             when {
                 showBackupSpinner.value -> {
@@ -157,7 +149,7 @@ object Buttons {
                         text = {
                             Text(
                                 modifier = Modifier.fillMaxWidth(),
-                                text = LocalContext.current.getString(R.string.backup_boot_question),
+                                text = M3KApp.getString(R.string.backup_boot_question),
                                 textAlign = TextAlign.Center,
                                 fontSize = FontSize,
                                 lineHeight = LineHeight
@@ -219,7 +211,7 @@ object Buttons {
                                                 top = 2.sdp(),
                                                 bottom = 2.sdp()
                                             ),
-                                            text = LocalContext.current.getString(R.string.no),
+                                            text = M3KApp.getString(R.string.no),
                                             color = MaterialTheme.colorScheme.inverseSurface,
                                             fontSize = FontSize
                                         )
@@ -248,14 +240,14 @@ object Buttons {
                 )
                 Column {
                     Text(
-                        LocalContext.current.getString(R.string.backup_boot_title),
+                        M3KApp.getString(R.string.backup_boot_title),
                         color = MaterialTheme.colorScheme.inverseSurface,
                         fontWeight = FontWeight.Bold,
                         fontSize = FontSize,
                         lineHeight = LineHeight,
                     )
                     Text(
-                        LocalContext.current.getString(R.string.backup_boot_subtitle),
+                        M3KApp.getString(R.string.backup_boot_subtitle),
                         color = MaterialTheme.colorScheme.inverseSurface,
                         lineHeight = LineHeight,
                         fontSize = FontSize
@@ -273,9 +265,6 @@ object Buttons {
             Modifier
                 .height(105.sdp())
                 .fillMaxWidth(),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(10.dp)
-            )
         ) {
             when {
                 showMountDialog.value -> {
@@ -283,7 +272,7 @@ object Buttons {
                         PopupDialogs.Dialog(
                             icon = painterResource(id = R.drawable.ic_folder_open),
                             title = null,
-                            description = LocalContext.current.getString(R.string.mnt_question),
+                            description = M3KApp.getString(R.string.mnt_question),
                             showDialog = showMountDialog.value,
                             onDismiss = { showMountDialog.value = false },
                             onConfirm = ({
@@ -295,7 +284,7 @@ object Buttons {
                         PopupDialogs.Dialog(
                             painterResource(id = R.drawable.ic_folder),
                             null,
-                            LocalContext.current.getString(R.string.umnt_question),
+                            M3KApp.getString(R.string.umnt_question),
                             showMountDialog.value,
                             onDismiss = ({ showMountDialog.value = false; }),
                             onConfirm = ({
@@ -334,14 +323,14 @@ object Buttons {
                             R.string.umnt_title
                         }
                     Text(
-                        LocalContext.current.getString(mounted),
+                        M3KApp.getString(mounted),
                         color = MaterialTheme.colorScheme.inverseSurface,
                         fontWeight = FontWeight.Bold,
                         lineHeight = LineHeight,
                         fontSize = FontSize
                     )
                     Text(
-                        LocalContext.current.getString(R.string.mnt_subtitle),
+                        M3KApp.getString(R.string.mnt_subtitle),
                         color = MaterialTheme.colorScheme.inverseSurface,
                         lineHeight = LineHeight,
                         fontSize = FontSize
@@ -363,9 +352,6 @@ object Buttons {
             Modifier
                 .height(105.sdp())
                 .fillMaxWidth(),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(10.dp)
-            ),
             enabled = !UEFIList.contains(99)
         ) {
             when {
@@ -393,7 +379,7 @@ object Buttons {
                         text = {
                             Text(
                                 modifier = Modifier.fillMaxWidth(),
-                                text = LocalContext.current.getString(R.string.flash_uefi_question),
+                                text = M3KApp.getString(R.string.flash_uefi_question),
                                 textAlign = TextAlign.Center,
                                 fontSize = FontSize
                             )
@@ -420,14 +406,14 @@ object Buttons {
                                                     top = 2.sdp(),
                                                     bottom = 2.sdp()
                                                 ),
-                                                text = "120Hz",
+                                                text = M3KApp.getString(R.string.quickboot_question3),
                                                 color = MaterialTheme.colorScheme.inverseSurface,
                                                 fontSize = FontSize
                                             )
                                         }
                                     )
                                 }
-                                if (UEFIList.contains(60)) {
+                                if (UEFIList.contains(90)) {
                                     AssistChip(
                                         onClick = {
                                             Thread {
@@ -443,18 +429,14 @@ object Buttons {
                                                     top = 2.sdp(),
                                                     bottom = 2.sdp()
                                                 ),
-                                                text = "60Hz",
+                                                text = M3KApp.getString(R.string.quickboot_question2),
                                                 color = MaterialTheme.colorScheme.inverseSurface,
                                                 fontSize = FontSize
                                             )
                                         }
                                     )
                                 }
-                                if (UEFIList
-                                        .contains(1) and (!UEFIList.contains(60) or !UEFIList.contains(
-                                        120
-                                    ))
-                                ) {
+                                if (UEFIList.contains(60)) {
                                     AssistChip(
                                         onClick = {
                                             Thread {
@@ -470,7 +452,36 @@ object Buttons {
                                                     top = 2.sdp(),
                                                     bottom = 2.sdp()
                                                 ),
-                                                text = LocalContext.current.getString(R.string.yes),
+                                                text = M3KApp.getString(R.string.quickboot_question1),
+                                                color = MaterialTheme.colorScheme.inverseSurface,
+                                                fontSize = FontSize
+                                            )
+                                        }
+                                    )
+                                }
+                                if (UEFIList.contains(1)
+                                    and
+                                    (!UEFIList.contains(60)
+                                            && !UEFIList.contains(90)
+                                            && !UEFIList.contains(120)
+                                            )
+                                ) {
+                                    AssistChip(
+                                        onClick = {
+                                            Thread {
+                                                showUEFIDialog.value = false
+                                                showUEFISpinner.value = true
+                                                flashuefi(3)
+                                                showUEFISpinner.value = false
+                                            }.start()
+                                        },
+                                        label = {
+                                            Text(
+                                                modifier = Modifier.padding(
+                                                    top = 2.sdp(),
+                                                    bottom = 2.sdp()
+                                                ),
+                                                text = M3KApp.getString(R.string.yes),
                                                 color = MaterialTheme.colorScheme.inverseSurface,
                                                 fontSize = FontSize
                                             )
@@ -485,7 +496,7 @@ object Buttons {
                                                 top = 2.sdp(),
                                                 bottom = 2.sdp()
                                             ),
-                                            text = LocalContext.current.getString(R.string.no),
+                                            text = M3KApp.getString(R.string.no),
                                             color = MaterialTheme.colorScheme.inverseSurface,
                                             fontSize = FontSize
                                         )
@@ -523,14 +534,14 @@ object Buttons {
                 }
                 Column {
                     Text(
-                        LocalContext.current.getString(title),
+                        M3KApp.getString(title),
                         color = MaterialTheme.colorScheme.inverseSurface,
                         fontWeight = FontWeight.Bold,
                         lineHeight = LineHeight,
                         fontSize = FontSize
                     )
                     Text(
-                        LocalContext.current.getString(subtitle, Name),
+                        M3KApp.getString(subtitle, Name),
                         color = MaterialTheme.colorScheme.inverseSurface,
                         lineHeight = LineHeight,
                         fontSize = FontSize
@@ -550,9 +561,6 @@ object Buttons {
                 Modifier
                     .height(105.sdp())
                     .fillMaxWidth(),
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(10.dp)
-                )
             ) {
                 when {
                     showQuickBootSpinner.value -> {
@@ -579,7 +587,7 @@ object Buttons {
                             text = {
                                 Text(
                                     modifier = Modifier.fillMaxWidth(),
-                                    text = LocalContext.current.getString(R.string.quickboot_question),
+                                    text = M3KApp.getString(R.string.quickboot_question),
                                     textAlign = TextAlign.Center,
                                     fontSize = FontSize
                                 )
@@ -607,14 +615,14 @@ object Buttons {
                                                         top = 2.sdp(),
                                                         bottom = 2.sdp()
                                                     ),
-                                                    text = LocalContext.current.getString(R.string.quickboot_question2),
+                                                    text = M3KApp.getString(R.string.quickboot_question3),
                                                     color = MaterialTheme.colorScheme.inverseSurface,
                                                     fontSize = FontSize
                                                 )
                                             }
                                         )
                                     }
-                                    if (UEFIList.contains(60)) {
+                                    if (UEFIList.contains(90)) {
                                         AssistChip(
                                             modifier = Modifier.width(105.sdp()),
                                             onClick = {
@@ -631,19 +639,16 @@ object Buttons {
                                                         top = 2.sdp(),
                                                         bottom = 2.sdp()
                                                     ),
-                                                    text = LocalContext.current.getString(R.string.quickboot_question1),
+                                                    text = M3KApp.getString(R.string.quickboot_question2),
                                                     color = MaterialTheme.colorScheme.inverseSurface,
                                                     fontSize = FontSize
                                                 )
                                             }
                                         )
                                     }
-                                    if (UEFIList
-                                            .contains(1) and (!UEFIList.contains(60) or !UEFIList.contains(
-                                            120
-                                        ))
-                                    ) {
+                                    if (UEFIList.contains(60)) {
                                         AssistChip(
+                                            modifier = Modifier.width(105.sdp()),
                                             onClick = {
                                                 Thread {
                                                     showQuickBootDialog.value = false
@@ -654,7 +659,36 @@ object Buttons {
                                             },
                                             label = {
                                                 Text(
-                                                    text = LocalContext.current.getString(R.string.yes),
+                                                    modifier = Modifier.padding(
+                                                        top = 2.sdp(),
+                                                        bottom = 2.sdp()
+                                                    ),
+                                                    text = M3KApp.getString(R.string.quickboot_question1),
+                                                    color = MaterialTheme.colorScheme.inverseSurface,
+                                                    fontSize = FontSize
+                                                )
+                                            }
+                                        )
+                                    }
+                                    if (UEFIList.contains(1)
+                                        and
+                                        (!UEFIList.contains(60)
+                                                && !UEFIList.contains(90)
+                                                && !UEFIList.contains(120)
+                                                )
+                                    ) {
+                                        AssistChip(
+                                            onClick = {
+                                                Thread {
+                                                    showQuickBootDialog.value = false
+                                                    showQuickBootSpinner.value = true
+                                                    quickboot(3)
+                                                    showQuickBootSpinner.value = false
+                                                }.start()
+                                            },
+                                            label = {
+                                                Text(
+                                                    text = M3KApp.getString(R.string.yes),
                                                     color = MaterialTheme.colorScheme.inverseSurface,
                                                     fontSize = FontSize
                                                 )
@@ -669,7 +703,7 @@ object Buttons {
                                                     top = 2.sdp(),
                                                     bottom = 2.sdp()
                                                 ),
-                                                text = LocalContext.current.getString(R.string.no),
+                                                text = M3KApp.getString(R.string.no),
                                                 color = MaterialTheme.colorScheme.inverseSurface,
                                                 fontSize = FontSize
                                             )
@@ -698,7 +732,7 @@ object Buttons {
                     )
                     Column {
                         Text(
-                            LocalContext.current.getString(R.string.quickboot_title),
+                            M3KApp.getString(R.string.quickboot_title),
                             color = MaterialTheme.colorScheme.inverseSurface,
                             fontWeight = FontWeight.Bold,
                             lineHeight = LineHeight,
@@ -709,7 +743,7 @@ object Buttons {
                             else -> R.string.quickboot_subtitle
                         }
                         Text(
-                            LocalContext.current.getString(modem),
+                            M3KApp.getString(modem),
                             color = MaterialTheme.colorScheme.inverseSurface,
                             lineHeight = LineHeight,
                             fontSize = FontSize

@@ -1,4 +1,4 @@
-package com.rxuglr.m3kwoahelper.ui.templates
+package com.rxuglr.m3khelper.ui.templates
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,7 +13,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Message
 import androidx.compose.material.icons.filled.Book
-import androidx.compose.material3.*
+import androidx.compose.material3.AssistChip
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,20 +25,21 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import com.rxuglr.m3kwoahelper.R
-import com.rxuglr.m3kwoahelper.util.Commands.displaytype
-import com.rxuglr.m3kwoahelper.util.Variables.Codename
-import com.rxuglr.m3kwoahelper.util.Variables.Codenames
-import com.rxuglr.m3kwoahelper.util.Variables.FontSize
-import com.rxuglr.m3kwoahelper.util.Variables.LineHeight
-import com.rxuglr.m3kwoahelper.util.Variables.Name
-import com.rxuglr.m3kwoahelper.util.Variables.NoGroup
-import com.rxuglr.m3kwoahelper.util.Variables.NoGuide
-import com.rxuglr.m3kwoahelper.util.Variables.PaddingValue
-import com.rxuglr.m3kwoahelper.util.Variables.Ram
-import com.rxuglr.m3kwoahelper.util.Variables.Slot
-import com.rxuglr.m3kwoahelper.util.sdp
+import com.rxuglr.m3khelper.R
+import com.rxuglr.m3khelper.util.Commands.displaytype
+import com.rxuglr.m3khelper.util.Variables.Codename
+import com.rxuglr.m3khelper.util.Variables.FontSize
+import com.rxuglr.m3khelper.util.Variables.GroupLink
+import com.rxuglr.m3khelper.util.Variables.GuideLink
+import com.rxuglr.m3khelper.util.Variables.LineHeight
+import com.rxuglr.m3khelper.util.Variables.Name
+import com.rxuglr.m3khelper.util.Variables.NoGroup
+import com.rxuglr.m3khelper.util.Variables.NoGuide
+import com.rxuglr.m3khelper.util.Variables.PaddingValue
+import com.rxuglr.m3khelper.util.Variables.Ram
+import com.rxuglr.m3khelper.util.Variables.Slot
+import com.rxuglr.m3khelper.util.sdp
+import com.rxuglr.m3khelper.M3KApp
 
 object Cards {
 
@@ -49,11 +54,6 @@ object Cards {
                 modifier
             },
             shape = RoundedCornerShape(8.sdp()),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(
-                    12.dp
-                )
-            )
         ) {
             Column(verticalArrangement = Arrangement.spacedBy(3.sdp())) {
                 Text(
@@ -70,7 +70,7 @@ object Cards {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 10.sdp()),
-                    text = Name,
+                    text = M3KApp.getString(R.string.model, Name),
                     fontSize = FontSize,
                     lineHeight = LineHeight
                 )
@@ -79,7 +79,7 @@ object Cards {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 10.sdp()),
-                    text = LocalContext.current.getString(R.string.ramvalue, Ram),
+                    text = M3KApp.getString(R.string.ramvalue, Ram),
                     fontSize = FontSize,
                     lineHeight = LineHeight
                 )
@@ -87,7 +87,7 @@ object Cards {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 10.sdp()),
-                    text = LocalContext.current.getString(R.string.paneltype, displaytype()),
+                    text = M3KApp.getString(R.string.paneltype, displaytype()),
                     fontSize = FontSize,
                     lineHeight = LineHeight
                 )
@@ -96,14 +96,16 @@ object Cards {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(start = 10.sdp()),
-                        text = LocalContext.current.getString(R.string.slot, Slot),
+                        text = M3KApp.getString(R.string.slot, Slot),
                         fontSize = FontSize,
                         lineHeight = LineHeight
                     )
                 }
                 Spacer(modifier = Modifier.weight(1f))
                 Row(
-                    Modifier.align(Alignment.CenterHorizontally).padding(bottom = PaddingValue),
+                    Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .padding(bottom = PaddingValue),
                     horizontalArrangement = Arrangement.spacedBy(5.sdp())
                 ) {
                     when {
@@ -122,16 +124,7 @@ object Cards {
                                 },
                                 onClick = {
                                     localUriHandler.openUri(
-                                        when (Codename) {
-                                            Codenames[0], Codenames[1] -> "https://github.com/woa-vayu/Port-Windows-11-Poco-X3-pro"
-                                            Codenames[2] -> "https://github.com/erdilS/Port-Windows-11-Xiaomi-Pad-5"
-                                            Codenames[3], Codenames[4], Codenames[6] -> "https://github.com/graphiks/woa-raphael"
-                                            Codenames[5] -> "https://github.com/woacepheus/Port-Windows-11-Xiaomi-Mi-9"
-                                            Codenames[7] -> "https://github.com/n00b69/woa-beryllium"
-                                            Codenames[8] -> "https://github.com/Rubanoxd/Port-Windows-11-redmi-note-9_pro"
-                                            Codenames[11], Codenames[13], Codenames[14] -> "https://github.com/Icesito68/Port-Windows-11-Lge-devices"
-                                            else -> ""
-                                        }
+                                        GuideLink
                                     )
                                 },
                                 label = {
@@ -161,17 +154,7 @@ object Cards {
                                 },
                                 onClick = {
                                     localUriHandler.openUri(
-                                        when (Codename) {
-                                            Codenames[0], Codenames[1] -> "https://t.me/winonvayualt"
-                                            Codenames[2] -> "https://t.me/nabuwoa"
-                                            Codenames[3], Codenames[4], Codenames[6] -> "https://t.me/woaraphael"
-                                            Codenames[5] -> "https://t.me/woacepheus"
-                                            Codenames[7] -> "https://t.me/WinOnF1"
-                                            Codenames[8] -> "http://t.me/woamiatoll"
-                                            Codenames[9], Codenames[10] -> "https://t.me/onepluswoachat"
-                                            Codenames[11], Codenames[12], Codenames[13], Codenames[14] -> "https://t.me/winong8x"
-                                            else -> ""
-                                        }
+                                        GroupLink
                                     )
                                 },
                                 label = {

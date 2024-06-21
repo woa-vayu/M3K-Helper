@@ -1,4 +1,4 @@
-package com.rxuglr.m3kwoahelper.ui.templates
+package com.rxuglr.m3khelper.ui.templates
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,10 +17,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
-import com.rxuglr.m3kwoahelper.R
-import com.rxuglr.m3kwoahelper.util.Variables.FontSize
-import com.rxuglr.m3kwoahelper.util.Variables.LineHeight
-import com.rxuglr.m3kwoahelper.util.sdp
+import com.rxuglr.m3khelper.R
+import com.rxuglr.m3khelper.util.Variables.FontSize
+import com.rxuglr.m3khelper.util.Variables.LineHeight
+import com.rxuglr.m3khelper.util.sdp
 
 object PopupDialogs {
 

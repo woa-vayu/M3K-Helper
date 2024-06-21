@@ -20,5 +20,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "WOA Helper"
+rootProject.name = "M3K Helper"
 include(":app")

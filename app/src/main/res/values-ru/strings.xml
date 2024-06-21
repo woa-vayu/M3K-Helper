@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="mnt_title">Монтировать Windows</string>
     <string name="umnt_title">Размонтировать Windows</string>
     <string name="dump_modem_title">Исправить модем</string>
@@ -9,7 +10,6 @@
     <string name="backup_boot_title">Резервная копия boot образа</string>
     <string name="flash_uefi_title">Прошить UEFI</string>
     <string name="uefi_not_found_title">UEFI не найден</string>
-
 
     <string name="mnt_question">Монтировать Windows?</string>
     <string name="umnt_question">Размонтировать Windows?</string>
@@ -30,13 +30,15 @@
     <string name="flash_uefi_subtitle">Прошить UEFI для %s?</string>
     <string name="uefi_not_found_subtitle">Скачайте UEFI для вашего устройства и поместите его в папку /sdcard/UEFI</string>
 
-    <string name="no_root">M3K WoA Helper нужны Root-права для работы!</string>
+    <string name="no_root">M3K Helper нужны Root-права для работы!</string>
     <string name="qs_unsupported">Устройство неподдерживается</string>
 
+    <string name="unknown_device">Неизвестное устройство</string>
+    <string name="model">Модель: %s</string>
     <string name="ramvalue">ОЗУ: %s</string>
     <string name="paneltype">"Дисплей: %s"</string>
+    <string name="unknown_panel">Неизвестно</string>
     <string name="slot">Слот: %s</string>
-
 
     <string name="guide">Гайд</string>
     <string name="group">Группа</string>
@@ -44,4 +46,10 @@
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="please_wait">Пожалуйста подождите…</string>
+
+    <string name="home">Главная</string>
+    <string name="links">Дополнительные материалы</string>
+    <string name="device_unsupported">ВАШЕ УСТРОЙСТВО НЕ ПОДДЕРЖИВАЕТСЯ!\n ПОЛЬЗУЙТЕСЬ ДАННЫМ ПРИЛОЖЕНИЕМ НА ВАШ СТРАХ И РИСК</string>
+    <string name="device_unsupported_confirm">Меня это устраивает</string>
+
 </resources>

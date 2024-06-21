@@ -1,8 +1,10 @@
-package com.rxuglr.m3kwoahelper.util
+package com.rxuglr.m3khelper.util
 
-import com.rxuglr.m3kwoahelper.util.Variables.NoModem
-import com.rxuglr.m3kwoahelper.util.Variables.NoSensors
-import com.rxuglr.m3kwoahelper.util.Variables.UEFIList
+import com.rxuglr.m3khelper.R
+import com.rxuglr.m3khelper.util.Variables.NoModem
+import com.rxuglr.m3khelper.util.Variables.NoSensors
+import com.rxuglr.m3khelper.util.Variables.UEFIList
+import com.rxuglr.m3khelper.M3KApp
 import com.topjohnwu.superuser.ShellUtils
 
 object Commands {
@@ -32,7 +34,7 @@ object Commands {
                     || panel.contains("ea8076_f1p2")
                     || panel.contains("ea8076_global") -> "Samsung"
 
-            else -> "Unknown"
+            else -> M3KApp.getString(R.string.unknown_panel)
         }
     }
 
@@ -59,16 +61,19 @@ object Commands {
     }
 
     private fun getuefipath(type: Int): String {
-        val uefiPath = arrayOf("", "", "")
+        val uefiPath = arrayOf("", "", "", "")
         if (UEFIList.contains(120)) {
             uefiPath[0] =
                 ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 120")
         }
+        if (UEFIList.contains(90)) {
+            uefiPath[1] += ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 90")
+        }
         if (UEFIList.contains(60)) {
-            uefiPath[1] += ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 60")
+            uefiPath[2] += ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 60")
         }
         if (UEFIList.contains(1)) {
-            uefiPath[2] += ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img")
+            uefiPath[3] += ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img")
         }
         return uefiPath[type]
     }

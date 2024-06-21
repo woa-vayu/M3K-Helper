@@ -1,4 +1,4 @@
-package com.rxuglr.m3kwoahelper.util
+package com.rxuglr.m3khelper.util
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration
@@ -6,7 +6,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.rxuglr.m3kwoahelper.util.SdpScreenDimensionValues.smallestWidth
+import com.rxuglr.m3khelper.util.SdpScreenDimensionValues.smallestWidth
 
 object SdpScreenDimensionValues {
     var smallestWidth: Int = 0

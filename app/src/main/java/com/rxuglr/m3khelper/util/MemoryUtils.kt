@@ -1,4 +1,4 @@
-package com.rxuglr.m3kwoahelper.util
+package com.rxuglr.m3khelper.util
 
 import java.util.Locale
 

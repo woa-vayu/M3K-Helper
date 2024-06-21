@@ -1,4 +1,4 @@
-# M3K WoA Helper
+# M3K Helper
 
 > [!WARNING]
 > We're not responsible for bricked devices, missing recovery partitions, dead microSD cards, dead
@@ -22,13 +22,23 @@ Read requirements carefully.
 
 ## Supported devices
 
-• [Poco X3 Pro](https://github.com/woa-vayu/Port-Windows-11-POCO-X3-Pro/)
+• [POCOPHONE F1](https://github.com/n00b69/woa-beryllium)
+
+• [Redmi POCO X3 Pro](https://github.com/woa-vayu/Port-Windows-11-POCO-X3-Pro/)
+
+• [Redmi Note 9 Pro](https://github.com/Rubanoxd/Port-Windows-11-redmi-note-9_pro)
 
 • [Xiaomi Pad 5](https://github.com/erdilS/Port-Windows-11-Xiaomi-Pad-5)
 
-• [Xiaomi Mi 9T Pro/Redmi K20 Pro](https://github.com/graphiks/woa-raphael)
+• [Mi 9T Pro/Redmi K20 Pro](https://github.com/graphiks/woa-raphael)
 
-• Xiaomi Mi 9
+• [Mi 9](https://github.com/woacepheus/Port-Windows-11-Xiaomi-Mi-9)
+
+• [LG G8X/V50](https://github.com/woa-lge/LGE-Guides)
+
+• OnePlus 7 Pro
+
+• OnePlus 7T Pro
 
 ## Requirements
 
@@ -38,8 +48,6 @@ Read requirements carefully.
 • Android 10 and up
 
 • Any ROM with ntfs-3g support
-or [ntfs-3g module](https://github.com/woa-vayu/Port-Windows-11-POCO-X3-Pro/releases/ntfsdroid)
-installed.
 
 • Rooted device
 
