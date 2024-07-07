@@ -34,7 +34,7 @@ Read requirements carefully.
 
 • [Mi 9](https://github.com/woacepheus/Port-Windows-11-Xiaomi-Mi-9)
 
-• [LG G8X/V50](https://github.com/woa-lge/LGE-Guides)
+• [LG G8X/V50](https://github.com/woa-lge/Port-Windows-11-Lge-devices)
 
 • OnePlus 7 Pro
 
