@@ -19,7 +19,7 @@ android {
         targetSdk = 34
         versionCode = 13
         versionName = "1.5.5"
-        resConfigs("en", "ru")
+        resConfigs("en", "ru", "ar")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
