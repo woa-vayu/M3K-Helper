@@ -8,8 +8,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.rxuglr.m3khelper.R
 import com.rxuglr.m3khelper.M3KApp
+import com.rxuglr.m3khelper.R
 import com.topjohnwu.superuser.ShellUtils
 
 object Variables {
@@ -71,14 +71,18 @@ object Variables {
 
     // device info
     val Ram: String = RAM().getMemory(M3KApp)
-    var Name: String = ""
+    lateinit var Name: String
+    var Img: Int = 0
     val Slot: String =
         String.format("%S", ShellUtils.fastCmd("getprop ro.boot.slot_suffix")).drop(1)
     var Codename: String = Build.DEVICE
-    var GuideLink: String = ""
-    var GroupLink: String = ""
+
+    lateinit var GuideLink: String
+    lateinit var GroupLink: String
+
     val Unsupported: MutableState<Boolean> = mutableStateOf(false)
     val Warning: MutableState<Boolean> = mutableStateOf(false)
+
     val NoModem: MutableState<Boolean> = mutableStateOf(false)
     val NoFlash: MutableState<Boolean> = mutableStateOf(false)
     val NoBoot: MutableState<Boolean> = mutableStateOf(false)
@@ -87,9 +91,10 @@ object Variables {
     val NoGroup: MutableState<Boolean> = mutableStateOf(false)
 
     // dynamic vars
-    var BootIsPresent: Boolean = false
+    var BootIsPresent: Int = 0
     var WindowsIsPresent: Boolean = false
     var UEFIList: Array<Int> = arrayOf(0)
+
     var FontSize: TextUnit = 0.sp
     var PaddingValue: Dp = 0.dp
     var LineHeight: TextUnit = 0.sp
@@ -124,6 +129,19 @@ object Variables {
             Codenames[14] -> "LG V50"
             else -> M3KApp.getString(R.string.unknown_device)
         }.toString()
+        Img = when (Codename) {
+            Codenames[0], Codenames[1] -> R.drawable.vayu
+            Codenames[2] -> R.drawable.nabu
+            Codenames[3], Codenames[4], Codenames[6] -> R.drawable.raphael
+            Codenames[5] -> R.drawable.cepheus
+            Codenames[7] -> R.drawable.beryllium
+            Codenames[8] -> R.drawable.miatoll
+            Codenames[9] -> R.drawable.guacamole
+            Codenames[10] -> R.drawable.hotdog
+            Codenames[11], Codenames[13], Codenames[14] -> R.drawable.mh2lm
+            Codenames[12] -> R.drawable.alphaplus
+            else -> R.drawable.ic_device_unknown
+        }
 
         if ((Name == M3KApp.getString(R.string.unknown_device))) {
             Unsupported.value = true
@@ -198,6 +216,15 @@ object Variables {
             ) {
                 UEFIList += 1
             }
+        }
+
+        BootIsPresent = when {
+            ShellUtils.fastCmd("find /sdcard/Windows/boot.img").isNotEmpty()
+                    && ShellUtils.fastCmd("find /sdcard/m3khelper/boot.img").isNotEmpty() -> 3
+
+            ShellUtils.fastCmd("find /sdcard/Windows/boot.img").isNotEmpty() -> 2
+            ShellUtils.fastCmd("find /sdcard/m3khelper/boot.img").isNotEmpty() -> 1
+            else -> 0
         }
     }
 }

@@ -39,6 +39,7 @@
     <string name="paneltype">"Дисплей: %s"</string>
     <string name="unknown_panel">Неизвестно</string>
     <string name="slot">Слот: %s</string>
+    <string name="backup_boot_state">"Бекап boot образа: %s"</string>
 
     <string name="guide">Гайд</string>
     <string name="group">Группа</string>
@@ -46,6 +47,9 @@
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="please_wait">Пожалуйста подождите…</string>
+    <string name="backup_windows">Да, только в Windows</string>
+    <string name="backup_android">Да, только в Android</string>
+    <string name="backup_both">Да, и в Windows и в Android</string>
 
     <string name="home">Главная</string>
     <string name="links">Дополнительные материалы</string>

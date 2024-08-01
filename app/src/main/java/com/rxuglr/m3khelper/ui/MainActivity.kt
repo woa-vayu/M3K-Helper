@@ -120,40 +120,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    @Composable
-    fun BottomThingie() {
-        val navController = rememberNavController()
-        BottomAppBar {
-            NavigationBar(tonalElevation = 12.dp) {
-                Destinations.entries.forEach { destination ->
-                    val navBackStackEntry by navController.currentBackStackEntryAsState()
-                    val currentDestination = navBackStackEntry?.destination
-                    NavigationBarItem(
-                        selected = currentDestination?.hierarchy?.any { it.route == destination.direction } == true,
-                        onClick = {
-
-                            navController.navigate(destination.direction) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
-                                }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
-                        },
-                        icon = {
-                            Icon(
-                                destination.iconSelected,
-                                stringResource(destination.label)
-                            )
-                        },
-                        label = { Text(stringResource(destination.label)) },
-                        alwaysShowLabel = false
-                    )
-                }
-            }
-        }
-    }
-
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun Helper() {
@@ -193,7 +159,35 @@ class MainActivity : ComponentActivity() {
                 )
             },
             bottomBar = {
-                /* BottomThingie() */
+                BottomAppBar {
+                    NavigationBar(tonalElevation = 12.dp) {
+                        Destinations.entries.forEach { destination ->
+                            val navBackStackEntry by navController.currentBackStackEntryAsState()
+                            val currentDestination = navBackStackEntry?.destination
+                            NavigationBarItem(
+                                selected = currentDestination?.hierarchy?.any { it.route == destination.route } == true,
+                                onClick = {
+
+                                    navController.navigate(destination.route) {
+                                        popUpTo(navController.graph.findStartDestination().id) {
+                                            saveState = true
+                                        }
+                                        launchSingleTop = true
+                                        restoreState = true
+                                    }
+                                },
+                                icon = {
+                                    Icon(
+                                        destination.iconSelected,
+                                        stringResource(destination.label)
+                                    )
+                                },
+                                label = { Text(stringResource(destination.label)) },
+                                alwaysShowLabel = false
+                            )
+                        }
+                    }
+                }
             }
         ) { innerPadding ->
             NavHost(navController, startDestination = "main", Modifier.padding(innerPadding)) {

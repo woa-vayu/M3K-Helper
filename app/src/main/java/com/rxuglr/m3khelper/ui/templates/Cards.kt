@@ -40,6 +40,8 @@ import com.rxuglr.m3khelper.util.Variables.Ram
 import com.rxuglr.m3khelper.util.Variables.Slot
 import com.rxuglr.m3khelper.util.sdp
 import com.rxuglr.m3khelper.M3KApp
+import com.rxuglr.m3khelper.util.Commands.bootstate
+import com.rxuglr.m3khelper.util.Variables.BootIsPresent
 
 object Cards {
 
@@ -88,6 +90,14 @@ object Cards {
                         .fillMaxWidth()
                         .padding(start = 10.sdp()),
                     text = M3KApp.getString(R.string.paneltype, displaytype()),
+                    fontSize = FontSize,
+                    lineHeight = LineHeight
+                )
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 10.sdp()),
+                    text = M3KApp.getString(R.string.backup_boot_state, bootstate()),
                     fontSize = FontSize,
                     lineHeight = LineHeight
                 )

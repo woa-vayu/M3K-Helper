@@ -5,6 +5,7 @@ import com.rxuglr.m3khelper.util.Variables.NoModem
 import com.rxuglr.m3khelper.util.Variables.NoSensors
 import com.rxuglr.m3khelper.util.Variables.UEFIList
 import com.rxuglr.m3khelper.M3KApp
+import com.rxuglr.m3khelper.util.Variables.BootIsPresent
 import com.topjohnwu.superuser.ShellUtils
 
 object Commands {
@@ -35,6 +36,16 @@ object Commands {
                     || panel.contains("ea8076_global") -> "Samsung"
 
             else -> M3KApp.getString(R.string.unknown_panel)
+        }
+    }
+
+    fun bootstate(): Any {
+        return when (BootIsPresent){
+            0 -> M3KApp.getString(R.string.no)
+            1 -> M3KApp.getString(R.string.backup_android)
+            2 -> M3KApp.getString(R.string.backup_windows)
+            3 -> M3KApp.getString(R.string.backup_both)
+            else -> M3KApp.getString(R.string.no)
         }
     }
 

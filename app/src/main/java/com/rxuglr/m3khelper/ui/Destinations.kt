@@ -3,12 +3,11 @@ package com.rxuglr.m3khelper.ui
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material.icons.outlined.*
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.rxuglr.m3khelper.R
 
 enum class Destinations(
-    val direction: String,
+    val route: String,
     @StringRes val label: Int,
     val iconSelected: ImageVector,
 ) {

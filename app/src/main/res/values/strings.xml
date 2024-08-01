@@ -44,6 +44,7 @@
     <string name="paneltype">"Panel: %s"</string>
     <string name="unknown_panel">Unknown</string>
     <string name="slot">"Slot: %s"</string>
+    <string name="backup_boot_state">"Boot backed up: %s"</string>
 
     <string name="guide">Guide</string>
     <string name="group">Group</string>
@@ -51,6 +52,9 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="please_wait">Please Wait…</string>
+    <string name="backup_windows">Yes, only to Windows</string>
+    <string name="backup_android">Yes, only to Android</string>
+    <string name="backup_both">Yes, both to Windows and Android</string>
 
     <string name="home">Home</string>
     <string name="links">Additional materials</string>

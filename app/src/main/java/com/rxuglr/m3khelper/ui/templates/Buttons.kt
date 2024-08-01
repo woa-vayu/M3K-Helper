@@ -34,6 +34,7 @@ import com.rxuglr.m3khelper.util.Variables.UEFIList
 import com.rxuglr.m3khelper.util.sdp
 import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
+import com.rxuglr.m3khelper.util.Variables.vars
 
 object Buttons {
 
