@@ -69,6 +69,7 @@ import com.rxuglr.m3khelper.util.Variables.Warning
 import com.rxuglr.m3khelper.util.sdp
 import com.rxuglr.m3khelper.util.ssp
 import com.rxuglr.m3khelper.M3KApp
+import com.rxuglr.m3khelper.util.Variables.Unsupported
 import com.topjohnwu.superuser.Shell
 
 class MainActivity : ComponentActivity() {
@@ -158,7 +159,7 @@ class MainActivity : ComponentActivity() {
                     actions = {},
                 )
             },
-            bottomBar = {
+            /* bottomBar = {
                 BottomAppBar {
                     NavigationBar(tonalElevation = 12.dp) {
                         Destinations.entries.forEach { destination ->
@@ -188,7 +189,7 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 }
-            }
+            } */
         ) { innerPadding ->
             NavHost(navController, startDestination = "main", Modifier.padding(innerPadding)) {
                 composable(
@@ -244,7 +245,7 @@ class MainActivity : ComponentActivity() {
                             text = {
                                 Text(
                                     modifier = Modifier.fillMaxWidth(),
-                                    text = stringResource(R.string.device_unsupported),
+                                    text = stringResource(R.string.device_unknown),
                                     textAlign = TextAlign.Center,
                                     fontWeight = FontWeight.Bold,
                                     lineHeight = 35.ssp(),
@@ -264,12 +265,40 @@ class MainActivity : ComponentActivity() {
                                                 top = 2.sdp(),
                                                 bottom = 2.sdp()
                                             ),
-                                            text = stringResource(R.string.device_unsupported_confirm),
+                                            text = stringResource(R.string.device_unknown_confirm),
                                             color = MaterialTheme.colorScheme.inverseSurface
                                         )
                                     }
                                 )
                             }
+                        )
+                    }
+                }
+                when {
+                    Unsupported.value -> {
+                        AlertDialog(
+                            icon = {
+                                Icon(
+                                    imageVector = Icons.Filled.Warning,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.size(40.sdp())
+                                )
+                            },
+                            title = {},
+                            text = {
+                                Text(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    text = getString(R.string.device_unsupported),
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    lineHeight = 35.ssp(),
+                                    fontSize = 25.ssp()
+                                )
+                            },
+                            onDismissRequest = {},
+                            dismissButton = {},
+                            confirmButton = {}
                         )
                     }
                 }

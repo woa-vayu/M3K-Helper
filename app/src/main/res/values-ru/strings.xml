@@ -39,7 +39,8 @@
     <string name="paneltype">"Дисплей: %s"</string>
     <string name="unknown_panel">Неизвестно</string>
     <string name="slot">Слот: %s</string>
-    <string name="backup_boot_state">"Бекап boot образа: %s"</string>
+    <string name="backup_boot_state">"Бекап boot образа: "</string>
+    <string name="windows_status">"Windows установленна: "</string>
 
     <string name="guide">Гайд</string>
     <string name="group">Группа</string>
@@ -53,7 +54,8 @@
 
     <string name="home">Главная</string>
     <string name="links">Дополнительные материалы</string>
-    <string name="device_unsupported">ВАШЕ УСТРОЙСТВО НЕ ПОДДЕРЖИВАЕТСЯ!\n ПОЛЬЗУЙТЕСЬ ДАННЫМ ПРИЛОЖЕНИЕМ НА ВАШ СТРАХ И РИСК</string>
-    <string name="device_unsupported_confirm">Меня это устраивает</string>
+    <string name="device_unknown">ВАШЕ УСТРОЙСТВО НЕ ПОДДЕРЖИВАЕТСЯ!\n ПОЛЬЗУЙТЕСЬ ДАННЫМ ПРИЛОЖЕНИЕМ НА ВАШ СТРАХ И РИСК</string>
+    <string name="device_unsupported">Ваше устройство не поддерживается.</string>
+    <string name="device_unknown_confirm">Меня это устраивает</string>
 
 </resources>

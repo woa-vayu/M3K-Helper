@@ -40,8 +40,8 @@ import com.rxuglr.m3khelper.util.Variables.Ram
 import com.rxuglr.m3khelper.util.Variables.Slot
 import com.rxuglr.m3khelper.util.sdp
 import com.rxuglr.m3khelper.M3KApp
-import com.rxuglr.m3khelper.util.Commands.bootstate
 import com.rxuglr.m3khelper.util.Variables.BootIsPresent
+import com.rxuglr.m3khelper.util.Variables.WindowsIsPresent
 
 object Cards {
 
@@ -62,7 +62,7 @@ object Cards {
                     modifier = Modifier
                         .padding(top = PaddingValue)
                         .fillMaxWidth(),
-                    text = "Windows on ARM",
+                    text = M3KApp.getString(R.string.woa),
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
                     fontSize = FontSize,
@@ -97,7 +97,7 @@ object Cards {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 10.sdp()),
-                    text = M3KApp.getString(R.string.backup_boot_state, bootstate()),
+                    text = M3KApp.getString(R.string.backup_boot_state) + M3KApp.getString(BootIsPresent),
                     fontSize = FontSize,
                     lineHeight = LineHeight
                 )
@@ -111,6 +111,14 @@ object Cards {
                         lineHeight = LineHeight
                     )
                 }
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 10.sdp()),
+                    text = M3KApp.getString(R.string.windows_status) + M3KApp.getString(WindowsIsPresent),
+                    fontSize = FontSize,
+                    lineHeight = LineHeight
+                )
                 Spacer(modifier = Modifier.weight(1f))
                 Row(
                     Modifier

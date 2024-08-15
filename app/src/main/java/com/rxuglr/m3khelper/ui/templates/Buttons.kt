@@ -34,7 +34,6 @@ import com.rxuglr.m3khelper.util.Variables.UEFIList
 import com.rxuglr.m3khelper.util.sdp
 import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
-import com.rxuglr.m3khelper.util.Variables.vars
 
 object Buttons {
 
@@ -177,7 +176,7 @@ object Buttons {
                                                 top = 2.sdp(),
                                                 bottom = 2.sdp()
                                             ),
-                                            text = "Android",
+                                            text = M3KApp.getString(R.string.android),
                                             color = MaterialTheme.colorScheme.inverseSurface,
                                             fontSize = FontSize
                                         )
@@ -198,7 +197,7 @@ object Buttons {
                                                 top = 2.sdp(),
                                                 bottom = 2.sdp()
                                             ),
-                                            text = "Windows",
+                                            text = M3KApp.getString(R.string.windows),
                                             color = MaterialTheme.colorScheme.inverseSurface,
                                             fontSize = FontSize
                                         )

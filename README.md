@@ -36,10 +36,6 @@ Read requirements carefully.
 
 • [LG G8X/V50](https://github.com/woa-lge/Port-Windows-11-Lge-devices)
 
-• OnePlus 7 Pro
-
-• OnePlus 7T Pro
-
 ## Requirements
 
 <details> 

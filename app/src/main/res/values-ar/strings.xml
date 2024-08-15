@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="mnt_title">وصل قسم تخزين Windows</string>
     <string name="umnt_title">فصل قسم تخزين Windows</string>
@@ -45,12 +45,12 @@
 
     <string name="yes">نعم</string>
     <string name="no">لا</string>
-    <string name="please_wait">يرجى الإنتظار...</string>
+    <string name="please_wait" tools:ignore="TypographyEllipsis">يرجى الإنتظار...</string>
 
     <string name="home">الصفحة الرئيسية</string>
     <string name="links">موارد إضافية</string>
 
-    <string name="device_unsupported">جهازك غير مدعوم!!! استخدامك لهذا التطبيق قد يحوله لخردة</string>
-    <string name="device_unsupported_confirm">ماشي يعم</string>
+    <string name="device_unknown">جهازك غير مدعوم!!! استخدامك لهذا التطبيق قد يحوله لخردة</string>
+    <string name="device_unknown_confirm">ماشي يعم</string>
 
 </resources>

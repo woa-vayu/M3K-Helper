@@ -3,6 +3,10 @@
 
     <string name="app_name" translatable="false">M3K Helper</string>
 
+    <string name="android" translatable="false">Android</string>
+    <string name="windows" translatable="false">Windows</string>
+    <string name="woa" translatable="false">Windows on ARM</string>
+
     <string name="mnt_title">Mount Windows</string>
     <string name="umnt_title">Unmount Windows</string>
     <string name="dump_modem_title">Dump Modem</string>
@@ -44,7 +48,9 @@
     <string name="paneltype">"Panel: %s"</string>
     <string name="unknown_panel">Unknown</string>
     <string name="slot">"Slot: %s"</string>
-    <string name="backup_boot_state">"Boot backed up: %s"</string>
+    <string name="backup_boot_state">"Boot backed up: "</string>
+    <string name="windows_status">"Windows installed: "</string>
+
 
     <string name="guide">Guide</string>
     <string name="group">Group</string>
@@ -59,7 +65,8 @@
     <string name="home">Home</string>
     <string name="links">Additional materials</string>
 
-    <string name="device_unsupported">YOUR DEVICE ISN\'T SUPPORTED!\n USING THIS APP CAN RESULT IN A BRICK</string>
-    <string name="device_unsupported_confirm">I\'m fine with that</string>
+    <string name="device_unknown">YOUR DEVICE ISN\'T SUPPORTED!\n USING THIS APP CAN RESULT IN A BRICK</string>
+    <string name="device_unsupported">Your device isn\'t supported.</string>
+    <string name="device_unknown_confirm">I\'m fine with that</string>
 
 </resources>
