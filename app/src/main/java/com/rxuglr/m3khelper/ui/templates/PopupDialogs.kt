@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.CircularProgressIndicator
@@ -16,11 +18,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import com.rxuglr.m3khelper.R
+import com.rxuglr.m3khelper.util.Variables
 import com.rxuglr.m3khelper.util.Variables.FontSize
 import com.rxuglr.m3khelper.util.Variables.LineHeight
+import com.rxuglr.m3khelper.util.Variables.Warning
 import com.rxuglr.m3khelper.util.sdp
+import com.rxuglr.m3khelper.util.ssp
 
 object PopupDialogs {
 
@@ -96,7 +103,35 @@ object PopupDialogs {
     }
 
     @Composable
-    fun SpinnerDialog(
+    fun NoRoot() {
+        AlertDialog(
+            icon = {
+                Icon(
+                    imageVector = Icons.Filled.Warning,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(40.sdp())
+                )
+            },
+            title = {},
+            text = {
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = stringResource(R.string.no_root),
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.Bold,
+                    lineHeight = 35.ssp(),
+                    fontSize = 25.ssp()
+                )
+            },
+            onDismissRequest = {},
+            dismissButton = {},
+            confirmButton = {}
+        )
+    }
+
+    @Composable
+    fun StatusDialog(
         icon: Painter,
         title: Int,
         showDialog: Boolean,
@@ -136,5 +171,78 @@ object PopupDialogs {
                 confirmButton = {}
             )
         }
+    }
+
+    @Composable
+    fun UnknownDevice() {
+        AlertDialog(
+            icon = {
+                Icon(
+                    modifier = Modifier
+                        .size(40.sdp()),
+                    imageVector = Icons.Filled.Warning,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
+            },
+            title = {},
+            text = {
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = stringResource(R.string.device_unknown),
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.Bold,
+                    lineHeight = 35.ssp(),
+                    fontSize = 25.ssp()
+                )
+            },
+            onDismissRequest = { Warning.value = false },
+            dismissButton = {},
+            confirmButton = {
+                AssistChip(
+                    onClick = {
+                        Warning.value = false
+                    },
+                    label = {
+                        Text(
+                            modifier = Modifier.padding(
+                                top = 2.sdp(),
+                                bottom = 2.sdp()
+                            ),
+                            text = stringResource(R.string.device_unknown_confirm),
+                            color = MaterialTheme.colorScheme.inverseSurface
+                        )
+                    }
+                )
+            }
+        )
+    }
+
+    @Composable
+    fun UnsupportedDevice() {
+        AlertDialog(
+            icon = {
+                Icon(
+                    imageVector = Icons.Filled.Warning,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(40.sdp())
+                )
+            },
+            title = {},
+            text = {
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = stringResource(R.string.device_unsupported),
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.Bold,
+                    lineHeight = 35.ssp(),
+                    fontSize = 25.ssp()
+                )
+            },
+            onDismissRequest = {},
+            dismissButton = {},
+            confirmButton = {}
+        )
     }
 }

@@ -45,7 +45,7 @@
     <string name="unknown_device">Unknown device</string>
     <string name="model">Model: %s</string>
     <string name="ramvalue">RAM: %s</string>
-    <string name="paneltype">"Panel: %s"</string>
+    <string name="paneltype">"Panel: "</string>
     <string name="unknown_panel">Unknown</string>
     <string name="slot">"Slot: %s"</string>
     <string name="backup_boot_state">"Boot backed up: "</string>

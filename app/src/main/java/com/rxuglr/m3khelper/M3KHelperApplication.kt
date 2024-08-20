@@ -5,7 +5,6 @@ import com.topjohnwu.superuser.Shell
 
 lateinit var M3KApp: M3KHelperApplication
 
-
 class M3KHelperApplication : Application() {
     override fun onCreate() {
         super.onCreate()

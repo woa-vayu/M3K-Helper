@@ -74,6 +74,7 @@ object Variables {
     val Slot: String =
         String.format("%S", ShellUtils.fastCmd("getprop ro.boot.slot_suffix")).drop(1)
     var Codename: String = Build.DEVICE
+    lateinit var PanelType: String
 
     lateinit var GuideLink: String
     lateinit var GroupLink: String
@@ -191,6 +192,23 @@ object Variables {
             }
         }
 
+        val panel = ShellUtils.fastCmd("cat /proc/cmdline")
+        PanelType = when {
+            panel.contains("j20s_42") || panel.contains("k82_42") -> "Huaxing"
+            panel.contains("j20s_36")
+                    || panel.contains("tianma")
+                    || panel.contains("k82_36") -> "Tianma"
+
+            panel.contains("ebbg") -> "EBBG"
+            panel.contains("samsung")
+                    || panel.contains("ea8076_f1mp")
+                    || panel.contains("ea8076_f1p2")
+                    || panel.contains("ea8076_global") -> "Samsung"
+
+            else -> M3KApp.getString(R.string.unknown_panel)
+        }
+
+
         mountwin()
         WindowsIsPresent = when {
             ShellUtils.fastCmd("find /sdcard/Windows/Windows/explorer.exe")
@@ -236,11 +254,14 @@ object Variables {
 
         BootIsPresent = when {
             ShellUtils.fastCmd("find /sdcard/Windows/boot.img").isNotEmpty()
-                    && ShellUtils.fastCmd("find /sdcard/m3khelper/boot.img").isNotEmpty() -> R.string.backup_both
+                    && ShellUtils.fastCmd("find /sdcard/m3khelper/boot.img")
+                .isNotEmpty() -> R.string.backup_both
 
-            ShellUtils.fastCmd("find /sdcard/Windows/boot.img").isNotEmpty() -> R.string.backup_windows
+            ShellUtils.fastCmd("find /sdcard/Windows/boot.img")
+                .isNotEmpty() -> R.string.backup_windows
 
-            ShellUtils.fastCmd("find /sdcard/m3khelper/boot.img").isNotEmpty() -> R.string.backup_android
+            ShellUtils.fastCmd("find /sdcard/m3khelper/boot.img")
+                .isNotEmpty() -> R.string.backup_android
 
             else -> R.string.no
         }

@@ -26,7 +26,6 @@ import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import com.rxuglr.m3khelper.R
-import com.rxuglr.m3khelper.util.Commands.displaytype
 import com.rxuglr.m3khelper.util.Variables.Codename
 import com.rxuglr.m3khelper.util.Variables.FontSize
 import com.rxuglr.m3khelper.util.Variables.GroupLink
@@ -41,6 +40,7 @@ import com.rxuglr.m3khelper.util.Variables.Slot
 import com.rxuglr.m3khelper.util.sdp
 import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.util.Variables.BootIsPresent
+import com.rxuglr.m3khelper.util.Variables.PanelType
 import com.rxuglr.m3khelper.util.Variables.WindowsIsPresent
 
 object Cards {
@@ -89,7 +89,7 @@ object Cards {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 10.sdp()),
-                    text = M3KApp.getString(R.string.paneltype, displaytype()),
+                    text = M3KApp.getString(R.string.paneltype) + PanelType,
                     fontSize = FontSize,
                     lineHeight = LineHeight
                 )

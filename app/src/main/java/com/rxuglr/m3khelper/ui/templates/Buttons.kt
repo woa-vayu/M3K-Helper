@@ -34,6 +34,8 @@ import com.rxuglr.m3khelper.util.Variables.UEFIList
 import com.rxuglr.m3khelper.util.sdp
 import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
+import com.rxuglr.m3khelper.ui.templates.PopupDialogs.Dialog
+import com.rxuglr.m3khelper.ui.templates.PopupDialogs.StatusDialog
 
 object Buttons {
 
@@ -55,7 +57,7 @@ object Buttons {
         ) {
             when {
                 showSpinner.value -> {
-                    PopupDialogs.SpinnerDialog(
+                    StatusDialog(
                         icon = painterResource(id = icon),
                         title = R.string.please_wait,
                         showDialog = showSpinner.value,
@@ -64,7 +66,7 @@ object Buttons {
             }
             when {
                 showDialog.value -> {
-                    PopupDialogs.Dialog(
+                    Dialog(
                         icon = painterResource(id = icon),
                         title = null,
                         description = M3KApp.getString(question),
@@ -126,7 +128,7 @@ object Buttons {
         ) {
             when {
                 showBackupSpinner.value -> {
-                    PopupDialogs.SpinnerDialog(
+                    StatusDialog(
                         icon = painterResource(id = R.drawable.ic_backup),
                         title = R.string.please_wait,
                         showDialog = showBackupSpinner.value,
@@ -269,7 +271,7 @@ object Buttons {
             when {
                 showMountDialog.value -> {
                     if (mountstatus()) {
-                        PopupDialogs.Dialog(
+                        Dialog(
                             icon = painterResource(id = R.drawable.ic_folder_open),
                             title = null,
                             description = M3KApp.getString(R.string.mnt_question),
@@ -281,7 +283,7 @@ object Buttons {
                             })
                         )
                     } else {
-                        PopupDialogs.Dialog(
+                        Dialog(
                             painterResource(id = R.drawable.ic_folder),
                             null,
                             M3KApp.getString(R.string.umnt_question),
@@ -356,7 +358,7 @@ object Buttons {
         ) {
             when {
                 showUEFISpinner.value -> {
-                    PopupDialogs.SpinnerDialog(
+                    StatusDialog(
                         icon = painterResource(id = R.drawable.ic_uefi),
                         title = R.string.please_wait,
                         showDialog = showUEFISpinner.value,
@@ -564,7 +566,7 @@ object Buttons {
             ) {
                 when {
                     showQuickBootSpinner.value -> {
-                        PopupDialogs.SpinnerDialog(
+                        StatusDialog(
                             icon = painterResource(id = R.drawable.ic_windows),
                             title = R.string.please_wait,
                             showDialog = showQuickBootSpinner.value,

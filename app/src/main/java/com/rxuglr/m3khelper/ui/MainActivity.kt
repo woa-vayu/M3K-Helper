@@ -19,8 +19,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.BottomAppBar
@@ -71,6 +69,9 @@ import com.rxuglr.m3khelper.util.Variables.Unsupported
 import com.rxuglr.m3khelper.util.sdp
 import com.rxuglr.m3khelper.util.ssp
 import com.rxuglr.m3khelper.M3KApp
+import com.rxuglr.m3khelper.ui.templates.PopupDialogs.NoRoot
+import com.rxuglr.m3khelper.ui.templates.PopupDialogs.UnknownDevice
+import com.rxuglr.m3khelper.ui.templates.PopupDialogs.UnsupportedDevice
 import com.topjohnwu.superuser.Shell
 
 class MainActivity : ComponentActivity() {
@@ -86,38 +87,9 @@ class MainActivity : ComponentActivity() {
                 requestedOrientation = SCREEN_ORIENTATION_USER_PORTRAIT
             }
             M3KHelperTheme {
-                val noRoot = remember { mutableStateOf(true) }
-                when {
-                    noRoot.value -> {
-                        AlertDialog(
-                            icon = {
-                                Icon(
-                                    imageVector = Icons.Filled.Warning,
-                                    contentDescription = null,
-                                    tint = MaterialTheme.colorScheme.primary,
-                                    modifier = Modifier.size(40.sdp())
-                                )
-                            },
-                            title = {},
-                            text = {
-                                Text(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    text = getString(R.string.no_root),
-                                    textAlign = TextAlign.Center,
-                                    fontWeight = FontWeight.Bold,
-                                    lineHeight = 35.ssp(),
-                                    fontSize = 25.ssp()
-                                )
-                            },
-                            onDismissRequest = {},
-                            dismissButton = {},
-                            confirmButton = {}
-                        )
-                    }
-                }
                 if (Shell.isAppGrantedRoot() == true) {
-                    noRoot.value = false; vars(); Helper()
-                }
+                    vars(); Helper()
+                } else NoRoot()
             }
         }
     }
@@ -232,75 +204,12 @@ class MainActivity : ComponentActivity() {
             ) {
                 when {
                     Warning.value -> {
-                        AlertDialog(
-                            icon = {
-                                Icon(
-                                    modifier = Modifier
-                                        .size(40.sdp()),
-                                    imageVector = Icons.Filled.Warning,
-                                    contentDescription = null,
-                                    tint = MaterialTheme.colorScheme.primary
-                                )
-                            },
-                            title = {},
-                            text = {
-                                Text(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    text = stringResource(R.string.device_unknown),
-                                    textAlign = TextAlign.Center,
-                                    fontWeight = FontWeight.Bold,
-                                    lineHeight = 35.ssp(),
-                                    fontSize = 25.ssp()
-                                )
-                            },
-                            onDismissRequest = { Warning.value = false },
-                            dismissButton = {},
-                            confirmButton = {
-                                AssistChip(
-                                    onClick = {
-                                        Warning.value = false
-                                    },
-                                    label = {
-                                        Text(
-                                            modifier = Modifier.padding(
-                                                top = 2.sdp(),
-                                                bottom = 2.sdp()
-                                            ),
-                                            text = stringResource(R.string.device_unknown_confirm),
-                                            color = MaterialTheme.colorScheme.inverseSurface
-                                        )
-                                    }
-                                )
-                            }
-                        )
+                        UnknownDevice()
                     }
                 }
                 when {
                     Unsupported.value -> {
-                        AlertDialog(
-                            icon = {
-                                Icon(
-                                    imageVector = Icons.Filled.Warning,
-                                    contentDescription = null,
-                                    tint = MaterialTheme.colorScheme.primary,
-                                    modifier = Modifier.size(40.sdp())
-                                )
-                            },
-                            title = {},
-                            text = {
-                                Text(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    text = getString(R.string.device_unsupported),
-                                    textAlign = TextAlign.Center,
-                                    fontWeight = FontWeight.Bold,
-                                    lineHeight = 35.ssp(),
-                                    fontSize = 25.ssp()
-                                )
-                            },
-                            onDismissRequest = {},
-                            dismissButton = {},
-                            confirmButton = {}
-                        )
+                        UnsupportedDevice()
                     }
                 }
                 if (M3KApp.resources.configuration.orientation != Configuration.ORIENTATION_PORTRAIT) {

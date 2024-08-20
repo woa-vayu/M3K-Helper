@@ -36,7 +36,7 @@
     <string name="unknown_device">جهاز غير معروف</string>
     <string name="model">النوع: %s</string>
     <string name="ramvalue">الرام: %s</string>
-    <string name="paneltype">"الشاشة: %s"</string>
+    <string name="paneltype">"الشاشة: "</string>
     <string name="unknown_panel">غير معروف</string>
     <string name="slot">"الفتحة: %s"</string>
 

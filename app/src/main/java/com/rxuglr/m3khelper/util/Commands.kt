@@ -1,10 +1,8 @@
 package com.rxuglr.m3khelper.util
 
-import com.rxuglr.m3khelper.R
 import com.rxuglr.m3khelper.util.Variables.NoModem
 import com.rxuglr.m3khelper.util.Variables.NoSensors
 import com.rxuglr.m3khelper.util.Variables.UEFIList
-import com.rxuglr.m3khelper.M3KApp
 import com.topjohnwu.superuser.ShellUtils
 
 object Commands {
@@ -17,24 +15,6 @@ object Commands {
         } else if (where == 2) {
             ShellUtils.fastCmd("mkdir /sdcard/m3khelper || true ")
             ShellUtils.fastCmd("dd if=/dev/block/bootdevice/by-name/boot$slot of=/sdcard/m3khelper/boot.img")
-        }
-    }
-
-    fun displaytype(): Any {
-        val panel = ShellUtils.fastCmd("cat /proc/cmdline")
-        return when {
-            panel.contains("j20s_42") || panel.contains("k82_42") -> "Huaxing"
-            panel.contains("j20s_36")
-                    || panel.contains("tianma")
-                    || panel.contains("k82_36") -> "Tianma"
-
-            panel.contains("ebbg") -> "EBBG"
-            panel.contains("samsung")
-                    || panel.contains("ea8076_f1mp")
-                    || panel.contains("ea8076_f1p2")
-                    || panel.contains("ea8076_global") -> "Samsung"
-
-            else -> M3KApp.getString(R.string.unknown_panel)
         }
     }
 
