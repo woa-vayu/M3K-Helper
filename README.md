@@ -22,17 +22,17 @@ Read requirements carefully.
 ## Supported devices
 | Device                  | Guide |
 |-------------------------|-------|
-| POCOPHONE F1            | https://github.com/n00b69/woa-beryllium                      |
-| Redmi POCO X3 Pro       | https://github.com/woa-vayu/Port-Windows-11-POCO-X3-Pro      |
-| Redmi Note 9 Pro        | https://github.com/Rubanoxd/Port-Windows-11-redmi-note-9_pro |
-| Xiaomi Pad 5            | https://github.com/erdilS/Port-Windows-11-Xiaomi-Pad-5       |
-| Mi 9T Pro/Redmi K20 Pro | https://github.com/graphiks/woa-raphael                      |
-| Mi 9                    | https://github.com/woacepheus/Port-Windows-11-Xiaomi-Mi-9    |
-| LG G8                   | https://github.com/n00b69/woa-alphaplus                      |
-| LG G8S                  | https://github.com/n00b69/woa-betalm                         |
-| LG G8X                  | https://github.com/n00b69/woa-mh2lm                          |
-| LG V50                  | https://github.com/n00b69/woa-flashlmdd                      |
-| LG V50S                 | https://github.com/n00b69/woa-mh2lm5g                        |
+| POCOPHONE F1            | https://github.com/n00b69/woa-beryllium                         |
+| Redmi POCO X3 Pro       | https://github.com/woa-vayu/POCOX3Pro-Guides                    |
+| Redmi Note 9 Pro        | https://github.com/woa-miatoll/Port-Windows-11-Redmi-Note-9-Pro |
+| Xiaomi Pad 5            | https://github.com/erdilS/Port-Windows-11-Xiaomi-Pad-5          |
+| Mi 9T Pro/Redmi K20 Pro | https://github.com/graphiks/woa-raphael                         |
+| Mi 9                    | https://github.com/woacepheus/Port-Windows-11-Xiaomi-Mi-9       |
+| LG G8                   | https://github.com/n00b69/woa-alphaplus                         |
+| LG G8S                  | https://github.com/n00b69/woa-betalm                            |
+| LG G8X                  | https://github.com/n00b69/woa-mh2lm                             |
+| LG V50                  | https://github.com/n00b69/woa-flashlmdd                         |
+| LG V50S                 | https://github.com/n00b69/woa-mh2lm5g                           |
 
 ## Requirements
 
