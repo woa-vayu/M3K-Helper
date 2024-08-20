@@ -58,6 +58,7 @@ import com.rxuglr.m3khelper.ui.theme.M3KHelperTheme
 import com.rxuglr.m3khelper.util.Commands.checksensors
 import com.rxuglr.m3khelper.util.Commands.dumpmodem
 import com.rxuglr.m3khelper.util.Commands.dumpsensors
+import com.rxuglr.m3khelper.util.Variables.vars
 import com.rxuglr.m3khelper.util.Variables.Codename
 import com.rxuglr.m3khelper.util.Variables.FontSize
 import com.rxuglr.m3khelper.util.Variables.LineHeight
@@ -66,10 +67,10 @@ import com.rxuglr.m3khelper.util.Variables.NoFlash
 import com.rxuglr.m3khelper.util.Variables.NoModem
 import com.rxuglr.m3khelper.util.Variables.PaddingValue
 import com.rxuglr.m3khelper.util.Variables.Warning
+import com.rxuglr.m3khelper.util.Variables.Unsupported
 import com.rxuglr.m3khelper.util.sdp
 import com.rxuglr.m3khelper.util.ssp
 import com.rxuglr.m3khelper.M3KApp
-import com.rxuglr.m3khelper.util.Variables.Unsupported
 import com.topjohnwu.superuser.Shell
 
 class MainActivity : ComponentActivity() {
@@ -115,7 +116,7 @@ class MainActivity : ComponentActivity() {
                     }
                 }
                 if (Shell.isAppGrantedRoot() == true) {
-                    noRoot.value = false; Helper()
+                    noRoot.value = false; vars(); Helper()
                 }
             }
         }

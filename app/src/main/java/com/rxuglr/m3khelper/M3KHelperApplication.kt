@@ -1,7 +1,6 @@
 package com.rxuglr.m3khelper
 
 import android.app.Application
-import com.rxuglr.m3khelper.util.Variables.vars
 import com.topjohnwu.superuser.Shell
 
 lateinit var M3KApp: M3KHelperApplication
@@ -14,6 +13,5 @@ class M3KHelperApplication : Application() {
         Shell.setDefaultBuilder(
             Shell.Builder.create().setFlags(Shell.FLAG_REDIRECT_STDERR).setTimeout(10)
         )
-        vars()
     }
 }

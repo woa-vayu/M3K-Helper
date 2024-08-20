@@ -18,7 +18,7 @@ import kotlin.properties.Delegates
 object Variables {
 
     // static vars
-    val Codenames: Array<String> =
+    private val Codenames: Array<String> =
         arrayOf(
             "vayu",
             "bhima",
@@ -32,7 +32,8 @@ object Variables {
             "alphaplus",
             "mh2lm",
             "flashlmmd",
-            "mh2lm5g"
+            "mh2lm5g",
+            "emu64xa"
         )
     private val NoModemA: Array<String> =
         arrayOf(
@@ -106,8 +107,6 @@ object Variables {
                     || Codename.contains("gram")
                     || Codename.contains("joyeuse") -> "miatoll"
 
-            Codename.contains("OnePlus7TPro") -> "hotdog"
-            Codename.contains("OnePlus7Pro") -> "guacamole"
             else -> Codename
         }
         Name = when (Codename) {
@@ -123,6 +122,7 @@ object Variables {
             Codenames[10] -> "LG G8X"
             Codenames[11] -> "LG V50"
             Codenames[12] -> "LG V50S"
+            Codenames[13] -> "emu64xa"
             else -> M3KApp.getString(R.string.unknown_device)
         }.toString()
         Img = when (Codename) {
@@ -171,6 +171,7 @@ object Variables {
                 Codenames[10] -> "https://github.com/n00b69/woa-mh2lm"
                 Codenames[11] -> "https://github.com/n00b69/woa-flashlmdd"
                 Codenames[12] -> "https://github.com/n00b69/woa-mh2lm5g"
+                Codenames[13] -> "https://google.com"
                 else -> ""
             }
         }
@@ -185,10 +186,25 @@ object Variables {
                 Codenames[7] -> "https://t.me/WinOnF1"
                 Codenames[8] -> "http://t.me/woamiatoll"
                 Codenames[9], Codenames[10], Codenames[11], Codenames[12] -> "https://t.me/winong8x"
+                Codenames[13] -> "https://google.com"
                 else -> ""
             }
         }
 
+        mountwin()
+        WindowsIsPresent = when {
+            ShellUtils.fastCmd("find /sdcard/Windows/Windows/explorer.exe")
+                .isNotEmpty() -> R.string.yes
+
+            else -> R.string.no
+        }
+        umountwin()
+
+        DynamicVars()
+    }
+
+    fun DynamicVars() {
+        UEFIList = arrayOf(0)
         if ((ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img").isEmpty())) {
             UEFIList += 99
         } else {
@@ -228,14 +244,5 @@ object Variables {
 
             else -> R.string.no
         }
-
-        mountwin()
-        WindowsIsPresent = when {
-            ShellUtils.fastCmd("find /sdcard/Windows/Windows/explorer.exe")
-                .isNotEmpty() -> R.string.yes
-
-            else -> R.string.no
-        }
-        umountwin()
     }
 }

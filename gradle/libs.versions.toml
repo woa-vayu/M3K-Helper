@@ -1,8 +1,7 @@
 [versions]
 agp = "8.4.2"
-kotlin = "1.9.23"
-ksp = "1.9.23-1.0.19"
-compose-compiler = "1.5.11"
+kotlin = "2.0.10"
+ksp = "2.0.10-1.0.24"
 compose-bom = "2024.06.00"
 lifecycle = "2.8.4"
 material = "1.12.0"
@@ -17,6 +16,8 @@ kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 lsplugin-apksign = { id = "org.lsposed.lsplugin.apksign", version = "1.4" }
 lsplugin-cmaker = { id = "org.lsposed.lsplugin.cmaker", version = "1.2" }
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 [libraries]
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version = "1.9.1" }
@@ -38,7 +39,7 @@ com-github-topjohnwu-libsu-service = { group = "com.github.topjohnwu.libsu", nam
 
 io-coil-kt-coil-compose = { group = "io.coil-kt", name = "coil-compose", version = "2.7.0" }
 
-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.8.1" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.9.0-RC.2" }
 
 compose-destinations-animations-core = { group = "io.github.raamcosta.compose-destinations", name = "animations-core", version.ref = "compose-destination" }
 compose-destinations-ksp = { group = "io.github.raamcosta.compose-destinations", name = "ksp", version.ref = "compose-destination" }

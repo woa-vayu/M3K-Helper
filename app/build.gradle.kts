@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin)
     alias(libs.plugins.ksp)
     alias(libs.plugins.lsplugin.apksign)
+    alias(libs.plugins.compose.compiler)
     id("kotlin-parcelize")
 }
 
@@ -10,9 +11,6 @@ android {
     namespace = "com.rxuglr.m3khelper"
     compileSdk = 34
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
     defaultConfig {
         applicationId = "com.remtrik.m3khelper"
         minSdk = 29
