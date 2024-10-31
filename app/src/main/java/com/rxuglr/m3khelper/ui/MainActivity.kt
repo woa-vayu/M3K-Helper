@@ -1,8 +1,10 @@
 package com.rxuglr.m3khelper.ui
 
 import android.annotation.SuppressLint
+import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_FULL_USER
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -19,59 +21,48 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.AssistChip
-import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavDestination.Companion.hierarchy
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
 import com.rxuglr.m3khelper.ui.templates.Buttons
 import com.rxuglr.m3khelper.ui.templates.Cards.InfoCard
 import com.rxuglr.m3khelper.ui.templates.Images.DeviceImage
+import com.rxuglr.m3khelper.ui.templates.PopupDialogs.NoRoot
+import com.rxuglr.m3khelper.ui.templates.PopupDialogs.UnknownDevice
+import com.rxuglr.m3khelper.ui.templates.PopupDialogs.UnsupportedDevice
 import com.rxuglr.m3khelper.ui.theme.M3KHelperTheme
 import com.rxuglr.m3khelper.util.Commands.checksensors
 import com.rxuglr.m3khelper.util.Commands.dumpmodem
 import com.rxuglr.m3khelper.util.Commands.dumpsensors
-import com.rxuglr.m3khelper.util.Variables.vars
 import com.rxuglr.m3khelper.util.Variables.Codename
 import com.rxuglr.m3khelper.util.Variables.FontSize
 import com.rxuglr.m3khelper.util.Variables.LineHeight
 import com.rxuglr.m3khelper.util.Variables.NoBoot
 import com.rxuglr.m3khelper.util.Variables.NoFlash
 import com.rxuglr.m3khelper.util.Variables.NoModem
+import com.rxuglr.m3khelper.util.Variables.NoMount
 import com.rxuglr.m3khelper.util.Variables.PaddingValue
-import com.rxuglr.m3khelper.util.Variables.Warning
 import com.rxuglr.m3khelper.util.Variables.Unsupported
+import com.rxuglr.m3khelper.util.Variables.Warning
+import com.rxuglr.m3khelper.util.Variables.vars
 import com.rxuglr.m3khelper.util.sdp
 import com.rxuglr.m3khelper.util.ssp
-import com.rxuglr.m3khelper.M3KApp
-import com.rxuglr.m3khelper.ui.templates.PopupDialogs.NoRoot
-import com.rxuglr.m3khelper.ui.templates.PopupDialogs.UnknownDevice
-import com.rxuglr.m3khelper.ui.templates.PopupDialogs.UnsupportedDevice
 import com.topjohnwu.superuser.Shell
 
 class MainActivity : ComponentActivity() {
@@ -83,12 +74,14 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            if (Codename != "nabu") {
-                requestedOrientation = SCREEN_ORIENTATION_USER_PORTRAIT
-            }
+            requestedOrientation = if (Build.DEVICE == "nabu" || Build.DEVICE == "emu64xa") {
+                SCREEN_ORIENTATION_FULL_USER
+            } else SCREEN_ORIENTATION_USER_PORTRAIT
+
             M3KHelperTheme {
+                vars()
                 if (Shell.isAppGrantedRoot() == true) {
-                    vars(); Helper()
+                    Helper()
                 } else NoRoot()
             }
         }
@@ -202,143 +195,170 @@ class MainActivity : ComponentActivity() {
                     .padding(horizontal = 10.sdp())
                     .fillMaxWidth(),
             ) {
+                if (M3KApp.resources.configuration.orientation != Configuration.ORIENTATION_PORTRAIT) Landscape()
+                else Portrait()
+            }
+        }
+    }
+
+    @Composable
+    fun Landscape() {
+        when {
+            Warning.value -> {
+                UnknownDevice()
+            }
+
+            Unsupported.value -> {
+                UnsupportedDevice()
+            }
+        }
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(10.sdp()),
+            modifier = Modifier
+                .padding(vertical = 10.sdp())
+                .padding(horizontal = 10.sdp())
+                .fillMaxWidth()
+        ) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(10.sdp()),
+                modifier = Modifier
+                    .padding(vertical = 10.sdp())
+                    .width(350.sdp())
+            ) {
+                InfoCard(
+                    Modifier
+                        .height(200.sdp())
+                        .width(350.sdp()), LocalUriHandler.current
+                )
+                DeviceImage(Modifier.width(350.sdp()))
+            }
+            Column(
+                verticalArrangement = Arrangement.spacedBy(10.sdp()),
+                modifier = Modifier
+                    .padding(vertical = 10.sdp())
+                    .fillMaxWidth()
+            ) {
                 when {
-                    Warning.value -> {
-                        UnknownDevice()
+                    !NoBoot.value -> {
+                        Buttons.BackupButton()
                     }
                 }
                 when {
-                    Unsupported.value -> {
-                        UnsupportedDevice()
+                    !NoMount.value -> {
+                        Buttons.MountButton()
                     }
                 }
-                if (M3KApp.resources.configuration.orientation != Configuration.ORIENTATION_PORTRAIT) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(10.sdp()),
-                        modifier = Modifier
-                            .padding(vertical = 10.sdp())
-                            .padding(horizontal = 10.sdp())
-                            .fillMaxWidth()
-                    ) {
-                        Column(
-                            verticalArrangement = Arrangement.spacedBy(10.sdp()),
-                            modifier = Modifier
-                                .padding(vertical = 10.sdp())
-                        ) {
-                            InfoCard(
-                                Modifier
-                                    .height(200.sdp())
-                                    .width(350.sdp()), LocalUriHandler.current
+                when {
+                    !NoModem.value -> {
+                        if (!checksensors()) {
+                            Buttons.Button(
+                                R.string.dump_modemAsensors_title,
+                                R.string.dump_modemAsensors_subtitle,
+                                R.string.dump_modemAsensors_question,
+                                { dumpmodem(); dumpsensors() },
+                                R.drawable.ic_modem
                             )
-                            DeviceImage(Modifier.width(350.sdp()))
+                        } else {
+                            Buttons.Button(
+                                R.string.dump_modem_title,
+                                R.string.dump_modem_subtitle,
+                                R.string.dump_modem_question,
+                                { dumpmodem() },
+                                R.drawable.ic_modem
+                            )
                         }
-                        Column(
-                            verticalArrangement = Arrangement.spacedBy(10.sdp()),
-                            modifier = Modifier
-                                .padding(vertical = 10.sdp())
-                        ) {
-                            when {
-                                !NoBoot.value -> {
-                                    Buttons.BackupButton()
-                                }
-                            }
-                            Buttons.MountButton()
-                            when {
-                                NoModem.value -> {
-                                    if (!checksensors()) {
-                                        Buttons.Button(
-                                            R.string.dump_modemAsensors_title,
-                                            R.string.dump_modemAsensors_subtitle,
-                                            R.string.dump_modemAsensors_question,
-                                            { dumpmodem(); dumpsensors() },
-                                            R.drawable.ic_modem
-                                        )
-                                    } else {
-                                        Buttons.Button(
-                                            R.string.dump_modem_title,
-                                            R.string.dump_modem_subtitle,
-                                            R.string.dump_modem_question,
-                                            { dumpmodem() },
-                                            R.drawable.ic_modem
-                                        )
-                                    }
-                                }
+                    }
 
-                                else -> {
-                                    if (!checksensors()) {
-                                        Buttons.Button(
-                                            R.string.dump_sensors_title,
-                                            R.string.dump_sensors_subtitle,
-                                            R.string.dump_sensors_question,
-                                            { dumpsensors() },
-                                            R.drawable.ic_sensor
-                                        )
-                                    }
-                                }
-                            }
-                            when {
-                                !NoFlash.value -> {
-                                    Buttons.UEFIButton(); Buttons.QuickbootButton()
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(
-                            if (Codename != "nabu") {
-                                0.dp
-                            } else 10.sdp()
-                        )
-                    ) {
-                        DeviceImage(Modifier.width(350.sdp()))
-                        InfoCard(Modifier.height(416.sdp()), LocalUriHandler.current)
-                    }
-                    when {
-                        !NoBoot.value -> {
-                            Buttons.BackupButton()
-                        }
-                    }
-                    Buttons.MountButton()
-                    when {
-                        !NoModem.value -> {
-                            if (!checksensors()) {
-                                Buttons.Button(
-                                    R.string.dump_modemAsensors_title,
-                                    R.string.dump_modemAsensors_subtitle,
-                                    R.string.dump_modemAsensors_question,
-                                    { dumpmodem(); dumpsensors() },
-                                    R.drawable.ic_modem
-                                )
-                            } else {
-                                Buttons.Button(
-                                    R.string.dump_modem_title,
-                                    R.string.dump_modem_subtitle,
-                                    R.string.dump_modem_question,
-                                    { dumpmodem() },
-                                    R.drawable.ic_modem
-                                )
-                            }
-                        }
-
-                        else -> {
-                            if (!checksensors()) {
-                                Buttons.Button(
-                                    R.string.dump_sensors_title,
-                                    R.string.dump_sensors_subtitle,
-                                    R.string.dump_sensors_question,
-                                    { dumpsensors() },
-                                    R.drawable.ic_sensor
-                                )
-                            }
-                        }
-                    }
-                    when {
-                        !NoFlash.value -> {
-                            Buttons.UEFIButton(); Buttons.QuickbootButton()
+                    else -> {
+                        if (!checksensors()) {
+                            Buttons.Button(
+                                R.string.dump_sensors_title,
+                                R.string.dump_sensors_subtitle,
+                                R.string.dump_sensors_question,
+                                { dumpsensors() },
+                                R.drawable.ic_sensor
+                            )
                         }
                     }
                 }
+                when {
+                    !NoFlash.value -> {
+                        Buttons.QuickbootButton()
+                    }
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun Portrait() {
+        when {
+            Warning.value -> {
+                UnknownDevice()
+            }
+
+            Unsupported.value -> {
+                UnsupportedDevice()
+            }
+        }
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(
+                if (Codename == "nabu" || Codename =="emu64xa") {
+                    10.sdp()
+                } else 0.dp
+            )
+        ) {
+            DeviceImage(Modifier.width(350.sdp()))
+            InfoCard(Modifier.height(416.sdp()), LocalUriHandler.current)
+        }
+        when {
+            !NoBoot.value -> {
+                Buttons.BackupButton()
+            }
+        }
+
+        when {
+            !NoMount.value -> {
+                Buttons.MountButton()
+            }
+        }
+        when {
+            !NoModem.value -> {
+                if (!checksensors()) {
+                    Buttons.Button(
+                        R.string.dump_modemAsensors_title,
+                        R.string.dump_modemAsensors_subtitle,
+                        R.string.dump_modemAsensors_question,
+                        { dumpmodem(); dumpsensors() },
+                        R.drawable.ic_modem
+                    )
+                } else {
+                    Buttons.Button(
+                        R.string.dump_modem_title,
+                        R.string.dump_modem_subtitle,
+                        R.string.dump_modem_question,
+                        { dumpmodem() },
+                        R.drawable.ic_modem
+                    )
+                }
+            }
+
+            else -> {
+                if (!checksensors()) {
+                    Buttons.Button(
+                        R.string.dump_sensors_title,
+                        R.string.dump_sensors_subtitle,
+                        R.string.dump_sensors_question,
+                        { dumpsensors() },
+                        R.drawable.ic_sensor
+                    )
+                }
+            }
+        }
+        when {
+            !NoFlash.value -> {
+                Buttons.QuickbootButton()
             }
         }
     }

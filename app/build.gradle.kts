@@ -15,9 +15,11 @@ android {
         applicationId = "com.remtrik.m3khelper"
         minSdk = 29
         targetSdk = 34
-        versionCode = 13
-        versionName = "1.7"
-        resConfigs("en", "ru", "ar")
+        versionCode = 14
+        versionName = "2.0"
+        resourceConfigurations += listOf(
+            "en", "ru", "ar"
+        )
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -26,10 +28,7 @@ android {
         release {
             isShrinkResources = true
             isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
             isDebuggable = false
             isJniDebuggable = false
         }

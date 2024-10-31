@@ -3,6 +3,7 @@ package com.rxuglr.m3khelper.qstiles
 import android.service.quicksettings.Tile.STATE_ACTIVE
 import android.service.quicksettings.Tile.STATE_UNAVAILABLE
 import android.service.quicksettings.TileService
+import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
 import com.rxuglr.m3khelper.util.Commands.mountstatus
 import com.rxuglr.m3khelper.util.Commands.mountwin
@@ -11,7 +12,6 @@ import com.rxuglr.m3khelper.util.Commands.umountwin
 import com.rxuglr.m3khelper.util.Variables.NoFlash
 import com.rxuglr.m3khelper.util.Variables.UEFIList
 import com.rxuglr.m3khelper.util.Variables.Unsupported
-import com.rxuglr.m3khelper.M3KApp
 
 class MountTile : TileService() { // PoC
 

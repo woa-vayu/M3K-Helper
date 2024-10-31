@@ -9,8 +9,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import com.rxuglr.m3khelper.util.Variables.Codename
-import com.rxuglr.m3khelper.util.sdp
 import com.rxuglr.m3khelper.util.Variables.Img
+import com.rxuglr.m3khelper.util.sdp
 
 object Images {
 

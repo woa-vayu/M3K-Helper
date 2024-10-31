@@ -13,7 +13,7 @@
         android:localeConfig="@xml/locales_config"
         android:theme="@style/Theme.M3KHelper"
         tools:replace="android:supportsRtl"
-        tools:targetApi="s">
+        tools:targetApi="tiramisu">
 
         <activity
             android:name=".ui.MainActivity"

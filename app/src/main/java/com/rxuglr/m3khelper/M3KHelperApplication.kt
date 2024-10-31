@@ -2,6 +2,7 @@ package com.rxuglr.m3khelper
 
 import android.app.Application
 import com.topjohnwu.superuser.Shell
+import kotlin.properties.Delegates
 
 lateinit var M3KApp: M3KHelperApplication
 

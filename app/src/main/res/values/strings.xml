@@ -31,8 +31,8 @@
 
     <string name="backup_boot_subtitle">Backup current boot image to Android/Windows</string>
     <string name="mnt_subtitle">Toggle mounting Windows partition in order to edit content inside</string>
-    <string name="dump_modem_subtitle">Dump modem to Windows to fix LTE on SIM1 on Windows every time you want to boot to Windows</string>
-    <string name="dump_modemAsensors_subtitle">Dump modem to Windows to fix LTE on SIM1 on Windows every time you want to boot to Windows (Sensors need to be dumped only once)</string>
+    <string name="dump_modem_subtitle">Dump modem to fix LTE on SIM1 in Windows every time you want to boot to Windows</string>
+    <string name="dump_modemAsensors_subtitle">Dump modem to Windows to fix LTE on SIM1 on Windows every time you want to boot to Windows (Sensors will be dumped only once)</string>
     <string name="dump_sensors_subtitle">Dump sensors to Windows to fix them. This will be done only once</string>
     <string name="quickboot_subtitle">Dump Modem, Flash UEFI, and Reboot to Windows in one click</string>
     <string name="quickboot_subtitle_nomodem">Flash UEFI, and Reboot to Windows in one click</string>

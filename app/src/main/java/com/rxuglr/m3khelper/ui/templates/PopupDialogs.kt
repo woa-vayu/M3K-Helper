@@ -22,7 +22,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import com.rxuglr.m3khelper.R
-import com.rxuglr.m3khelper.util.Variables
 import com.rxuglr.m3khelper.util.Variables.FontSize
 import com.rxuglr.m3khelper.util.Variables.LineHeight
 import com.rxuglr.m3khelper.util.Variables.Warning

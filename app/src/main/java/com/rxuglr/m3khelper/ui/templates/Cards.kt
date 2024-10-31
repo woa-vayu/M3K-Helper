@@ -25,23 +25,24 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
+import com.rxuglr.m3khelper.util.Variables.BootIsPresent
 import com.rxuglr.m3khelper.util.Variables.Codename
 import com.rxuglr.m3khelper.util.Variables.FontSize
 import com.rxuglr.m3khelper.util.Variables.GroupLink
 import com.rxuglr.m3khelper.util.Variables.GuideLink
 import com.rxuglr.m3khelper.util.Variables.LineHeight
 import com.rxuglr.m3khelper.util.Variables.Name
+import com.rxuglr.m3khelper.util.Variables.NoBoot
 import com.rxuglr.m3khelper.util.Variables.NoGroup
 import com.rxuglr.m3khelper.util.Variables.NoGuide
 import com.rxuglr.m3khelper.util.Variables.PaddingValue
+import com.rxuglr.m3khelper.util.Variables.PanelType
 import com.rxuglr.m3khelper.util.Variables.Ram
 import com.rxuglr.m3khelper.util.Variables.Slot
-import com.rxuglr.m3khelper.util.sdp
-import com.rxuglr.m3khelper.M3KApp
-import com.rxuglr.m3khelper.util.Variables.BootIsPresent
-import com.rxuglr.m3khelper.util.Variables.PanelType
 import com.rxuglr.m3khelper.util.Variables.WindowsIsPresent
+import com.rxuglr.m3khelper.util.sdp
 
 object Cards {
 
@@ -49,11 +50,11 @@ object Cards {
     fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
         ElevatedCard(
             modifier =
-            if (Codename != "nabu") {
+            if (Codename == "nabu" || Codename == "emu64xa") {
+                modifier
+            } else {
                 Modifier
                     .height(200.sdp())
-            } else {
-                modifier
             },
             shape = RoundedCornerShape(8.sdp()),
         ) {
@@ -93,23 +94,29 @@ object Cards {
                     fontSize = FontSize,
                     lineHeight = LineHeight
                 )
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 10.sdp()),
-                    text = M3KApp.getString(R.string.backup_boot_state) + M3KApp.getString(BootIsPresent),
-                    fontSize = FontSize,
-                    lineHeight = LineHeight
-                )
-                if (Slot.isNotEmpty()) {
-                    Text(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(start = 10.sdp()),
-                        text = M3KApp.getString(R.string.slot, Slot),
-                        fontSize = FontSize,
-                        lineHeight = LineHeight
-                    )
+                when {
+                    !NoBoot.value -> {
+                        Text(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(start = 10.sdp()),
+                            text = M3KApp.getString(R.string.backup_boot_state) + M3KApp.getString(BootIsPresent),
+                            fontSize = FontSize,
+                            lineHeight = LineHeight
+                        )
+                    }
+                }
+                when {
+                    Slot.isNotEmpty() -> {
+                        Text(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(start = 10.sdp()),
+                            text = M3KApp.getString(R.string.slot, Slot),
+                            fontSize = FontSize,
+                            lineHeight = LineHeight
+                        )
+                    }
                 }
                 Text(
                     modifier = Modifier

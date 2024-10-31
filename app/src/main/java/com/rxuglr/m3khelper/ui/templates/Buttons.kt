@@ -1,6 +1,5 @@
 package com.rxuglr.m3khelper.ui.templates
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,7 +9,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.*
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.AssistChip
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,23 +23,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import com.rxuglr.m3khelper.M3KApp
+import com.rxuglr.m3khelper.R
+import com.rxuglr.m3khelper.ui.templates.PopupDialogs.Dialog
+import com.rxuglr.m3khelper.ui.templates.PopupDialogs.StatusDialog
 import com.rxuglr.m3khelper.util.Commands.backup
-import com.rxuglr.m3khelper.util.Commands.flashuefi
 import com.rxuglr.m3khelper.util.Commands.mountstatus
 import com.rxuglr.m3khelper.util.Commands.mountwin
 import com.rxuglr.m3khelper.util.Commands.quickboot
 import com.rxuglr.m3khelper.util.Commands.umountwin
 import com.rxuglr.m3khelper.util.Variables.FontSize
 import com.rxuglr.m3khelper.util.Variables.LineHeight
-import com.rxuglr.m3khelper.util.Variables.Name
 import com.rxuglr.m3khelper.util.Variables.NoModem
 import com.rxuglr.m3khelper.util.Variables.PaddingValue
 import com.rxuglr.m3khelper.util.Variables.UEFIList
 import com.rxuglr.m3khelper.util.sdp
-import com.rxuglr.m3khelper.M3KApp
-import com.rxuglr.m3khelper.R
-import com.rxuglr.m3khelper.ui.templates.PopupDialogs.Dialog
-import com.rxuglr.m3khelper.ui.templates.PopupDialogs.StatusDialog
 
 object Buttons {
 
@@ -333,217 +335,6 @@ object Buttons {
                     )
                     Text(
                         M3KApp.getString(R.string.mnt_subtitle),
-                        color = MaterialTheme.colorScheme.inverseSurface,
-                        lineHeight = LineHeight,
-                        fontSize = FontSize
-                    )
-                }
-            }
-        }
-    }
-
-    @SuppressLint("StringFormatInvalid")
-    @Composable
-    fun UEFIButton() {
-        val showUEFIDialog = remember { mutableStateOf(false) }
-        val showUEFISpinner = remember { mutableStateOf(false) }
-        ElevatedCard(
-            onClick = {
-                showUEFIDialog.value = true
-            },
-            Modifier
-                .height(105.sdp())
-                .fillMaxWidth(),
-            enabled = !UEFIList.contains(99)
-        ) {
-            when {
-                showUEFISpinner.value -> {
-                    StatusDialog(
-                        icon = painterResource(id = R.drawable.ic_uefi),
-                        title = R.string.please_wait,
-                        showDialog = showUEFISpinner.value,
-                    )
-                }
-            }
-            when {
-                showUEFIDialog.value -> {
-                    AlertDialog(
-                        icon = {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_uefi),
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.size(40.sdp())
-                            )
-                        },
-                        title = {
-                        },
-                        text = {
-                            Text(
-                                modifier = Modifier.fillMaxWidth(),
-                                text = M3KApp.getString(R.string.flash_uefi_question),
-                                textAlign = TextAlign.Center,
-                                fontSize = FontSize
-                            )
-                        },
-                        onDismissRequest = ({ showUEFIDialog.value = false; }),
-                        dismissButton = {
-                            Row(
-                                Modifier.align(Alignment.CenterHorizontally),
-                                horizontalArrangement = Arrangement.spacedBy(10.sdp())
-                            ) {
-                                if (UEFIList.contains(120)) {
-                                    AssistChip(
-                                        onClick = {
-                                            Thread {
-                                                showUEFIDialog.value = false
-                                                showUEFISpinner.value = true
-                                                flashuefi(0)
-                                                showUEFISpinner.value = false
-                                            }.start()
-                                        },
-                                        label = {
-                                            Text(
-                                                modifier = Modifier.padding(
-                                                    top = 2.sdp(),
-                                                    bottom = 2.sdp()
-                                                ),
-                                                text = M3KApp.getString(R.string.quickboot_question3),
-                                                color = MaterialTheme.colorScheme.inverseSurface,
-                                                fontSize = FontSize
-                                            )
-                                        }
-                                    )
-                                }
-                                if (UEFIList.contains(90)) {
-                                    AssistChip(
-                                        onClick = {
-                                            Thread {
-                                                showUEFIDialog.value = false
-                                                showUEFISpinner.value = true
-                                                flashuefi(1)
-                                                showUEFISpinner.value = false
-                                            }.start()
-                                        },
-                                        label = {
-                                            Text(
-                                                modifier = Modifier.padding(
-                                                    top = 2.sdp(),
-                                                    bottom = 2.sdp()
-                                                ),
-                                                text = M3KApp.getString(R.string.quickboot_question2),
-                                                color = MaterialTheme.colorScheme.inverseSurface,
-                                                fontSize = FontSize
-                                            )
-                                        }
-                                    )
-                                }
-                                if (UEFIList.contains(60)) {
-                                    AssistChip(
-                                        onClick = {
-                                            Thread {
-                                                showUEFIDialog.value = false
-                                                showUEFISpinner.value = true
-                                                flashuefi(2)
-                                                showUEFISpinner.value = false
-                                            }.start()
-                                        },
-                                        label = {
-                                            Text(
-                                                modifier = Modifier.padding(
-                                                    top = 2.sdp(),
-                                                    bottom = 2.sdp()
-                                                ),
-                                                text = M3KApp.getString(R.string.quickboot_question1),
-                                                color = MaterialTheme.colorScheme.inverseSurface,
-                                                fontSize = FontSize
-                                            )
-                                        }
-                                    )
-                                }
-                                if (UEFIList.contains(1)
-                                    and
-                                    (!UEFIList.contains(60)
-                                            && !UEFIList.contains(90)
-                                            && !UEFIList.contains(120)
-                                            )
-                                ) {
-                                    AssistChip(
-                                        onClick = {
-                                            Thread {
-                                                showUEFIDialog.value = false
-                                                showUEFISpinner.value = true
-                                                flashuefi(3)
-                                                showUEFISpinner.value = false
-                                            }.start()
-                                        },
-                                        label = {
-                                            Text(
-                                                modifier = Modifier.padding(
-                                                    top = 2.sdp(),
-                                                    bottom = 2.sdp()
-                                                ),
-                                                text = M3KApp.getString(R.string.yes),
-                                                color = MaterialTheme.colorScheme.inverseSurface,
-                                                fontSize = FontSize
-                                            )
-                                        }
-                                    )
-                                }
-                                AssistChip(
-                                    onClick = ({ showUEFIDialog.value = false; }),
-                                    label = {
-                                        Text(
-                                            modifier = Modifier.padding(
-                                                top = 2.sdp(),
-                                                bottom = 2.sdp()
-                                            ),
-                                            text = M3KApp.getString(R.string.no),
-                                            color = MaterialTheme.colorScheme.inverseSurface,
-                                            fontSize = FontSize
-                                        )
-                                    }
-                                )
-                            }
-                        },
-                        confirmButton = {
-                        }
-                    )
-                }
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .padding(PaddingValue),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(5.sdp())
-            ) {
-                Icon(
-                    modifier = Modifier
-                        .size(40.sdp()),
-                    painter = painterResource(id = R.drawable.ic_uefi),
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary
-                )
-                val title: Int
-                val subtitle: Int
-                if (!UEFIList.contains(99)) {
-                    title = R.string.flash_uefi_title
-                    subtitle = R.string.flash_uefi_subtitle
-                } else {
-                    title = R.string.uefi_not_found_title
-                    subtitle = R.string.uefi_not_found_subtitle
-                }
-                Column {
-                    Text(
-                        M3KApp.getString(title),
-                        color = MaterialTheme.colorScheme.inverseSurface,
-                        fontWeight = FontWeight.Bold,
-                        lineHeight = LineHeight,
-                        fontSize = FontSize
-                    )
-                    Text(
-                        M3KApp.getString(subtitle, Name),
                         color = MaterialTheme.colorScheme.inverseSurface,
                         lineHeight = LineHeight,
                         fontSize = FontSize

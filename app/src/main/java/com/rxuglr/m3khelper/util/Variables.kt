@@ -9,19 +9,18 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rxuglr.m3khelper.M3KApp
+import com.rxuglr.m3khelper.R
 import com.rxuglr.m3khelper.util.Commands.mountwin
 import com.rxuglr.m3khelper.util.Commands.umountwin
-import com.rxuglr.m3khelper.R
 import com.topjohnwu.superuser.ShellUtils
 import kotlin.properties.Delegates
 
 object Variables {
 
-    private val UnsuportedA: Array<String> =
+    private val UnsupportedA: Array<String> =
         arrayOf(
-            "test"
         )
-    
+
     // static vars
     private val Codenames: Array<String> =
         arrayOf(
@@ -38,7 +37,9 @@ object Variables {
             "mh2lm",
             "flashlmmd",
             "mh2lm5g",
-            "emu64xa"
+            "emu64xa",
+            "guacamole",
+            "hotdog",
         )
     private val NoModemA: Array<String> =
         arrayOf(
@@ -50,26 +51,38 @@ object Variables {
             "flashlmmd",
             "mh2lm5g",
             "vayu",
-            "bhima"
+            "bhima",
+            "hotdog",
+            "guacamole"
         )
     private val NoFlashA: Array<String> =
         arrayOf(
+            "hotdog",
+            "guacamole"
         )
     private val NoBootA: Array<String> =
+        arrayOf(
+            "hotdog",
+            "guacamole"
+        )
+    private val NoMountA: Array<String> =
         arrayOf(
         )
     private val SensorsA: Array<String> =
         arrayOf(
             "raphael",
             "raphaelin",
-            "cepheus",
             "raphaels"
         )
     private val NoGuideA: Array<String> =
         arrayOf(
+            "hotdog",
+            "guacamole"
         )
     private val NoGroupA: Array<String> =
         arrayOf(
+            "hotdog",
+            "guacamole"
         )
 
     // device info
@@ -91,6 +104,7 @@ object Variables {
     val NoModem: MutableState<Boolean> = mutableStateOf(false)
     val NoFlash: MutableState<Boolean> = mutableStateOf(false)
     val NoBoot: MutableState<Boolean> = mutableStateOf(false)
+    val NoMount: MutableState<Boolean> = mutableStateOf(false)
     val NoSensors: MutableState<Boolean> = mutableStateOf(true)
     val NoGuide: MutableState<Boolean> = mutableStateOf(false)
     val NoGroup: MutableState<Boolean> = mutableStateOf(false)
@@ -113,6 +127,9 @@ object Variables {
                     || Codename.contains("gram")
                     || Codename.contains("joyeuse") -> "miatoll"
 
+            Codename.contains("OnePlus7TPro") -> "hotdog"
+            Codename.contains("OnePlus7Pro") -> "guacamole"
+
             else -> Codename
         }
         Name = when (Codename) {
@@ -129,6 +146,8 @@ object Variables {
             Codenames[11] -> "LG V50"
             Codenames[12] -> "LG V50S"
             Codenames[13] -> "emu64xa"
+            Codenames[14] -> "OnePlus 7 Pro"
+            Codenames[15] -> "OnePlus 7T Pro"
             else -> M3KApp.getString(R.string.unknown_device)
         }.toString()
         Img = when (Codename) {
@@ -140,6 +159,8 @@ object Variables {
             Codenames[8] -> R.drawable.miatoll
             Codenames[9] -> R.drawable.alphaplus
             Codenames[10], Codenames[11], Codenames[12] -> R.drawable.mh2lm
+            Codenames[14] -> R.drawable.guacamole
+            Codenames[15] -> R.drawable.hotdog
             else -> R.drawable.ic_device_unknown
         }
 
@@ -159,6 +180,9 @@ object Variables {
         }
         if (NoBootA.contains(Codename)) {
             NoBoot.value = true
+        }
+        if (NoMountA.contains(Codename)) {
+            NoMount.value = true
         }
         if (SensorsA.contains(Codename)) {
             NoSensors.value = false
