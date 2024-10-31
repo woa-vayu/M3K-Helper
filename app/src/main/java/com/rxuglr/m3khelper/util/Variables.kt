@@ -17,6 +17,11 @@ import kotlin.properties.Delegates
 
 object Variables {
 
+    private val UnsuportedA: Array<String> =
+        arrayOf(
+            "test"
+        )
+    
     // static vars
     private val Codenames: Array<String> =
         arrayOf(
@@ -138,7 +143,7 @@ object Variables {
             else -> R.drawable.ic_device_unknown
         }
 
-        if (Codename.contains("OnePlus7TPro") || Codename.contains("OnePlus7Pro")) {
+        if (UnsupportedA.contains(Codename)) {
             Unsupported.value = true
         }
 
