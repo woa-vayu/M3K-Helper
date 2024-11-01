@@ -1,3 +1,8 @@
+@file:Suppress("UnstableApiUsage")
+
+import com.android.build.gradle.internal.api.BaseVariantOutputImpl
+import com.android.build.gradle.tasks.PackageAndroidArtifact
+
 plugins {
     alias(libs.plugins.agp.app)
     alias(libs.plugins.kotlin)
@@ -15,8 +20,8 @@ android {
         applicationId = "com.remtrik.m3khelper"
         minSdk = 29
         targetSdk = 34
-        versionCode = 14
-        versionName = "2.0"
+        versionCode = 15
+        versionName = "2.0.1"
         resourceConfigurations += listOf(
             "en", "ru", "ar"
         )
@@ -40,6 +45,39 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+        resources {
+            // https://stackoverflow.com/a/58956288
+            // It will break Layout Inspector, but it's unused for release build.
+            excludes += "META-INF/*.version"
+            // https://github.com/Kotlin/kotlinx.coroutines?tab=readme-ov-file#avoiding-including-the-debug-infrastructure-in-the-resulting-apk
+            excludes += "DebugProbesKt.bin"
+            // https://issueantenna.com/repo/kotlin/kotlinx.coroutines/issues/3158
+            excludes += "kotlin-tooling-metadata.json"
+        }
+    }
+
+    applicationVariants.all {
+        outputs.forEach {
+            val output = it as BaseVariantOutputImpl
+            output.outputFileName = "M3K_Helper_${versionName}_${name}.apk"
+        }
+        kotlin.sourceSets {
+            getByName(name) {
+                kotlin.srcDir("build/generated/ksp/$name/kotlin")
+            }
+        }
+    }
+
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
+    }
+
 }
 
 dependencies {

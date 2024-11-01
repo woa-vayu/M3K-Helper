@@ -8,7 +8,6 @@
     <string name="dump_sensors_title">نسخ ملفات الحساسات</string>
     <string name="quickboot_title">أقلع بسرعة إلى Windows</string>
     <string name="backup_boot_title">خذ نسخة احتياطية من الـ Boot</string>
-    <string name="flash_uefi_title">فلّش الـ UEFI</string>
     <string name="uefi_not_found_title">لم يتم العثور على UEFI</string>
 
     <string name="mnt_question">وصل قسم تخزين Windows؟</string>
@@ -18,7 +17,6 @@
     <string name="dump_sensors_question">نسخ ملفات الحساسات لقسم تخزين Windows؟</string>
     <string name="quickboot_question">أقلع بسرعة إلى Windows؟</string>
     <string name="backup_boot_question">أخذ نسخة احتياطية للـ Boot الخاص بـ Android؟</string>
-    <string name="flash_uefi_question">فلّش الـ UEFI؟</string>
 
     <string name="backup_boot_subtitle">خذ نسخة احتياطية من الـ boot.img الحالية في Android او Windows</string>
     <string name="mnt_subtitle">تغيير حالة وصل قسم تخزين Windows حتى تتمكن من تعديل محتواياته</string>
@@ -27,8 +25,6 @@
     <string name="dump_sensors_subtitle">نسخ ملفات الحساسات لإصلاحهم، ستحتاج لعمل ذلك مرة واحدة</string>
     <string name="quickboot_subtitle">إنسخ المودم، فلّش الـ UEFI، وأقلع إلى Windows بضغطة واحدة</string>
     <string name="quickboot_subtitle_nomodem">فلّش الـ UEFI، وأقلع إلى Windows بضغطة واحدة </string>
-    <string name="flash_uefi_subtitle">فلّش الـ UEFI الخاصة بـ %s ؟</string>
-    <string name="uefi_not_found_subtitle">قم بتنزيل الـ UEFI الخاصة بجهازك وضعها في /sdcard/UEFI</string>
 
     <string name="no_root">يرجى إعطاء M3K Helper صلاحيات الجذر حتى تستعمله!</string>
     <string name="qs_unsupported">جهازك غير مدعوم</string>

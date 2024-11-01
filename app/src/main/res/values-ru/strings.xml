@@ -8,7 +8,6 @@
     <string name="dump_sensors_title">Исправить сенсоры</string>
     <string name="quickboot_title">Перезагрузиться в Windows</string>
     <string name="backup_boot_title">Резервная копия boot образа</string>
-    <string name="flash_uefi_title">Прошить UEFI</string>
     <string name="uefi_not_found_title">UEFI не найден</string>
 
     <string name="mnt_question">Монтировать Windows?</string>
@@ -18,7 +17,6 @@
     <string name="dump_sensors_question">Скопировать сенсоры в раздел Windows?</string>
     <string name="quickboot_question">Перезагрузиться в Windows?</string>
     <string name="backup_boot_question">Хотите сделать резервную копию текущего boot образа?</string>
-    <string name="flash_uefi_question">Прошить UEFI?</string>
 
     <string name="backup_boot_subtitle">Резервное копирование текущего boot образа</string>
     <string name="mnt_subtitle">Нужно для редактирования содержимого раздела Windows</string>
@@ -27,8 +25,6 @@
     <string name="dump_sensors_subtitle">Нужно сделать всего 1 раз если вам нужны сенсоры</string>
     <string name="quickboot_subtitle">Исправить модем, прошить UEFI и перезагрузиться в Windows в одно нажатие</string>
     <string name="quickboot_subtitle_nomodem">Прошейте UEFI и перезагрузитесь в Windows в одно нажатие</string>
-    <string name="flash_uefi_subtitle">Прошить UEFI для %s?</string>
-    <string name="uefi_not_found_subtitle">Скачайте UEFI для вашего устройства и поместите его в папку /sdcard/UEFI</string>
 
     <string name="no_root">M3K Helper нужны Root-права для работы!</string>
     <string name="qs_unsupported">Устройство неподдерживается</string>

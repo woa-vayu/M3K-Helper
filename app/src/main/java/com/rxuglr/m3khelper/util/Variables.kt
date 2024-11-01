@@ -152,7 +152,7 @@ object Variables {
         }.toString()
         Img = when (Codename) {
             Codenames[0], Codenames[1] -> R.drawable.vayu
-            Codenames[2] -> R.drawable.nabu
+            Codenames[2], Codenames[13] -> R.drawable.nabu
             Codenames[3], Codenames[4], Codenames[6] -> R.drawable.raphael
             Codenames[5] -> R.drawable.cepheus
             Codenames[7] -> R.drawable.beryllium

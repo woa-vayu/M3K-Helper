@@ -304,7 +304,7 @@ class MainActivity : ComponentActivity() {
         }
         Row(
             horizontalArrangement = Arrangement.spacedBy(
-                if (Codename == "nabu" || Codename =="emu64xa") {
+                if (Codename == "nabu" || Codename == "emu64xa") {
                     10.sdp()
                 } else 0.dp
             )

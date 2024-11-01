@@ -18,7 +18,7 @@ object Images {
     fun DeviceImage(modifier: Modifier) {
         Image(
             alignment = Alignment.TopStart,
-            modifier = if (Codename != "nabu") {
+            modifier = if (Codename == "nabu" || Codename == "emu64x") {
                 Modifier
                     .padding(top = 20.sdp())
                     .height(160.sdp())
