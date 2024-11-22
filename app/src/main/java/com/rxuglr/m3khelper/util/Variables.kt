@@ -194,7 +194,7 @@ object Variables {
                 Codenames[0], Codenames[1] -> "https://github.com/woa-vayu/POCOX3Pro-Guides"
                 Codenames[2] -> "https://github.com/erdilS/Port-Windows-11-Xiaomi-Pad-5"
                 Codenames[3], Codenames[4], Codenames[5] -> "https://github.com/graphiks/woa-raphael"
-                Codenames[6] -> "https://github.com/woacepheus/Port-Windows-11-Xiaomi-Mi-9"
+                Codenames[6] -> "https://github.com/ivnvrvnn/Port-Windows-XiaoMI-9"
                 Codenames[7] -> "https://github.com/n00b69/woa-beryllium"
                 Codenames[8] -> "https://github.com/woa-miatoll/Port-Windows-11-Redmi-Note-9-Pro"
                 Codenames[9] -> "https://github.com/n00b69/woa-betalm"
