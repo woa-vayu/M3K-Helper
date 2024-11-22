@@ -1,9 +1,7 @@
 # M3K Helper
 
 > [!WARNING]
-> We're not responsible for bricked devices, missing recovery partitions, dead microSD cards, dead
-cats or dogs, nuclear wars or you getting fired because you flash UEFI, provision modems or dump
-sensors from this app.
+> We're not responsible for anything that happens with your device.
 
 ## Project status
 
