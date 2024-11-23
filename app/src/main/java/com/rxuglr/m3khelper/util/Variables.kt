@@ -25,7 +25,6 @@ object Variables {
     private val Codenames: Array<String> =
         arrayOf(
             "vayu",
-            "bhima",
             "nabu",
             "raphael",
             "raphaelin",
@@ -52,7 +51,6 @@ object Variables {
             "flashlmmd",
             "mh2lm5g",
             "vayu",
-            "bhima",
             "hotdog",
             "guacamole",
             "surya"
@@ -134,38 +132,48 @@ object Variables {
             Codename.contains("OnePlus7TPro") -> "hotdog"
             Codename.contains("OnePlus7Pro") -> "guacamole"
 
+            Codename.contains("bhima") -> "vayu"
+            Codename.contains("karna") -> "surya"
+
+            // might change that in future
+            Codename.contains("mh2lm5g") -> "mh2lm5g"
+            Codename.contains("alpha") -> "alphaplus"
+            Codename.contains("flash") -> "flashlmmd"
+            Codename.contains("beta") -> "betalm"
+            Codename.contains("mh2") -> "mh2lm"
+
             else -> Codename
         }
         Name = when (Codename) {
-            Codenames[0], Codenames[1] -> "POCO X3 Pro"
-            Codenames[2] -> "Xiaomi Pad 5"
-            Codenames[3] -> "Xiaomi Mi 9T Pro"
-            Codenames[4] -> "Redmi K20 Pro"
-            Codenames[5] -> "Redmi K20 Pro Premium"
-            Codenames[6] -> "Xiaomi Mi 9"
-            Codenames[7] -> "POCO F1"
-            Codenames[8] -> "Xiaomi Redmi Note 9 Pro"
-            Codenames[9] -> "LG G8"
-            Codenames[10] -> "LG G8X"
-            Codenames[11] -> "LG V50"
-            Codenames[12] -> "LG V50S"
-            Codenames[13] -> "emu64xa"
-            Codenames[14] -> "OnePlus 7 Pro"
-            Codenames[15] -> "OnePlus 7T Pro"
-            Codenames[16] -> "POCO X3 NFC"
+            Codenames[0] -> "POCO X3 Pro"
+            Codenames[1] -> "Xiaomi Pad 5"
+            Codenames[2] -> "Xiaomi Mi 9T Pro"
+            Codenames[3] -> "Redmi K20 Pro"
+            Codenames[4] -> "Redmi K20 Pro Premium"
+            Codenames[5] -> "Xiaomi Mi 9"
+            Codenames[6] -> "POCO F1"
+            Codenames[7] -> "Xiaomi Redmi Note 9 Pro"
+            Codenames[8] -> "LG G8"
+            Codenames[9] -> "LG G8X"
+            Codenames[10] -> "LG V50"
+            Codenames[11] -> "LG V50S"
+            Codenames[12] -> "emu64xa"
+            Codenames[13] -> "OnePlus 7 Pro"
+            Codenames[14] -> "OnePlus 7T Pro"
+            Codenames[15] -> "POCO X3 NFC"
             else -> M3KApp.getString(R.string.unknown_device)
         }.toString()
         Img = when (Codename) {
-            Codenames[0], Codenames[1], Codenames[16] -> R.drawable.vayu
-            Codenames[2], Codenames[13] -> R.drawable.nabu
-            Codenames[3], Codenames[4], Codenames[6] -> R.drawable.raphael
+            Codenames[0], Codenames[15] -> R.drawable.vayu
+            Codenames[1], Codenames[12] -> R.drawable.nabu
+            Codenames[2], Codenames[3], Codenames[4] -> R.drawable.raphael
             Codenames[5] -> R.drawable.cepheus
-            Codenames[7] -> R.drawable.beryllium
-            Codenames[8] -> R.drawable.miatoll
-            Codenames[9] -> R.drawable.alphaplus
-            Codenames[10], Codenames[11], Codenames[12] -> R.drawable.mh2lm
-            Codenames[14] -> R.drawable.guacamole
-            Codenames[15] -> R.drawable.hotdog
+            Codenames[6] -> R.drawable.beryllium
+            Codenames[7] -> R.drawable.miatoll
+            Codenames[8] -> R.drawable.alphaplus
+            Codenames[9], Codenames[10], Codenames[11] -> R.drawable.mh2lm
+            Codenames[13] -> R.drawable.guacamole
+            Codenames[14] -> R.drawable.hotdog
             else -> R.drawable.ic_device_unknown
         }
 
@@ -196,18 +204,18 @@ object Variables {
             NoGuide.value = true
         } else {
             GuideLink = when (Codename) {
-                Codenames[0], Codenames[1] -> "https://github.com/woa-vayu/POCOX3Pro-Guides"
-                Codenames[2] -> "https://github.com/erdilS/Port-Windows-11-Xiaomi-Pad-5"
-                Codenames[3], Codenames[4], Codenames[5] -> "https://github.com/graphiks/woa-raphael"
-                Codenames[6] -> "https://github.com/ivnvrvnn/Port-Windows-XiaoMI-9"
-                Codenames[7] -> "https://github.com/n00b69/woa-beryllium"
-                Codenames[8] -> "https://github.com/woa-miatoll/Port-Windows-11-Redmi-Note-9-Pro"
-                Codenames[9] -> "https://github.com/n00b69/woa-betalm"
-                Codenames[10] -> "https://github.com/n00b69/woa-mh2lm"
-                Codenames[11] -> "https://github.com/n00b69/woa-flashlmdd"
-                Codenames[12] -> "https://github.com/n00b69/woa-mh2lm5g"
-                Codenames[13] -> "https://google.com"
-                Codenames[16] -> "https://github.com/woa-surya/POCOX3NFC-Guides"
+                Codenames[0] -> "https://github.com/woa-vayu/POCOX3Pro-Guides"
+                Codenames[1] -> "https://github.com/erdilS/Port-Windows-11-Xiaomi-Pad-5"
+                Codenames[2], Codenames[3], Codenames[4] -> "https://github.com/graphiks/woa-raphael"
+                Codenames[5] -> "https://github.com/ivnvrvnn/Port-Windows-XiaoMI-9"
+                Codenames[6] -> "https://github.com/n00b69/woa-beryllium"
+                Codenames[7] -> "https://github.com/woa-miatoll/Port-Windows-11-Redmi-Note-9-Pro"
+                Codenames[8] -> "https://github.com/n00b69/woa-betalm"
+                Codenames[9] -> "https://github.com/n00b69/woa-mh2lm"
+                Codenames[10] -> "https://github.com/n00b69/woa-flashlmdd"
+                Codenames[11] -> "https://github.com/n00b69/woa-mh2lm5g"
+                Codenames[12] -> "https://google.com"
+                Codenames[15] -> "https://github.com/woa-surya/POCOX3NFC-Guides"
                 else -> ""
             }
         }
@@ -215,16 +223,16 @@ object Variables {
             NoGroup.value = true
         } else {
             GroupLink = when (Codename) {
-                Codenames[0], Codenames[1] -> "https://t.me/winonvayualt"
-                Codenames[2] -> "https://t.me/nabuwoa"
-                Codenames[3], Codenames[4], Codenames[5] -> "https://t.me/woaraphael"
-                Codenames[6] -> "https://t.me/woacepheus"
-                Codenames[7] -> "https://t.me/WinOnF1"
-                Codenames[8] -> "http://t.me/woamiatoll"
-                Codenames[9], Codenames[10], Codenames[11], Codenames[12] -> "https://t.me/winong8x"
-                Codenames[13] -> "https://google.com"
-                Codenames[14], Codenames[15] -> "https://t.me/onepluswoachat"
-                Codenames[16] -> "https://t.me/windows_on_pocox3_nfc"
+                Codenames[0] -> "https://t.me/winonvayualt"
+                Codenames[1] -> "https://t.me/nabuwoa"
+                Codenames[2], Codenames[3], Codenames[4] -> "https://t.me/woaraphael"
+                Codenames[5] -> "https://t.me/woacepheus"
+                Codenames[6] -> "https://t.me/WinOnF1"
+                Codenames[7] -> "http://t.me/woamiatoll"
+                Codenames[8], Codenames[9], Codenames[10], Codenames[11] -> "https://t.me/winong8x"
+                Codenames[12] -> "https://google.com"
+                Codenames[13], Codenames[14] -> "https://t.me/onepluswoachat"
+                Codenames[15] -> "https://t.me/windows_on_pocox3_nfc"
                 else -> ""
             }
         }
@@ -264,38 +272,41 @@ object Variables {
 
     fun DynamicVars() {
         UEFIList = arrayOf(0)
-        if ((ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img").isEmpty())) {
+        if ((ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img")
+                .isEmpty())) 
+        {
             UEFIList += 99
         } else {
             if (ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 120")
-                    .isNotEmpty()
-            ) {
+                    .isNotEmpty())
+            {
                 UEFIList += 120
             }
             if (ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 90")
-                    .isNotEmpty()
-            ) {
+                    .isNotEmpty())
+            {
                 UEFIList += 90
             }
             if (ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 60")
-                    .isNotEmpty()
-            ) {
+                    .isNotEmpty())
+            {
                 UEFIList += 60
             }
             if ((ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img").isNotEmpty())
                 and
                 (!UEFIList.contains(60)
                         and !UEFIList.contains(90)
-                        and !UEFIList.contains(120)
-                        )
-            ) {
+                        and !UEFIList.contains(120))) 
+            {
                 UEFIList += 1
             }
         }
 
         BootIsPresent = when {
-            ShellUtils.fastCmd("find /sdcard/Windows/boot.img").isNotEmpty()
-                    && ShellUtils.fastCmd("find /sdcard/m3khelper/boot.img")
+            ShellUtils.fastCmd("find /sdcard/Windows/boot.img")
+                .isNotEmpty()
+                    && 
+            ShellUtils.fastCmd("find /sdcard/m3khelper/boot.img")
                 .isNotEmpty() -> R.string.backup_both
 
             ShellUtils.fastCmd("find /sdcard/Windows/boot.img")
