@@ -40,6 +40,7 @@ object Variables {
             "emu64xa",
             "guacamole",
             "hotdog",
+            "surya"
         )
     private val NoModemA: Array<String> =
         arrayOf(
@@ -53,7 +54,8 @@ object Variables {
             "vayu",
             "bhima",
             "hotdog",
-            "guacamole"
+            "guacamole",
+            "surya"
         )
     private val NoFlashA: Array<String> =
         arrayOf(
@@ -77,12 +79,14 @@ object Variables {
     private val NoGuideA: Array<String> =
         arrayOf(
             "hotdog",
-            "guacamole"
+            "guacamole",
+            "surya"
         )
     private val NoGroupA: Array<String> =
         arrayOf(
             "hotdog",
-            "guacamole"
+            "guacamole",
+            "surya"
         )
 
     // device info
@@ -148,10 +152,11 @@ object Variables {
             Codenames[13] -> "emu64xa"
             Codenames[14] -> "OnePlus 7 Pro"
             Codenames[15] -> "OnePlus 7T Pro"
+            Codenames[16] -> "POCO X3 NFC"
             else -> M3KApp.getString(R.string.unknown_device)
         }.toString()
         Img = when (Codename) {
-            Codenames[0], Codenames[1] -> R.drawable.vayu
+            Codenames[0], Codenames[1], Codenames[16] -> R.drawable.vayu
             Codenames[2], Codenames[13] -> R.drawable.nabu
             Codenames[3], Codenames[4], Codenames[6] -> R.drawable.raphael
             Codenames[5] -> R.drawable.cepheus
@@ -202,6 +207,7 @@ object Variables {
                 Codenames[11] -> "https://github.com/n00b69/woa-flashlmdd"
                 Codenames[12] -> "https://github.com/n00b69/woa-mh2lm5g"
                 Codenames[13] -> "https://google.com"
+                Codenames[16] -> "https://github.com/woa-surya/POCOX3NFC-Guides"
                 else -> ""
             }
         }
@@ -217,18 +223,24 @@ object Variables {
                 Codenames[8] -> "http://t.me/woamiatoll"
                 Codenames[9], Codenames[10], Codenames[11], Codenames[12] -> "https://t.me/winong8x"
                 Codenames[13] -> "https://google.com"
+                Codenames[14], Codenames[15] -> "https://t.me/onepluswoachat"
+                Codenames[16] -> "https://t.me/windows_on_pocox3_nfc"
                 else -> ""
             }
         }
 
         val panel = ShellUtils.fastCmd("cat /proc/cmdline")
         PanelType = when {
-            panel.contains("j20s_42") || panel.contains("k82_42") -> "Huaxing"
+            panel.contains("j20s_42") 
+                    || panel.contains("k82_42")
+                    || panel.contains("huaxing") -> "Huaxing"
+            
             panel.contains("j20s_36")
                     || panel.contains("tianma")
                     || panel.contains("k82_36") -> "Tianma"
 
             panel.contains("ebbg") -> "EBBG"
+            
             panel.contains("samsung")
                     || panel.contains("ea8076_f1mp")
                     || panel.contains("ea8076_f1p2")
