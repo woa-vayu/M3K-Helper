@@ -31,18 +31,3 @@
 | LG V50S                 | <https://github.com/n00b69/woa-mh2lm5g>                           |
 | OnePlus 7 Pro           |                                                                   |
 | OnePlus 7T Pro          |                                                                   |
-
-## Requirements
-
-<details>
-<summary><strong>Requirements</strong></summary>
-
-• Android 10 and up
-
-• Any ROM with ntfs-3g support
-
-• Rooted device
-
-• Supported device
-
-</details>
