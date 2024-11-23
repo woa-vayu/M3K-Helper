@@ -10,8 +10,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
-import com.rxuglr.m3khelper.util.Commands.mountwin
-import com.rxuglr.m3khelper.util.Commands.umountwin
+import com.rxuglr.m3khelper.util.Commands.mountWindows
+import com.rxuglr.m3khelper.util.Commands.umountWindows
 import com.topjohnwu.superuser.ShellUtils
 import kotlin.properties.Delegates
 
@@ -258,19 +258,19 @@ object Variables {
         }
 
 
-        mountwin()
+        mountWindows()
         WindowsIsPresent = when {
             ShellUtils.fastCmd("find /sdcard/Windows/Windows/explorer.exe")
                 .isNotEmpty() -> R.string.yes
 
             else -> R.string.no
         }
-        umountwin()
+        umountWindows()
 
-        DynamicVars()
+        dynamicVars()
     }
 
-    fun DynamicVars() {
+    fun dynamicVars() {
         UEFIList = arrayOf(0)
         if ((ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img")
                 .isEmpty())) 
@@ -296,7 +296,7 @@ object Variables {
                 and
                 (!UEFIList.contains(60)
                         and !UEFIList.contains(90)
-                        and !UEFIList.contains(120))) 
+                        and !UEFIList.contains(120)))
             {
                 UEFIList += 1
             }
@@ -305,9 +305,9 @@ object Variables {
         BootIsPresent = when {
             ShellUtils.fastCmd("find /sdcard/Windows/boot.img")
                 .isNotEmpty()
-                    && 
-            ShellUtils.fastCmd("find /sdcard/m3khelper/boot.img")
-                .isNotEmpty() -> R.string.backup_both
+                    &&
+                    ShellUtils.fastCmd("find /sdcard/m3khelper/boot.img")
+                        .isNotEmpty() -> R.string.backup_both
 
             ShellUtils.fastCmd("find /sdcard/Windows/boot.img")
                 .isNotEmpty() -> R.string.backup_windows

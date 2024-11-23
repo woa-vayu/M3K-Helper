@@ -47,9 +47,9 @@ import com.rxuglr.m3khelper.ui.templates.PopupDialogs.NoRoot
 import com.rxuglr.m3khelper.ui.templates.PopupDialogs.UnknownDevice
 import com.rxuglr.m3khelper.ui.templates.PopupDialogs.UnsupportedDevice
 import com.rxuglr.m3khelper.ui.theme.M3KHelperTheme
-import com.rxuglr.m3khelper.util.Commands.checksensors
-import com.rxuglr.m3khelper.util.Commands.dumpmodem
-import com.rxuglr.m3khelper.util.Commands.dumpsensors
+import com.rxuglr.m3khelper.util.Commands.checkSensors
+import com.rxuglr.m3khelper.util.Commands.dumpModem
+import com.rxuglr.m3khelper.util.Commands.dumpSensors
 import com.rxuglr.m3khelper.util.Variables.Codename
 import com.rxuglr.m3khelper.util.Variables.FontSize
 import com.rxuglr.m3khelper.util.Variables.LineHeight
@@ -251,12 +251,12 @@ class MainActivity : ComponentActivity() {
                 }
                 when {
                     !NoModem.value -> {
-                        if (!checksensors()) {
+                        if (!checkSensors()) {
                             Buttons.Button(
                                 R.string.dump_modemAsensors_title,
                                 R.string.dump_modemAsensors_subtitle,
                                 R.string.dump_modemAsensors_question,
-                                { dumpmodem(); dumpsensors() },
+                                { dumpModem(); dumpSensors() },
                                 R.drawable.ic_modem
                             )
                         } else {
@@ -264,19 +264,19 @@ class MainActivity : ComponentActivity() {
                                 R.string.dump_modem_title,
                                 R.string.dump_modem_subtitle,
                                 R.string.dump_modem_question,
-                                { dumpmodem() },
+                                { dumpModem() },
                                 R.drawable.ic_modem
                             )
                         }
                     }
 
                     else -> {
-                        if (!checksensors()) {
+                        if (!checkSensors()) {
                             Buttons.Button(
                                 R.string.dump_sensors_title,
                                 R.string.dump_sensors_subtitle,
                                 R.string.dump_sensors_question,
-                                { dumpsensors() },
+                                { dumpSensors() },
                                 R.drawable.ic_sensor
                             )
                         }
@@ -325,12 +325,12 @@ class MainActivity : ComponentActivity() {
         }
         when {
             !NoModem.value -> {
-                if (!checksensors()) {
+                if (!checkSensors()) {
                     Buttons.Button(
                         R.string.dump_modemAsensors_title,
                         R.string.dump_modemAsensors_subtitle,
                         R.string.dump_modemAsensors_question,
-                        { dumpmodem(); dumpsensors() },
+                        { dumpModem(); dumpSensors() },
                         R.drawable.ic_modem
                     )
                 } else {
@@ -338,19 +338,19 @@ class MainActivity : ComponentActivity() {
                         R.string.dump_modem_title,
                         R.string.dump_modem_subtitle,
                         R.string.dump_modem_question,
-                        { dumpmodem() },
+                        { dumpModem() },
                         R.drawable.ic_modem
                     )
                 }
             }
 
             else -> {
-                if (!checksensors()) {
+                if (!checkSensors()) {
                     Buttons.Button(
                         R.string.dump_sensors_title,
                         R.string.dump_sensors_subtitle,
                         R.string.dump_sensors_question,
-                        { dumpsensors() },
+                        { dumpSensors() },
                         R.drawable.ic_sensor
                     )
                 }

@@ -20,7 +20,7 @@ fun AssValsToTheSdpObject() {
 }
 
 // Will return the smallestWidth approximated to nearest 30 to improve performance
-fun ApproximateWidth(value: Int): Int {
+fun approximateWidth(value: Int): Int {
     val remainder = value % 30
     return if (remainder <= 15) {
         value - remainder
@@ -35,12 +35,12 @@ fun Int.sdp(): Dp {
         AssValsToTheSdpObject()
     }
     val ratio = if (smallestWidth <= 400) {
-        ApproximateWidth(smallestWidth) / 440.0
+        approximateWidth(smallestWidth) / 440.0
     } else if (smallestWidth <= 450) {
-        ApproximateWidth(smallestWidth) / 450.0
+        approximateWidth(smallestWidth) / 450.0
     } else if (smallestWidth <= 550) {
-        ApproximateWidth(smallestWidth) / 450.0
-    } else ApproximateWidth(smallestWidth) / 650.0
+        approximateWidth(smallestWidth) / 450.0
+    } else approximateWidth(smallestWidth) / 650.0
     val final = this * ratio
     return final.dp
 }
@@ -51,12 +51,12 @@ fun Int.ssp(): TextUnit {
         AssValsToTheSdpObject()
     }
     val ratio = if (smallestWidth <= 400) {
-        ApproximateWidth(smallestWidth) / 500.0
+        approximateWidth(smallestWidth) / 500.0
     } else if (smallestWidth <= 450) {
-        ApproximateWidth(smallestWidth) / 450.0
+        approximateWidth(smallestWidth) / 450.0
     } else if (smallestWidth <= 550) {
-        ApproximateWidth(smallestWidth) / 500.0
-    } else ApproximateWidth(smallestWidth) / 650.0
+        approximateWidth(smallestWidth) / 500.0
+    } else approximateWidth(smallestWidth) / 650.0
     val final = this * ratio
     return final.sp
 }

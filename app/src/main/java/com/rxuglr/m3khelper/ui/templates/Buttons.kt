@@ -27,11 +27,11 @@ import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
 import com.rxuglr.m3khelper.ui.templates.PopupDialogs.Dialog
 import com.rxuglr.m3khelper.ui.templates.PopupDialogs.StatusDialog
-import com.rxuglr.m3khelper.util.Commands.backup
-import com.rxuglr.m3khelper.util.Commands.mountstatus
-import com.rxuglr.m3khelper.util.Commands.mountwin
+import com.rxuglr.m3khelper.util.Commands.dumpBoot
+import com.rxuglr.m3khelper.util.Commands.mountStatus
+import com.rxuglr.m3khelper.util.Commands.mountWindows
 import com.rxuglr.m3khelper.util.Commands.quickboot
-import com.rxuglr.m3khelper.util.Commands.umountwin
+import com.rxuglr.m3khelper.util.Commands.umountWindows
 import com.rxuglr.m3khelper.util.Variables.FontSize
 import com.rxuglr.m3khelper.util.Variables.LineHeight
 import com.rxuglr.m3khelper.util.Variables.NoModem
@@ -170,7 +170,7 @@ object Buttons {
                                         Thread {
                                             showBackupDialog.value = false
                                             showBackupSpinner.value = true
-                                            backup(2)
+                                            dumpBoot(2)
                                             showBackupSpinner.value = false
                                         }.start()
                                     },
@@ -191,7 +191,7 @@ object Buttons {
                                         Thread {
                                             showBackupDialog.value = false
                                             showBackupSpinner.value = true
-                                            backup(1)
+                                            dumpBoot(1)
                                             showBackupSpinner.value = false
                                         }.start()
                                     },
@@ -272,7 +272,7 @@ object Buttons {
         ) {
             when {
                 showMountDialog.value -> {
-                    if (mountstatus()) {
+                    if (mountStatus()) {
                         Dialog(
                             icon = painterResource(id = R.drawable.ic_folder_open),
                             title = null,
@@ -280,7 +280,7 @@ object Buttons {
                             showDialog = showMountDialog.value,
                             onDismiss = { showMountDialog.value = false },
                             onConfirm = ({
-                                mountwin()
+                                mountWindows()
                                 showMountDialog.value = false
                             })
                         )
@@ -292,7 +292,7 @@ object Buttons {
                             showMountDialog.value,
                             onDismiss = ({ showMountDialog.value = false; }),
                             onConfirm = ({
-                                umountwin()
+                                umountWindows()
                                 showMountDialog.value = false
                             })
                         )
@@ -310,7 +310,7 @@ object Buttons {
                     modifier = Modifier
                         .size(40.sdp()),
                     painter = painterResource(
-                        id = if (mountstatus()) {
+                        id = if (mountStatus()) {
                             R.drawable.ic_folder_open
                         } else {
                             R.drawable.ic_folder
@@ -321,7 +321,7 @@ object Buttons {
                 )
                 Column {
                     val mounted: Int =
-                        if (mountstatus()) {
+                        if (mountStatus()) {
                             R.string.mnt_title
                         } else {
                             R.string.umnt_title

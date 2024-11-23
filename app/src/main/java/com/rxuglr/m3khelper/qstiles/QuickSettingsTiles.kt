@@ -5,10 +5,10 @@ import android.service.quicksettings.Tile.STATE_UNAVAILABLE
 import android.service.quicksettings.TileService
 import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
-import com.rxuglr.m3khelper.util.Commands.mountstatus
-import com.rxuglr.m3khelper.util.Commands.mountwin
+import com.rxuglr.m3khelper.util.Commands.mountStatus
+import com.rxuglr.m3khelper.util.Commands.mountWindows
 import com.rxuglr.m3khelper.util.Commands.quickboot
-import com.rxuglr.m3khelper.util.Commands.umountwin
+import com.rxuglr.m3khelper.util.Commands.umountWindows
 import com.rxuglr.m3khelper.util.Variables.NoFlash
 import com.rxuglr.m3khelper.util.Variables.UEFIList
 import com.rxuglr.m3khelper.util.Variables.Unsupported
@@ -24,7 +24,7 @@ class MountTile : TileService() { // PoC
             )
             qsTile.updateTile()
         } else {
-            if (mountstatus()) {
+            if (mountStatus()) {
                 qsTile.state = STATE_ACTIVE
                 qsTile.label = M3KApp.getString(
                     R.string.mnt_question
@@ -40,10 +40,10 @@ class MountTile : TileService() { // PoC
 
     override fun onClick() {
         super.onClick()
-        if (mountstatus()) {
-            mountwin()
+        if (mountStatus()) {
+            mountWindows()
         } else {
-            umountwin()
+            umountWindows()
         }
     }
 
