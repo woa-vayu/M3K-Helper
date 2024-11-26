@@ -1,7 +1,6 @@
 package com.rxuglr.m3khelper.util
 
-import com.rxuglr.m3khelper.util.Variables.NoModem
-import com.rxuglr.m3khelper.util.Variables.NoSensors
+import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
 import com.rxuglr.m3khelper.util.Variables.UEFIList
 import com.topjohnwu.superuser.ShellUtils
 
@@ -68,7 +67,7 @@ object Commands {
     }
 
     fun checkSensors(): Boolean {
-        return if (NoSensors.value) true
+        return if (CurrentDeviceCard.sensors == false) true
         else {
             mountWindows()
             val check =
@@ -96,8 +95,11 @@ object Commands {
         ) {
             dumpBoot(2)
         }
-        if (!NoModem.value) {
+        if (CurrentDeviceCard.noModem == false) {
             dumpModem()
+        }
+        if (CurrentDeviceCard.sensors == true && checkSensors() == false) {
+            dumpSensors()
         }
         flashUEFI(type)
         ShellUtils.fastCmd("svc power reboot")

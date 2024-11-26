@@ -9,32 +9,23 @@ import com.rxuglr.m3khelper.util.Commands.mountStatus
 import com.rxuglr.m3khelper.util.Commands.mountWindows
 import com.rxuglr.m3khelper.util.Commands.quickboot
 import com.rxuglr.m3khelper.util.Commands.umountWindows
-import com.rxuglr.m3khelper.util.Variables.NoFlash
+import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
 import com.rxuglr.m3khelper.util.Variables.UEFIList
-import com.rxuglr.m3khelper.util.Variables.Unsupported
 
 class MountTile : TileService() { // PoC
 
     override fun onStartListening() {
         super.onStartListening()
-        if (Unsupported.value) {
-            qsTile.state = STATE_UNAVAILABLE
-            qsTile.subtitle = M3KApp.getString(
-                R.string.qs_unsupported
+        if (mountStatus()) {
+            qsTile.state = STATE_ACTIVE
+            qsTile.label = M3KApp.getString(
+                R.string.mnt_question
             )
-            qsTile.updateTile()
         } else {
-            if (mountStatus()) {
-                qsTile.state = STATE_ACTIVE
-                qsTile.label = M3KApp.getString(
-                    R.string.mnt_question
-                )
-            } else {
-                qsTile.state = STATE_ACTIVE
-                qsTile.label = M3KApp.getString(
-                    R.string.umnt_question
-                )
-            }
+            qsTile.state = STATE_ACTIVE
+            qsTile.label = M3KApp.getString(
+                R.string.umnt_question
+            )
         }
     }
 
@@ -53,7 +44,7 @@ class QuickBootTile : TileService() {
 
     override fun onStartListening() {
         super.onStartListening()
-        if (Unsupported.value || NoFlash.value) {
+        if (CurrentDeviceCard.noFlash == true) {
             qsTile.state = STATE_UNAVAILABLE
             qsTile.subtitle = M3KApp.getString(
                 R.string.qs_unsupported

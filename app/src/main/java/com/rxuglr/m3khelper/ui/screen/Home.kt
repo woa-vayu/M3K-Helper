@@ -49,24 +49,13 @@ import com.rxuglr.m3khelper.util.Commands.checkSensors
 import com.rxuglr.m3khelper.util.Commands.dumpModem
 import com.rxuglr.m3khelper.util.Commands.dumpSensors
 import com.rxuglr.m3khelper.util.Variables.BootIsPresent
-import com.rxuglr.m3khelper.util.Variables.Codename
+import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
 import com.rxuglr.m3khelper.util.Variables.FontSize
-import com.rxuglr.m3khelper.util.Variables.GroupLink
-import com.rxuglr.m3khelper.util.Variables.GuideLink
 import com.rxuglr.m3khelper.util.Variables.LineHeight
-import com.rxuglr.m3khelper.util.Variables.Name
-import com.rxuglr.m3khelper.util.Variables.NoBoot
-import com.rxuglr.m3khelper.util.Variables.NoFlash
-import com.rxuglr.m3khelper.util.Variables.NoGroup
-import com.rxuglr.m3khelper.util.Variables.NoGuide
-import com.rxuglr.m3khelper.util.Variables.NoModem
-import com.rxuglr.m3khelper.util.Variables.NoMount
 import com.rxuglr.m3khelper.util.Variables.PaddingValue
 import com.rxuglr.m3khelper.util.Variables.PanelType
 import com.rxuglr.m3khelper.util.Variables.Ram
 import com.rxuglr.m3khelper.util.Variables.Slot
-import com.rxuglr.m3khelper.util.Variables.Unsupported
-import com.rxuglr.m3khelper.util.Variables.Warning
 import com.rxuglr.m3khelper.util.Variables.WindowsIsPresent
 import com.rxuglr.m3khelper.util.sdp
 
@@ -116,12 +105,8 @@ fun HomeScreen() {
 @Composable
 private fun Landscape() {
     when {
-        Warning.value -> {
+        CurrentDeviceCard.deviceName == M3KApp.getString(R.string.unknown_device) -> {
             UnknownDevice()
-        }
-
-        Unsupported.value -> {
-            UnsupportedDevice()
         }
     }
     Row(
@@ -152,17 +137,17 @@ private fun Landscape() {
                 .fillMaxWidth()
         ) {
             when {
-                !NoBoot.value -> {
+                CurrentDeviceCard.noBoot == false -> {
                     Buttons.BackupButton()
                 }
             }
             when {
-                !NoMount.value -> {
+                CurrentDeviceCard.noMount == false -> {
                     Buttons.MountButton()
                 }
             }
             /*when {
-                !NoModem.value -> {
+                CurrentDeviceCard.noModem == false -> {
                     if (!checkSensors()) {
                         Buttons.Button(
                             R.string.dump_modemAsensors_title,
@@ -195,7 +180,7 @@ private fun Landscape() {
                 }
             }*/
             when {
-                !NoFlash.value -> {
+                CurrentDeviceCard.noFlash == false -> {
                     Buttons.QuickbootButton()
                 }
             }
@@ -206,17 +191,13 @@ private fun Landscape() {
 @Composable
 private fun Portrait() {
     when {
-        Warning.value -> {
+        CurrentDeviceCard.deviceName == M3KApp.getString(R.string.unknown_device) -> {
             UnknownDevice()
-        }
-
-        Unsupported.value -> {
-            UnsupportedDevice()
         }
     }
     Row(
         horizontalArrangement = Arrangement.spacedBy(
-            if (Codename == "nabu" || Codename == "emu64xa") {
+            if (CurrentDeviceCard.deviceCodename == "nabu" || CurrentDeviceCard.deviceCodename == "emu64xa") {
                 10.sdp()
             } else 0.dp
         )
@@ -225,18 +206,18 @@ private fun Portrait() {
         InfoCard(Modifier.height(416.sdp()), LocalUriHandler.current)
     }
     when {
-        !NoBoot.value -> {
+        CurrentDeviceCard.noBoot == false -> {
             Buttons.BackupButton()
         }
     }
 
     when {
-        !NoMount.value -> {
+        CurrentDeviceCard.noMount == false -> {
             Buttons.MountButton()
         }
     }
     /*when {
-        !NoModem.value -> {
+        CurrentDeviceCard.noModem == false -> {
             if (!checkSensors()) {
                 Buttons.Button(
                     R.string.dump_modemAsensors_title,
@@ -269,7 +250,7 @@ private fun Portrait() {
         }
     }*/
     when {
-        !NoFlash.value -> {
+        CurrentDeviceCard.noFlash == false -> {
             Buttons.QuickbootButton()
         }
     }
@@ -279,7 +260,7 @@ private fun Portrait() {
 fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
     ElevatedCard(
         modifier =
-        if (Codename == "nabu" || Codename == "emu64xa") {
+        if (CurrentDeviceCard.deviceCodename == "nabu" || CurrentDeviceCard.deviceCodename == "emu64xa") {
             modifier
         } else {
             Modifier
@@ -302,7 +283,7 @@ fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 10.sdp()),
-                text = M3KApp.getString(R.string.model, Name),
+                text = M3KApp.getString(R.string.model, CurrentDeviceCard.deviceName),
                 fontSize = FontSize,
                 lineHeight = LineHeight
             )
@@ -324,7 +305,7 @@ fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
                 lineHeight = LineHeight
             )
             when {
-                !NoBoot.value -> {
+                CurrentDeviceCard.noBoot == false -> {
                     Text(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -363,7 +344,7 @@ fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
                 horizontalArrangement = Arrangement.spacedBy(5.sdp())
             ) {
                 when {
-                    !NoGuide.value -> {
+                    CurrentDeviceCard.noGuide == false -> {
                         AssistChip(
                             modifier = Modifier
                                 .width(110.sdp())
@@ -393,7 +374,7 @@ fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
                     }
                 }
                 when {
-                    !NoGroup.value -> {
+                    CurrentDeviceCard.noGroup == false -> {
                         AssistChip(
                             modifier = Modifier
                                 .width(110.sdp())

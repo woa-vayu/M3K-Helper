@@ -35,9 +35,9 @@ import com.rxuglr.m3khelper.util.Commands.mountStatus
 import com.rxuglr.m3khelper.util.Commands.mountWindows
 import com.rxuglr.m3khelper.util.Commands.quickboot
 import com.rxuglr.m3khelper.util.Commands.umountWindows
+import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
 import com.rxuglr.m3khelper.util.Variables.FontSize
 import com.rxuglr.m3khelper.util.Variables.LineHeight
-import com.rxuglr.m3khelper.util.Variables.NoModem
 import com.rxuglr.m3khelper.util.Variables.PaddingValue
 import com.rxuglr.m3khelper.util.Variables.UEFIList
 import com.rxuglr.m3khelper.util.sdp
@@ -627,7 +627,7 @@ object Buttons {
                             lineHeight = LineHeight,
                             fontSize = FontSize
                         )
-                        val modem = when (NoModem.value) {
+                        val modem = when (CurrentDeviceCard.noModem) {
                             true -> R.string.quickboot_subtitle_nomodem
                             else -> R.string.quickboot_subtitle
                         }

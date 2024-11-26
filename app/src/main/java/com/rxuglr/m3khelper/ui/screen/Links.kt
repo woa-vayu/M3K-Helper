@@ -31,11 +31,8 @@ import com.ramcosta.composedestinations.annotation.RootGraph
 import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
 import com.rxuglr.m3khelper.ui.templates.Buttons
+import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
 import com.rxuglr.m3khelper.util.Variables.FontSize
-import com.rxuglr.m3khelper.util.Variables.GroupLink
-import com.rxuglr.m3khelper.util.Variables.GuideLink
-import com.rxuglr.m3khelper.util.Variables.NoGroup
-import com.rxuglr.m3khelper.util.Variables.NoGuide
 import com.rxuglr.m3khelper.util.sdp
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -95,8 +92,20 @@ private fun Landscape() {
                 .padding(vertical = 10.sdp())
                 .width(500.sdp())
         ) {
-            Buttons.LinkButton("Drivers", "Drivers", "google.com", R.drawable.ic_drivers, LocalUriHandler.current)
-            Buttons.LinkButton("UEFI", "UEFI", "google.com", R.drawable.ic_uefi, LocalUriHandler.current)
+            if (CurrentDeviceCard.unifiedDriversUEFI == true) {
+                Buttons.LinkButton("Drivers and UEFI", "Drivers and UEFI", CurrentDeviceCard.deviceDrivers, R.drawable.ic_drivers, LocalUriHandler.current)
+            } else {
+                when {
+                    CurrentDeviceCard.noDrivers == false -> {
+                        Buttons.LinkButton("Drivers", "Drivers", CurrentDeviceCard.deviceDrivers, R.drawable.ic_drivers, LocalUriHandler.current)
+                    }
+                }
+                when {
+                    CurrentDeviceCard.noUEFI == false -> {
+                        Buttons.LinkButton("UEFI", "UEFI", CurrentDeviceCard.deviceUEFI, R.drawable.ic_uefi, LocalUriHandler.current)
+                    }
+                }
+            }
         }
         Column(
             verticalArrangement = Arrangement.spacedBy(10.sdp()),
@@ -105,13 +114,13 @@ private fun Landscape() {
                 .width(500.sdp())
         ) {
             when {
-                !NoGroup.value -> {
-                    Buttons.GuideGroupLinkButton("Group", "Group", GroupLink, Icons.AutoMirrored.Filled.Message, LocalUriHandler.current)
+                CurrentDeviceCard.noGroup == false -> {
+                    Buttons.GuideGroupLinkButton("Group", "Group", CurrentDeviceCard.deviceGroup, Icons.AutoMirrored.Filled.Message, LocalUriHandler.current)
                 }
             }
             when {
-                !NoGuide.value -> {
-                    Buttons.GuideGroupLinkButton("Guide", "Guide", GuideLink, Icons.Filled.Book, LocalUriHandler.current)
+                CurrentDeviceCard.noGuide == false -> {
+                    Buttons.GuideGroupLinkButton("Guide", "Guide", CurrentDeviceCard.deviceGuide, Icons.Filled.Book, LocalUriHandler.current)
                 }
             }
         }
@@ -120,16 +129,28 @@ private fun Landscape() {
 
 @Composable
 private fun Portrait() {
-    Buttons.LinkButton("Drivers", "Drivers", "google.com", R.drawable.ic_drivers, LocalUriHandler.current)
-    Buttons.LinkButton("UEFI", "UEFI", "google.com", R.drawable.ic_uefi, LocalUriHandler.current)
-    when {
-        !NoGroup.value -> {
-            Buttons.GuideGroupLinkButton("Group", "Group", GroupLink, Icons.AutoMirrored.Filled.Message, LocalUriHandler.current)
+    if (CurrentDeviceCard.unifiedDriversUEFI == true) {
+        Buttons.LinkButton("Drivers and UEFI", "Drivers and UEFI", CurrentDeviceCard.deviceDrivers, R.drawable.ic_drivers, LocalUriHandler.current)
+    } else {
+        when {
+            CurrentDeviceCard.noDrivers == false -> {
+                Buttons.LinkButton("Drivers", "Drivers", CurrentDeviceCard.deviceDrivers, R.drawable.ic_drivers, LocalUriHandler.current)
+            }
+        }
+        when {
+            CurrentDeviceCard.noUEFI == false -> {
+                Buttons.LinkButton("UEFI", "UEFI", CurrentDeviceCard.deviceUEFI, R.drawable.ic_uefi, LocalUriHandler.current)
+            }
         }
     }
     when {
-        !NoGuide.value -> {
-            Buttons.GuideGroupLinkButton("Guide", "Guide", GuideLink, Icons.Filled.Book, LocalUriHandler.current)
+        CurrentDeviceCard.noGroup == false -> {
+            Buttons.GuideGroupLinkButton("Group", "Group", CurrentDeviceCard.deviceGroup, Icons.AutoMirrored.Filled.Message, LocalUriHandler.current)
+        }
+    }
+    when {
+        CurrentDeviceCard.noGuide == false -> {
+            Buttons.GuideGroupLinkButton("Guide", "Guide", CurrentDeviceCard.deviceGuide, Icons.Filled.Book, LocalUriHandler.current)
         }
     }
 
