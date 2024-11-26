@@ -12,15 +12,15 @@ import androidx.compose.ui.platform.LocalContext
 import com.google.android.material.color.DynamicColors
 
 private val DarkColorScheme = darkColorScheme(
-    primary = BLACK,
-    secondary = BLACK_DARK,
-    tertiary = SECONDARY_DARK
+    primary = md_theme_unified_primary,
+    onPrimary = md_theme_dark_onPrimary,
+    onPrimaryContainer = md_theme_dark_primaryContainer
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = BLACK,
-    secondary = BLACK_LIGHT,
-    tertiary = SECONDARY_LIGHT
+    primary = md_theme_unified_primary,
+    onPrimary = md_theme_light_onPrimary,
+    onPrimaryContainer = md_theme_light_primaryContainer
 )
 
 
@@ -40,7 +40,6 @@ fun M3KHelperTheme(
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
-
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,

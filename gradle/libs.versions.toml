@@ -4,19 +4,23 @@ kotlin = "2.0.21"
 ksp = "2.0.21-1.0.26"
 compose-bom = "2024.11.00"
 lifecycle = "2.8.7"
-material = "1.12.0"
 navigation = "2.8.4"
-compose-destination = "1.11.7"
+compose-destination = "2.1.0-beta14"
 libsu = "6.0.0"
+apksign = "1.4"
+cmaker = "1.2"
 
 [plugins]
 agp-app = { id = "com.android.application", version.ref = "agp" }
 agp-lib = { id = "com.android.library", version.ref = "agp" }
+
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-lsplugin-apksign = { id = "org.lsposed.lsplugin.apksign", version = "1.4" }
-lsplugin-cmaker = { id = "org.lsposed.lsplugin.cmaker", version = "1.2" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
+lsplugin-apksign = { id = "org.lsposed.lsplugin.apksign", version.ref = "apksign" }
+lsplugin-cmaker = { id = "org.lsposed.lsplugin.cmaker", version.ref = "cmaker" }
 
 [libraries]
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version = "1.9.3" }
@@ -24,9 +28,10 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
-androidx-compose-material = { group = "androidx.compose.material", name = "material", version = "1.7.5" }
-androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version = "1.3.1" }
+androidx-compose-material = { group = "androidx.compose.material", name = "material" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
@@ -40,7 +45,7 @@ io-coil-kt-coil-compose = { group = "io.coil-kt", name = "coil-compose", version
 
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.9.0" }
 
-compose-destinations-animations-core = { group = "io.github.raamcosta.compose-destinations", name = "animations-core", version.ref = "compose-destination" }
+compose-destinations-core = { group = "io.github.raamcosta.compose-destinations", name = "core", version.ref = "compose-destination" }
 compose-destinations-ksp = { group = "io.github.raamcosta.compose-destinations", name = "ksp", version.ref = "compose-destination" }
 
-material = { module = "com.google.android.material:material", version.ref = "material" }
+material = { module = "com.google.android.material:material", version = "1.12.0" }

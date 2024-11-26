@@ -20,11 +20,8 @@ android {
         applicationId = "com.remtrik.m3khelper"
         minSdk = 29
         targetSdk = 34
-        versionCode = 15
-        versionName = "2.0.1"
-        resourceConfigurations += listOf(
-            "en", "ru", "ar"
-        )
+        versionCode = 18
+        versionName = "2.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -78,6 +75,10 @@ android {
         includeInBundle = false
     }
 
+    androidResources {
+        generateLocaleConfig = true
+    }
+
 }
 
 dependencies {
@@ -89,13 +90,14 @@ dependencies {
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.text.google.fonts)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
-    implementation(libs.compose.destinations.animations.core)
+    implementation(libs.compose.destinations.core)
     ksp(libs.compose.destinations.ksp)
 
     implementation(libs.com.github.topjohnwu.libsu.core)
