@@ -19,16 +19,20 @@ import androidx.compose.material.icons.automirrored.filled.Message
 import androidx.compose.material.icons.filled.Book
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -66,16 +70,40 @@ import com.rxuglr.m3khelper.util.Variables.Warning
 import com.rxuglr.m3khelper.util.Variables.WindowsIsPresent
 import com.rxuglr.m3khelper.util.sdp
 
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Destination<RootGraph>(start = true)
 @Composable
 fun HomeScreen() {
-    Scaffold {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                navigationIcon = {
+                    Icon(
+                        modifier = Modifier
+                            .size(30.sdp()),
+                        tint = MaterialTheme.colorScheme.primary,
+                        imageVector = ImageVector.vectorResource(R.drawable.ic_windows),
+                        contentDescription = null
+                    )
+                },
+                title = {
+                    Text(
+                        text = M3KApp.getString(R.string.app_name),
+                        fontSize = FontSize,
+                        fontWeight = FontWeight.Bold
+                    )
+                },
+                actions = {},
+            )
+        }
+    )
+    { innerPadding ->
         Column(
             verticalArrangement = Arrangement.spacedBy(10.sdp()),
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .padding(vertical = 10.sdp())
+                .padding(innerPadding)
                 .padding(horizontal = 10.sdp())
                 .fillMaxWidth(),
         ) {
