@@ -356,7 +356,7 @@ fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
                 lineHeight = LineHeight
             )
             Spacer(modifier = Modifier.weight(1f))
-            Row(
+            /*Row(
                 Modifier
                     .align(Alignment.CenterHorizontally)
                     .padding(bottom = PaddingValue),
@@ -422,7 +422,7 @@ fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
                         )
                     }
                 }
-            }
+            }*/
         }
     }
 }

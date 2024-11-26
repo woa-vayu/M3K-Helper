@@ -86,6 +86,18 @@ object Variables {
             "guacamole",
             "surya"
         )
+    private val NoDriversA: Array<String> =
+        arrayOf(
+            "hotdog",
+            "guacamole",
+            "surya"
+        )
+    private val NoUEFIA: Array<String> =
+        arrayOf(
+            "hotdog",
+            "guacamole",
+            "surya"
+        )
 
     // device info
     val Ram: String = RAM().getMemory(M3KApp)

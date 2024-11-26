@@ -20,6 +20,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -109,6 +112,99 @@ object Buttons {
                     )
                     Text(
                         M3KApp.getString(subtitle),
+                        color = MaterialTheme.colorScheme.inverseSurface,
+                        lineHeight = LineHeight,
+                        fontSize = FontSize
+                    )
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun LinkButton(
+        title: String,
+        subtitle: String,
+        link: String,
+        icon: Int,
+        localUriHandler: UriHandler
+    ) {
+        ElevatedCard(
+            onClick = { localUriHandler.openUri(link) },
+            Modifier
+                .height(105.sdp())
+                .fillMaxWidth(),
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .padding(PaddingValue),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(5.sdp())
+            ) {
+                Icon(
+                    modifier = Modifier
+                        .size(40.sdp()),
+                    painter = painterResource(id = icon),
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
+                Column {
+                    Text(
+                        text = title,
+                        color = MaterialTheme.colorScheme.inverseSurface,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = FontSize,
+                        lineHeight = LineHeight,
+                    )
+                    Text(
+                        text = subtitle,
+                        color = MaterialTheme.colorScheme.inverseSurface,
+                        lineHeight = LineHeight,
+                        fontSize = FontSize
+                    )
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun GuideGroupLinkButton(
+        title: String,
+        subtitle: String,
+        link: String,
+        icon: ImageVector,
+        localUriHandler: UriHandler
+    ) {
+        ElevatedCard(
+            onClick = { localUriHandler.openUri(link) },
+            Modifier
+                .height(105.sdp())
+                .fillMaxWidth(),
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .padding(PaddingValue),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(5.sdp())
+            ) {
+                Icon(
+                    icon,
+                    contentDescription = null,
+                    Modifier.size(40.sdp()),
+                    tint = MaterialTheme.colorScheme.primary
+                )
+                Column {
+                    Text(
+                        text = title,
+                        color = MaterialTheme.colorScheme.inverseSurface,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = FontSize,
+                        lineHeight = LineHeight,
+                    )
+                    Text(
+                        text = subtitle,
                         color = MaterialTheme.colorScheme.inverseSurface,
                         lineHeight = LineHeight,
                         fontSize = FontSize

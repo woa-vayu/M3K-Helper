@@ -2,13 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:width="24dp"
     android:height="24dp"
-    android:viewportHeight="400"
-    android:viewportWidth="400">
+    android:viewportWidth="400"
+    android:viewportHeight="400">
     <group
-        android:scaleX="1.7"
-        android:scaleY="1.7"
         android:pivotX="200"
-        android:pivotY="200">
+        android:pivotY="200"
+        android:scaleX="1.7"
+        android:scaleY="1.7">
         <path
             android:fillColor="#0983d8"
             android:fillType="evenOdd"
