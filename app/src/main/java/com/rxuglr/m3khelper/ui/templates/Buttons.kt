@@ -38,13 +38,14 @@ import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
 import com.rxuglr.m3khelper.util.Variables.FontSize
 import com.rxuglr.m3khelper.util.Variables.LineHeight
 import com.rxuglr.m3khelper.util.Variables.PaddingValue
+import com.rxuglr.m3khelper.util.Variables.UEFICardsArray
 import com.rxuglr.m3khelper.util.Variables.UEFIList
 import com.rxuglr.m3khelper.util.sdp
 
 object Buttons {
 
     @Composable
-    fun Button(
+    fun CommandButton(
         title: Int,
         subtitle: Int,
         question: Int,
@@ -441,7 +442,7 @@ object Buttons {
 
     @Composable
     fun QuickbootButton() {
-        if (!UEFIList.contains(99)) {
+        if (!UEFIList.isEmpty()) {
             val showQuickBootDialog = remember { mutableStateOf(false) }
             val showQuickBootSpinner = remember { mutableStateOf(false) }
             ElevatedCard(
@@ -493,7 +494,7 @@ object Buttons {
                                                 Thread {
                                                     showQuickBootDialog.value = false
                                                     showQuickBootSpinner.value = true
-                                                    quickboot(0)
+                                                    quickboot(UEFICardsArray[3].uefiPath)
                                                     showQuickBootSpinner.value = false
                                                 }.start()
                                             },
@@ -517,7 +518,7 @@ object Buttons {
                                                 Thread {
                                                     showQuickBootDialog.value = false
                                                     showQuickBootSpinner.value = true
-                                                    quickboot(1)
+                                                    quickboot(UEFICardsArray[2].uefiPath)
                                                     showQuickBootSpinner.value = false
                                                 }.start()
                                             },
@@ -541,7 +542,7 @@ object Buttons {
                                                 Thread {
                                                     showQuickBootDialog.value = false
                                                     showQuickBootSpinner.value = true
-                                                    quickboot(2)
+                                                    quickboot(UEFICardsArray[1].uefiPath)
                                                     showQuickBootSpinner.value = false
                                                 }.start()
                                             },
@@ -558,19 +559,13 @@ object Buttons {
                                             }
                                         )
                                     }
-                                    if (UEFIList.contains(1)
-                                        and
-                                        (!UEFIList.contains(60)
-                                                && !UEFIList.contains(90)
-                                                && !UEFIList.contains(120)
-                                                )
-                                    ) {
+                                    if (UEFIList.contains(1)) {
                                         AssistChip(
                                             onClick = {
                                                 Thread {
                                                     showQuickBootDialog.value = false
                                                     showQuickBootSpinner.value = true
-                                                    quickboot(3)
+                                                    quickboot(UEFICardsArray[0].uefiPath)
                                                     showQuickBootSpinner.value = false
                                                 }.start()
                                             },

@@ -10,16 +10,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
+import com.rxuglr.m3khelper.util.Commands.mountStatus
 import com.rxuglr.m3khelper.util.Commands.mountWindows
 import com.rxuglr.m3khelper.util.Commands.umountWindows
 import com.topjohnwu.superuser.ShellUtils
 import kotlin.properties.Delegates
 
+data class UEFICard(
+    var uefiPath: String,
+    val uefiType: Int,
+)
+
 object Variables {
 
     // static vars
-    private val deviceCardsArray: Array<DeviceCard> =
-        arrayOf(
+    private val deviceCardsArray =
+        arrayOf<DeviceCard>(
             vayuCard, bhimaCard,
             nabuCard,
             raphaelCard, raphaelinCard, raphaelsCard,
@@ -37,11 +43,26 @@ object Variables {
             emu64xaCard
         )
 
+    val specialDeviceCardsArray =
+        arrayOf<DeviceCard>(
+            nabuCard,
+            emu64xaCard
+        )
+
+    var UEFICardsArray =
+        arrayOf<UEFICard>(
+            UEFICard("", 1),
+            UEFICard("", 60),
+            UEFICard("", 90),
+            UEFICard("", 120)
+        )
+
     // device info
     val Ram: String = RAM().getMemory(M3KApp)
     val Slot: String =
         String.format("%S", ShellUtils.fastCmd("getprop ro.boot.slot_suffix")).drop(1)
-    private var Codename: String = Build.DEVICE
+    private var Codename1: String = Build.DEVICE
+    private var Codename2: String = ShellUtils.fastCmd("getprop ro.lineage.device")
     lateinit var PanelType: String
 
     var CurrentDeviceCard: DeviceCard = unknownCard
@@ -50,7 +71,7 @@ object Variables {
     // dynamic vars
     var BootIsPresent: Int by Delegates.notNull()
     var WindowsIsPresent: Int by Delegates.notNull()
-    var UEFIList: Array<Int> = arrayOf(0)
+    var UEFIList = arrayOf<Int>()
 
     var FontSize: TextUnit = 0.sp
     var PaddingValue: Dp = 0.dp
@@ -59,7 +80,7 @@ object Variables {
     @SuppressLint("RestrictedApi")
     fun vars() {
         for (card: DeviceCard in deviceCardsArray) {
-            if (Codename.contains(card.deviceCodename)) CurrentDeviceCard = card
+            if (Codename1.contains(card.deviceCodename) || Codename2.contains(card.deviceCodename)) CurrentDeviceCard = card
         }
 
         val panel = ShellUtils.fastCmd("cat /proc/cmdline")
@@ -82,49 +103,41 @@ object Variables {
             else -> M3KApp.getString(R.string.unknown_panel)
         }
 
+        if (mountStatus()) {
+            mountWindows()
+            dynamicVars()
+            umountWindows()
+        } else dynamicVars()
 
-        mountWindows()
+
+    }
+
+    fun dynamicVars() {
         WindowsIsPresent = when {
             ShellUtils.fastCmd("find /sdcard/Windows/Windows/explorer.exe")
                 .isNotEmpty() -> R.string.yes
 
             else -> R.string.no
         }
-        umountWindows()
-
-        dynamicVars()
-    }
-
-    fun dynamicVars() {
-        UEFIList = arrayOf(0)
-        if ((ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img")
-                .isEmpty())) 
-        {
-            UEFIList += 99
-        } else {
-            if (ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 120")
-                    .isNotEmpty())
-            {
-                UEFIList += 120
+        UEFIList = arrayOf<Int>()
+        if ((ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f | grep .img")
+                .isNotEmpty())
+        ) {
+            var index = 1
+            for (uefi: String in arrayOf("60", "90", "120")) {
+                val path = ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep " + uefi)
+                if (path.isNotEmpty()
+                ) {
+                    UEFIList += uefi.toInt()
+                    UEFICardsArray[index].uefiPath = path
+                }
+                index += 1
             }
-            if (ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 90")
-                    .isNotEmpty())
-            {
-                UEFIList += 90
-            }
-            if (ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 60")
-                    .isNotEmpty())
-            {
-                UEFIList += 60
-            }
-            if ((ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img").isNotEmpty())
-                and
-                (!UEFIList.contains(60)
-                        and !UEFIList.contains(90)
-                        and !UEFIList.contains(120)))
-            {
+            if (UEFIList.isEmpty()) {
                 UEFIList += 1
+                UEFICardsArray[1].uefiPath = ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f | grep .img")
             }
+            if (UEFIList.isEmpty()) UEFIList += 99
         }
 
         BootIsPresent = when {

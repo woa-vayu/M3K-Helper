@@ -206,7 +206,7 @@ val karnaCard = suryaCard.copy(deviceCodename = "karna", deviceName = "POCO X3")
 val emu64xaCard = DeviceCard(
     "emu64xa",
     "emu64xa",
-    R.drawable.nabu,
+    R.drawable.vayu,
     "https://google.com",
     "https://google.com",
     "https://google.com",

@@ -43,27 +43,9 @@ object Commands {
         umountWindows()
     }
 
-    private fun getUEFIPath(type: Int): String {
-        val uefiPath = arrayOf("", "", "", "")
-        if (UEFIList.contains(120)) {
-            uefiPath[0] =
-                ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 120")
-        }
-        if (UEFIList.contains(90)) {
-            uefiPath[1] += ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 90")
-        }
-        if (UEFIList.contains(60)) {
-            uefiPath[2] += ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep 60")
-        }
-        if (UEFIList.contains(1)) {
-            uefiPath[3] += ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img")
-        }
-        return uefiPath[type]
-    }
-
-    fun flashUEFI(type: Int) {
+    fun flashUEFI(uefiPath: String) {
         val slot = ShellUtils.fastCmd("getprop ro.boot.slot_suffix")
-        ShellUtils.fastCmd("dd if=" + getUEFIPath(type) + " of=/dev/block/bootdevice/by-name/boot$slot")
+        ShellUtils.fastCmd("dd if=" + uefiPath + " of=/dev/block/bootdevice/by-name/boot$slot")
     }
 
     fun checkSensors(): Boolean {
@@ -84,7 +66,7 @@ object Commands {
         umountWindows()
     }
 
-    fun quickboot(type: Int) {
+    fun quickboot(uefiPath: String) {
         if (ShellUtils.fastCmd("find /sdcard/Windows/boot.img")
                 .isEmpty()
         ) {
@@ -101,7 +83,7 @@ object Commands {
         if (CurrentDeviceCard.sensors == true && checkSensors() == false) {
             dumpSensors()
         }
-        flashUEFI(type)
+        flashUEFI(uefiPath)
         ShellUtils.fastCmd("svc power reboot")
     }
 }

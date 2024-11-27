@@ -46,6 +46,7 @@ import com.rxuglr.m3khelper.util.Variables.PanelType
 import com.rxuglr.m3khelper.util.Variables.Ram
 import com.rxuglr.m3khelper.util.Variables.Slot
 import com.rxuglr.m3khelper.util.Variables.WindowsIsPresent
+import com.rxuglr.m3khelper.util.Variables.specialDeviceCardsArray
 import com.rxuglr.m3khelper.util.sdp
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -105,14 +106,18 @@ private fun Landscape() {
             verticalArrangement = Arrangement.spacedBy(10.sdp()),
             modifier = Modifier
                 .padding(vertical = 10.sdp())
-                .width(350.sdp())
+                .width(220.sdp())
         ) {
             InfoCard(
                 Modifier
                     .height(200.sdp())
-                    .width(350.sdp()), LocalUriHandler.current
+                    .width(220.sdp()), LocalUriHandler.current
             )
-            DeviceImage(Modifier.width(350.sdp()))
+            DeviceImage(
+                Modifier
+                    .height(200.sdp())
+                    .width(220.sdp())
+            )
         }
         Column(
             verticalArrangement = Arrangement.spacedBy(10.sdp()),
@@ -175,11 +180,7 @@ private fun Landscape() {
 @Composable
 private fun Portrait() {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(
-            if (CurrentDeviceCard.deviceCodename == "nabu" || CurrentDeviceCard.deviceCodename == "emu64xa") {
-                10.sdp()
-            } else 0.dp
-        )
+        horizontalArrangement = Arrangement.spacedBy(10.sdp())
     ) {
         DeviceImage(Modifier.height(416.sdp()))
         InfoCard(Modifier.height(416.sdp()), LocalUriHandler.current)
@@ -239,11 +240,11 @@ private fun Portrait() {
 fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
     ElevatedCard(
         modifier =
-        if (CurrentDeviceCard.deviceCodename == "nabu" || CurrentDeviceCard.deviceCodename == "emu64xa") {
+        if (specialDeviceCardsArray.contains(CurrentDeviceCard)) {
             modifier
         } else {
             Modifier
-                .height(200.sdp())
+                .height(300.sdp())
         },
         shape = RoundedCornerShape(8.sdp()),
     ) {

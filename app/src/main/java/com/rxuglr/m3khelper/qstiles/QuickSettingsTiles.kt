@@ -10,6 +10,7 @@ import com.rxuglr.m3khelper.util.Commands.mountWindows
 import com.rxuglr.m3khelper.util.Commands.quickboot
 import com.rxuglr.m3khelper.util.Commands.umountWindows
 import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
+import com.rxuglr.m3khelper.util.Variables.UEFICardsArray
 import com.rxuglr.m3khelper.util.Variables.UEFIList
 
 class MountTile : TileService() { // PoC
@@ -67,11 +68,13 @@ class QuickBootTile : TileService() {
         super.onClick()
         if (!UEFIList.contains(99)) {
             if (UEFIList.contains(120)) {
-                quickboot(0)
+                quickboot(UEFICardsArray[3].uefiPath)
+            } else if (UEFIList.contains(90)) {
+                quickboot(UEFICardsArray[2].uefiPath)
             } else if (UEFIList.contains(60)) {
-                quickboot(1)
+                quickboot(UEFICardsArray[1].uefiPath)
             } else if (UEFIList.contains(1)) {
-                quickboot(2)
+                quickboot(UEFICardsArray[0].uefiPath)
             }
         } else {
             qsTile.state = STATE_UNAVAILABLE
