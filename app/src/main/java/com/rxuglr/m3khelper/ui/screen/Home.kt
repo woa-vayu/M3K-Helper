@@ -14,10 +14,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.Message
-import androidx.compose.material.icons.filled.Book
-import androidx.compose.material3.AssistChip
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -29,7 +25,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.res.vectorResource
@@ -38,16 +33,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
 import com.rxuglr.m3khelper.ui.templates.Buttons
 import com.rxuglr.m3khelper.ui.templates.Images.DeviceImage
-import com.rxuglr.m3khelper.ui.templates.PopupDialogs.UnknownDevice
-import com.rxuglr.m3khelper.ui.templates.PopupDialogs.UnsupportedDevice
-import com.rxuglr.m3khelper.util.Commands.checkSensors
-import com.rxuglr.m3khelper.util.Commands.dumpModem
-import com.rxuglr.m3khelper.util.Commands.dumpSensors
 import com.rxuglr.m3khelper.util.Variables.BootIsPresent
 import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
 import com.rxuglr.m3khelper.util.Variables.FontSize
@@ -104,11 +93,6 @@ fun HomeScreen() {
 
 @Composable
 private fun Landscape() {
-    when {
-        CurrentDeviceCard.deviceName == M3KApp.getString(R.string.unknown_device) -> {
-            UnknownDevice()
-        }
-    }
     Row(
         horizontalArrangement = Arrangement.spacedBy(10.sdp()),
         modifier = Modifier
@@ -190,11 +174,6 @@ private fun Landscape() {
 
 @Composable
 private fun Portrait() {
-    when {
-        CurrentDeviceCard.deviceName == M3KApp.getString(R.string.unknown_device) -> {
-            UnknownDevice()
-        }
-    }
     Row(
         horizontalArrangement = Arrangement.spacedBy(
             if (CurrentDeviceCard.deviceCodename == "nabu" || CurrentDeviceCard.deviceCodename == "emu64xa") {
@@ -202,7 +181,7 @@ private fun Portrait() {
             } else 0.dp
         )
     ) {
-        DeviceImage(Modifier.width(350.sdp()))
+        DeviceImage(Modifier.height(416.sdp()))
         InfoCard(Modifier.height(416.sdp()), LocalUriHandler.current)
     }
     when {

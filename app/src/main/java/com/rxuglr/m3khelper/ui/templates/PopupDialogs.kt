@@ -216,32 +216,4 @@ object PopupDialogs {
             }
         )
     }
-
-    @Composable
-    fun UnsupportedDevice() {
-        AlertDialog(
-            icon = {
-                Icon(
-                    imageVector = Icons.Filled.Warning,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(40.sdp())
-                )
-            },
-            title = {},
-            text = {
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = stringResource(R.string.device_unsupported),
-                    textAlign = TextAlign.Center,
-                    fontWeight = FontWeight.Bold,
-                    lineHeight = 35.ssp(),
-                    fontSize = 25.ssp()
-                )
-            },
-            onDismissRequest = {},
-            dismissButton = {},
-            confirmButton = {}
-        )
-    }
 }

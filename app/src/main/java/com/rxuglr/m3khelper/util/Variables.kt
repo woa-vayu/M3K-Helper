@@ -1,9 +1,7 @@
 package com.rxuglr.m3khelper.util
 
 import android.annotation.SuppressLint
-import android.bluetooth.BluetoothClass
 import android.os.Build
-import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.unit.Dp
@@ -61,9 +59,8 @@ object Variables {
     @SuppressLint("RestrictedApi")
     fun vars() {
         for (card: DeviceCard in deviceCardsArray) {
-            if (card.deviceCodename.contains(Codename)) CurrentDeviceCard = card
+            if (Codename.contains(card.deviceCodename)) CurrentDeviceCard = card
         }
-        if (CurrentDeviceCard.deviceCodename == "unknown") Warning.value = true
 
         val panel = ShellUtils.fastCmd("cat /proc/cmdline")
         PanelType = when {

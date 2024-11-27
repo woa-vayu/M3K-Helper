@@ -125,7 +125,7 @@ val alphaCard = DeviceCard(
     "LG G8",
     R.drawable.alpha,
     "https://github.com/n00b69/woa-alphaplus",
-    "https://t.me/winong8x",
+    "https://t.me/lgedevices",
     "https://github.com/n00b69/woa-alphaplus/releases/tag/Drivers",
     "https://github.com/n00b69/woa-alphaplus/releases/tag/UEFI",
     false, false,
@@ -140,7 +140,7 @@ val mh2lm5gCard = DeviceCard(
     "LG V50S",
     R.drawable.mh2,
     "https://github.com/n00b69/woa-mh2lm5g",
-    "https://t.me/winong8x",
+    "https://t.me/lgedevices",
     "https://github.com/n00b69/woa-mh2lm5g/releases/tag/Drivers",
     "https://github.com/n00b69/woa-mh2lm5g/releases/tag/UEFI",
     false, false,
@@ -157,7 +157,7 @@ val betaCard = DeviceCard(
     "LG G8S",
     R.drawable.mh2,
     "https://github.com/n00b69/woa-betalm",
-    "https://t.me/winong8x",
+    "https://t.me/lgedevices",
     "https://github.com/n00b69/woa-betalm/releases/tag/Drivers",
     "https://github.com/n00b69/woa-betalm/releases/tag/UEFI",
     true, false,
@@ -219,7 +219,7 @@ val emu64xaCard = DeviceCard(
 )
 
 val unknownCard = DeviceCard(
-    Build.DEVICE,
+    "unknown",
     M3KApp.getString(R.string.unknown_device),
     R.drawable.ic_device_unknown,
     "",

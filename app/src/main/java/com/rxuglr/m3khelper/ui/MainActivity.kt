@@ -35,11 +35,16 @@ import com.ramcosta.composedestinations.animations.NavHostAnimatedDestinationSty
 import com.ramcosta.composedestinations.generated.NavGraphs
 import com.ramcosta.composedestinations.utils.isRouteOnBackStackAsState
 import com.ramcosta.composedestinations.utils.rememberDestinationsNavigator
+import com.rxuglr.m3khelper.M3KApp
+import com.rxuglr.m3khelper.R
 import com.rxuglr.m3khelper.ui.templates.PopupDialogs.NoRoot
+import com.rxuglr.m3khelper.ui.templates.PopupDialogs.UnknownDevice
 import com.rxuglr.m3khelper.ui.theme.M3KHelperTheme
+import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
 import com.rxuglr.m3khelper.util.Variables.FontSize
 import com.rxuglr.m3khelper.util.Variables.LineHeight
 import com.rxuglr.m3khelper.util.Variables.PaddingValue
+import com.rxuglr.m3khelper.util.Variables.Warning
 import com.rxuglr.m3khelper.util.Variables.vars
 import com.rxuglr.m3khelper.util.sdp
 import com.rxuglr.m3khelper.util.ssp
@@ -115,6 +120,12 @@ class MainActivity : ComponentActivity() {
                                     get() = { fadeOut(animationSpec = tween(340)) }
                             }
                         )
+                        if (CurrentDeviceCard.deviceCodename == "unknown") Warning.value = true
+                        when {
+                            CurrentDeviceCard.deviceName == M3KApp.getString(R.string.unknown_device) -> {
+                                UnknownDevice()
+                            }
+                        }
                     }
                 } else NoRoot()
             }
