@@ -1,7 +1,6 @@
 package com.rxuglr.m3khelper.util
 
 import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
-import com.rxuglr.m3khelper.util.Variables.UEFIList
 import com.topjohnwu.superuser.ShellUtils
 
 object Commands {

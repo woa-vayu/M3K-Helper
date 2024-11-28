@@ -360,6 +360,7 @@ object Buttons {
     @Composable
     fun MountButton() {
         val showMountDialog = remember { mutableStateOf(false) }
+        var mount = mountStatus()
         ElevatedCard(
             onClick = { showMountDialog.value = true },
             Modifier
@@ -368,7 +369,7 @@ object Buttons {
         ) {
             when {
                 showMountDialog.value -> {
-                    if (mountStatus()) {
+                    if (mount) {
                         Dialog(
                             icon = painterResource(id = R.drawable.ic_folder_open),
                             title = null,
@@ -406,7 +407,7 @@ object Buttons {
                     modifier = Modifier
                         .size(40.sdp()),
                     painter = painterResource(
-                        id = if (mountStatus()) {
+                        id = if (mount) {
                             R.drawable.ic_folder_open
                         } else {
                             R.drawable.ic_folder
@@ -417,7 +418,7 @@ object Buttons {
                 )
                 Column {
                     val mounted: Int =
-                        if (mountStatus()) {
+                        if (mount) {
                             R.string.mnt_title
                         } else {
                             R.string.umnt_title
@@ -442,196 +443,204 @@ object Buttons {
 
     @Composable
     fun QuickbootButton() {
-        if (!UEFIList.isEmpty()) {
-            val showQuickBootDialog = remember { mutableStateOf(false) }
-            val showQuickBootSpinner = remember { mutableStateOf(false) }
-            ElevatedCard(
-                onClick = { showQuickBootDialog.value = true },
-                Modifier
-                    .height(105.sdp())
-                    .fillMaxWidth(),
-            ) {
-                when {
-                    showQuickBootSpinner.value -> {
-                        StatusDialog(
-                            icon = painterResource(id = R.drawable.ic_windows),
-                            title = R.string.please_wait,
-                            showDialog = showQuickBootSpinner.value,
-                        )
-                    }
+
+        val showQuickBootDialog = remember { mutableStateOf(false) }
+        val showQuickBootSpinner = remember { mutableStateOf(false) }
+        ElevatedCard(
+            onClick = { showQuickBootDialog.value = true },
+            Modifier
+                .height(105.sdp())
+                .fillMaxWidth(),
+            enabled = UEFIList.isNotEmpty()
+        ) {
+            when {
+                showQuickBootSpinner.value -> {
+                    StatusDialog(
+                        icon = painterResource(id = R.drawable.ic_windows),
+                        title = R.string.please_wait,
+                        showDialog = showQuickBootSpinner.value,
+                    )
                 }
-                when {
-                    showQuickBootDialog.value -> {
-                        AlertDialog(
-                            icon = {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ic_windows),
-                                    contentDescription = null,
-                                    tint = MaterialTheme.colorScheme.primary,
-                                    modifier = Modifier.size(40.sdp())
-                                )
-                            },
-                            title = {
-                            },
-                            text = {
-                                Text(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    text = M3KApp.getString(R.string.quickboot_question),
-                                    textAlign = TextAlign.Center,
-                                    fontSize = FontSize
-                                )
-                            },
-                            onDismissRequest = ({ showQuickBootDialog.value = false; }),
-                            dismissButton = {
-                                Row(
-                                    Modifier.align(Alignment.CenterHorizontally),
-                                    horizontalArrangement = Arrangement.spacedBy(10.sdp())
-                                ) {
-                                    if (UEFIList.contains(120)) {
-                                        AssistChip(
-                                            modifier = Modifier.width(105.sdp()),
-                                            onClick = {
-                                                Thread {
-                                                    showQuickBootDialog.value = false
-                                                    showQuickBootSpinner.value = true
-                                                    quickboot(UEFICardsArray[3].uefiPath)
-                                                    showQuickBootSpinner.value = false
-                                                }.start()
-                                            },
-                                            label = {
-                                                Text(
-                                                    modifier = Modifier.padding(
-                                                        top = 2.sdp(),
-                                                        bottom = 2.sdp()
-                                                    ),
-                                                    text = M3KApp.getString(R.string.quickboot_question3),
-                                                    color = MaterialTheme.colorScheme.inverseSurface,
-                                                    fontSize = FontSize
-                                                )
-                                            }
-                                        )
-                                    }
-                                    if (UEFIList.contains(90)) {
-                                        AssistChip(
-                                            modifier = Modifier.width(105.sdp()),
-                                            onClick = {
-                                                Thread {
-                                                    showQuickBootDialog.value = false
-                                                    showQuickBootSpinner.value = true
-                                                    quickboot(UEFICardsArray[2].uefiPath)
-                                                    showQuickBootSpinner.value = false
-                                                }.start()
-                                            },
-                                            label = {
-                                                Text(
-                                                    modifier = Modifier.padding(
-                                                        top = 2.sdp(),
-                                                        bottom = 2.sdp()
-                                                    ),
-                                                    text = M3KApp.getString(R.string.quickboot_question2),
-                                                    color = MaterialTheme.colorScheme.inverseSurface,
-                                                    fontSize = FontSize
-                                                )
-                                            }
-                                        )
-                                    }
-                                    if (UEFIList.contains(60)) {
-                                        AssistChip(
-                                            modifier = Modifier.width(105.sdp()),
-                                            onClick = {
-                                                Thread {
-                                                    showQuickBootDialog.value = false
-                                                    showQuickBootSpinner.value = true
-                                                    quickboot(UEFICardsArray[1].uefiPath)
-                                                    showQuickBootSpinner.value = false
-                                                }.start()
-                                            },
-                                            label = {
-                                                Text(
-                                                    modifier = Modifier.padding(
-                                                        top = 2.sdp(),
-                                                        bottom = 2.sdp()
-                                                    ),
-                                                    text = M3KApp.getString(R.string.quickboot_question1),
-                                                    color = MaterialTheme.colorScheme.inverseSurface,
-                                                    fontSize = FontSize
-                                                )
-                                            }
-                                        )
-                                    }
-                                    if (UEFIList.contains(1)) {
-                                        AssistChip(
-                                            onClick = {
-                                                Thread {
-                                                    showQuickBootDialog.value = false
-                                                    showQuickBootSpinner.value = true
-                                                    quickboot(UEFICardsArray[0].uefiPath)
-                                                    showQuickBootSpinner.value = false
-                                                }.start()
-                                            },
-                                            label = {
-                                                Text(
-                                                    text = M3KApp.getString(R.string.yes),
-                                                    color = MaterialTheme.colorScheme.inverseSurface,
-                                                    fontSize = FontSize
-                                                )
-                                            }
-                                        )
-                                    }
+            }
+            when {
+                showQuickBootDialog.value -> {
+                    AlertDialog(
+                        icon = {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_windows),
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier.size(40.sdp())
+                            )
+                        },
+                        title = {
+                        },
+                        text = {
+                            Text(
+                                modifier = Modifier.fillMaxWidth(),
+                                text = M3KApp.getString(R.string.quickboot_question),
+                                textAlign = TextAlign.Center,
+                                fontSize = FontSize
+                            )
+                        },
+                        onDismissRequest = ({ showQuickBootDialog.value = false; }),
+                        dismissButton = {
+                            Row(
+                                Modifier.align(Alignment.CenterHorizontally),
+                                horizontalArrangement = Arrangement.spacedBy(10.sdp())
+                            ) {
+                                if (UEFIList.contains(120)) {
                                     AssistChip(
-                                        onClick = ({ showQuickBootDialog.value = false; }),
+                                        modifier = Modifier.width(105.sdp()),
+                                        onClick = {
+                                            Thread {
+                                                showQuickBootDialog.value = false
+                                                showQuickBootSpinner.value = true
+                                                quickboot(UEFICardsArray[3].uefiPath)
+                                                showQuickBootSpinner.value = false
+                                            }.start()
+                                        },
                                         label = {
                                             Text(
                                                 modifier = Modifier.padding(
                                                     top = 2.sdp(),
                                                     bottom = 2.sdp()
                                                 ),
-                                                text = M3KApp.getString(R.string.no),
+                                                text = M3KApp.getString(R.string.quickboot_question3),
                                                 color = MaterialTheme.colorScheme.inverseSurface,
                                                 fontSize = FontSize
                                             )
                                         }
                                     )
                                 }
-                            },
-                            confirmButton = {
+                                if (UEFIList.contains(90)) {
+                                    AssistChip(
+                                        modifier = Modifier.width(105.sdp()),
+                                        onClick = {
+                                            Thread {
+                                                showQuickBootDialog.value = false
+                                                showQuickBootSpinner.value = true
+                                                quickboot(UEFICardsArray[2].uefiPath)
+                                                showQuickBootSpinner.value = false
+                                            }.start()
+                                        },
+                                        label = {
+                                            Text(
+                                                modifier = Modifier.padding(
+                                                    top = 2.sdp(),
+                                                    bottom = 2.sdp()
+                                                ),
+                                                text = M3KApp.getString(R.string.quickboot_question2),
+                                                color = MaterialTheme.colorScheme.inverseSurface,
+                                                fontSize = FontSize
+                                            )
+                                        }
+                                    )
+                                }
+                                if (UEFIList.contains(60)) {
+                                    AssistChip(
+                                        modifier = Modifier.width(105.sdp()),
+                                        onClick = {
+                                            Thread {
+                                                showQuickBootDialog.value = false
+                                                showQuickBootSpinner.value = true
+                                                quickboot(UEFICardsArray[1].uefiPath)
+                                                showQuickBootSpinner.value = false
+                                            }.start()
+                                        },
+                                        label = {
+                                            Text(
+                                                modifier = Modifier.padding(
+                                                    top = 2.sdp(),
+                                                    bottom = 2.sdp()
+                                                ),
+                                                text = M3KApp.getString(R.string.quickboot_question1),
+                                                color = MaterialTheme.colorScheme.inverseSurface,
+                                                fontSize = FontSize
+                                            )
+                                        }
+                                    )
+                                }
+                                if (UEFIList.contains(1)) {
+                                    AssistChip(
+                                        onClick = {
+                                            Thread {
+                                                showQuickBootDialog.value = false
+                                                showQuickBootSpinner.value = true
+                                                quickboot(UEFICardsArray[0].uefiPath)
+                                                showQuickBootSpinner.value = false
+                                            }.start()
+                                        },
+                                        label = {
+                                            Text(
+                                                text = M3KApp.getString(R.string.yes),
+                                                color = MaterialTheme.colorScheme.inverseSurface,
+                                                fontSize = FontSize
+                                            )
+                                        }
+                                    )
+                                }
+                                AssistChip(
+                                    onClick = ({ showQuickBootDialog.value = false; }),
+                                    label = {
+                                        Text(
+                                            modifier = Modifier.padding(
+                                                top = 2.sdp(),
+                                                bottom = 2.sdp()
+                                            ),
+                                            text = M3KApp.getString(R.string.no),
+                                            color = MaterialTheme.colorScheme.inverseSurface,
+                                            fontSize = FontSize
+                                        )
+                                    }
+                                )
                             }
-                        )
-                    }
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .padding(PaddingValue),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(5.sdp())
-                ) {
-                    Icon(
-                        modifier = Modifier
-                            .size(40.sdp()),
-                        painter = painterResource(id = R.drawable.ic_windows),
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.primary
+                        },
+                        confirmButton = {
+                        }
                     )
-                    Column {
-                        Text(
-                            M3KApp.getString(R.string.quickboot_title),
-                            color = MaterialTheme.colorScheme.inverseSurface,
-                            fontWeight = FontWeight.Bold,
-                            lineHeight = LineHeight,
-                            fontSize = FontSize
-                        )
-                        val modem = when (CurrentDeviceCard.noModem) {
+                }
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .padding(PaddingValue),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(5.sdp())
+            ) {
+                Icon(
+                    modifier = Modifier
+                        .size(40.sdp()),
+                    painter = painterResource(id = R.drawable.ic_windows),
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
+                Column {
+                    val title: Int
+                    val subtitle: Int
+                    if (UEFIList.isNotEmpty()) {
+                        title = R.string.quickboot_title
+                        subtitle = when (CurrentDeviceCard.noModem) {
                             true -> R.string.quickboot_subtitle_nomodem
                             else -> R.string.quickboot_subtitle
                         }
-                        Text(
-                            M3KApp.getString(modem),
-                            color = MaterialTheme.colorScheme.inverseSurface,
-                            lineHeight = LineHeight,
-                            fontSize = FontSize
-                        )
+                    } else {
+                        title = R.string.uefi_not_found_title
+                        subtitle = R.string.uefi_not_found_subtitle
                     }
+                    Text(
+                        M3KApp.getString(title),
+                        color = MaterialTheme.colorScheme.inverseSurface,
+                        fontWeight = FontWeight.Bold,
+                        lineHeight = LineHeight,
+                        fontSize = FontSize
+                    )
+                    Text(
+                        M3KApp.getString(subtitle),
+                        color = MaterialTheme.colorScheme.inverseSurface,
+                        lineHeight = LineHeight,
+                        fontSize = FontSize
+                    )
                 }
             }
         }

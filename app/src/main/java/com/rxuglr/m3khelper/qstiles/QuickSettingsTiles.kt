@@ -52,7 +52,7 @@ class QuickBootTile : TileService() {
             )
             qsTile.updateTile()
         } else {
-            if (UEFIList.contains(99)) {
+            if (UEFIList.isEmpty()) {
                 qsTile.state = STATE_UNAVAILABLE
                 qsTile.subtitle = M3KApp.getString(
                     R.string.uefi_not_found_title
@@ -66,7 +66,7 @@ class QuickBootTile : TileService() {
 
     override fun onClick() {
         super.onClick()
-        if (!UEFIList.contains(99)) {
+        if (UEFIList.isNotEmpty()) {
             if (UEFIList.contains(120)) {
                 quickboot(UEFICardsArray[3].uefiPath)
             } else if (UEFIList.contains(90)) {

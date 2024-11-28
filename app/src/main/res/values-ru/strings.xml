@@ -25,6 +25,7 @@
     <string name="dump_sensors_subtitle">Нужно сделать всего 1 раз если вам нужны сенсоры</string>
     <string name="quickboot_subtitle">Исправить модем, прошить UEFI и перезагрузиться в Windows в одно нажатие</string>
     <string name="quickboot_subtitle_nomodem">Прошейте UEFI и перезагрузитесь в Windows в одно нажатие</string>
+    <string name="uefi_not_found_subtitle">Скачайте UEFI для вашего устройства и поместите его в папку /sdcard/UEFI</string>
 
     <string name="no_root">M3K Helper нужны Root-права для работы!</string>
     <string name="qs_unsupported">Устройство неподдерживается</string>
@@ -40,6 +41,9 @@
 
     <string name="guide">Гайд</string>
     <string name="group">Группа</string>
+    <string name="drivers">Драйвера</string>
+    <string name="uefi">UEFI</string>
+    <string name="driversuefi">Драйвера и UEFI</string>
 
     <string name="yes">Да</string>
     <string name="no">Нет</string>
@@ -51,7 +55,6 @@
     <string name="home">Главная</string>
     <string name="links">Дополнительные материалы</string>
     <string name="device_unknown">ВАШЕ УСТРОЙСТВО НЕ ПОДДЕРЖИВАЕТСЯ!\n ПОЛЬЗУЙТЕСЬ ДАННЫМ ПРИЛОЖЕНИЕМ НА ВАШ СТРАХ И РИСК</string>
-    <string name="device_unsupported">Ваше устройство не поддерживается.</string>
     <string name="device_unknown_confirm">Меня это устраивает</string>
 
 </resources>

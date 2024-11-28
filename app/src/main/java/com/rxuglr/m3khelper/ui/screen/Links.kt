@@ -93,16 +93,16 @@ private fun Landscape() {
                 .width(500.sdp())
         ) {
             if (CurrentDeviceCard.unifiedDriversUEFI == true) {
-                Buttons.LinkButton("Drivers and UEFI", "Drivers and UEFI", CurrentDeviceCard.deviceDrivers, R.drawable.ic_drivers, LocalUriHandler.current)
+                Buttons.LinkButton(M3KApp.getString(R.string.driversuefi), M3KApp.getString(R.string.driversuefi), CurrentDeviceCard.deviceDrivers, R.drawable.ic_drivers, LocalUriHandler.current)
             } else {
                 when {
                     CurrentDeviceCard.noDrivers == false -> {
-                        Buttons.LinkButton("Drivers", "Drivers", CurrentDeviceCard.deviceDrivers, R.drawable.ic_drivers, LocalUriHandler.current)
+                        Buttons.LinkButton(M3KApp.getString(R.string.drivers), M3KApp.getString(R.string.drivers), CurrentDeviceCard.deviceDrivers, R.drawable.ic_drivers, LocalUriHandler.current)
                     }
                 }
                 when {
                     CurrentDeviceCard.noUEFI == false -> {
-                        Buttons.LinkButton("UEFI", "UEFI", CurrentDeviceCard.deviceUEFI, R.drawable.ic_uefi, LocalUriHandler.current)
+                        Buttons.LinkButton(M3KApp.getString(R.string.uefi), M3KApp.getString(R.string.uefi), CurrentDeviceCard.deviceUEFI, R.drawable.ic_uefi, LocalUriHandler.current)
                     }
                 }
             }
@@ -115,12 +115,12 @@ private fun Landscape() {
         ) {
             when {
                 CurrentDeviceCard.noGroup == false -> {
-                    Buttons.GuideGroupLinkButton("Group", "Group", CurrentDeviceCard.deviceGroup, Icons.AutoMirrored.Filled.Message, LocalUriHandler.current)
+                    Buttons.GuideGroupLinkButton(M3KApp.getString(R.string.group), M3KApp.getString(R.string.group), CurrentDeviceCard.deviceGroup, Icons.AutoMirrored.Filled.Message, LocalUriHandler.current)
                 }
             }
             when {
                 CurrentDeviceCard.noGuide == false -> {
-                    Buttons.GuideGroupLinkButton("Guide", "Guide", CurrentDeviceCard.deviceGuide, Icons.Filled.Book, LocalUriHandler.current)
+                    Buttons.GuideGroupLinkButton(M3KApp.getString(R.string.guide), M3KApp.getString(R.string.guide), CurrentDeviceCard.deviceGuide, Icons.Filled.Book, LocalUriHandler.current)
                 }
             }
         }
@@ -130,27 +130,27 @@ private fun Landscape() {
 @Composable
 private fun Portrait() {
     if (CurrentDeviceCard.unifiedDriversUEFI == true) {
-        Buttons.LinkButton("Drivers and UEFI", "Drivers and UEFI", CurrentDeviceCard.deviceDrivers, R.drawable.ic_drivers, LocalUriHandler.current)
+        Buttons.LinkButton(M3KApp.getString(R.string.driversuefi), M3KApp.getString(R.string.driversuefi), CurrentDeviceCard.deviceDrivers, R.drawable.ic_drivers, LocalUriHandler.current)
     } else {
         when {
             CurrentDeviceCard.noDrivers == false -> {
-                Buttons.LinkButton("Drivers", "Drivers", CurrentDeviceCard.deviceDrivers, R.drawable.ic_drivers, LocalUriHandler.current)
+                Buttons.LinkButton(M3KApp.getString(R.string.drivers), M3KApp.getString(R.string.drivers), CurrentDeviceCard.deviceDrivers, R.drawable.ic_drivers, LocalUriHandler.current)
             }
         }
         when {
             CurrentDeviceCard.noUEFI == false -> {
-                Buttons.LinkButton("UEFI", "UEFI", CurrentDeviceCard.deviceUEFI, R.drawable.ic_uefi, LocalUriHandler.current)
+                Buttons.LinkButton(M3KApp.getString(R.string.uefi), M3KApp.getString(R.string.uefi), CurrentDeviceCard.deviceUEFI, R.drawable.ic_uefi, LocalUriHandler.current)
             }
         }
     }
     when {
         CurrentDeviceCard.noGroup == false -> {
-            Buttons.GuideGroupLinkButton("Group", "Group", CurrentDeviceCard.deviceGroup, Icons.AutoMirrored.Filled.Message, LocalUriHandler.current)
+            Buttons.GuideGroupLinkButton(M3KApp.getString(R.string.group), M3KApp.getString(R.string.group), CurrentDeviceCard.deviceGroup, Icons.AutoMirrored.Filled.Message, LocalUriHandler.current)
         }
     }
     when {
         CurrentDeviceCard.noGuide == false -> {
-            Buttons.GuideGroupLinkButton("Guide", "Guide", CurrentDeviceCard.deviceGuide, Icons.Filled.Book, LocalUriHandler.current)
+            Buttons.GuideGroupLinkButton(M3KApp.getString(R.string.guide), M3KApp.getString(R.string.guide), CurrentDeviceCard.deviceGuide, Icons.Filled.Book, LocalUriHandler.current)
         }
     }
 

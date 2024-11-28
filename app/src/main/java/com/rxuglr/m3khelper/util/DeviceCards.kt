@@ -1,6 +1,5 @@
 package com.rxuglr.m3khelper.util
 
-import android.os.Build
 import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
 
@@ -114,8 +113,9 @@ val miatolCard = DeviceCard(
     false, true
 )
 
-val curtanaCard = miatolCard.copy(deviceCodename = "curtana", deviceName = "Xiaomi Redmi Note 9S")
-val durandalCard = miatolCard.copy(deviceCodename = "durandal")
+val durandalCard = miatolCard.copy(deviceCodename = "durandal", deviceName = "Xiaomi Redmi Note 9S")
+val curtana_indiaCard = durandalCard.copy(deviceCodename = "curtana_india", deviceName = "Xiaomi Redmi Note 9S")
+val curtanaCard = miatolCard.copy(deviceCodename = "curtana", deviceName = "Xiaomi Redmi Note 9S NFC")
 val excaliburCard = miatolCard.copy(deviceCodename = "excalibur", deviceName = "Xiaomi Redmi Note 9 Pro Max")
 val gramCard = miatolCard.copy(deviceCodename = "gram", deviceName = "POCO M2 Pro")
 val joyeuseCard = miatolCard.copy(deviceCodename = "joyeuse", deviceName = "Xiaomi Redmi Note 9 Pro")
@@ -203,6 +203,21 @@ val suryaCard = DeviceCard(
 
 val karnaCard = suryaCard.copy(deviceCodename = "karna", deviceName = "POCO X3")
 
+val a52sxqCard = DeviceCard(
+    "a52sxq",
+    "Samsung Galaxy A52s",
+    R.drawable.a52sxq,
+    "https://github.com/woa-a52s/Samsung-A52s-5G-Guides",
+    "https://t.me/a52sxq_uefi",
+    "https://github.com/woa-a52s/Samsung-A52s-5G-Releases/releases/latest",
+    "",
+    true, false,
+    false, false,
+    false, false,
+    false, false,
+    false, true
+)
+
 val emu64xaCard = DeviceCard(
     "emu64xa",
     "emu64xa",
@@ -215,7 +230,7 @@ val emu64xaCard = DeviceCard(
     false, false,
     false, false,
     false, false,
-    false, false
+    false, true
 )
 
 val unknownCard = DeviceCard(

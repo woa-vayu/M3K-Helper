@@ -31,7 +31,7 @@ object Variables {
             raphaelCard, raphaelinCard, raphaelsCard,
             cepheusCard,
             berylliumCard,
-            miatolCard, curtanaCard, durandalCard, excaliburCard, gramCard, joyeuseCard,
+            miatolCard, curtana_indiaCard, durandalCard, curtanaCard, excaliburCard, gramCard, joyeuseCard,
             alphaCard,
             mh2lm5gCard,
             mh2Card,
@@ -40,6 +40,7 @@ object Variables {
             guacamoleCard,
             hotdogCard,
             suryaCard, karnaCard,
+            a52sxqCard,
             emu64xaCard
         )
 
@@ -82,7 +83,7 @@ object Variables {
         for (card: DeviceCard in deviceCardsArray) {
             if (Codename1.contains(card.deviceCodename) || Codename2.contains(card.deviceCodename)) CurrentDeviceCard = card
         }
-
+        CurrentDeviceCard = a52sxqCard
         val panel = ShellUtils.fastCmd("cat /proc/cmdline")
         PanelType = when {
             panel.contains("j20s_42") 
@@ -98,7 +99,9 @@ object Variables {
             panel.contains("samsung")
                     || panel.contains("ea8076_f1mp")
                     || panel.contains("ea8076_f1p2")
-                    || panel.contains("ea8076_global") -> "Samsung"
+                    || panel.contains("ea8076_global")
+                    || panel.contains("s6e3fc3")
+                    || panel.contains("ams646yd0") -> "Samsung"
 
             else -> M3KApp.getString(R.string.unknown_panel)
         }
@@ -120,9 +123,8 @@ object Variables {
             else -> R.string.no
         }
         UEFIList = arrayOf<Int>()
-        if ((ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f | grep .img")
-                .isNotEmpty())
-        ) {
+        val find = ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f | grep .img")
+        if (find.isNotEmpty()) {
             var index = 1
             for (uefi: String in arrayOf("60", "90", "120")) {
                 val path = ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep " + uefi)
@@ -135,9 +137,8 @@ object Variables {
             }
             if (UEFIList.isEmpty()) {
                 UEFIList += 1
-                UEFICardsArray[1].uefiPath = ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f | grep .img")
+                UEFICardsArray[1].uefiPath = find
             }
-            if (UEFIList.isEmpty()) UEFIList += 99
         }
 
         BootIsPresent = when {

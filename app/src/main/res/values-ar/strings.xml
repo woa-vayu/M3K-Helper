@@ -25,6 +25,7 @@
     <string name="dump_sensors_subtitle">نسخ ملفات الحساسات لإصلاحهم، ستحتاج لعمل ذلك مرة واحدة</string>
     <string name="quickboot_subtitle">إنسخ المودم، فلّش الـ UEFI، وأقلع إلى Windows بضغطة واحدة</string>
     <string name="quickboot_subtitle_nomodem">فلّش الـ UEFI، وأقلع إلى Windows بضغطة واحدة </string>
+    <string name="uefi_not_found_subtitle">قم بتنزيل الـ UEFI الخاصة بجهازك وضعها في /sdcard/UEFI</string>
 
     <string name="no_root">يرجى إعطاء M3K Helper صلاحيات الجذر حتى تستعمله!</string>
     <string name="qs_unsupported">جهازك غير مدعوم</string>

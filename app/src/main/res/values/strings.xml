@@ -34,6 +34,7 @@
     <string name="dump_sensors_subtitle">Dump sensors to Windows to fix them. This will be done only once</string>
     <string name="quickboot_subtitle">Dump Modem, Flash UEFI, and Reboot to Windows in one click</string>
     <string name="quickboot_subtitle_nomodem">Flash UEFI, and Reboot to Windows in one click</string>
+    <string name="uefi_not_found_subtitle">Download UEFI for your device and place it under /sdcard/UEFI folder</string>
 
     <string name="no_root">Please grant M3K Helper Root-access to use it!</string>
     <string name="qs_unsupported">Device isn\'t supported</string>
@@ -50,6 +51,9 @@
 
     <string name="guide">Guide</string>
     <string name="group">Group</string>
+    <string name="drivers">Drivers</string>
+    <string name="uefi">UEFI</string>
+    <string name="driversuefi">Drivers&amp;UEFI</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -62,7 +66,6 @@
     <string name="links">Additional materials</string>
 
     <string name="device_unknown">YOUR DEVICE ISN\'T SUPPORTED!\n USING THIS APP CAN RESULT IN A BRICK</string>
-    <string name="device_unsupported">Your device isn\'t supported.</string>
     <string name="device_unknown_confirm">I\'m fine with that</string>
 
 </resources>
