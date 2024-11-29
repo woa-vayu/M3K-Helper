@@ -56,7 +56,7 @@ object Variables {
         )
 
     // device info
-    val Ram: String = RAM.getMemory(M3KApp)
+    val Ram: String = getMemory(M3KApp)
     val Slot: String =
         String.format("%S", ShellUtils.fastCmd("getprop ro.boot.slot_suffix")).drop(1)
     private var Codename1: String = Build.DEVICE
@@ -64,13 +64,12 @@ object Variables {
     lateinit var PanelType: String
 
     var CurrentDeviceCard: DeviceCard = unknownCard
-    val Warning: MutableState<Boolean> = mutableStateOf(false)
-    var showAboutCard: MutableState<Boolean> = mutableStateOf(false)
-
 
     // dynamic vars
     var BootIsPresent: Int by Delegates.notNull()
     var WindowsIsPresent: Int by Delegates.notNull()
+    val Warning: MutableState<Boolean> = mutableStateOf(false)
+    var showAboutCard: MutableState<Boolean> = mutableStateOf(false)
     var UEFIList = arrayOf<Int>()
 
     var FontSize: TextUnit = 0.sp

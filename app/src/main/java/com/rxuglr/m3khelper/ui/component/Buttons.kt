@@ -27,8 +27,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
-import com.rxuglr.m3khelper.ui.templates.PopupDialogs.Dialog
-import com.rxuglr.m3khelper.ui.templates.PopupDialogs.StatusDialog
 import com.rxuglr.m3khelper.util.dumpBoot
 import com.rxuglr.m3khelper.util.mountStatus
 import com.rxuglr.m3khelper.util.mountWindows
