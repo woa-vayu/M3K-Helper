@@ -15,7 +15,7 @@
     <string name="dump_modem_question">نسخ ملفات المودم لقسم تخزين Windows؟</string>
     <string name="dump_modemAsensors_question">نسخ ملفات المودم والحساسات لقسم تخزين Windows؟</string>
     <string name="dump_sensors_question">نسخ ملفات الحساسات لقسم تخزين Windows؟</string>
-    <string name="quickboot_question">أقلع بسرعة إلى Windows؟</string>
+    <string name="quickboot_question1">أقلع بسرعة إلى Windows؟</string>
     <string name="backup_boot_question">أخذ نسخة احتياطية للـ Boot الخاص بـ Android؟</string>
 
     <string name="backup_boot_subtitle">خذ نسخة احتياطية من الـ boot.img الحالية في Android او Windows</string>

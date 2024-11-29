@@ -17,5 +17,5 @@ enum class Destinations(
     val iconNotSelected: ImageVector
 ) {
     Home(HomeScreenDestination, R.string.home, Icons.Filled.Home, Icons.Outlined.Home),
-    Links(LinksScreenDestination, R.string.links, Icons.Filled.Info, Icons.Outlined.Info),
+    Links(LinksScreenDestination, R.string.links, Icons.Filled.Interests, Icons.Outlined.Interests),
 }

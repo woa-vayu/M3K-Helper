@@ -15,7 +15,7 @@
     <string name="dump_modem_question">Скопировать модем в раздел Windows?</string>
     <string name="dump_modemAsensors_question">Скопировать модем и сенсоры в раздел Windows?</string>
     <string name="dump_sensors_question">Скопировать сенсоры в раздел Windows?</string>
-    <string name="quickboot_question">Перезагрузиться в Windows?</string>
+    <string name="quickboot_question1">Перезагрузиться в Windows?</string>
     <string name="backup_boot_question">Хотите сделать резервную копию текущего boot образа?</string>
 
     <string name="backup_boot_subtitle">Резервное копирование текущего boot образа</string>

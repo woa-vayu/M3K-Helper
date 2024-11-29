@@ -21,10 +21,10 @@
     <string name="dump_modem_question">Dump modem to Windows partition?</string>
     <string name="dump_modemAsensors_question">Dump modem and sensors to Windows partition?</string>
     <string name="dump_sensors_question">Dump sensors to Windows partition?</string>
-    <string name="quickboot_question">Quick Boot to Windows?</string>
-    <string name="quickboot_question1" translatable="false">60Hz?</string>
-    <string name="quickboot_question2" translatable="false">90Hz?</string>
-    <string name="quickboot_question3" translatable="false">120Hz?</string>
+    <string name="quickboot_question1">Quick Boot to Windows?</string>
+    <string name="quickboot_question60" translatable="false">60Hz?</string>
+    <string name="quickboot_question90" translatable="false">90Hz?</string>
+    <string name="quickboot_question120" translatable="false">120Hz?</string>
     <string name="backup_boot_question">Backup current android boot?</string>
 
     <string name="backup_boot_subtitle">Backup current boot image to Android/Windows</string>
@@ -49,8 +49,8 @@
     <string name="windows_status">"Windows installed: "</string>
 
 
-    <string name="guide">Guide</string>
-    <string name="group">Group</string>
+    <string name="guide">Installation Guide</string>
+    <string name="group">Support Group</string>
     <string name="drivers">Drivers</string>
     <string name="uefi">UEFI</string>
     <string name="driversuefi">Drivers&amp;UEFI</string>
@@ -64,6 +64,8 @@
 
     <string name="home">Home</string>
     <string name="links">Additional materials</string>
+    <string name="about">About</string>
+    <string name="source">Source code at</string>
 
     <string name="device_unknown">YOUR DEVICE ISN\'T SUPPORTED!\n USING THIS APP CAN RESULT IN A BRICK</string>
     <string name="device_unknown_confirm">I\'m fine with that</string>

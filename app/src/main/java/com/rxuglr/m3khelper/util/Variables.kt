@@ -10,9 +10,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
-import com.rxuglr.m3khelper.util.Commands.mountStatus
-import com.rxuglr.m3khelper.util.Commands.mountWindows
-import com.rxuglr.m3khelper.util.Commands.umountWindows
 import com.topjohnwu.superuser.ShellUtils
 import kotlin.properties.Delegates
 
@@ -59,7 +56,7 @@ object Variables {
         )
 
     // device info
-    val Ram: String = RAM().getMemory(M3KApp)
+    val Ram: String = RAM.getMemory(M3KApp)
     val Slot: String =
         String.format("%S", ShellUtils.fastCmd("getprop ro.boot.slot_suffix")).drop(1)
     private var Codename1: String = Build.DEVICE
@@ -68,6 +65,8 @@ object Variables {
 
     var CurrentDeviceCard: DeviceCard = unknownCard
     val Warning: MutableState<Boolean> = mutableStateOf(false)
+    var showAboutCard: MutableState<Boolean> = mutableStateOf(false)
+
 
     // dynamic vars
     var BootIsPresent: Int by Delegates.notNull()
@@ -83,7 +82,7 @@ object Variables {
         for (card: DeviceCard in deviceCardsArray) {
             if (Codename1.contains(card.deviceCodename) || Codename2.contains(card.deviceCodename)) CurrentDeviceCard = card
         }
-        CurrentDeviceCard = a52sxqCard
+
         val panel = ShellUtils.fastCmd("cat /proc/cmdline")
         PanelType = when {
             panel.contains("j20s_42") 
@@ -100,8 +99,8 @@ object Variables {
                     || panel.contains("ea8076_f1mp")
                     || panel.contains("ea8076_f1p2")
                     || panel.contains("ea8076_global")
-                    || panel.contains("s6e3fc3")
-                    || panel.contains("ams646yd0") -> "Samsung"
+                    || panel.contains("S6E3FC3")
+                    || panel.contains("AMS646YD01") -> "Samsung"
 
             else -> M3KApp.getString(R.string.unknown_panel)
         }
@@ -127,7 +126,7 @@ object Variables {
         if (find.isNotEmpty()) {
             var index = 1
             for (uefi: String in arrayOf("60", "90", "120")) {
-                val path = ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep " + uefi)
+                val path = ShellUtils.fastCmd("find /mnt/sdcard/UEFI/ -type f  | grep .img | grep $uefi")
                 if (path.isNotEmpty()
                 ) {
                     UEFIList += uefi.toInt()

@@ -9,34 +9,36 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
-import com.rxuglr.m3khelper.ui.templates.Buttons
-import com.rxuglr.m3khelper.ui.templates.Images.DeviceImage
+import com.rxuglr.m3khelper.ui.component.AboutCard
+import com.rxuglr.m3khelper.ui.component.BackupButton
+import com.rxuglr.m3khelper.ui.component.DeviceImage
+import com.rxuglr.m3khelper.ui.component.MountButton
+import com.rxuglr.m3khelper.ui.component.QuickbootButton
 import com.rxuglr.m3khelper.util.Variables.BootIsPresent
 import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
 import com.rxuglr.m3khelper.util.Variables.FontSize
@@ -46,26 +48,23 @@ import com.rxuglr.m3khelper.util.Variables.PanelType
 import com.rxuglr.m3khelper.util.Variables.Ram
 import com.rxuglr.m3khelper.util.Variables.Slot
 import com.rxuglr.m3khelper.util.Variables.WindowsIsPresent
+import com.rxuglr.m3khelper.util.Variables.showAboutCard
 import com.rxuglr.m3khelper.util.Variables.specialDeviceCardsArray
 import com.rxuglr.m3khelper.util.sdp
 
 @OptIn(ExperimentalMaterial3Api::class)
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "UnrememberedMutableState")
 @Destination<RootGraph>(start = true)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navigator: DestinationsNavigator) {
+    when {
+        showAboutCard.value -> {
+            AboutCard()
+        }
+    }
     Scaffold(
         topBar = {
             TopAppBar(
-                navigationIcon = {
-                    Icon(
-                        modifier = Modifier
-                            .size(30.sdp()),
-                        tint = MaterialTheme.colorScheme.primary,
-                        imageVector = ImageVector.vectorResource(R.drawable.ic_windows),
-                        contentDescription = null
-                    )
-                },
                 title = {
                     Text(
                         text = M3KApp.getString(R.string.app_name),
@@ -73,7 +72,19 @@ fun HomeScreen() {
                         fontWeight = FontWeight.Bold
                     )
                 },
-                actions = {},
+                actions = {
+                    IconButton(
+                        //onClick = { navigator.navigate(AboutScreenDestination) }
+                        onClick = {
+                            showAboutCard.value = true
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Info,
+                            contentDescription = null
+                        )
+                    }
+                },
             )
         }
     )
@@ -127,12 +138,12 @@ private fun Landscape() {
         ) {
             when {
                 CurrentDeviceCard.noBoot == false -> {
-                    Buttons.BackupButton()
+                    BackupButton()
                 }
             }
             when {
                 CurrentDeviceCard.noMount == false -> {
-                    Buttons.MountButton()
+                    MountButton()
                 }
             }
             /*when {
@@ -170,7 +181,7 @@ private fun Landscape() {
             }*/
             when {
                 CurrentDeviceCard.noFlash == false -> {
-                    Buttons.QuickbootButton()
+                    QuickbootButton()
                 }
             }
         }
@@ -187,13 +198,13 @@ private fun Portrait() {
     }
     when {
         CurrentDeviceCard.noBoot == false -> {
-            Buttons.BackupButton()
+            BackupButton()
         }
     }
 
     when {
         CurrentDeviceCard.noMount == false -> {
-            Buttons.MountButton()
+            MountButton()
         }
     }
     /*when {
@@ -231,13 +242,13 @@ private fun Portrait() {
     }*/
     when {
         CurrentDeviceCard.noFlash == false -> {
-            Buttons.QuickbootButton()
+            QuickbootButton()
         }
     }
 }
 
 @Composable
-fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
+private fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
     ElevatedCard(
         modifier =
         if (specialDeviceCardsArray.contains(CurrentDeviceCard)) {

@@ -5,10 +5,10 @@ import android.service.quicksettings.Tile.STATE_UNAVAILABLE
 import android.service.quicksettings.TileService
 import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
-import com.rxuglr.m3khelper.util.Commands.mountStatus
-import com.rxuglr.m3khelper.util.Commands.mountWindows
-import com.rxuglr.m3khelper.util.Commands.quickboot
-import com.rxuglr.m3khelper.util.Commands.umountWindows
+import com.rxuglr.m3khelper.util.mountStatus
+import com.rxuglr.m3khelper.util.mountWindows
+import com.rxuglr.m3khelper.util.quickboot
+import com.rxuglr.m3khelper.util.umountWindows
 import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
 import com.rxuglr.m3khelper.util.Variables.UEFICardsArray
 import com.rxuglr.m3khelper.util.Variables.UEFIList
