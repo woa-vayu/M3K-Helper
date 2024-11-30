@@ -101,14 +101,12 @@ fun CommandButton(
             Column {
                 Text(
                     M3KApp.getString(title),
-                    color = MaterialTheme.colorScheme.inverseSurface,
                     fontWeight = FontWeight.Bold,
                     fontSize = FontSize,
                     lineHeight = LineHeight,
                 )
                 Text(
                     M3KApp.getString(subtitle),
-                    color = MaterialTheme.colorScheme.inverseSurface,
                     lineHeight = LineHeight,
                     fontSize = FontSize
                 )
@@ -122,7 +120,7 @@ fun LinkButton(
     title: String,
     subtitle: String?,
     link: String,
-    icon: Int,
+    icon: Any,
     localUriHandler: UriHandler
 ) {
     ElevatedCard(
@@ -138,68 +136,36 @@ fun LinkButton(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(5.sdp())
         ) {
-            Icon(
-                modifier = Modifier
-                    .size(40.sdp()),
-                painter = painterResource(id = icon),
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.primary
-            )
+            if (icon is ImageVector) {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = null,
+                    Modifier.size(40.sdp()),
+                    tint = MaterialTheme.colorScheme.primary
+                )
+            } else if (icon is Int) {
+                Icon(
+                    modifier = Modifier
+                        .size(40.sdp()),
+                    painter = painterResource(id = icon),
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
+            }
             Column {
                 Text(
                     text = title,
-                    color = MaterialTheme.colorScheme.inverseSurface,
                     fontWeight = FontWeight.Bold,
                     fontSize = FontSize,
                     lineHeight = LineHeight,
                 )
                 if (!subtitle.isNullOrBlank()) {
                     Text(
-                        text = subtitle,
-                        color = MaterialTheme.colorScheme.inverseSurface,
+                        M3KApp.getString(R.string.backup_boot_subtitle),
                         lineHeight = LineHeight,
                         fontSize = FontSize
                     )
                 }
-            }
-        }
-    }
-}
-
-@Composable
-fun GuideGroupLinkButton(
-    title: String,
-    link: String,
-    icon: ImageVector,
-    localUriHandler: UriHandler
-) {
-    ElevatedCard(
-        onClick = { localUriHandler.openUri(link) },
-        Modifier
-            .height(105.sdp())
-            .fillMaxWidth(),
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxHeight()
-                .padding(PaddingValue),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(5.sdp())
-        ) {
-            Icon(
-                icon,
-                contentDescription = null,
-                Modifier.size(40.sdp()),
-                tint = MaterialTheme.colorScheme.primary
-            )
-            Column {
-                Text(
-                    text = title,
-                    color = MaterialTheme.colorScheme.inverseSurface,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = FontSize,
-                    lineHeight = LineHeight,
-                )
             }
         }
     }
@@ -268,7 +234,6 @@ fun BackupButton() {
                                             bottom = 2.sdp()
                                         ),
                                         text = M3KApp.getString(R.string.android),
-                                        color = MaterialTheme.colorScheme.inverseSurface,
                                         fontSize = FontSize
                                     )
                                 }
@@ -289,7 +254,6 @@ fun BackupButton() {
                                             bottom = 2.sdp()
                                         ),
                                         text = M3KApp.getString(R.string.windows),
-                                        color = MaterialTheme.colorScheme.inverseSurface,
                                         fontSize = FontSize
                                     )
                                 }
@@ -303,7 +267,6 @@ fun BackupButton() {
                                             bottom = 2.sdp()
                                         ),
                                         text = M3KApp.getString(R.string.no),
-                                        color = MaterialTheme.colorScheme.inverseSurface,
                                         fontSize = FontSize
                                     )
                                 }
@@ -332,14 +295,12 @@ fun BackupButton() {
             Column {
                 Text(
                     M3KApp.getString(R.string.backup_boot_title),
-                    color = MaterialTheme.colorScheme.inverseSurface,
                     fontWeight = FontWeight.Bold,
                     fontSize = FontSize,
                     lineHeight = LineHeight,
                 )
                 Text(
                     M3KApp.getString(R.string.backup_boot_subtitle),
-                    color = MaterialTheme.colorScheme.inverseSurface,
                     lineHeight = LineHeight,
                     fontSize = FontSize
                 )
@@ -422,14 +383,12 @@ fun MountButton() {
                     }
                 Text(
                     M3KApp.getString(mounted),
-                    color = MaterialTheme.colorScheme.inverseSurface,
                     fontWeight = FontWeight.Bold,
                     lineHeight = LineHeight,
                     fontSize = FontSize
                 )
                 Text(
                     M3KApp.getString(R.string.mnt_subtitle),
-                    color = MaterialTheme.colorScheme.inverseSurface,
                     lineHeight = LineHeight,
                     fontSize = FontSize
                 )
@@ -519,7 +478,6 @@ fun QuickbootButton() {
                                                     else -> R.string.quickboot_question1
                                                 }
                                             ),
-                                            color = MaterialTheme.colorScheme.inverseSurface,
                                             fontSize = FontSize
                                         )
                                     }
@@ -534,7 +492,6 @@ fun QuickbootButton() {
                                             bottom = 2.sdp()
                                         ),
                                         text = M3KApp.getString(R.string.no),
-                                        color = MaterialTheme.colorScheme.inverseSurface,
                                         fontSize = FontSize
                                     )
                                 }
@@ -575,14 +532,12 @@ fun QuickbootButton() {
                 }
                 Text(
                     M3KApp.getString(title),
-                    color = MaterialTheme.colorScheme.inverseSurface,
                     fontWeight = FontWeight.Bold,
                     lineHeight = LineHeight,
                     fontSize = FontSize
                 )
                 Text(
                     M3KApp.getString(subtitle),
-                    color = MaterialTheme.colorScheme.inverseSurface,
                     lineHeight = LineHeight,
                     fontSize = FontSize
                 )

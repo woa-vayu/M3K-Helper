@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -37,7 +38,8 @@ import com.rxuglr.m3khelper.util.sdp
 fun AboutCard() {
     Dialog(onDismissRequest = { showAboutCard.value = false }) {
         ElevatedCard(
-            Modifier.fillMaxWidth()
+            Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(8.sdp()),
         ) {
             Row(
                 Modifier.fillMaxWidth().padding(24.sdp())
@@ -62,13 +64,11 @@ fun AboutCard() {
                             Text(
                                 stringResource(id = R.string.app_name),
                                 fontSize = FontSize,
-                                color = MaterialTheme.colorScheme.inverseSurface,
                                 lineHeight = LineHeight
                             )
                             Text(
                                 "v" + BuildConfig.VERSION_NAME,
                                 fontSize = FontSize,
-                                color = MaterialTheme.colorScheme.inverseSurface,
                                 lineHeight = LineHeight
                             )
                             Spacer(Modifier.height(10.sdp()))
@@ -80,7 +80,6 @@ fun AboutCard() {
                                     )
                                 ),
                                 fontSize = FontSize,
-                                color = MaterialTheme.colorScheme.inverseSurface,
                                 lineHeight = LineHeight
                             )
                         }

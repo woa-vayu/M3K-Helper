@@ -15,6 +15,10 @@ private fun getTotalMemory(context: Context): Long {
 fun getMemory(context: Context): String {
     val mem: String = bytesToHuman(getTotalMemory(context))
     val ram = extractNumberFromString(mem).toInt()
-    return (if (ram > 800) 12 else if (ram > 600) 8 else 6).toString() + "GB"
+    return when {
+        ram > 800 -> 12
+        ram > 600 -> 8
+        else -> 6
+    }.toString() + "GB"
 }
 

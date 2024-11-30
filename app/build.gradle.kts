@@ -18,9 +18,10 @@ android {
     defaultConfig {
         applicationId = "com.remtrik.m3khelper"
         minSdk = 29
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 30
-        versionName = "2.5"
+        versionName = "2.6"
+        compileSdk = 35
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -40,7 +41,12 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     packaging {

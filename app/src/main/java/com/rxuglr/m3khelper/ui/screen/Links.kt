@@ -25,10 +25,10 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
 import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
-import com.rxuglr.m3khelper.ui.component.GuideGroupLinkButton
 import com.rxuglr.m3khelper.ui.component.LinkButton
 import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
 import com.rxuglr.m3khelper.util.Variables.FontSize
+import com.rxuglr.m3khelper.util.Variables.PaddingValue
 import com.rxuglr.m3khelper.util.sdp
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -69,14 +69,14 @@ private fun Landscape() {
     Row(
         horizontalArrangement = Arrangement.spacedBy(10.sdp()),
         modifier = Modifier
-            .padding(vertical = 10.sdp())
-            .padding(horizontal = 10.sdp())
+            .padding(vertical = PaddingValue)
+            .padding(horizontal = PaddingValue)
             .fillMaxWidth()
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(10.sdp()),
             modifier = Modifier
-                .padding(vertical = 10.sdp())
+                .padding(vertical = PaddingValue)
                 .width(500.sdp())
         ) {
             if (CurrentDeviceCard.unifiedDriversUEFI == true) {
@@ -97,17 +97,17 @@ private fun Landscape() {
         Column(
             verticalArrangement = Arrangement.spacedBy(10.sdp()),
             modifier = Modifier
-                .padding(vertical = 10.sdp())
+                .padding(vertical = PaddingValue)
                 .width(500.sdp())
         ) {
             when {
                 CurrentDeviceCard.noGroup == false -> {
-                    GuideGroupLinkButton(CurrentDeviceCard.deviceName + " " + M3KApp.getString(R.string.group), CurrentDeviceCard.deviceGroup, Icons.AutoMirrored.Filled.Message, LocalUriHandler.current)
+                    LinkButton(CurrentDeviceCard.deviceName + " " + M3KApp.getString(R.string.group), null, CurrentDeviceCard.deviceGroup, Icons.AutoMirrored.Filled.Message, LocalUriHandler.current)
                 }
             }
             when {
                 CurrentDeviceCard.noGuide == false -> {
-                    GuideGroupLinkButton(CurrentDeviceCard.deviceName + " " + M3KApp.getString(R.string.guide), CurrentDeviceCard.deviceGuide, Icons.Filled.Book, LocalUriHandler.current)
+                    LinkButton(CurrentDeviceCard.deviceName + " " + M3KApp.getString(R.string.guide), null, CurrentDeviceCard.deviceGuide, Icons.Filled.Book, LocalUriHandler.current)
                 }
             }
         }
@@ -132,12 +132,12 @@ private fun Portrait() {
     }
     when {
         CurrentDeviceCard.noGroup == false -> {
-            GuideGroupLinkButton(CurrentDeviceCard.deviceName + " " + M3KApp.getString(R.string.group), CurrentDeviceCard.deviceGroup, Icons.AutoMirrored.Filled.Message, LocalUriHandler.current)
+            LinkButton(CurrentDeviceCard.deviceName + " " + M3KApp.getString(R.string.group), null, CurrentDeviceCard.deviceGroup, Icons.AutoMirrored.Filled.Message, LocalUriHandler.current)
         }
     }
     when {
         CurrentDeviceCard.noGuide == false -> {
-            GuideGroupLinkButton(CurrentDeviceCard.deviceName + " " + M3KApp.getString(R.string.guide), CurrentDeviceCard.deviceGuide, Icons.Filled.Book, LocalUriHandler.current)
+            LinkButton(CurrentDeviceCard.deviceName + " " + M3KApp.getString(R.string.guide), null, CurrentDeviceCard.deviceGuide, Icons.Filled.Book, LocalUriHandler.current)
         }
     }
 

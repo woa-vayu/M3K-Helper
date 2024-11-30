@@ -13,6 +13,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -26,6 +27,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.generated.destinations.SettingsScreenDestination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
@@ -37,6 +39,7 @@ import com.rxuglr.m3khelper.ui.component.MountButton
 import com.rxuglr.m3khelper.ui.component.QuickbootButton
 import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
 import com.rxuglr.m3khelper.util.Variables.FontSize
+import com.rxuglr.m3khelper.util.Variables.PaddingValue
 import com.rxuglr.m3khelper.util.Variables.showAboutCard
 import com.rxuglr.m3khelper.util.sdp
 
@@ -62,7 +65,6 @@ fun HomeScreen(navigator: DestinationsNavigator) {
                 },
                 actions = {
                     IconButton(
-                        //onClick = { navigator.navigate(AboutScreenDestination) }
                         onClick = {
                             showAboutCard.value = true
                         }
@@ -72,6 +74,14 @@ fun HomeScreen(navigator: DestinationsNavigator) {
                             contentDescription = null
                         )
                     }
+                    /*IconButton(
+                        onClick = { navigator.navigate(SettingsScreenDestination) }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Settings,
+                            contentDescription = null
+                        )
+                    }*/
                 },
             )
         }
@@ -82,7 +92,7 @@ fun HomeScreen(navigator: DestinationsNavigator) {
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
                 .padding(innerPadding)
-                .padding(horizontal = 10.sdp())
+                .padding(horizontal = PaddingValue)
                 .fillMaxWidth(),
         ) {
             if (M3KApp.resources.configuration.orientation != Configuration.ORIENTATION_PORTRAIT) Landscape()
@@ -96,15 +106,15 @@ private fun Landscape() {
     Row(
         horizontalArrangement = Arrangement.spacedBy(10.sdp()),
         modifier = Modifier
-            .padding(vertical = 10.sdp())
-            .padding(horizontal = 10.sdp())
+            .padding(vertical = PaddingValue)
+            .padding(horizontal = PaddingValue)
             .fillMaxWidth()
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(10.sdp()),
             modifier = Modifier
-                .padding(vertical = 10.sdp())
+                .padding(vertical = PaddingValue)
                 .width(220.sdp())
         ) {
             InfoCard(
@@ -121,7 +131,7 @@ private fun Landscape() {
         Column(
             verticalArrangement = Arrangement.spacedBy(10.sdp()),
             modifier = Modifier
-                .padding(vertical = 10.sdp())
+                .padding(vertical = PaddingValue)
                 .fillMaxWidth()
         ) {
             when {

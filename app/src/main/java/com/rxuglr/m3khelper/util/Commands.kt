@@ -1,7 +1,9 @@
 package com.rxuglr.m3khelper.util
 
+import android.annotation.SuppressLint
 import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
 import com.topjohnwu.superuser.ShellUtils
+import com.topjohnwu.superuser.internal.MainShell.newJob
 
 fun dumpBoot(where: Int) {
     val slot = ShellUtils.fastCmd("getprop ro.boot.slot_suffix")

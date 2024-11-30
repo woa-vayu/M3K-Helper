@@ -76,7 +76,6 @@ fun Dialog(
                         Text(
                             modifier = Modifier.padding(top = 2.sdp(), bottom = 2.sdp()),
                             text = LocalContext.current.getString(R.string.yes),
-                            color = MaterialTheme.colorScheme.inverseSurface,
                             fontSize = FontSize
                         )
                     }
@@ -89,7 +88,6 @@ fun Dialog(
                         Text(
                             modifier = Modifier.padding(top = 2.sdp(), bottom = 2.sdp()),
                             text = LocalContext.current.getString(R.string.no),
-                            color = MaterialTheme.colorScheme.inverseSurface,
                             fontSize = FontSize
                         )
                     }
@@ -207,7 +205,6 @@ fun UnknownDevice() {
                             bottom = 2.sdp()
                         ),
                         text = stringResource(R.string.device_unknown_confirm),
-                        color = MaterialTheme.colorScheme.inverseSurface
                     )
                 }
             )

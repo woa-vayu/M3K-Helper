@@ -14,18 +14,18 @@ object SdpScreenDimensionValues {
 
 // Assigns values to the variables above
 @Composable
-fun AssValsToTheSdpObject() {
+private fun AssValsToTheSdpObject() {
     val config = LocalConfiguration.current
     smallestWidth = config.smallestScreenWidthDp
 }
 
 // Will return the smallestWidth approximated to nearest 30 to improve performance
-fun approximateWidth(value: Int): Int {
+private fun approximateWidth(value: Int): Int {
     val remainder = value % 30
-    return if (remainder <= 15) {
-        value - remainder
-    } else {
-        value + (30 - remainder)
+    return when {
+        remainder <= 15 -> { value - remainder }
+
+        else -> { value + (30 - remainder) }
     }
 }
 
@@ -34,13 +34,23 @@ fun Int.sdp(): Dp {
     if (smallestWidth == 0) {
         AssValsToTheSdpObject()
     }
-    val ratio = if (smallestWidth <= 400) {
-        approximateWidth(smallestWidth) / 440.0
-    } else if (smallestWidth <= 450) {
-        approximateWidth(smallestWidth) / 450.0
-    } else if (smallestWidth <= 550) {
-        approximateWidth(smallestWidth) / 450.0
-    } else approximateWidth(smallestWidth) / 650.0
+    val ratio = when {
+        smallestWidth <= 400 -> {
+            approximateWidth(smallestWidth) / 440.0
+        }
+
+        smallestWidth <= 450 -> {
+            approximateWidth(smallestWidth) / 450.0
+        }
+
+        smallestWidth <= 550 -> {
+            approximateWidth(smallestWidth) / 450.0
+        }
+
+        else -> {
+            approximateWidth(smallestWidth) / 650.0
+        }
+    }
     val final = this * ratio
     return final.dp
 }
@@ -50,13 +60,23 @@ fun Int.ssp(): TextUnit {
     if (smallestWidth == 0) {
         AssValsToTheSdpObject()
     }
-    val ratio = if (smallestWidth <= 400) {
-        approximateWidth(smallestWidth) / 500.0
-    } else if (smallestWidth <= 450) {
-        approximateWidth(smallestWidth) / 450.0
-    } else if (smallestWidth <= 550) {
-        approximateWidth(smallestWidth) / 500.0
-    } else approximateWidth(smallestWidth) / 650.0
+    val ratio = when {
+        smallestWidth <= 400 -> {
+            approximateWidth(smallestWidth) / 500.0
+        }
+
+        smallestWidth <= 450 -> {
+            approximateWidth(smallestWidth) / 450.0
+        }
+
+        smallestWidth <= 550 -> {
+            approximateWidth(smallestWidth) / 500.0
+        }
+
+        else -> {
+            approximateWidth(smallestWidth) / 650.0
+        }
+    }
     val final = this * ratio
     return final.sp
 }

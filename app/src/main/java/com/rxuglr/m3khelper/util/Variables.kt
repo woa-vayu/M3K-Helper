@@ -138,19 +138,12 @@ object Variables {
                 UEFICardsArray[1].uefiPath = find
             }
         }
-
+        val win = ShellUtils.fastCmd("find /sdcard/Windows/boot.img")
+        val android = ShellUtils.fastCmd("find /sdcard/m3khelper/boot.img")
         BootIsPresent = when {
-            ShellUtils.fastCmd("find /sdcard/Windows/boot.img")
-                .isNotEmpty()
-                    &&
-                    ShellUtils.fastCmd("find /sdcard/m3khelper/boot.img")
-                        .isNotEmpty() -> R.string.backup_both
-
-            ShellUtils.fastCmd("find /sdcard/Windows/boot.img")
-                .isNotEmpty() -> R.string.backup_windows
-
-            ShellUtils.fastCmd("find /sdcard/m3khelper/boot.img")
-                .isNotEmpty() -> R.string.backup_android
+            win.isNotEmpty() && android.isNotEmpty() -> R.string.backup_both
+            win.isNotEmpty() -> R.string.backup_windows
+            android.isNotEmpty() -> R.string.backup_android
 
             else -> R.string.no
         }

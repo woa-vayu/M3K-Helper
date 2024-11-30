@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -54,7 +55,7 @@ fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 10.sdp()),
+                    .padding(start = PaddingValue),
                 text = M3KApp.getString(R.string.model, CurrentDeviceCard.deviceName),
                 fontSize = FontSize,
                 lineHeight = LineHeight
@@ -63,7 +64,7 @@ fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 10.sdp()),
+                    .padding(start = PaddingValue),
                 text = M3KApp.getString(R.string.ramvalue, Ram),
                 fontSize = FontSize,
                 lineHeight = LineHeight
@@ -71,7 +72,7 @@ fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 10.sdp()),
+                    .padding(start = PaddingValue),
                 text = M3KApp.getString(R.string.paneltype) + PanelType,
                 fontSize = FontSize,
                 lineHeight = LineHeight
@@ -81,7 +82,7 @@ fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
                     Text(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(start = 10.sdp()),
+                            .padding(start = PaddingValue),
                         text = M3KApp.getString(R.string.backup_boot_state) + M3KApp.getString(BootIsPresent),
                         fontSize = FontSize,
                         lineHeight = LineHeight
@@ -93,7 +94,7 @@ fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
                     Text(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(start = 10.sdp()),
+                            .padding(start = PaddingValue),
                         text = M3KApp.getString(R.string.slot, Slot),
                         fontSize = FontSize,
                         lineHeight = LineHeight
@@ -108,8 +109,8 @@ fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
                 fontSize = FontSize,
                 lineHeight = LineHeight
             )
-            Spacer(modifier = Modifier.weight(1f))
-            /*Row(
+            /*Spacer(modifier = Modifier.weight(1f))
+            Row(
                 Modifier
                     .align(Alignment.CenterHorizontally)
                     .padding(bottom = PaddingValue),
@@ -178,3 +179,4 @@ fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
             }*/
         }
     }
+}

@@ -30,13 +30,15 @@ fun bytesToHuman(size: Long): String {
     val tb = gb * 1024
     val pb = tb * 1024
     val eb = pb * 1024
-    if (size < kb) return floatForm(size.toDouble())
-    if (size in kb..<mb) return floatForm(size.toDouble() / kb)
-    if (size in mb..<gb) return floatForm(size.toDouble() / mb)
-    if (size in gb..<tb) return floatForm(size.toDouble() / gb)
-    if (size in tb..<pb) return floatForm(size.toDouble() / tb)
-    if (size in pb..<eb) return floatForm(size.toDouble() / pb)
-    return floatForm(size.toDouble() / eb)
+    return when {
+        size < kb -> floatForm(size.toDouble())
+        size in kb..<mb -> floatForm(size.toDouble() / kb)
+        size in mb..<gb -> floatForm(size.toDouble() / mb)
+        size in gb..<tb -> floatForm(size.toDouble() / gb)
+        size in tb..<pb -> floatForm(size.toDouble() / tb)
+        size in pb..<eb -> floatForm(size.toDouble() / pb)
+        else -> floatForm(size.toDouble() / eb)
+    }
 }
 
 fun extractNumberFromString(source: String): String {
