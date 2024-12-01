@@ -74,38 +74,44 @@ class MainActivity : ComponentActivity() {
                     val navigator = navController.rememberDestinationsNavigator()
                     Scaffold(
                         bottomBar = {
-                            NavigationBar(
-                                tonalElevation = 12.dp,
-                                windowInsets = WindowInsets.systemBars.union(WindowInsets.displayCutout).only(
-                                    WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom
-                                )
+                            if (!CurrentDeviceCard.noDrivers
+                                && !CurrentDeviceCard.noUEFI
+                                && !CurrentDeviceCard.noGuide
+                                && !CurrentDeviceCard.noGroup
                             ) {
-                                Destinations.entries.forEach { destination ->
-                                    val isCurrentDestOnBackStack by navController.isRouteOnBackStackAsState(destination.route)
-                                    NavigationBarItem(
-                                        selected = isCurrentDestOnBackStack,
-                                        onClick = {
-                                            if (isCurrentDestOnBackStack) {
-                                                navigator.popBackStack(destination.route, false)
-                                            }
-                                            navigator.navigate(destination.route) {
-                                                popUpTo(NavGraphs.root) {
-                                                    saveState = true
-                                                }
-                                                launchSingleTop = true
-                                                restoreState = true
-                                            }
-                                        },
-                                        icon = {
-                                            if (isCurrentDestOnBackStack) {
-                                                Icon(destination.iconSelected, stringResource(destination.label))
-                                            } else {
-                                                Icon(destination.iconNotSelected, stringResource(destination.label))
-                                            }
-                                        },
-                                        label = { Text(stringResource(destination.label)) },
-                                        alwaysShowLabel = false
+                                NavigationBar(
+                                    tonalElevation = 12.dp,
+                                    windowInsets = WindowInsets.systemBars.union(WindowInsets.displayCutout).only(
+                                        WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom
                                     )
+                                ) {
+                                    Destinations.entries.forEach { destination ->
+                                        val isCurrentDestOnBackStack by navController.isRouteOnBackStackAsState(destination.route)
+                                        NavigationBarItem(
+                                            selected = isCurrentDestOnBackStack,
+                                            onClick = {
+                                                if (isCurrentDestOnBackStack) {
+                                                    navigator.popBackStack(destination.route, false)
+                                                }
+                                                navigator.navigate(destination.route) {
+                                                    popUpTo(NavGraphs.root) {
+                                                        saveState = true
+                                                    }
+                                                    launchSingleTop = true
+                                                    restoreState = true
+                                                }
+                                            },
+                                            icon = {
+                                                if (isCurrentDestOnBackStack) {
+                                                    Icon(destination.iconSelected, stringResource(destination.label))
+                                                } else {
+                                                    Icon(destination.iconNotSelected, stringResource(destination.label))
+                                                }
+                                            },
+                                            label = { Text(stringResource(destination.label)) },
+                                            alwaysShowLabel = false
+                                        )
+                                    }
                                 }
                             }
                         }

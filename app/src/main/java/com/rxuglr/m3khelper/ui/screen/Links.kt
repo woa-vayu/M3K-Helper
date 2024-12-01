@@ -79,7 +79,9 @@ private fun Landscape() {
                 .padding(vertical = PaddingValue)
                 .width(500.sdp())
         ) {
-            if (CurrentDeviceCard.unifiedDriversUEFI == true) {
+            if (CurrentDeviceCard.unifiedDriversUEFI == true &&
+                !(CurrentDeviceCard.noDrivers == true || CurrentDeviceCard.noUEFI == true)
+            ) {
                 LinkButton(CurrentDeviceCard.deviceName + " " + M3KApp.getString(R.string.driversuefi), null, CurrentDeviceCard.deviceDrivers, R.drawable.ic_drivers, LocalUriHandler.current)
             } else {
                 when {
@@ -116,7 +118,9 @@ private fun Landscape() {
 
 @Composable
 private fun Portrait() {
-    if (CurrentDeviceCard.unifiedDriversUEFI == true) {
+    if (CurrentDeviceCard.unifiedDriversUEFI == true &&
+        !(CurrentDeviceCard.noDrivers == true || CurrentDeviceCard.noUEFI == true)
+    ) {
         LinkButton(CurrentDeviceCard.deviceName + " " + M3KApp.getString(R.string.driversuefi), null, CurrentDeviceCard.deviceDrivers, R.drawable.ic_drivers, LocalUriHandler.current)
     } else {
         when {
