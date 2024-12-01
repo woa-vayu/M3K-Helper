@@ -2,13 +2,11 @@ package com.rxuglr.m3khelper.ui.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -30,7 +28,7 @@ import com.rxuglr.m3khelper.util.Variables.specialDeviceCardsArray
 import com.rxuglr.m3khelper.util.sdp
 
 @Composable
-fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
+fun InfoCard(modifier: Modifier) {
     ElevatedCard(
         modifier =
         if (specialDeviceCardsArray.contains(CurrentDeviceCard)) {
@@ -78,7 +76,7 @@ fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
                 lineHeight = LineHeight
             )
             when {
-                CurrentDeviceCard.noBoot == false -> {
+                !CurrentDeviceCard.noBoot && !CurrentDeviceCard.noMount -> {
                     Text(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -101,82 +99,18 @@ fun InfoCard(modifier: Modifier, localUriHandler: UriHandler) {
                     )
                 }
             }
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 10.sdp()),
-                text = M3KApp.getString(R.string.windows_status) + M3KApp.getString(WindowsIsPresent),
-                fontSize = FontSize,
-                lineHeight = LineHeight
-            )
-            /*Spacer(modifier = Modifier.weight(1f))
-            Row(
-                Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(bottom = PaddingValue),
-                horizontalArrangement = Arrangement.spacedBy(5.sdp())
-            ) {
-                when {
-                    CurrentDeviceCard.noGuide == false -> {
-                        AssistChip(
-                            modifier = Modifier
-                                .width(110.sdp())
-                                .height(35.sdp()),
-                            leadingIcon = {
-                                Icon(
-                                    Icons.Filled.Book,
-                                    contentDescription = null,
-                                    Modifier.size(20.sdp()),
-                                    tint = MaterialTheme.colorScheme.primary
-                                )
-                            },
-                            onClick = {
-                                localUriHandler.openUri(
-                                    GuideLink
-                                )
-                            },
-                            label = {
-                                Text(
-                                    LocalContext.current.getString(R.string.guide),
-                                    fontWeight = FontWeight.Bold,
-                                    textAlign = TextAlign.Center,
-                                    fontSize = FontSize
-                                )
-                            }
-                        )
-                    }
+            when {
+                !CurrentDeviceCard.noMount -> {
+                    Text(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = 10.sdp()),
+                        text = M3KApp.getString(R.string.windows_status) + M3KApp.getString(WindowsIsPresent),
+                        fontSize = FontSize,
+                        lineHeight = LineHeight
+                    )
                 }
-                when {
-                    CurrentDeviceCard.noGroup == false -> {
-                        AssistChip(
-                            modifier = Modifier
-                                .width(110.sdp())
-                                .height(35.sdp()),
-                            leadingIcon = {
-                                Icon(
-                                    Icons.AutoMirrored.Filled.Message,
-                                    contentDescription = null,
-                                    Modifier.size(20.sdp()),
-                                    tint = MaterialTheme.colorScheme.primary
-                                )
-                            },
-                            onClick = {
-                                localUriHandler.openUri(
-                                    GroupLink
-                                )
-                            },
-                            label = {
-                                Text(
-                                    LocalContext.current.getString(R.string.group),
-                                    fontWeight = FontWeight.Bold,
-                                    textAlign = TextAlign.Center,
-                                    fontSize = FontSize
-                                )
-                            }
-                        )
-                    }
-                }
-            }*/
+            }
         }
     }
 }

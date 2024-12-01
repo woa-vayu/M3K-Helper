@@ -238,26 +238,30 @@ fun BackupButton() {
                                     )
                                 }
                             )
-                            AssistChip(
-                                onClick = {
-                                    Thread {
-                                        showBackupDialog.value = false
-                                        showBackupSpinner.value = true
-                                        dumpBoot(1)
-                                        showBackupSpinner.value = false
-                                    }.start()
-                                },
-                                label = {
-                                    Text(
-                                        modifier = Modifier.padding(
-                                            top = 2.sdp(),
-                                            bottom = 2.sdp()
-                                        ),
-                                        text = M3KApp.getString(R.string.windows),
-                                        fontSize = FontSize
+                            when {
+                                !CurrentDeviceCard.noMount -> {
+                                    AssistChip(
+                                        onClick = {
+                                            Thread {
+                                                showBackupDialog.value = false
+                                                showBackupSpinner.value = true
+                                                dumpBoot(1)
+                                                showBackupSpinner.value = false
+                                            }.start()
+                                        },
+                                        label = {
+                                            Text(
+                                                modifier = Modifier.padding(
+                                                    top = 2.sdp(),
+                                                    bottom = 2.sdp()
+                                                ),
+                                                text = M3KApp.getString(R.string.windows),
+                                                fontSize = FontSize
+                                            )
+                                        }
                                     )
                                 }
-                            )
+                            }
                             AssistChip(
                                 onClick = ({ showBackupDialog.value = false; }),
                                 label = {

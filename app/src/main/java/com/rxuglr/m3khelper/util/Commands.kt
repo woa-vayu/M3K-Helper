@@ -38,8 +38,9 @@ fun umountWindows() {
 
 fun dumpModem() {
     mountWindows()
-    ShellUtils.fastCmd("dd if=/dev/block/bootdevice/by-name/modemst1 of=$(find /sdcard/Windows/Windows/System32/DriverStore/FileRepository -name qcremotefs8150.inf_arm64_*)/bootmodem_fs1 bs=8388608")
-    ShellUtils.fastCmd("dd if=/dev/block/bootdevice/by-name/modemst2 of=$(find /sdcard/Windows/Windows/System32/DriverStore/FileRepository -name qcremotefs8150.inf_arm64_*)/bootmodem_fs2 bs=8388608")
+    val path = ShellUtils.fastCmd("find /sdcard/Windows/Windows/System32/DriverStore/FileRepository -name qcremotefs8150.inf_arm64_*")
+    ShellUtils.fastCmd("dd if=/dev/block/bootdevice/by-name/modemst1 of=$path/bootmodem_fs1 bs=8388608")
+    ShellUtils.fastCmd("dd if=/dev/block/bootdevice/by-name/modemst2 of=$path/bootmodem_fs2 bs=8388608")
     umountWindows()
 }
 
@@ -67,21 +68,23 @@ fun dumpSensors() {
 }
 
 fun quickboot(uefiPath: String) {
-    if (ShellUtils.fastCmd("find /sdcard/Windows/boot.img")
-            .isEmpty()
-    ) {
-        dumpBoot(1)
+    if (!CurrentDeviceCard.noMount) {
+        if (ShellUtils.fastCmd("find /sdcard/Windows/boot.img")
+                .isEmpty()
+        ) {
+            dumpBoot(1)
+        }
+        if (CurrentDeviceCard.noModem == false) {
+            dumpModem()
+        }
+        if (CurrentDeviceCard.sensors == true && checkSensors() == false) {
+            dumpSensors()
+        }
     }
     if (ShellUtils.fastCmd("find /sdcard/m3khelper/boot.img")
             .isEmpty()
     ) {
         dumpBoot(2)
-    }
-    if (CurrentDeviceCard.noModem == false) {
-        dumpModem()
-    }
-    if (CurrentDeviceCard.sensors == true && checkSensors() == false) {
-        dumpSensors()
     }
     flashUEFI(uefiPath)
     ShellUtils.fastCmd("svc power reboot")

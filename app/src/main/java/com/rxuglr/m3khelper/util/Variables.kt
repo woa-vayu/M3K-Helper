@@ -84,7 +84,7 @@ object Variables {
 
         val panel = ShellUtils.fastCmd("cat /proc/cmdline")
         PanelType = when {
-            panel.contains("j20s_42") 
+            panel.contains("j20s_42")
                     || panel.contains("k82_42")
                     || panel.contains("huaxing") -> "Huaxing"
             
@@ -115,6 +115,7 @@ object Variables {
 
     fun dynamicVars() {
         WindowsIsPresent = when {
+            CurrentDeviceCard.noMount -> R.string.no
             ShellUtils.fastCmd("find /sdcard/Windows/Windows/explorer.exe")
                 .isNotEmpty() -> R.string.yes
 
@@ -138,11 +139,11 @@ object Variables {
                 UEFICardsArray[1].uefiPath = find
             }
         }
-        val win = ShellUtils.fastCmd("find /sdcard/Windows/boot.img")
+        val win = if (!CurrentDeviceCard.noMount) ShellUtils.fastCmd("find /sdcard/Windows/boot.img") else null
         val android = ShellUtils.fastCmd("find /sdcard/m3khelper/boot.img")
         BootIsPresent = when {
-            win.isNotEmpty() && android.isNotEmpty() -> R.string.backup_both
-            win.isNotEmpty() -> R.string.backup_windows
+            !win.isNullOrEmpty() && android.isNotEmpty() -> R.string.backup_both
+            !win.isNullOrEmpty() -> R.string.backup_windows
             android.isNotEmpty() -> R.string.backup_android
 
             else -> R.string.no

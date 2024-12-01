@@ -120,7 +120,7 @@ private fun Landscape() {
             InfoCard(
                 Modifier
                     .height(200.sdp())
-                    .width(220.sdp()), LocalUriHandler.current
+                    .width(220.sdp())
             )
             DeviceImage(
                 Modifier
@@ -144,39 +144,6 @@ private fun Landscape() {
                     MountButton()
                 }
             }
-            /*when {
-                CurrentDeviceCard.noModem == false -> {
-                    if (!checkSensors()) {
-                        Buttons.Button(
-                            R.string.dump_modemAsensors_title,
-                            R.string.dump_modemAsensors_subtitle,
-                            R.string.dump_modemAsensors_question,
-                            { dumpModem(); dumpSensors() },
-                            R.drawable.ic_modem
-                        )
-                    } else {
-                        Buttons.Button(
-                            R.string.dump_modem_title,
-                            R.string.dump_modem_subtitle,
-                            R.string.dump_modem_question,
-                            { dumpModem() },
-                            R.drawable.ic_modem
-                        )
-                    }
-                }
-
-                else -> {
-                    if (!checkSensors()) {
-                        Buttons.Button(
-                            R.string.dump_sensors_title,
-                            R.string.dump_sensors_subtitle,
-                            R.string.dump_sensors_question,
-                            { dumpSensors() },
-                            R.drawable.ic_sensor
-                        )
-                    }
-                }
-            }*/
             when {
                 CurrentDeviceCard.noFlash == false -> {
                     QuickbootButton()
@@ -191,8 +158,14 @@ private fun Portrait() {
     Row(
         horizontalArrangement = Arrangement.spacedBy(10.sdp())
     ) {
-        DeviceImage(Modifier.height(416.sdp()))
-        InfoCard(Modifier.height(416.sdp()), LocalUriHandler.current)
+        DeviceImage(
+            Modifier
+                .height(416.sdp())
+        )
+        InfoCard(
+            Modifier
+                .height(416.sdp())
+        )
     }
     when {
         CurrentDeviceCard.noBoot == false -> {
@@ -205,39 +178,6 @@ private fun Portrait() {
             MountButton()
         }
     }
-    /*when {
-        CurrentDeviceCard.noModem == false -> {
-            if (!checkSensors()) {
-                Buttons.Button(
-                    R.string.dump_modemAsensors_title,
-                    R.string.dump_modemAsensors_subtitle,
-                    R.string.dump_modemAsensors_question,
-                    { dumpModem(); dumpSensors() },
-                    R.drawable.ic_modem
-                )
-            } else {
-                Buttons.Button(
-                    R.string.dump_modem_title,
-                    R.string.dump_modem_subtitle,
-                    R.string.dump_modem_question,
-                    { dumpModem() },
-                    R.drawable.ic_modem
-                )
-            }
-        }
-
-        else -> {
-            if (!checkSensors()) {
-                Buttons.Button(
-                    R.string.dump_sensors_title,
-                    R.string.dump_sensors_subtitle,
-                    R.string.dump_sensors_question,
-                    { dumpSensors() },
-                    R.drawable.ic_sensor
-                )
-            }
-        }
-    }*/
     when {
         CurrentDeviceCard.noFlash == false -> {
             QuickbootButton()
