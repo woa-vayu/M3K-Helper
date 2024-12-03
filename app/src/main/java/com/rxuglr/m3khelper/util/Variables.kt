@@ -79,7 +79,8 @@ object Variables {
     @SuppressLint("RestrictedApi")
     fun vars() {
         for (card: DeviceCard in deviceCardsArray) {
-            if (Codename1.contains(card.deviceCodename) || Codename2.contains(card.deviceCodename)) CurrentDeviceCard = card
+            for (num: String in card.deviceCodename)
+                if (Codename1.contains(num) || Codename2.contains(num)) CurrentDeviceCard = card
         }
 
         val panel = ShellUtils.fastCmd("cat /proc/cmdline")

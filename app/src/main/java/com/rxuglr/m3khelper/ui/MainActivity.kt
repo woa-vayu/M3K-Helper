@@ -126,7 +126,7 @@ class MainActivity : ComponentActivity() {
                                     get() = { fadeOut(animationSpec = tween(340)) }
                             }
                         )
-                        if (CurrentDeviceCard.deviceCodename == "unknown") Warning.value = true
+                        if (CurrentDeviceCard.deviceCodename[0] == "unknown") Warning.value = true
                         when {
                             CurrentDeviceCard.deviceName == M3KApp.getString(R.string.unknown_device) -> {
                                 UnknownDevice()

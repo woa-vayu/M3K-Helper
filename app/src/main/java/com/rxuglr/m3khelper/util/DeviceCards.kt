@@ -4,7 +4,7 @@ import com.rxuglr.m3khelper.M3KApp
 import com.rxuglr.m3khelper.R
 
 data class DeviceCard(
-    val deviceCodename: String,
+    val deviceCodename: Array<String>,
     val deviceName: String,
     val deviceImage: Int,
     val deviceGuide: String,
@@ -19,7 +19,7 @@ data class DeviceCard(
 )
 
 val vayuCard = DeviceCard(
-    "vayu",
+    arrayOf("vayu"),
     "POCO X3 Pro NFC",
     R.drawable.vayu,
     "https://github.com/woa-vayu/POCOX3Pro-Guides",
@@ -33,10 +33,10 @@ val vayuCard = DeviceCard(
     false, true
 )
 
-val bhimaCard = vayuCard.copy(deviceCodename = "bhima", deviceName = "POCO X3 Pro")
+val bhimaCard = vayuCard.copy(deviceCodename = arrayOf("bhima"), deviceName = "POCO X3 Pro")
 
 val nabuCard = DeviceCard(
-    "nabu",
+    arrayOf("nabu"),
     "Xiaomi Pad 5",
     R.drawable.nabu,
     "https://github.com/erdilS/Port-Windows-11-Xiaomi-Pad-5",
@@ -51,7 +51,7 @@ val nabuCard = DeviceCard(
 )
 
 val raphaelCard = DeviceCard(
-    "raphael",
+    arrayOf("raphael"),
     "Xiaomi Mi 9T Pro",
     R.drawable.raphael,
     "https://github.com/graphiks/woa-raphael",
@@ -65,11 +65,11 @@ val raphaelCard = DeviceCard(
     false, false
 )
 
-val raphaelinCard = raphaelCard.copy(deviceCodename = "raphaelin", deviceName = "Redmi K20 Pro")
-val raphaelsCard = raphaelCard.copy(deviceCodename = "raphaels", deviceName = "Redmi K20 Pro Premium")
+val raphaelinCard = raphaelCard.copy(deviceCodename = arrayOf("raphaelin"), deviceName = "Redmi K20 Pro")
+val raphaelsCard = raphaelCard.copy(deviceCodename = arrayOf("raphaels"), deviceName = "Redmi K20 Pro Premium")
 
 val cepheusCard = DeviceCard(
-    "chepheus",
+    arrayOf("chepheus"),
     "Xiaomi Mi 9",
     R.drawable.cepheus,
     "https://github.com/ivnvrvnn/Port-Windows-XiaoMI-9",
@@ -84,7 +84,7 @@ val cepheusCard = DeviceCard(
 )
 
 val berylliumCard = DeviceCard(
-    "beryllium",
+    arrayOf("beryllium"),
     "POCO F1",
     R.drawable.beryllium,
     "https://github.com/n00b69/woa-beryllium",
@@ -99,7 +99,7 @@ val berylliumCard = DeviceCard(
 )
 
 val miatolCard = DeviceCard(
-    "miatoll",
+    arrayOf("miatoll"),
     "Xiaomi Redmi Note 9 Pro",
     R.drawable.miatoll,
     "https://github.com/woa-miatoll/Port-Windows-11-Redmi-Note-9-Pro",
@@ -113,15 +113,15 @@ val miatolCard = DeviceCard(
     false, true
 )
 
-val durandalCard = miatolCard.copy(deviceCodename = "durandal", deviceName = "Xiaomi Redmi Note 9S")
-val curtana_indiaCard = durandalCard.copy(deviceCodename = "curtana_india", deviceName = "Xiaomi Redmi Note 9S")
-val curtanaCard = miatolCard.copy(deviceCodename = "curtana", deviceName = "Xiaomi Redmi Note 9S NFC")
-val excaliburCard = miatolCard.copy(deviceCodename = "excalibur", deviceName = "Xiaomi Redmi Note 9 Pro Max")
-val gramCard = miatolCard.copy(deviceCodename = "gram", deviceName = "POCO M2 Pro")
-val joyeuseCard = miatolCard.copy(deviceCodename = "joyeuse", deviceName = "Xiaomi Redmi Note 9 Pro")
+val durandalCard = miatolCard.copy(deviceCodename = arrayOf("durandal"), deviceName = "Xiaomi Redmi Note 9S")
+val curtana_indiaCard = durandalCard.copy(deviceCodename = arrayOf("curtana_india"), deviceName = "Xiaomi Redmi Note 9S")
+val curtanaCard = miatolCard.copy(deviceCodename = arrayOf("curtana"), deviceName = "Xiaomi Redmi Note 9S NFC")
+val excaliburCard = miatolCard.copy(deviceCodename = arrayOf("excalibur"), deviceName = "Xiaomi Redmi Note 9 Pro Max")
+val gramCard = miatolCard.copy(deviceCodename = arrayOf("gram"), deviceName = "POCO M2 Pro")
+val joyeuseCard = miatolCard.copy(deviceCodename = arrayOf("joyeuse"), deviceName = "Xiaomi Redmi Note 9 Pro")
 
 val alphaCard = DeviceCard(
-    "alpha",
+    arrayOf("alpha"),
     "LG G8",
     R.drawable.alpha,
     "https://github.com/n00b69/woa-alphaplus",
@@ -136,7 +136,7 @@ val alphaCard = DeviceCard(
 )
 
 val mh2lm5gCard = DeviceCard(
-    "mh2lm5g",
+    arrayOf("mh2lm5g"),
     "LG V50S",
     R.drawable.mh2,
     "https://github.com/n00b69/woa-mh2lm5g",
@@ -150,10 +150,10 @@ val mh2lm5gCard = DeviceCard(
     false, false
 )
 
-val mh2Card = mh2lm5gCard.copy(deviceCodename = "mh2", deviceName = "LG V50S", deviceGuide = "https://github.com/n00b69/woa-mh2lm")
+val mh2Card = mh2lm5gCard.copy(deviceCodename = arrayOf("mh2"), deviceName = "LG V50S", deviceGuide = "https://github.com/n00b69/woa-mh2lm")
 
 val betaCard = DeviceCard(
-    "beta",
+    arrayOf("beta"),
     "LG G8S",
     R.drawable.mh2,
     "https://github.com/n00b69/woa-betalm",
@@ -167,10 +167,10 @@ val betaCard = DeviceCard(
     false, false
 )
 
-val flashCard = mh2lm5gCard.copy(deviceCodename = "flash", deviceName = "LG V50", deviceGuide = "https://github.com/n00b69/woa-flashlmdd")
+val flashCard = mh2lm5gCard.copy(deviceCodename = arrayOf("flash"), deviceName = "LG V50", deviceGuide = "https://github.com/n00b69/woa-flashlmdd")
 
 val guacamoleCard = DeviceCard(
-    "guacamole",
+    arrayOf("guacamole", "OnePlus7Pro"),
     "OnePlus 7 Pro",
     R.drawable.guacamole,
     "",
@@ -184,10 +184,10 @@ val guacamoleCard = DeviceCard(
     true, false
 )
 
-val hotdogCard = guacamoleCard.copy(deviceCodename = "hotdog", deviceName = "OnePlus 7T Pro", deviceImage = R.drawable.hotdog)
+val hotdogCard = guacamoleCard.copy(deviceCodename = arrayOf("hotdog", "OnePlus7TPro"), deviceName = "OnePlus 7T Pro", deviceImage = R.drawable.hotdog)
 
 val suryaCard = DeviceCard(
-    "surya",
+    arrayOf("surya"),
     "POCO X3 NFC",
     R.drawable.vayu,
     "https://github.com/woa-surya/POCOX3NFC-Guides",
@@ -201,10 +201,10 @@ val suryaCard = DeviceCard(
     true, true
 )
 
-val karnaCard = suryaCard.copy(deviceCodename = "karna", deviceName = "POCO X3")
+val karnaCard = suryaCard.copy(deviceCodename = arrayOf("karna"), deviceName = "POCO X3")
 
 val a52sxqCard = DeviceCard(
-    "a52sxq",
+    arrayOf("a52sxq"),
     "Samsung Galaxy A52s",
     R.drawable.a52sxq,
     "https://github.com/woa-a52s/Samsung-A52s-5G-Guides",
@@ -219,7 +219,7 @@ val a52sxqCard = DeviceCard(
 )
 
 val emu64xaCard = DeviceCard(
-    "emu64xa",
+    arrayOf("emu64xa"),
     "emu64xa",
     R.drawable.vayu,
     "https://google.com",
@@ -234,7 +234,7 @@ val emu64xaCard = DeviceCard(
 )
 
 val unknownCard = DeviceCard(
-    "unknown",
+    arrayOf("unknown"),
     M3KApp.getString(R.string.unknown_device),
     R.drawable.ic_device_unknown,
     "",
