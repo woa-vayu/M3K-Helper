@@ -20,7 +20,7 @@ data class DeviceCard(
 
 val vayuCard = DeviceCard(
     arrayOf("vayu"),
-    "POCO X3 Pro NFC",
+    "POCO X3 Pro",
     R.drawable.vayu,
     "https://github.com/woa-vayu/POCOX3Pro-Guides",
     "https://t.me/winonvayualt",
