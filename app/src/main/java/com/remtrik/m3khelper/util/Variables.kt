@@ -23,7 +23,7 @@ object Variables {
     // static vars
     private val deviceCardsArray =
         arrayOf<DeviceCard>(
-            vayuCard, bhimaCard,
+            vayuCard,
             nabuCard,
             raphaelCard, raphaelinCard, raphaelsCard,
             cepheusCard,
@@ -38,6 +38,7 @@ object Variables {
             hotdogCard,
             suryaCard, karnaCard,
             a52sxqCard,
+            beyond1Card,
             emu64xaCard
         )
 
@@ -79,8 +80,11 @@ object Variables {
     fun vars() {
         for (card: DeviceCard in deviceCardsArray) {
             for (num: String in card.deviceCodename)
-                if (Codename1.contains(num) || Codename2.contains(num)) CurrentDeviceCard = card
+                if (Codename2.isNotEmpty() && Codename2.contains(num)) CurrentDeviceCard = card
+                else if (Codename1.contains(num)) CurrentDeviceCard = card
         }
+        CurrentDeviceCard.deviceCodename[0] = if (Codename2.isNotEmpty()) Codename2
+        else Codename1
 
         val panel = ShellUtils.fastCmd("cat /proc/cmdline")
         PanelType = when {

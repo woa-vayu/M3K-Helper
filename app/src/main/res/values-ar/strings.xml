@@ -31,7 +31,7 @@
     <string name="qs_unsupported">جهازك غير مدعوم</string>
 
     <string name="unknown_device">جهاز غير معروف</string>
-    <string name="model">النوع: %s</string>
+    <string name="model">النوع: (%s) %s</string>
     <string name="ramvalue">الرام: %s</string>
     <string name="paneltype">"الشاشة: "</string>
     <string name="unknown_panel">غير معروف</string>

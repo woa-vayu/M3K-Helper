@@ -3,6 +3,7 @@ package com.remtrik.m3khelper.ui.screen
 import android.annotation.SuppressLint
 import android.content.Context
 import androidx.compose.foundation.LocalIndication
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -11,6 +12,7 @@ import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Update
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -37,6 +39,8 @@ import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.remtrik.m3khelper.util.Variables.FontSize
 import com.remtrik.m3khelper.R
+import com.remtrik.m3khelper.ui.component.AboutCard
+import com.remtrik.m3khelper.util.Variables.showAboutCard
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -83,6 +87,18 @@ fun SettingsScreen(navigator: DestinationsNavigator) {
                 prefs.edit().putBoolean("check_update", it).apply()
                 checkUpdate = it
             }
+            ListItem(
+                leadingContent = {
+                    Icon(
+                        Icons.Filled.Info,
+                        stringResource(R.string.about)
+                    )
+                },
+                headlineContent = { Text(stringResource(R.string.about), fontSize = FontSize) },
+                modifier = Modifier.clickable {
+                    showAboutCard.value = true
+                }
+            )
         }
     }
 }

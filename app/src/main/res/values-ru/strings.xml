@@ -31,7 +31,7 @@
     <string name="qs_unsupported">Устройство неподдерживается</string>
 
     <string name="unknown_device">Неизвестное устройство</string>
-    <string name="model">Модель: %s</string>
+    <string name="model">Модель: %s (%s)</string>
     <string name="ramvalue">ОЗУ: %s</string>
     <string name="paneltype">"Дисплей: "</string>
     <string name="unknown_panel">Неизвестно</string>

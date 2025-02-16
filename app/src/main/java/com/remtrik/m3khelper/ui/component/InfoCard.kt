@@ -35,7 +35,7 @@ fun InfoCard(modifier: Modifier) {
             modifier
         } else {
             Modifier
-                .height(300.sdp())
+                .height(240.sdp())
         },
         shape = RoundedCornerShape(8.sdp()),
     ) {
@@ -54,7 +54,7 @@ fun InfoCard(modifier: Modifier) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = PaddingValue),
-                text = M3KApp.getString(R.string.model, CurrentDeviceCard.deviceName),
+                text = M3KApp.getString(R.string.model, CurrentDeviceCard.deviceName, CurrentDeviceCard.deviceCodename[0]),
                 fontSize = FontSize,
                 lineHeight = LineHeight
             )

@@ -40,7 +40,7 @@
     <string name="qs_unsupported">Device isn\'t supported</string>
 
     <string name="unknown_device">Unknown device</string>
-    <string name="model">Model: %s</string>
+    <string name="model">Model: %s (%s)</string>
     <string name="ramvalue">RAM: %s</string>
     <string name="paneltype">"Panel: "</string>
     <string name="unknown_panel">Unknown</string>

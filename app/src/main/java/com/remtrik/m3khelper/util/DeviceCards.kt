@@ -19,7 +19,7 @@ data class DeviceCard(
 )
 
 val vayuCard = DeviceCard(
-    arrayOf("vayu"),
+    arrayOf("vayu", "bhima"),
     "POCO X3 Pro",
     R.drawable.vayu,
     "https://github.com/woa-vayu/POCOX3Pro-Guides",
@@ -32,8 +32,6 @@ val vayuCard = DeviceCard(
     false, false,
     false, true
 )
-
-val bhimaCard = vayuCard.copy(deviceCodename = arrayOf("bhima"), deviceName = "POCO X3 Pro")
 
 val nabuCard = DeviceCard(
     arrayOf("nabu"),
@@ -216,6 +214,21 @@ val a52sxqCard = DeviceCard(
     false, false,
     false, false,
     false, true
+)
+
+val beyond1Card = DeviceCard(
+    arrayOf("beyond1"),
+    "Samsung Galaxy S10",
+    R.drawable.beyond1,
+    "",
+    "https://t.me/woahelperchat",
+    "",
+    "",
+    true, false,
+    false, false,
+    false, true,
+    false, true,
+    true, false
 )
 
 val emu64xaCard = DeviceCard(

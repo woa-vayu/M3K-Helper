@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Message
 import androidx.compose.material.icons.filled.Book
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -27,6 +28,8 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.generated.destinations.SettingsScreenDestination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.remtrik.m3khelper.M3KApp
 import com.remtrik.m3khelper.R
 import com.remtrik.m3khelper.ui.component.AboutCard
@@ -34,19 +37,13 @@ import com.remtrik.m3khelper.ui.component.LinkButton
 import com.remtrik.m3khelper.util.Variables.CurrentDeviceCard
 import com.remtrik.m3khelper.util.Variables.FontSize
 import com.remtrik.m3khelper.util.Variables.PaddingValue
-import com.remtrik.m3khelper.util.Variables.showAboutCard
 import com.remtrik.m3khelper.util.sdp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Destination<RootGraph>()
 @Composable
-fun LinksScreen() {
-    when {
-        showAboutCard.value -> {
-            AboutCard()
-        }
-    }
+fun LinksScreen(navigator: DestinationsNavigator) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -59,12 +56,10 @@ fun LinksScreen() {
                 },
                 actions = {
                     IconButton(
-                        onClick = {
-                            showAboutCard.value = true
-                        }
+                        onClick = { navigator.navigate(SettingsScreenDestination) }
                     ) {
                         Icon(
-                            imageVector = Icons.Filled.Info,
+                            imageVector = Icons.Filled.Settings,
                             contentDescription = null
                         )
                     }

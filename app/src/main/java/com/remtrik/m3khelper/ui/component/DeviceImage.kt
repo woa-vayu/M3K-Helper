@@ -18,7 +18,7 @@ fun DeviceImage(modifier: Modifier) {
             modifier
         } else {
             Modifier
-                .height(300.sdp())
+                .height(240.sdp())
         },
         painter = painterResource(id = CurrentDeviceCard.deviceImage),
         contentDescription = null,

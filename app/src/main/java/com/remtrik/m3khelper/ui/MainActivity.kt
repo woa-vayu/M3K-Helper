@@ -37,6 +37,7 @@ import com.ramcosta.composedestinations.utils.isRouteOnBackStackAsState
 import com.ramcosta.composedestinations.utils.rememberDestinationsNavigator
 import com.remtrik.m3khelper.M3KApp
 import com.remtrik.m3khelper.R
+import com.remtrik.m3khelper.ui.component.AboutCard
 import com.remtrik.m3khelper.ui.component.NoRoot
 import com.remtrik.m3khelper.ui.component.UnknownDevice
 import com.remtrik.m3khelper.ui.theme.M3KHelperTheme
@@ -45,6 +46,7 @@ import com.remtrik.m3khelper.util.Variables.FontSize
 import com.remtrik.m3khelper.util.Variables.LineHeight
 import com.remtrik.m3khelper.util.Variables.PaddingValue
 import com.remtrik.m3khelper.util.Variables.Warning
+import com.remtrik.m3khelper.util.Variables.showAboutCard
 import com.remtrik.m3khelper.util.Variables.vars
 import com.remtrik.m3khelper.util.sdp
 import com.remtrik.m3khelper.util.ssp
@@ -74,48 +76,47 @@ class MainActivity : ComponentActivity() {
                     val navigator = navController.rememberDestinationsNavigator()
                     Scaffold(
                         bottomBar = {
-                            if (!CurrentDeviceCard.noDrivers
-                                && !CurrentDeviceCard.noUEFI
-                                && !CurrentDeviceCard.noGuide
-                                && !CurrentDeviceCard.noGroup
+                            NavigationBar(
+                                tonalElevation = 12.dp,
+                                windowInsets = WindowInsets.systemBars.union(WindowInsets.displayCutout).only(
+                                    WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom
+                                )
                             ) {
-                                NavigationBar(
-                                    tonalElevation = 12.dp,
-                                    windowInsets = WindowInsets.systemBars.union(WindowInsets.displayCutout).only(
-                                        WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom
+                                Destinations.entries.forEach { destination ->
+                                    val isCurrentDestOnBackStack by navController.isRouteOnBackStackAsState(destination.route)
+                                    NavigationBarItem(
+                                        selected = isCurrentDestOnBackStack,
+                                        onClick = {
+                                            if (isCurrentDestOnBackStack) {
+                                                navigator.popBackStack(destination.route, false)
+                                            }
+                                            navigator.navigate(destination.route) {
+                                                popUpTo(NavGraphs.root) {
+                                                    saveState = true
+                                                }
+                                                launchSingleTop = true
+                                                restoreState = true
+                                            }
+                                        },
+                                        icon = {
+                                            if (isCurrentDestOnBackStack) {
+                                                Icon(destination.iconSelected, stringResource(destination.label))
+                                            } else {
+                                                Icon(destination.iconNotSelected, stringResource(destination.label))
+                                            }
+                                        },
+                                        label = { Text(stringResource(destination.label)) },
+                                        alwaysShowLabel = false
                                     )
-                                ) {
-                                    Destinations.entries.forEach { destination ->
-                                        val isCurrentDestOnBackStack by navController.isRouteOnBackStackAsState(destination.route)
-                                        NavigationBarItem(
-                                            selected = isCurrentDestOnBackStack,
-                                            onClick = {
-                                                if (isCurrentDestOnBackStack) {
-                                                    navigator.popBackStack(destination.route, false)
-                                                }
-                                                navigator.navigate(destination.route) {
-                                                    popUpTo(NavGraphs.root) {
-                                                        saveState = true
-                                                    }
-                                                    launchSingleTop = true
-                                                    restoreState = true
-                                                }
-                                            },
-                                            icon = {
-                                                if (isCurrentDestOnBackStack) {
-                                                    Icon(destination.iconSelected, stringResource(destination.label))
-                                                } else {
-                                                    Icon(destination.iconNotSelected, stringResource(destination.label))
-                                                }
-                                            },
-                                            label = { Text(stringResource(destination.label)) },
-                                            alwaysShowLabel = false
-                                        )
-                                    }
                                 }
                             }
                         }
                     ) {
+                        when {
+                            showAboutCard.value -> {
+                                AboutCard()
+                            }
+                        }
                         DestinationsNavHost(
                             navGraph = NavGraphs.root,
                             navController = navController,
