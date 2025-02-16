@@ -80,11 +80,10 @@ object Variables {
     fun vars() {
         for (card: DeviceCard in deviceCardsArray) {
             for (num: String in card.deviceCodename)
-                if (Codename2.isNotEmpty() && Codename2.contains(num)) CurrentDeviceCard = card
-                else if (Codename1.contains(num)) CurrentDeviceCard = card
+                if (Codename2.isNotEmpty() && Codename2.contains(num)) { CurrentDeviceCard = card; CurrentDeviceCard.deviceCodename[0] = Codename2 }
+                else if (Codename1.contains(num)) { CurrentDeviceCard = card; CurrentDeviceCard.deviceCodename[0] = Codename1 }
         }
-        CurrentDeviceCard.deviceCodename[0] = if (Codename2.isNotEmpty()) Codename2
-        else Codename1
+
 
         val panel = ShellUtils.fastCmd("cat /proc/cmdline")
         PanelType = when {
