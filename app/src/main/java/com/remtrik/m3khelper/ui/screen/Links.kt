@@ -1,4 +1,4 @@
-package com.rxuglr.m3khelper.ui.screen
+package com.remtrik.m3khelper.ui.screen
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
@@ -23,13 +23,13 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
-import com.rxuglr.m3khelper.M3KApp
-import com.rxuglr.m3khelper.R
-import com.rxuglr.m3khelper.ui.component.LinkButton
-import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
-import com.rxuglr.m3khelper.util.Variables.FontSize
-import com.rxuglr.m3khelper.util.Variables.PaddingValue
-import com.rxuglr.m3khelper.util.sdp
+import com.remtrik.m3khelper.M3KApp
+import com.remtrik.m3khelper.R
+import com.remtrik.m3khelper.ui.component.LinkButton
+import com.remtrik.m3khelper.util.Variables.CurrentDeviceCard
+import com.remtrik.m3khelper.util.Variables.FontSize
+import com.remtrik.m3khelper.util.Variables.PaddingValue
+import com.remtrik.m3khelper.util.sdp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

@@ -1,4 +1,4 @@
-package com.rxuglr.m3khelper.ui.component
+package com.remtrik.m3khelper.ui.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,20 +25,20 @@ import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import com.rxuglr.m3khelper.M3KApp
-import com.rxuglr.m3khelper.R
-import com.rxuglr.m3khelper.util.dumpBoot
-import com.rxuglr.m3khelper.util.mountStatus
-import com.rxuglr.m3khelper.util.mountWindows
-import com.rxuglr.m3khelper.util.quickboot
-import com.rxuglr.m3khelper.util.umountWindows
-import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
-import com.rxuglr.m3khelper.util.Variables.FontSize
-import com.rxuglr.m3khelper.util.Variables.LineHeight
-import com.rxuglr.m3khelper.util.Variables.PaddingValue
-import com.rxuglr.m3khelper.util.Variables.UEFICardsArray
-import com.rxuglr.m3khelper.util.Variables.UEFIList
-import com.rxuglr.m3khelper.util.sdp
+import com.remtrik.m3khelper.M3KApp
+import com.remtrik.m3khelper.R
+import com.remtrik.m3khelper.util.dumpBoot
+import com.remtrik.m3khelper.util.mountStatus
+import com.remtrik.m3khelper.util.mountWindows
+import com.remtrik.m3khelper.util.quickboot
+import com.remtrik.m3khelper.util.umountWindows
+import com.remtrik.m3khelper.util.Variables.CurrentDeviceCard
+import com.remtrik.m3khelper.util.Variables.FontSize
+import com.remtrik.m3khelper.util.Variables.LineHeight
+import com.remtrik.m3khelper.util.Variables.PaddingValue
+import com.remtrik.m3khelper.util.Variables.UEFICardsArray
+import com.remtrik.m3khelper.util.Variables.UEFIList
+import com.remtrik.m3khelper.util.sdp
 
 @Composable
 fun CommandButton(

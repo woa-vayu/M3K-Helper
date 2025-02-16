@@ -1,4 +1,4 @@
-package com.rxuglr.m3khelper.ui.theme
+package com.remtrik.m3khelper.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -1,4 +1,4 @@
-package com.rxuglr.m3khelper
+package com.remtrik.m3khelper
 
 import android.app.Application
 import com.topjohnwu.superuser.Shell

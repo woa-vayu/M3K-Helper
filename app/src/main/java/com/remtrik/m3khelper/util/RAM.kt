@@ -1,4 +1,4 @@
-package com.rxuglr.m3khelper.util
+package com.remtrik.m3khelper.util
 
 import android.app.ActivityManager
 import android.content.Context

@@ -1,4 +1,4 @@
-package com.rxuglr.m3khelper.ui.component
+package com.remtrik.m3khelper.ui.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,22 +10,21 @@ import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import com.rxuglr.m3khelper.M3KApp
-import com.rxuglr.m3khelper.R
-import com.rxuglr.m3khelper.util.Variables.BootIsPresent
-import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
-import com.rxuglr.m3khelper.util.Variables.FontSize
-import com.rxuglr.m3khelper.util.Variables.LineHeight
-import com.rxuglr.m3khelper.util.Variables.PaddingValue
-import com.rxuglr.m3khelper.util.Variables.PanelType
-import com.rxuglr.m3khelper.util.Variables.Ram
-import com.rxuglr.m3khelper.util.Variables.Slot
-import com.rxuglr.m3khelper.util.Variables.WindowsIsPresent
-import com.rxuglr.m3khelper.util.Variables.specialDeviceCardsArray
-import com.rxuglr.m3khelper.util.sdp
+import com.remtrik.m3khelper.M3KApp
+import com.remtrik.m3khelper.R
+import com.remtrik.m3khelper.util.Variables.BootIsPresent
+import com.remtrik.m3khelper.util.Variables.CurrentDeviceCard
+import com.remtrik.m3khelper.util.Variables.FontSize
+import com.remtrik.m3khelper.util.Variables.LineHeight
+import com.remtrik.m3khelper.util.Variables.PaddingValue
+import com.remtrik.m3khelper.util.Variables.PanelType
+import com.remtrik.m3khelper.util.Variables.Ram
+import com.remtrik.m3khelper.util.Variables.Slot
+import com.remtrik.m3khelper.util.Variables.WindowsIsPresent
+import com.remtrik.m3khelper.util.Variables.specialDeviceCardsArray
+import com.remtrik.m3khelper.util.sdp
 
 @Composable
 fun InfoCard(modifier: Modifier) {

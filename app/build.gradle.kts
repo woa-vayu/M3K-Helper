@@ -12,15 +12,15 @@ plugins {
 }
 
 android {
-    namespace = "com.rxuglr.m3khelper"
-    compileSdk = 34
+    namespace = "com.remtrik.m3khelper"
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.remtrik.m3khelper"
         minSdk = 29
         targetSdk = 35
-        versionCode = 30
-        versionName = "2.6"
+        versionCode = 31
+        versionName = "2.7"
         compileSdk = 35
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

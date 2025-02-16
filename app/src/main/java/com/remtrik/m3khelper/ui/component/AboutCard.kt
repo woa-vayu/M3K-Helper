@@ -1,4 +1,4 @@
-package com.rxuglr.m3khelper.ui.component
+package com.remtrik.m3khelper.ui.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,12 +27,12 @@ import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import com.rxuglr.m3khelper.BuildConfig
-import com.rxuglr.m3khelper.R
-import com.rxuglr.m3khelper.util.Variables.FontSize
-import com.rxuglr.m3khelper.util.Variables.LineHeight
-import com.rxuglr.m3khelper.util.Variables.showAboutCard
-import com.rxuglr.m3khelper.util.sdp
+import com.remtrik.m3khelper.BuildConfig
+import com.remtrik.m3khelper.R
+import com.remtrik.m3khelper.util.Variables.FontSize
+import com.remtrik.m3khelper.util.Variables.LineHeight
+import com.remtrik.m3khelper.util.Variables.showAboutCard
+import com.remtrik.m3khelper.util.sdp
 
 @Composable
 fun AboutCard() {

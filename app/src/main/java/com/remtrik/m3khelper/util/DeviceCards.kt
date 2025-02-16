@@ -1,7 +1,7 @@
-package com.rxuglr.m3khelper.util
+package com.remtrik.m3khelper.util
 
-import com.rxuglr.m3khelper.M3KApp
-import com.rxuglr.m3khelper.R
+import com.remtrik.m3khelper.M3KApp
+import com.remtrik.m3khelper.R
 
 data class DeviceCard(
     val deviceCodename: Array<String>,

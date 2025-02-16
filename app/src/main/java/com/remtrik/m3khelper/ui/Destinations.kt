@@ -1,4 +1,4 @@
-package com.rxuglr.m3khelper.ui
+package com.remtrik.m3khelper.ui
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.ramcosta.composedestinations.generated.destinations.HomeScreenDestination
 import com.ramcosta.composedestinations.generated.destinations.LinksScreenDestination
 import com.ramcosta.composedestinations.spec.DirectionDestinationSpec
-import com.rxuglr.m3khelper.R
+import com.remtrik.m3khelper.R
 
 enum class Destinations(
     val route: DirectionDestinationSpec,

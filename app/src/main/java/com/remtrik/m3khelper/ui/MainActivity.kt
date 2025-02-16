@@ -1,4 +1,4 @@
-package com.rxuglr.m3khelper.ui
+package com.remtrik.m3khelper.ui
 
 import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_FULL_USER
@@ -35,19 +35,19 @@ import com.ramcosta.composedestinations.animations.NavHostAnimatedDestinationSty
 import com.ramcosta.composedestinations.generated.NavGraphs
 import com.ramcosta.composedestinations.utils.isRouteOnBackStackAsState
 import com.ramcosta.composedestinations.utils.rememberDestinationsNavigator
-import com.rxuglr.m3khelper.M3KApp
-import com.rxuglr.m3khelper.R
-import com.rxuglr.m3khelper.ui.component.NoRoot
-import com.rxuglr.m3khelper.ui.component.UnknownDevice
-import com.rxuglr.m3khelper.ui.theme.M3KHelperTheme
-import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
-import com.rxuglr.m3khelper.util.Variables.FontSize
-import com.rxuglr.m3khelper.util.Variables.LineHeight
-import com.rxuglr.m3khelper.util.Variables.PaddingValue
-import com.rxuglr.m3khelper.util.Variables.Warning
-import com.rxuglr.m3khelper.util.Variables.vars
-import com.rxuglr.m3khelper.util.sdp
-import com.rxuglr.m3khelper.util.ssp
+import com.remtrik.m3khelper.M3KApp
+import com.remtrik.m3khelper.R
+import com.remtrik.m3khelper.ui.component.NoRoot
+import com.remtrik.m3khelper.ui.component.UnknownDevice
+import com.remtrik.m3khelper.ui.theme.M3KHelperTheme
+import com.remtrik.m3khelper.util.Variables.CurrentDeviceCard
+import com.remtrik.m3khelper.util.Variables.FontSize
+import com.remtrik.m3khelper.util.Variables.LineHeight
+import com.remtrik.m3khelper.util.Variables.PaddingValue
+import com.remtrik.m3khelper.util.Variables.Warning
+import com.remtrik.m3khelper.util.Variables.vars
+import com.remtrik.m3khelper.util.sdp
+import com.remtrik.m3khelper.util.ssp
 import com.topjohnwu.superuser.Shell
 
 class MainActivity : ComponentActivity() {

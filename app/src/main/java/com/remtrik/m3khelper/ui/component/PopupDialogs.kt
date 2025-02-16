@@ -1,4 +1,4 @@
-package com.rxuglr.m3khelper.ui.component
+package com.remtrik.m3khelper.ui.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,12 +21,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import com.rxuglr.m3khelper.R
-import com.rxuglr.m3khelper.util.Variables.FontSize
-import com.rxuglr.m3khelper.util.Variables.LineHeight
-import com.rxuglr.m3khelper.util.Variables.Warning
-import com.rxuglr.m3khelper.util.sdp
-import com.rxuglr.m3khelper.util.ssp
+import com.remtrik.m3khelper.R
+import com.remtrik.m3khelper.util.Variables.FontSize
+import com.remtrik.m3khelper.util.Variables.LineHeight
+import com.remtrik.m3khelper.util.Variables.Warning
+import com.remtrik.m3khelper.util.sdp
+import com.remtrik.m3khelper.util.ssp
 
 @Composable
 fun Dialog(

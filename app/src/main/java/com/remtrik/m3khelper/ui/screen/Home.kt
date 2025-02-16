@@ -1,4 +1,4 @@
-package com.rxuglr.m3khelper.ui.screen
+package com.remtrik.m3khelper.ui.screen
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
@@ -13,7 +13,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -23,25 +22,23 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
-import com.ramcosta.composedestinations.generated.destinations.SettingsScreenDestination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.rxuglr.m3khelper.M3KApp
-import com.rxuglr.m3khelper.R
-import com.rxuglr.m3khelper.ui.component.AboutCard
-import com.rxuglr.m3khelper.ui.component.BackupButton
-import com.rxuglr.m3khelper.ui.component.DeviceImage
-import com.rxuglr.m3khelper.ui.component.InfoCard
-import com.rxuglr.m3khelper.ui.component.MountButton
-import com.rxuglr.m3khelper.ui.component.QuickbootButton
-import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
-import com.rxuglr.m3khelper.util.Variables.FontSize
-import com.rxuglr.m3khelper.util.Variables.PaddingValue
-import com.rxuglr.m3khelper.util.Variables.showAboutCard
-import com.rxuglr.m3khelper.util.sdp
+import com.remtrik.m3khelper.M3KApp
+import com.remtrik.m3khelper.R
+import com.remtrik.m3khelper.ui.component.AboutCard
+import com.remtrik.m3khelper.ui.component.BackupButton
+import com.remtrik.m3khelper.ui.component.DeviceImage
+import com.remtrik.m3khelper.ui.component.InfoCard
+import com.remtrik.m3khelper.ui.component.MountButton
+import com.remtrik.m3khelper.ui.component.QuickbootButton
+import com.remtrik.m3khelper.util.Variables.CurrentDeviceCard
+import com.remtrik.m3khelper.util.Variables.FontSize
+import com.remtrik.m3khelper.util.Variables.PaddingValue
+import com.remtrik.m3khelper.util.Variables.showAboutCard
+import com.remtrik.m3khelper.util.sdp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "UnrememberedMutableState")

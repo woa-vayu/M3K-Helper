@@ -1,17 +1,17 @@
-package com.rxuglr.m3khelper.qstiles
+package com.remtrik.m3khelper.qstiles
 
 import android.service.quicksettings.Tile.STATE_ACTIVE
 import android.service.quicksettings.Tile.STATE_UNAVAILABLE
 import android.service.quicksettings.TileService
-import com.rxuglr.m3khelper.M3KApp
-import com.rxuglr.m3khelper.R
-import com.rxuglr.m3khelper.util.mountStatus
-import com.rxuglr.m3khelper.util.mountWindows
-import com.rxuglr.m3khelper.util.quickboot
-import com.rxuglr.m3khelper.util.umountWindows
-import com.rxuglr.m3khelper.util.Variables.CurrentDeviceCard
-import com.rxuglr.m3khelper.util.Variables.UEFICardsArray
-import com.rxuglr.m3khelper.util.Variables.UEFIList
+import com.remtrik.m3khelper.M3KApp
+import com.remtrik.m3khelper.R
+import com.remtrik.m3khelper.util.mountStatus
+import com.remtrik.m3khelper.util.mountWindows
+import com.remtrik.m3khelper.util.quickboot
+import com.remtrik.m3khelper.util.umountWindows
+import com.remtrik.m3khelper.util.Variables.CurrentDeviceCard
+import com.remtrik.m3khelper.util.Variables.UEFICardsArray
+import com.remtrik.m3khelper.util.Variables.UEFIList
 
 class MountTile : TileService() { // PoC
 

@@ -1,4 +1,4 @@
-package com.rxuglr.m3khelper.ui.theme
+package com.remtrik.m3khelper.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
