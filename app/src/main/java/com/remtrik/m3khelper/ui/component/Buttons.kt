@@ -478,7 +478,7 @@ fun QuickbootButton() {
                                                     120 -> R.string.quickboot_question120
                                                     90 -> R.string.quickboot_question90
                                                     60 -> R.string.quickboot_question60
-                                                    else -> R.string.quickboot_question1
+                                                    else -> R.string.yes
                                                 }
                                             ),
                                             fontSize = FontSize
