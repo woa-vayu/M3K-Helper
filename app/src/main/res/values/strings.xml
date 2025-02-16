@@ -66,6 +66,10 @@
     <string name="links">Additional materials</string>
     <string name="about">About</string>
     <string name="source">Source code at</string>
+    <string name="settings">Settings</string>
+
+    <string name="autoupdate">Check for updates"</string>
+    <string name="autoupdate_summary">Automatically check for updates when opening the app</string>
 
     <string name="device_unknown">YOUR DEVICE ISN\'T SUPPORTED!\n USING THIS APP CAN RESULT IN A BRICK</string>
     <string name="device_unknown_confirm">I\'m fine with that</string>

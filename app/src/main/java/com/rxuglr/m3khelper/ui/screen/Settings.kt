@@ -12,6 +12,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Update
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -29,12 +30,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.rxuglr.m3khelper.util.Variables.FontSize
+import com.rxuglr.m3khelper.R
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -53,7 +56,7 @@ fun SettingsScreen(navigator: DestinationsNavigator) {
                 },
                 title = {
                     Text(
-                        text = "Settings",
+                        text = stringResource(R.string.settings),
                         fontSize = FontSize,
                         fontWeight = FontWeight.Bold
                     )
@@ -74,8 +77,8 @@ fun SettingsScreen(navigator: DestinationsNavigator) {
             }
             SwitchItem(
                 icon = Icons.Filled.Update,
-                title = null,
-                summary = null,
+                title = stringResource(R.string.autoupdate),
+                summary = stringResource(R.string.autoupdate_summary),
                 checked = checkUpdate
             ) {
                 prefs.edit().putBoolean("check_update", it).apply()
@@ -108,7 +111,7 @@ fun SwitchItem(
             ),
         headlineContent = {
             if (title != null) {
-                Text(title)
+                Text(text = title, fontSize = FontSize)
             }
         },
         leadingContent = icon?.let {
@@ -124,7 +127,7 @@ fun SwitchItem(
         },
         supportingContent = {
             if (summary != null) {
-                Text(summary)
+                Text(text = summary, fontSize = FontSize)
             }
         }
     )
