@@ -155,7 +155,7 @@ val mh2Card = mh2lm5gCard.copy(deviceCodename = arrayOf("mh2"), deviceName = "LG
 val betaCard = DeviceCard(
     arrayOf("beta"),
     "LG G8S",
-    R.drawable.mh2,
+    R.drawable.beta,
     "https://github.com/n00b69/woa-betalm",
     "https://t.me/lgedevices",
     "https://github.com/n00b69/woa-betalm/releases/tag/Drivers",
@@ -167,7 +167,7 @@ val betaCard = DeviceCard(
     false, false
 )
 
-val flashCard = mh2lm5gCard.copy(deviceCodename = arrayOf("flash"), deviceName = "LG V50", deviceGuide = "https://github.com/n00b69/woa-flashlmdd")
+val flashCard = mh2lm5gCard.copy(deviceCodename = arrayOf("flash"), deviceName = "LG V50", deviceGuide = "https://github.com/n00b69/woa-flashlmdd", deviceImage = R.drawable.flashlm)
 
 val guacamoleCard = DeviceCard(
     arrayOf("guacamole", "OnePlus7Pro"),
