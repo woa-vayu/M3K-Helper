@@ -22,9 +22,9 @@
     <string name="dump_modemAsensors_question">Dump modem and sensors to Windows partition?</string>
     <string name="dump_sensors_question">Dump sensors to Windows partition?</string>
     <string name="quickboot_question1">Quick Boot to Windows?</string>
-    <string name="quickboot_question60" translatable="false">60Hz?</string>
-    <string name="quickboot_question90" translatable="false">90Hz?</string>
-    <string name="quickboot_question120" translatable="false">120Hz?</string>
+    <string name="quickboot_question60" translatable="false">60Hz</string>
+    <string name="quickboot_question90" translatable="false">90Hz</string>
+    <string name="quickboot_question120" translatable="false">120Hz</string>
     <string name="backup_boot_question">Backup current android boot?</string>
 
     <string name="backup_boot_subtitle">Backup current boot image to Android/Windows</string>

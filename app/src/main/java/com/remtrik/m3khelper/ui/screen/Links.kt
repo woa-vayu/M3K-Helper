@@ -13,11 +13,15 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Message
 import androidx.compose.material.icons.filled.Book
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
@@ -25,10 +29,12 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
 import com.remtrik.m3khelper.M3KApp
 import com.remtrik.m3khelper.R
+import com.remtrik.m3khelper.ui.component.AboutCard
 import com.remtrik.m3khelper.ui.component.LinkButton
 import com.remtrik.m3khelper.util.Variables.CurrentDeviceCard
 import com.remtrik.m3khelper.util.Variables.FontSize
 import com.remtrik.m3khelper.util.Variables.PaddingValue
+import com.remtrik.m3khelper.util.Variables.showAboutCard
 import com.remtrik.m3khelper.util.sdp
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -36,6 +42,11 @@ import com.remtrik.m3khelper.util.sdp
 @Destination<RootGraph>()
 @Composable
 fun LinksScreen() {
+    when {
+        showAboutCard.value -> {
+            AboutCard()
+        }
+    }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -46,7 +57,18 @@ fun LinksScreen() {
                         fontWeight = FontWeight.Bold
                     )
                 },
-                actions = {},
+                actions = {
+                    IconButton(
+                        onClick = {
+                            showAboutCard.value = true
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Info,
+                            contentDescription = null
+                        )
+                    }
+                }
             )
         })
     { innerPadding ->
@@ -55,7 +77,7 @@ fun LinksScreen() {
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
                 .padding(innerPadding)
-                .padding(horizontal = 10.sdp())
+                .padding(horizontal = PaddingValue)
                 .fillMaxWidth(),
         ) {
             if (M3KApp.resources.configuration.orientation != Configuration.ORIENTATION_PORTRAIT) Landscape()
@@ -68,16 +90,12 @@ fun LinksScreen() {
 private fun Landscape() {
     Row(
         horizontalArrangement = Arrangement.spacedBy(10.sdp()),
-        modifier = Modifier
-            .padding(vertical = PaddingValue)
-            .padding(horizontal = PaddingValue)
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth()
     ) {
         Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(10.sdp()),
-            modifier = Modifier
-                .padding(vertical = PaddingValue)
-                .width(500.sdp())
+            modifier = Modifier.width(500.sdp())
         ) {
             if (CurrentDeviceCard.unifiedDriversUEFI == true &&
                 !(CurrentDeviceCard.noDrivers == true || CurrentDeviceCard.noUEFI == true)
@@ -97,10 +115,9 @@ private fun Landscape() {
             }
         }
         Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(10.sdp()),
-            modifier = Modifier
-                .padding(vertical = PaddingValue)
-                .width(500.sdp())
+            modifier = Modifier.width(500.sdp())
         ) {
             when {
                 CurrentDeviceCard.noGroup == false -> {

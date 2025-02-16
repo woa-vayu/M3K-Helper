@@ -43,8 +43,7 @@ object Variables {
 
     val specialDeviceCardsArray =
         arrayOf<DeviceCard>(
-            nabuCard,
-            emu64xaCard
+            nabuCard
         )
 
     var UEFICardsArray =

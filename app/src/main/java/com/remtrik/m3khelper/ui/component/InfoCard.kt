@@ -1,5 +1,6 @@
 package com.remtrik.m3khelper.ui.component
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -30,7 +31,7 @@ import com.remtrik.m3khelper.util.sdp
 fun InfoCard(modifier: Modifier) {
     ElevatedCard(
         modifier =
-        if (specialDeviceCardsArray.contains(CurrentDeviceCard)) {
+        if (specialDeviceCardsArray.contains(CurrentDeviceCard) && M3KApp.resources.configuration.orientation != Configuration.ORIENTATION_LANDSCAPE) {
             modifier
         } else {
             Modifier

@@ -102,17 +102,12 @@ fun HomeScreen(navigator: DestinationsNavigator) {
 private fun Landscape() {
     Row(
         horizontalArrangement = Arrangement.spacedBy(10.sdp()),
-        modifier = Modifier
-            .padding(vertical = PaddingValue)
-            .padding(horizontal = PaddingValue)
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth()
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(10.sdp()),
-            modifier = Modifier
-                .padding(vertical = PaddingValue)
-                .width(220.sdp())
+            modifier = Modifier.width(220.sdp())
         ) {
             InfoCard(
                 Modifier
@@ -127,9 +122,7 @@ private fun Landscape() {
         }
         Column(
             verticalArrangement = Arrangement.spacedBy(10.sdp()),
-            modifier = Modifier
-                .padding(vertical = PaddingValue)
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
         ) {
             when {
                 CurrentDeviceCard.noBoot == false -> {

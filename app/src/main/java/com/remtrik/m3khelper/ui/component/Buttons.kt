@@ -216,7 +216,7 @@ fun BackupButton() {
                     dismissButton = {
                         Row(
                             Modifier.align(Alignment.CenterHorizontally),
-                            horizontalArrangement = Arrangement.spacedBy(15.sdp())
+                            horizontalArrangement = Arrangement.spacedBy(10.sdp())
                         ) {
                             AssistChip(
                                 onClick = {
@@ -450,7 +450,6 @@ fun QuickbootButton() {
                         ) {
                             for (type: Int in UEFIList) {
                                 AssistChip(
-                                    modifier = Modifier.width(105.sdp()),
                                     onClick = {
                                         Thread {
                                             showQuickBootDialog.value = false
