@@ -11,7 +11,7 @@
 | Mount/Unmount Windows partition | Needed to view/modify Windows files from Android                                   | ✅    |
 | Flash UEFI                      | To use the UEFI flashing feature, you need to place the UEFI image to /sdcard/UEFI | ✅    |
 | Provisioning Modem              |                                                                                    | ✅    |
-| Provisioning Sensors            | Needs to be tested                                                                 | ⚠️    |
+| Provisioning Sensors            |                                                                                    | ✅    |
 | Quick Boot to Windows           | To use the Quick Boot feature, you need to place the UEFI image to /sdcard/UEFI    | ✅    |
 
 ## Supported devices
